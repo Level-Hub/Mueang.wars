@@ -61,7 +61,10 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
   <p class="hint" id="nh"></p><div class="err" id="ner" role="alert"></div>
   <button class="btn gl" id="rn" type="button">บันทึกชื่อ</button></section>
  <section class="pn"><h2>เปลี่ยนอวตาร</h2><p class="sub">เลือกได้เฉพาะของภาคตัวเอง</p><div id="avp"></div><div class="err" id="aer" role="alert"></div></section>
+ <section class="pn"><h2>คอลเลกชัน</h2><p class="sub">เก็บไอเทมประจำจังหวัด เปิดหีบ และดูคลังของคุณ</p><a class="btn gl" id="cl" href="collection.html" style="width:100%">เปิดคอลเลกชัน</a></section>
+ <section class="pn"><h2>ติดต่อแอดมิน</h2><p class="sub">ขอลบบัญชี ขอสำเนาข้อมูล เติมเงินหรือคืนเงิน แจ้งผู้เล่นที่ไม่เหมาะสม หรืออุทธรณ์การระงับบัญชี</p><a class="btn gl" id="sp" href="support.html" style="width:100%">เปิดแชทแอดมิน</a></section>
  <div class="act"><a class="btn gh" href="play.html">กลับสนามรบ</a><button class="btn gh" id="lo" type="button">ออกจากระบบ</button></div>
+ <p class="hint" style="text-align:center;margin-top:14px"><a href="terms.html" style="text-decoration:underline">ข้อกำหนดการใช้งาน</a> · <a href="privacy.html" style="text-decoration:underline">ความเป็นส่วนตัว</a></p>
 </main></div>
 <div id="ts" hidden role="status"></div>
 <script>
@@ -90,7 +93,8 @@ async function load(){
  const {data:{session}}=await sb.auth.getSession();if(!session)return location.replace('index.html');
  const {data,error}=await sb.rpc('get_my_stats');
  if(error){if(/ไม่พบโปรไฟล์/.test(error.message))return location.replace('index.html');$('ld').textContent='โหลดไม่สำเร็จ: '+error.message;return}
- S=data;$('ld').hidden=true;$('app').hidden=false;paint()}
+ S=data;$('ld').hidden=true;$('app').hidden=false;paint();
+ sb.rpc('get_support_unread').then(r=>{const n=r&&r.data;if(n>0)$('sp').textContent='เปิดแชทแอดมิน (ข้อความใหม่ '+n+')'},()=>{})}
 $('rn').onclick=async()=>{if(busy)return;const v=$('nm').value.trim(),er=$('ner');er.textContent='';
  if(!/^[A-Za-z0-9_ก-๙]{3,20}$/.test(v))return er.textContent='ชื่อต้องเป็น ก-ฮ/A-Z/ตัวเลข/_ ยาว 3-20 ตัว ไม่มีช่องว่าง';
  if(v===S.username)return er.textContent='ใช้ชื่อนี้อยู่แล้ว';
