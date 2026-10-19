@@ -241,6 +241,14 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
 .rk0{padding:6px 2px;color:var(--mu);font-size:14px}
 #od{display:block;line-height:1.6}#od .ic{vertical-align:-.25em;margin-right:4px}
 .pdf{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:2px 10px;margin:10px 14px 0;padding:10px 12px;border-radius:14px;background:var(--glass);border:1px solid var(--ln)}.pdf svg{width:26px;height:26px;grid-row:1/4;color:var(--gd,#ffc857)}.pdf>span{font-size:15px}.pdf b{font-size:1.35em;color:var(--gd,#ffc857)}.pdf small{color:var(--mu);font-size:12px;line-height:1.4}
+/* ธงเป้าหมายภาค (R46) */
+.fg .fh{display:flex;align-items:center;gap:8px}.fg .fh svg{width:22px;height:22px;color:var(--gd)}.fg .fh b{font-family:Kanit,sans-serif;font-size:16px}
+.fg .fb{margin:10px 0 4px;padding:10px 12px;border-radius:14px;background:var(--glass);border:1px solid var(--gd);box-shadow:0 0 0 2px color-mix(in srgb,var(--gd) 22%,transparent)}
+.fg .fb>b{font-size:18px;font-family:Kanit,sans-serif;color:var(--gd2)}.fg small{color:var(--mu);font-size:12.5px;line-height:1.5}
+.fg .mt{height:10px;border-radius:99px;background:rgba(0,0,0,.4);border:1px solid var(--ln);overflow:hidden;margin:8px 0 4px}.fg .mt i{display:block;height:100%;background:linear-gradient(90deg,#ffb02e,#ffe08a);border-radius:99px}.fg .mt.ok i{background:linear-gradient(90deg,#2fd49a,#9af0cf)}
+.fg .fr{display:flex;align-items:center;gap:8px;padding:6px 0;border-top:1px solid var(--ln);font-size:14px}.fg .fr:first-of-type{border-top:0}.fg .fr span{flex:1}.fg .fr small{display:block}
+.fg button,.fgp button{padding:7px 12px;border-radius:12px;border:1.5px solid var(--gd);background:rgba(0,0,0,.3);color:var(--gd2);font-size:13px}.fg button:disabled,.fgp button:disabled{opacity:.45}
+.fg .fa{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}.fgp{margin:0 0 10px;padding:9px 12px;border-radius:14px;background:var(--glass);border:1px solid var(--ln);display:flex;align-items:center;gap:8px}.fgp>span{flex:1;font-size:13.5px}.fgp small{display:block;color:var(--mu);font-size:12px}
 </style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head><body data-p="0"><svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g></defs></svg>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="i-map" viewBox="0 0 24 24"><path d="M3 6.5l6-2.5 6 2.5 6-2.5v13.5l-6 2.5-6-2.5-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></symbol>
@@ -293,6 +301,7 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
 <linearGradient id="rg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:color-mix(in srgb,var(--c) 80%,#fff)"/><stop offset="1" style="stop-color:color-mix(in srgb,var(--c) 82%,#000)"/></linearGradient>
 <linearGradient id="rg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:color-mix(in srgb,var(--s) 80%,#fff)"/><stop offset="1" style="stop-color:color-mix(in srgb,var(--s) 82%,#000)"/></linearGradient>
 <marker id="ah" viewBox="0 0 6 6" refX="4" refY="3" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0L6,3L0,6Z" fill="#fff"/></marker></defs></svg></div></div></div>
+ <div class="card fg" id="flag" hidden></div>
  <div class="card" id="plan"></div>
  <div class="card" id="mine"></div>
   <div class="card"><div id="log"></div><button id="share" style="margin-top:8px"><i data-i="share"></i>แชร์สถานะ</button></div></section>
@@ -300,7 +309,7 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
  <div class="lvb"><small>ระดับหมู่บ้าน</small><b id="lv"></b></div>
  <div class="st2"><div><small>ผลิตต่อชั่วโมง</small><b>+<span id="pr"></span></b></div><div><small>กำลังพลสะสม</small><b id="sk"></b></div></div>
  <div class="b pg"><i id="upb" style="background:linear-gradient(90deg,var(--c),var(--s))"></i></div>
- <button id="up" class="go" style="width:100%;margin-top:12px"></button></div></section>
+ <button id="up" class="go" style="width:100%;margin-top:12px"></button><div id="spd" class="fgp" style="margin:10px 0 0" hidden></div></div></section>
  <section id="v2" hidden><div class="seg" id="seg"><button data-k="r" class="on">ภาค</button><button data-k="p">ผู้เล่น</button><button data-k="v">จังหวัด</button></div><div id="rkR"></div><div id="rkP" hidden></div><div id="rkV" hidden></div></section>
 </main>
 <div id="sh"></div>
@@ -399,8 +408,10 @@ if(cam.z>=2.2)lod();
  const o=[0,1,2,3].sort((a,b)=>cnt[b]-cnt[a]);
  $('rkR').innerHTML=o.map((r,j)=>`<div class="card" style="${r===me?'border-color:'+col(r):''}"><b><span class="rk">${medal(j)}<span style="color:${col(r)};display:flex">${em(r)}</span>${RG[r][1]}${r===me?' (คุณ)':''}</span></b> <span style="float:right"><b>${cnt[r]}</b> / 77</span><div class="b"><i style="width:${cnt[r]/77*100}%;background:${col(r)}"></i></div></div>`).join('');
 $('lv').textContent=lv;$('pr').textContent=(G.lv[lv]||{}).troops_per_hour||0;$('sk').textContent=Math.floor(stock);$('vil').innerHTML=VIL[Math.min(lv-1,5)];
-const nx=G.lv[lv+1];$('upb').style.width=nx?Math.min(100,stock/nx.upgrade_cost*100)+'%':'100%';
-$('up').innerHTML=nx?ic('up')+' อัปเกรด ('+nx.upgrade_cost+' กำลังพล)':'ระดับสูงสุดแล้ว';$('up').disabled=!nx||stock<nx.upgrade_cost;
+const nx=G.lv[lv+1],ug=upNow();$('upb').style.width=ug?upPct()+'%':nx?Math.min(100,stock/nx.upgrade_cost*100)+'%':'100%';
+if(ug){$('up').innerHTML=ic('clock')+' กำลังอัปเกรดเป็นระดับ '+ug.upgrading_to+' · เหลือ '+upLeft();$('up').disabled=true}
+else{const wt=G.cfg.upgrade_timed_enabled===1&&nx&&nx.upgrade_wait_hours?' · รอ '+nx.upgrade_wait_hours+' ชม.':'';$('up').innerHTML=nx?ic('up')+' อัปเกรด ('+nx.upgrade_cost+' กำลังพล'+wt+')':'ระดับสูงสุดแล้ว';$('up').disabled=!nx||stock<nx.upgrade_cost}
+spdPaint();
  if(me>=0)shareTx=`${RG[me][1]} ถือ ${cnt[me]} ช่องจาก 77 ใน MUEANG WARS! มาช่วยกันยึดแผนที่`;
 }
 $('share').onclick=async()=>{try{if(navigator.share)await navigator.share({text:shareTx});else{await navigator.clipboard.writeText(shareTx);toast('คัดลอกข้อความแล้ว')}}catch(e){}};
@@ -474,6 +485,24 @@ document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>{RK.k=b.datase
 let actD='';const touch=()=>{const d=new Date(Date.now()+7*36e5).toISOString().slice(0,10);if(d===actD)return;actD=d;sb.rpc('touch_activity').then(r=>{if(r.error)actD=''},()=>{actD=''})};
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&G.prof)touch()});
 
+/* อัปเกรดหมู่บ้านมีเวลารอ (M4): สวิตช์ upgrade_timed_enabled ปิด = อัปเกรดทันทีเหมือนเดิม และ G.vil.upgrading_to เป็น null เสมอ */
+const upNow=()=>{const v=G.vil;return v&&v.upgrading_to&&new Date(v.upgrade_finishes_at)>Date.now()?v:null};
+const upPct=()=>{const v=upNow();if(!v||!v.upgrade_started_at)return 0;const a=+new Date(v.upgrade_started_at),b=+new Date(v.upgrade_finishes_at);return Math.max(0,Math.min(100,(Date.now()-a)/(b-a)*100))};
+function upLeft(){const v=upNow();if(!v)return'';const q=Math.max(0,Math.ceil((new Date(v.upgrade_finishes_at)-Date.now())/1000)),h=Math.floor(q/3600),m=Math.floor(q%3600/60),x=q%60,p=n=>String(n).padStart(2,'0');return (h?h+':':'')+p(m)+':'+p(x)}
+function upTick(){const v=G.vil;if(!v||!v.upgrading_to)return;if(upNow()){if($('up'))$('up').innerHTML=ic('clock')+' กำลังอัปเกรดเป็นระดับ '+v.upgrading_to+' · เหลือ '+upLeft();$('upb').style.width=upPct()+'%'}
+ else if(!G.upDone){G.upDone=true;setTimeout(()=>{G.upDone=false;load()},3000)}}
+function spdPaint(){const b=$('spd');if(!b)return;const u=G.vu;
+ if(!upNow()||G.cfg.speedup_enabled!==1||!u||u.remaining_minutes<=0){b.hidden=true;return}
+ const sp=Math.min(u.max_diamonds_usable|0,u.diamonds|0),gain=Math.min(sp*u.minutes_per_diamond,u.remaining_minutes);
+ b.hidden=false;b.innerHTML='<span>เร่งเวลาด้วยเพชร<small>คุณมี '+u.diamonds+' เพชร · เร่งให้เสร็จต้องใช้ '+u.price_to_finish+' เพชร (1 เพชรลด '+u.minutes_per_diamond+' นาที)'+(u.max_diamonds_usable<u.price_to_finish?' · เพดานเร่งต่อซีซันเหลือ '+u.speedup_cap_left_minutes+' นาที':'')+'</small></span><button id="spb"'+(sp<1?' disabled':'')+'>'+(sp<1?'เพชรไม่พอ':'ใช้ '+sp+' เพชร (−'+gain+' นาที)')+'</button>'}
+async function spdLoad(){if(G.cfg.speedup_enabled!==1||!upNow()){G.vu=null;return}
+ try{const {data,error}=await sb.rpc('get_village_upgrade');if(!error)G.vu=data}catch(e){}}
+document.addEventListener('click',async e=>{const b=e.target.closest('#spb');if(!b||b.disabled)return;b.disabled=true;
+ const u=G.vu,sp=Math.min(u.max_diamonds_usable|0,u.diamonds|0);if(sp<1)return;
+ const key=(window.crypto&&crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random()).slice(0,60);
+ const {data,error}=await sb.rpc('speed_up_village',{p_diamonds:sp,p_key:key});
+ if(error){toast(error.message,'warn');b.disabled=false;return}
+ G.vu=data;await load();toast('ใช้ '+data.diamonds_spent+' เพชร ลดเวลา '+data.minutes_gained+' นาที','flag')});
 function estStock(){const v=G.vil;if(!v)return G.cfg.starter_troops||0;const t=(G.lv[v.level]||{}).troops_per_hour||0,el=(Date.now()-new Date(v.stock_updated_at))/36e5;
  return Math.max(Math.min(v.troops_stock+Math.floor(t*el),Math.floor(t*(G.cfg.stock_cap_hours||0))),v.troops_stock)}
 var DEF={};
@@ -487,7 +516,7 @@ async function load(){
  const [t,r,v,w,d,df]=await Promise.all([
   sb.from('tiles').select('province_code,owner_region').eq('season_id',s.id),
   sb.from('rounds').select('id,round_no,starts_at,planning_ends_at,discussion_ends_at,resolve_at,ends_at,status').eq('season_id',s.id).gt('resolve_at',new Date(Date.now()-12e4).toISOString()).order('starts_at').limit(8),
-  sb.from('villages').select('level,troops_stock,stock_updated_at').eq('season_id',s.id).maybeSingle(),
+  sb.from('villages').select('level,troops_stock,stock_updated_at,upgrading_to,upgrade_started_at,upgrade_finishes_at').eq('season_id',s.id).maybeSingle(),
   sb.from('province_weather').select('province_code,rain_level,temp_c,cloud_pct,weather_code'),
   sb.from('deployments').select('round_id,province_code,troops').order('id',{ascending:false}).limit(60),
   sb.rpc('get_province_defense').then(x=>x,()=>({data:null}))]);
@@ -495,19 +524,19 @@ async function load(){
  DEF={};((df&&df.data)||[]).forEach(x=>{DEF[x.province_code]=x});G.rounds=r.data||[];G.vil=v.data;RAIN=T.map(()=>0);WX=T.map(()=>null);(w.data||[]).forEach(x=>{const i=IDX[x.province_code];if(i!=null){RAIN[i]=x.rain_level|0;WX[i]=x}});
  const open=new Set(G.rounds.filter(x=>x.status!=='revealed').map(x=>x.id));send={};
  (d.data||[]).forEach(x=>{const i=IDX[x.province_code];if(open.has(x.round_id)&&i!=null)send[i]=(send[i]||0)+x.troops});
- lv=G.vil?G.vil.level:1;stock=estStock();paint();arrows();mine();if(Date.now()-(G.nt||0)>3e4){G.nt=Date.now();news()}}
+ lv=G.vil?(G.vil.upgrading_to&&new Date(G.vil.upgrade_finishes_at)<=Date.now()?G.vil.upgrading_to:G.vil.level):1;stock=estStock();await spdLoad();paint();arrows();mine();flagLoad();if(Date.now()-(G.nt||0)>3e4){G.nt=Date.now();news()}}
 function live(){const n=Date.now(),R=G.rounds.find(r=>+new Date(r.starts_at)<=n&&n<+new Date(r.ends_at));
  if(R){rd=R.round_no;const a=+new Date(R.starts_at),p=+new Date(R.planning_ends_at),d=+new Date(R.discussion_ends_at),e=+new Date(R.ends_at);PH=n<p?0:n<d?1:2;
   const A=[a,p,d][PH],Z=[p,d,e][PH],q=Math.max(0,Math.ceil((Z-n)/1000));$('sec').style.fontSize='11px';$('sec').textContent=Math.floor(q/60)+':'+String(q%60).padStart(2,'0');
   $('arc').style.strokeDashoffset=138.2*(1-(Z-n)/(Z-A));$('rn').textContent='รอบที่ '+R.round_no+' · ตัดสิน '+hm(R.resolve_at)+' น.'}
  else{const N=G.rounds.find(r=>+new Date(r.starts_at)>n);PH=1;$('sec').textContent='--';$('arc').style.strokeDashoffset=138.2;$('rn').textContent=N?'พักรบ · รอบที่ '+N.round_no+' เริ่ม '+hm(N.starts_at)+' น.':'ยังไม่มีรอบที่เปิด'}
- document.body.dataset.p=PH;[0,1,2].forEach(i=>$('s'+i).classList.toggle('on',i===PH))}
+ document.body.dataset.p=PH;[0,1,2].forEach(i=>$('s'+i).classList.toggle('on',i===PH));upTick()}
 async function pick(i){const x=T[i];sel=i;$('sh').style.setProperty('--ac',col(me));$('sh').style.setProperty('--to',col(x.o));$('sh').scrollTop=0;map.append(x.e,x.l,x.d,x.q,lb,ar,pg,fxg);if(cam.z<2)auto=true;zoomTo(x.c[0],x.c[1],Math.max(cam.z,2.6));$('mapw').scrollIntoView({behavior:'smooth',block:'start'});
  const head=`<div class="ph"><span class="pe">${em(x.o)}</span><div class="pt"><small>จังหวัด</small><b>${x.n}</b></div><span class="tag">${RG[x.o][1]}</span></div>`;
  const rs=G.rounds.filter(r=>+new Date(r.planning_ends_at)>Date.now()&&r.status!=='revealed').slice(0,G.cfg.advance_rounds||3);
- if(x.o===me||!rs.length){$('sh').innerHTML=head+defHtml(i)+'<div class="pw">'+wxHtml(i)+'</div><div class="ps"><small>'+(x.o===me?ic('shield')+' จังหวัดของภาคคุณ':ic('clock')+' ตอนนี้ยังไม่มีรอบที่ส่งทัพได้')+'</small></div><div class="act"><button id="cl">ปิด</button></div>';$('sh').classList.add('open');$('cl').onclick=shut;paint();return}
+ if(x.o===me||!rs.length){$('sh').innerHTML=head+defHtml(i)+fgHtml(i)+'<div class="pw">'+wxHtml(i)+'</div><div class="ps"><small>'+(x.o===me?ic('shield')+' จังหวัดของภาคคุณ':ic('clock')+' ตอนนี้ยังไม่มีรอบที่ส่งทัพได้')+'</small></div><div class="act"><button id="cl">ปิด</button></div>';$('sh').classList.add('open');$('cl').onclick=shut;paint();return}
  stock=estStock();G.n=Math.max(1,Math.round(stock/2));G.off=0;G.pv=null;G.mode='auto';G.pr=0;G.ps=0;
- $('sh').innerHTML=head+defHtml(i)+'<div class="pw">'+wxHtml(i)+dpHtml(i)+fcHtml(i)+'</div><div class="ps">'+`<small>${RAIN[i]?RLN[RAIN[i]]+'ตอนนี้ ผู้โจมตีอ่อนลง · ':''}ส่งแล้วเรียกกลับไม่ได้</small><select id="ro">${rs.map((r,k)=>`<option value="${k}">ส่งในรอบที่ ${r.round_no} · ตัดสิน ${hm(r.resolve_at)} น.</option>`).join('')}</select><div class="amt"><b id="rv">${G.n}</b> <small>/ <span id="mx">${stock}</span> กำลังพล</small></div><input id="rg" type="range" min="1" max="${Math.max(1,stock)}" value="${G.n}"><div class="q"><button data-f=".25">¼</button><button data-f=".5">½</button><button data-f="1">เต็ม</button></div><div class="um"><div class="ut"><button type="button" data-m="auto" class="on">ให้ระบบจัดให้</button><button type="button" data-m="custom">เลือกยูนิตเอง</button></div><div id="uc" hidden></div></div><div id="od"></div></div><div class="act"><button id="ok" class="go" disabled>${ic('swords')} ส่งทัพ</button><button id="cl">ปิด</button></div>`;
+ $('sh').innerHTML=head+defHtml(i)+fgHtml(i)+'<div class="pw">'+wxHtml(i)+dpHtml(i)+fcHtml(i)+'</div><div class="ps">'+`<small>${RAIN[i]?RLN[RAIN[i]]+'ตอนนี้ ผู้โจมตีอ่อนลง · ':''}ส่งแล้วเรียกกลับไม่ได้</small><select id="ro">${rs.map((r,k)=>`<option value="${k}">ส่งในรอบที่ ${r.round_no} · ตัดสิน ${hm(r.resolve_at)} น.</option>`).join('')}</select><div class="amt"><b id="rv">${G.n}</b> <small>/ <span id="mx">${stock}</span> กำลังพล</small></div><input id="rg" type="range" min="1" max="${Math.max(1,stock)}" value="${G.n}"><div class="q"><button data-f=".25">¼</button><button data-f=".5">½</button><button data-f="1">เต็ม</button></div><div class="um"><div class="ut"><button type="button" data-m="auto" class="on">ให้ระบบจัดให้</button><button type="button" data-m="custom">เลือกยูนิตเอง</button></div><div id="uc" hidden></div></div><div id="od"></div></div><div class="act"><button id="ok" class="go" disabled>${ic('swords')} ส่งทัพ</button><button id="cl">ปิด</button></div>`;
  const g=$('rg');
  window.setN=n=>{G.n=Math.max(0,Math.min(stock,Math.floor(n)));g.value=G.n;g.style.setProperty('--p',(stock?G.n/stock*100:0)+'%');$('rv').textContent=G.n;sched()};
  g.oninput=()=>setN(g.value);$('ro').onchange=()=>{G.off=+$('ro').value;sched()};
@@ -551,6 +580,35 @@ async function news(){try{
   const cl=cap.slice(0,4).map(t=>'<br><small>• '+esc2(rg(t.new_owner))+' ยึด '+esc2(nm(t))+'</small>').join('')+(cap.length>4?'<br><small>…และอีก '+(cap.length-4)+' ช่อง</small>':'');
   return '<div class="nw"><b>รอบที่ '+r.round_no+'</b> · '+(a.length?'มีศึก '+a.length+' ช่อง · ยึดได้ '+cap.length+' · ตีไม่ทะลุ '+hold+cl:'<small>ไม่มีศึก</small>')+'</div>'}).join('');
  paint()}catch(e){console.error(e)}}
+/* ธงเป้าหมายภาค R46: อ่านจาก get_region_flag · โหวต/ล้างโหวตผ่าน RPC เท่านั้น (หลังบ้านตรวจสิทธิ์และระยะเอง) */
+var FG=null,FGT=0;
+const rgName=id=>{const k=RID.indexOf(id);return k>=0?RG[k][1]:'?'};
+const pName=c=>IDX[c]!=null?T[IDX[c]].n:'#'+c;
+function fgCard(){const b=$('flag');if(!b)return;
+ if(!FG||me<0){b.hidden=true;return}
+ if(!FG.enabled){b.hidden=false;b.innerHTML='<div class="fh">'+ic('flag')+'<b>ธงเป้าหมายภาค</b></div><small>'+esc2(FG.reason||'เร็วๆนี้')+'</small>';return}
+ const head='<div class="fh">'+ic('flag')+'<b>ธงเป้าหมาย'+rgName(FG.region_id)+'</b></div>';
+ if(!FG.flag){b.hidden=false;b.innerHTML=head+'<small>'+esc2(FG.reason||'ยังไม่มีธง แตะจังหวัดของภาคอื่นที่อยู่ติดเขตแดนภาคเรา แล้วกด "ปักธงภาคที่จังหวัดนี้" ให้เพื่อนร่วมภาคส่งทัพไปที่เดียวกัน')+'</small>'+(FG.can_vote?'':'<br><small>'+esc2(FG.vote_block_reason||'')+'</small>');return}
+ const f=FG.flag,m=FG.meter,st=FG.strike,my=FG.my_vote,top=(FG.top||[]).slice(1);
+ let h=head+'<div class="fb"><b>'+esc2(f.name_th)+'</b><br><small>ของ'+rgName(f.owner_region)+' · '+f.votes+' โหวต จาก '+FG.voters+' คนที่โหวตธง</small>';
+ if(m){const pct=Math.max(0,Math.min(100,m.pct|0));h+='<div class="mt'+(m.ready?' ok':'')+'"><i style="width:'+pct+'%"></i></div><small>แรงที่ภาคเรากำลังส่งไป <b>'+m.committed+'</b> / ป้องกัน <b>'+m.needed+'</b> ('+m.pct+'%) · '+m.players+' คน'+(m.rain_level?' · ฝนลดแรงบุกแล้ว':'')+'<br>'+(m.ready?'แรงพอจะยึดได้ถ้าไม่มีใครเพิ่มป้องกัน':'ยังไม่พอ ต้องส่งเพิ่มอีกอย่างน้อย '+Math.max(1,m.needed-m.committed+1))+'</small>'}
+ if(st){h+='<br><small>'+ic('clock')+' ตีพร้อมกันรอบที่ '+st.round_no+' · '+hm(st.starts_at)+' น.'+(FG.my_offset_for_strike==null?'<br>ทัพของคุณไปถึงไม่ทันรอบนี้':'<br>ส่งให้ทันรอบนี้: เลือก "ส่งในรอบ" ลำดับที่ '+((FG.my_offset_for_strike|0)+1)+' ในแผงจังหวัด')+'</small>'}
+ h+='<div class="fa"><button data-fg="go:'+f.province_code+'">'+ic('swords')+' ไปที่จังหวัดนี้</button>'+(my?'<button data-fg="clear">ยกเลิกโหวตของฉัน</button>':'')+'</div></div>';
+ if(top.length){h+='<small>จังหวัดอื่นที่เพื่อนร่วมภาคโหวต</small>'+top.map(t=>'<div class="fr"><span>'+esc2(t.name_th)+'<small>'+t.votes+' โหวต · ห่างเขตแดน '+t.ext+' ช่อง</small></span><button data-fg="vote:'+t.province_code+'"'+(FG.can_vote&&my!==t.province_code?'':' disabled')+'>'+(my===t.province_code?'โหวตแล้ว':'โหวต')+'</button></div>').join('')}
+ if(!FG.can_vote)h+='<br><small>'+esc2(FG.vote_block_reason||'')+'</small>';
+ b.hidden=false;b.innerHTML=h}
+/* ปุ่มปักธงในแผงจังหวัดของภาคอื่น */
+function fgHtml(i){if(!FG||!FG.enabled||me<0)return'';const x=T[i];if(x.o===me)return'';const c=x.code,isF=FG.flag&&FG.flag.province_code===c,mine=FG.my_vote===c;
+ return '<div class="fgp">'+ic('flag')+'<span>'+(isF?'ธงภาคอยู่ที่นี่':mine?'คุณโหวตธงที่นี่':'ปักธงภาคที่จังหวัดนี้')+'<small>'+(FG.can_vote?'ให้เพื่อนร่วมภาคเห็นเป้าหมายเดียวกัน · ต้องอยู่ในระยะเสบียงเต็มแรง':esc2(FG.vote_block_reason||''))+'</small></span>'+(mine?'<button data-fg="clear">ยกเลิก</button>':'<button data-fg="vote:'+c+'"'+(FG.can_vote?'':' disabled')+'>ปักธง</button>')+'</div>'}
+async function flagLoad(force){if(!force&&Date.now()-FGT<12e3)return;FGT=Date.now();
+ try{const {data,error}=await sb.rpc('get_region_flag');if(error){console.error(error.message);return}FG=data;fgCard()}catch(e){console.error(e)}}
+document.addEventListener('click',async e=>{const b=e.target.closest('[data-fg]');if(!b||b.disabled)return;const [a,v]=b.dataset.fg.split(':');
+ if(a==='go'){if(IDX[+v]!=null)pick(IDX[+v]);return}
+ b.disabled=true;
+ const {data,error}=a==='vote'?await sb.rpc('vote_region_flag',{p_province:+v}):await sb.rpc('clear_region_flag_vote');
+ if(error){toast(error.message,'warn');b.disabled=false;return}
+ FG=data;FGT=Date.now();fgCard();toast(a==='vote'?'ปักธงภาคที่ '+pName(+v)+' แล้ว':'ยกเลิกโหวตธงแล้ว','flag');
+ const el=document.querySelector('#sh .fgp');if(el&&sel>=0)el.outerHTML=fgHtml(sel)});
 /* ผลทัพของฉัน: deployments (อ่านได้เฉพาะของตัวเอง) + round_tile_results (อ่านได้หลังเปิดผล) */
 async function mine(){const box=$('mine');if(!box||me<0)return;
  const {data:d,error}=await sb.from('deployments').select('round_id,province_code,troops').order('id',{ascending:false}).limit(40);
@@ -576,11 +634,12 @@ async function send1(){const i=sel,p=G.pv;if(G.busy||!p||p.blocked||G.n<1)return
  if(error){toast(error.message,'warn');sched();return}
  const x=T[i];navigator.vibrate&&navigator.vibrate(25);fly(origin(me,x.c),x.c,col(me),Math.min(8,Math.ceil(G.n/10)));ring(x.c,col(me));
  toast(`ส่ง ${G.n} ไป${x.n} ถึงรอบที่ ${data.arrive_round_no}`,'swords');await load();shut()}
-$('up').onclick=async()=>{const {error}=await sb.rpc('upgrade_village');if(error)return toast(error.message,'warn');await load();toast('หมู่บ้านเลื่อนเป็นระดับ '+lv,'flag')};
+$('up').onclick=async()=>{const {data:to,error}=await sb.rpc('upgrade_village');if(error)return toast(error.message,'warn');await load();
+  if(upNow())toast('เริ่มอัปเกรดเป็นระดับ '+to+' เสร็จใน '+upLeft(),'clock');else toast('หมู่บ้านเลื่อนเป็นระดับ '+lv,'flag')};
 (async()=>{try{
  const {data:{session}}=await sb.auth.getSession();if(!session)return location.replace('index.html');
  const {data:p}=await sb.from('profiles').select('username,avatar_key,region_id,home_province,tutorial_done_at').eq('id',session.user.id).maybeSingle();if(!p)return location.replace('index.html');
- G.prof=p;touch();const [u,c,l]=await Promise.all([sb.from('unit_types').select('id,name_th,speed,atk_mult'),sb.from('game_config').select('key,value').in('key',['starter_troops','stock_cap_hours','advance_rounds','rain_attacker_penalty_pct_per_level','v2_supply_range','v2_supply_per_hop','v2_supply_decay_pct']),sb.from('village_levels').select('level,upgrade_cost,troops_per_hour')]);
+ G.prof=p;touch();const [u,c,l]=await Promise.all([sb.from('unit_types').select('id,name_th,speed,atk_mult'),sb.from('game_config').select('key,value').in('key',['starter_troops','stock_cap_hours','advance_rounds','rain_attacker_penalty_pct_per_level','v2_supply_range','v2_supply_per_hop','v2_supply_decay_pct','upgrade_timed_enabled','speedup_enabled','speedup_minutes_per_diamond']),sb.from('village_levels').select('level,upgrade_cost,troops_per_hour,upgrade_wait_hours')]);
  (u.data||[]).forEach(x=>G.units[x.id]=x);(c.data||[]).forEach(x=>G.cfg[x.key]=Number(x.value));(l.data||[]).forEach(x=>G.lv[x.level]=x);rlLegend();
  go(Math.max(0,RID.indexOf(p.region_id)));await load();live();setInterval(live,500);setInterval(()=>{if(!document.hidden&&!$('sh').classList.contains('open'))load()},15000)
 }catch(e){console.error(e)}document.body.style.visibility=''})();
