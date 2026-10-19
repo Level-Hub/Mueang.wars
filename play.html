@@ -486,8 +486,8 @@ let actD='';const touch=()=>{const d=new Date(Date.now()+7*36e5).toISOString().s
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&G.prof)touch()});
 
 /* อัปเกรดหมู่บ้านมีเวลารอ (M4): สวิตช์ upgrade_timed_enabled ปิด = อัปเกรดทันทีเหมือนเดิม และ G.vil.upgrading_to เป็น null เสมอ */
-const upNow=()=>{const v=G.vil;return v&&v.upgrading_to&&new Date(v.upgrade_finishes_at)>Date.now()?v:null};
-const upPct=()=>{const v=upNow();if(!v||!v.upgrade_started_at)return 0;const a=+new Date(v.upgrade_started_at),b=+new Date(v.upgrade_finishes_at);return Math.max(0,Math.min(100,(Date.now()-a)/(b-a)*100))};
+function upNow(){const v=G.vil;return v&&v.upgrading_to&&new Date(v.upgrade_finishes_at)>Date.now()?v:null}
+function upPct(){const v=upNow();if(!v||!v.upgrade_started_at)return 0;const a=+new Date(v.upgrade_started_at),b=+new Date(v.upgrade_finishes_at);return Math.max(0,Math.min(100,(Date.now()-a)/(b-a)*100))}
 function upLeft(){const v=upNow();if(!v)return'';const q=Math.max(0,Math.ceil((new Date(v.upgrade_finishes_at)-Date.now())/1000)),h=Math.floor(q/3600),m=Math.floor(q%3600/60),x=q%60,p=n=>String(n).padStart(2,'0');return (h?h+':':'')+p(m)+':'+p(x)}
 function upTick(){const v=G.vil;if(!v||!v.upgrading_to)return;if(upNow()){if($('up'))$('up').innerHTML=ic('clock')+' กำลังอัปเกรดเป็นระดับ '+v.upgrading_to+' · เหลือ '+upLeft();$('upb').style.width=upPct()+'%'}
  else if(!G.upDone){G.upDone=true;setTimeout(()=>{G.upDone=false;load()},3000)}}
@@ -582,8 +582,8 @@ async function news(){try{
  paint()}catch(e){console.error(e)}}
 /* ธงเป้าหมายภาค R46: อ่านจาก get_region_flag · โหวต/ล้างโหวตผ่าน RPC เท่านั้น (หลังบ้านตรวจสิทธิ์และระยะเอง) */
 var FG=null,FGT=0;
-const rgName=id=>{const k=RID.indexOf(id);return k>=0?RG[k][1]:'?'};
-const pName=c=>IDX[c]!=null?T[IDX[c]].n:'#'+c;
+function rgName(id){const k=RID.indexOf(id);return k>=0?RG[k][1]:'?'}
+function pName(c){return IDX[c]!=null?T[IDX[c]].n:'#'+c}
 function fgCard(){const b=$('flag');if(!b)return;
  if(!FG||me<0){b.hidden=true;return}
  if(!FG.enabled){b.hidden=false;b.innerHTML='<div class="fh">'+ic('flag')+'<b>ธงเป้าหมายภาค</b></div><small>'+esc2(FG.reason||'เร็วๆนี้')+'</small>';return}
