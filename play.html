@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>MUEANG WARS · สนามรบ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;800&family=Prompt:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#eef1fa;--card:rgba(255,255,255,.78);--tx:#161d33;--mu:#5d6785;--ln:rgba(30,40,80,.14);--glass:rgba(30,40,90,.07);--a1:rgba(80,120,255,.22);--a2:rgba(255,90,160,.16);--sea1:#cfe0ff;--sea2:#e8f0ff;--n:#2fd49a;--ne:#ffb02e;--c:#ff3d57;--s:#5a98ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#080c1a;--card:rgba(24,31,54,.72);--tx:#eef1fb;--mu:#93a0c4;--ln:rgba(255,255,255,.1);--glass:rgba(255,255,255,.07);--a1:rgba(70,100,255,.3);--a2:rgba(255,70,150,.22);--sea1:#101a3a;--sea2:#0b1230;--n:#4cd681;--ne:#ffb73e;--c:#5f9dff;--s:#ff6fa6}}
 :root[data-theme="dark"]{--bg:#080c1a;--card:rgba(24,31,54,.72);--tx:#eef1fb;--mu:#93a0c4;--ln:rgba(255,255,255,.1);--glass:rgba(255,255,255,.07);--a1:rgba(70,100,255,.3);--a2:rgba(255,70,150,.22);--sea1:#101a3a;--sea2:#0b1230;--n:#4cd681;--ne:#ffb73e;--c:#5f9dff;--s:#ff6fa6}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-padding-top:env(safe-area-inset-top,0px);touch-action:pan-x pan-y;-webkit-text-size-adjust:100%;text-size-adjust:100%}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}input,textarea,select{-webkit-user-select:text;user-select:text}button,a,.t,nav button{touch-action:manipulation;outline:none}
+::selection{background:transparent}input::selection,textarea::selection{background:rgba(255,200,87,.4)}
 body{margin:0;color:var(--tx);font:15px/1.5 "Noto Sans Thai",system-ui,sans-serif;padding-bottom:84px;background:radial-gradient(70% 45% at 10% 0,var(--a1),transparent),radial-gradient(60% 40% at 100% 25%,var(--a2),transparent),var(--bg);background-attachment:fixed;--pc:var(--c)}
 body[data-p="1"]{--pc:var(--ne)}body[data-p="2"]{--pc:var(--s)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
@@ -141,6 +143,52 @@ main>section{animation:in .35s both}
 .dpc b{font-size:11px}.dpc small{color:var(--mu);font-size:10px}.dpc.nw{border-color:var(--ac,var(--c))}.dpc.pa{opacity:.45}.dpc.nd{opacity:.5}
 .dpc.l1 small.r{color:#5aa9e6}.dpc.l2 small.r{color:#4a90e2}.dpc.l3 small.r{color:#8a5cf0}
 .dpc svg{width:20px;height:20px}.dpc.nt{background:rgba(40,52,110,.38)}.cr{display:block;margin-top:4px;font-size:10px;color:var(--mu)}.cr a{color:inherit;text-decoration:underline}
+
+/* ===== แผงจังหวัด (ธีมภาคเป้าหมาย + ลายกนกทอง) ===== */
+:root{--gd:#ffc857;--gd2:#ffe29a}
+#sh{--to:var(--c);max-height:calc(100dvh - 62px - env(safe-area-inset-bottom,0px) - env(safe-area-inset-top,0px) - 74px);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:12px 14px 16px;border:0;border-top:0;border-radius:28px 28px 0 0;
+ background:linear-gradient(180deg,color-mix(in srgb,var(--to) 22%,var(--card)) 0,var(--card) 46%),var(--card);
+ box-shadow:0 -18px 44px -14px color-mix(in srgb,var(--to) 70%,transparent),inset 0 1.5px 0 rgba(255,226,154,.75),inset 0 0 0 1px color-mix(in srgb,var(--to) 40%,transparent)}
+#sh::before{width:44px;height:5px;margin:0 auto 10px;background:linear-gradient(90deg,transparent,var(--gd),transparent);opacity:.9}
+.ph{position:relative;overflow:hidden;display:flex;align-items:center;gap:12px;padding:12px 14px;margin-bottom:10px;border-radius:20px;color:#fff;
+ background:
+  radial-gradient(120% 140% at 100% 0,rgba(255,226,154,.38),transparent 55%),
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cpath d='M15 2l4 6.5L15 15l-4-6.5zM15 15l4 6.5L15 28l-4-6.5zM2 15l6.5-4L15 15l-6.5 4zM15 15l6.5-4L28 15l-6.5 4z' fill='none' stroke='%23ffe29a' stroke-opacity='.28' stroke-width='1'/%3E%3C/svg%3E") 0 0/30px,
+  linear-gradient(135deg,color-mix(in srgb,var(--to) 92%,#fff),color-mix(in srgb,var(--to) 58%,#12030c));
+ box-shadow:inset 0 0 0 1.5px rgba(255,226,154,.7),inset 0 2px 0 rgba(255,255,255,.35),0 10px 22px -12px var(--to)}
+.pe{flex:none;width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.55),rgba(255,255,255,.12));box-shadow:inset 0 0 0 2px var(--gd),0 4px 10px rgba(0,0,0,.28)}
+.pe .em{width:28px;height:28px;vertical-align:0;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3))}
+.pt{flex:1;min-width:0;line-height:1.15}.pt small{display:block;color:rgba(255,255,255,.78);font-size:11px;letter-spacing:.14em}
+.pt b{display:block;font:800 25px/1.15 Prompt,"Noto Sans Thai",system-ui,sans-serif;text-shadow:0 2px 0 rgba(0,0,0,.28),0 0 18px rgba(255,226,154,.35);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ph .tag{flex:none;background:rgba(18,3,12,.38);color:var(--gd2);font-weight:700;padding:5px 11px;box-shadow:inset 0 0 0 1px rgba(255,226,154,.6)}
+.pw,.ps{padding:10px 12px;margin-bottom:10px;border-radius:18px;background:var(--glass);border:1px solid var(--ln);box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
+.pw:empty{display:none}.pw .fc:last-child,.pw .dp:last-child{margin-bottom:0}
+.pw .fh{color:var(--tx);font-weight:600;letter-spacing:.01em}.pw .fh small{font-weight:400}
+.pw .dpc{background:color-mix(in srgb,var(--card) 70%,transparent);border-radius:12px}
+.pw .dpc.nw{border-color:var(--gd);box-shadow:0 0 0 2px color-mix(in srgb,var(--gd) 30%,transparent),0 6px 14px -8px var(--gd)}
+.pw .dpc.nt{background:linear-gradient(180deg,rgba(40,52,110,.55),rgba(20,26,66,.55));color:#e8ecff}.pw .dpc.nt small{color:#b6c0e8}
+.pw .fp.ar{border-color:var(--gd);background:color-mix(in srgb,var(--gd) 16%,transparent)}
+.pw .fr{height:50px}
+.ps>small{display:block;color:var(--mu);margin-bottom:2px}
+#sh #ro{appearance:none;-webkit-appearance:none;margin:8px 0 4px;padding:12px 38px 12px 14px;font-weight:600;border:1.5px solid color-mix(in srgb,var(--ac,var(--c)) 55%,var(--ln));
+ background:linear-gradient(45deg,transparent 50%,var(--gd) 50%) calc(100% - 20px) 52%/7px 7px no-repeat,linear-gradient(135deg,var(--gd) 50%,transparent 50%) calc(100% - 14px) 52%/7px 7px no-repeat,color-mix(in srgb,var(--card) 80%,transparent)}
+.amt{display:flex;align-items:baseline;gap:6px;margin-top:6px}.amt b{font-size:40px;text-shadow:0 2px 14px color-mix(in srgb,var(--ac,var(--c)) 45%,transparent)}
+#sh input[type=range]{height:14px;box-shadow:inset 0 2px 4px rgba(0,0,0,.25)}
+#sh input[type=range]::-webkit-slider-thumb{width:32px;height:32px;border:4px solid var(--gd);background:radial-gradient(circle at 35% 30%,#fff,var(--ac,var(--c)) 120%);box-shadow:0 4px 12px rgba(0,0,0,.4),0 0 0 3px color-mix(in srgb,var(--ac,var(--c)) 40%,transparent)}
+#sh input[type=range]::-moz-range-thumb{border-color:var(--gd)}
+.q button{border-radius:99px;border:1.5px solid color-mix(in srgb,var(--gd) 60%,var(--ln));background:color-mix(in srgb,var(--card) 75%,transparent);font-weight:700;color:var(--tx)}
+.q button:active{background:var(--gd);color:#2a0a12;border-color:var(--gd)}
+#sh .act{margin-top:12px}
+#sh .act .go{font-size:16px;padding:13px 10px;border-radius:16px;color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.3);
+ background:linear-gradient(180deg,color-mix(in srgb,var(--ac,var(--c)) 78%,#fff),var(--ac,var(--c)) 55%,color-mix(in srgb,var(--ac,var(--c)) 80%,#000));
+ box-shadow:inset 0 2px 0 rgba(255,255,255,.5),inset 0 0 0 1.5px rgba(255,226,154,.65),0 5px 0 color-mix(in srgb,var(--ac,var(--c)) 45%,#000),0 12px 20px -8px var(--ac,var(--c));transition:transform .08s,box-shadow .08s}
+#sh .act .go:active{transform:translateY(4px);box-shadow:inset 0 2px 0 rgba(255,255,255,.4),inset 0 0 0 1.5px rgba(255,226,154,.65),0 1px 0 color-mix(in srgb,var(--ac,var(--c)) 45%,#000)}
+#sh .act .go:disabled{filter:grayscale(.6);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.25)}
+#sh .act button:not(.go){background:color-mix(in srgb,var(--card) 70%,transparent);border:1.5px solid var(--ln);font-weight:600}
+#sh .act button+button{flex:1}
+#od{margin-top:10px;padding:8px 10px;border-radius:12px;background:color-mix(in srgb,var(--card) 60%,transparent);border:1px dashed var(--ln)}
+#od:empty{display:none}
+@media(prefers-reduced-motion:reduce){#sh .act .go{transition:none}}
 </style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head><body data-p="0">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="i-map" viewBox="0 0 24 24"><path d="M3 6.5l6-2.5 6 2.5 6-2.5v13.5l-6 2.5-6-2.5-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></symbol>
@@ -365,12 +413,12 @@ function live(){const n=Date.now(),R=G.rounds.find(r=>+new Date(r.starts_at)<=n&
   $('arc').style.strokeDashoffset=138.2*(1-(Z-n)/(Z-A));$('rn').textContent='รอบที่ '+R.round_no+' · ตัดสิน '+hm(R.resolve_at)+' น.'}
  else{const N=G.rounds.find(r=>+new Date(r.starts_at)>n);PH=1;$('sec').textContent='--';$('arc').style.strokeDashoffset=138.2;$('rn').textContent=N?'พักรบ · รอบที่ '+N.round_no+' เริ่ม '+hm(N.starts_at)+' น.':'ยังไม่มีรอบที่เปิด'}
  document.body.dataset.p=PH;[0,1,2].forEach(i=>$('s'+i).classList.toggle('on',i===PH))}
-async function pick(i){const x=T[i];sel=i;$('sh').style.setProperty('--ac',col(me));map.append(x.e,x.l,x.d,x.q,lb,ar,pg,fxg);if(cam.z<2)auto=true;zoomTo(x.c[0],x.c[1],Math.max(cam.z,2.6));$('mapw').scrollIntoView({behavior:'smooth',block:'start'});
- const head=`<div class="hd"><b style="font-size:19px">${x.n}</b><span class="tag" style="background:${col(x.o)}">${em(x.o)} ${RG[x.o][1]}</span></div>`+wxHtml(i);
+async function pick(i){const x=T[i];sel=i;$('sh').style.setProperty('--ac',col(me));$('sh').style.setProperty('--to',col(x.o));$('sh').scrollTop=0;map.append(x.e,x.l,x.d,x.q,lb,ar,pg,fxg);if(cam.z<2)auto=true;zoomTo(x.c[0],x.c[1],Math.max(cam.z,2.6));$('mapw').scrollIntoView({behavior:'smooth',block:'start'});
+ const head=`<div class="ph"><span class="pe">${em(x.o)}</span><div class="pt"><small>จังหวัด</small><b>${x.n}</b></div><span class="tag">${RG[x.o][1]}</span></div>`;
  const rs=G.rounds.filter(r=>+new Date(r.planning_ends_at)>Date.now()&&r.status!=='revealed').slice(0,G.cfg.advance_rounds||3);
- if(x.o===me||!rs.length){$('sh').innerHTML=head+'<small>'+(x.o===me?ic('shield')+' จังหวัดของภาคคุณ':ic('clock')+' ตอนนี้ยังไม่มีรอบที่ส่งทัพได้')+'</small><div class="act"><button id="cl">ปิด</button></div>';$('sh').classList.add('open');$('cl').onclick=shut;paint();return}
+ if(x.o===me||!rs.length){$('sh').innerHTML=head+'<div class="pw">'+wxHtml(i)+'</div><div class="ps"><small>'+(x.o===me?ic('shield')+' จังหวัดของภาคคุณ':ic('clock')+' ตอนนี้ยังไม่มีรอบที่ส่งทัพได้')+'</small></div><div class="act"><button id="cl">ปิด</button></div>';$('sh').classList.add('open');$('cl').onclick=shut;paint();return}
  stock=estStock();G.n=Math.max(1,Math.round(stock/2));G.off=0;G.pv=null;
- $('sh').innerHTML=head+dpHtml(i)+fcHtml(i)+`<small>${RAIN[i]?RLN[RAIN[i]]+'ตอนนี้ ผู้โจมตีอ่อนลง · ':''}ส่งแล้วเรียกกลับไม่ได้</small><select id="ro">${rs.map((r,k)=>`<option value="${k}">ส่งในรอบที่ ${r.round_no} · ตัดสิน ${hm(r.resolve_at)} น.</option>`).join('')}</select><div class="amt"><b id="rv">${G.n}</b> <small>/ <span id="mx">${stock}</span> กำลังพล</small></div><input id="rg" type="range" min="1" max="${Math.max(1,stock)}" value="${G.n}"><div class="q"><button data-f=".25">¼</button><button data-f=".5">½</button><button data-f="1">เต็ม</button></div><div id="od"></div><div class="act"><button id="ok" class="go" disabled>${ic('swords')} ส่งทัพ</button><button id="cl">ปิด</button></div>`;
+ $('sh').innerHTML=head+'<div class="pw">'+wxHtml(i)+dpHtml(i)+fcHtml(i)+'</div><div class="ps">'+`<small>${RAIN[i]?RLN[RAIN[i]]+'ตอนนี้ ผู้โจมตีอ่อนลง · ':''}ส่งแล้วเรียกกลับไม่ได้</small><select id="ro">${rs.map((r,k)=>`<option value="${k}">ส่งในรอบที่ ${r.round_no} · ตัดสิน ${hm(r.resolve_at)} น.</option>`).join('')}</select><div class="amt"><b id="rv">${G.n}</b> <small>/ <span id="mx">${stock}</span> กำลังพล</small></div><input id="rg" type="range" min="1" max="${Math.max(1,stock)}" value="${G.n}"><div class="q"><button data-f=".25">¼</button><button data-f=".5">½</button><button data-f="1">เต็ม</button></div><div id="od"></div></div><div class="act"><button id="ok" class="go" disabled>${ic('swords')} ส่งทัพ</button><button id="cl">ปิด</button></div>`;
  const g=$('rg');
  window.setN=n=>{G.n=Math.max(0,Math.min(stock,Math.floor(n)));g.value=G.n;g.style.setProperty('--p',(stock?G.n/stock*100:0)+'%');$('rv').textContent=G.n;sched()};
  g.oninput=()=>setN(g.value);$('ro').onchange=()=>{G.off=+$('ro').value;sched()};
@@ -401,4 +449,9 @@ $('up').onclick=async()=>{const {error}=await sb.rpc('upgrade_village');if(error
  (u.data||[]).forEach(x=>G.units[x.id]=x);(c.data||[]).forEach(x=>G.cfg[x.key]=Number(x.value));(l.data||[]).forEach(x=>G.lv[x.level]=x);rlLegend();
  go(Math.max(0,RID.indexOf(p.region_id)));await load();live();setInterval(live,500);setInterval(()=>{if(!document.hidden&&!$('sh').classList.contains('open'))load()},15000)
 }catch(e){console.error(e)}document.body.style.visibility=''})();
+
+/* ล็อกซูม: กันท่าจีบนิ้วบน iOS (ซูมแผนที่ใช้ปุ่ม +/− ของเกม) */
+['gesturestart','gesturechange','gestureend'].forEach(t=>document.addEventListener(t,e=>e.preventDefault(),{passive:false}));
+document.addEventListener('touchmove',e=>{if(e.touches.length>1||(e.scale&&e.scale!==1))e.preventDefault()},{passive:false});
+document.addEventListener('wheel',e=>{if(e.ctrlKey)e.preventDefault()},{passive:false});
 </script></body></html>
