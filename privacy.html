@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="th"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a0310">
+<title>นโยบายความเป็นส่วนตัว · MUEANG WARS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Noto+Sans+Thai:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#fff4f0;--mu:#e3b9c0;--gold:#ffc857;--gold2:#ffe08a;--ln:rgba(255,130,130,.3);color-scheme:dark;font-family:'Noto Sans Thai',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html{background:#1a0310;scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{color:var(--ink);line-height:1.75;overflow-x:hidden;background:linear-gradient(rgba(26,3,16,.86),rgba(20,2,13,.95)),url(img/pattern-kanok.webp) 0 0/260px,#1a0310;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+a{color:var(--gold)}:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+h1,h2,.btn,.no{font-family:Kanit,sans-serif}
+b{color:#fff;font-weight:600}
+.w{width:min(760px,100% - 28px);margin-inline:auto}
+/* หัวหน้า */
+.top{background:radial-gradient(90% 130% at 50% 0,rgba(255,61,87,.34),transparent 70%);padding-bottom:6px}
+nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.logo{display:flex;align-items:center;gap:10px;font:800 1.25rem Kanit,sans-serif;letter-spacing:.04em;line-height:1;color:inherit;text-decoration:none}
+.logo svg{width:36px;height:36px;flex:none}
+.logo span{color:#fff;text-shadow:0 1px 0 #ffc2b6,0 3px 0 #d4142f,0 5px 0 #6d0618,0 9px 10px rgba(0,0,0,.7)}
+.logo b{color:var(--gold2);text-shadow:0 1px 0 #fff3c4,0 3px 0 #e08a12,0 5px 0 #7a3d05,0 9px 10px rgba(0,0,0,.7)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 18px;border-radius:14px;font-weight:700;font-size:.9rem;color:#fff;text-decoration:none;cursor:pointer}
+.btn:active{transform:translateY(3px)}
+.gh{background:rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 4px 0 rgba(0,0,0,.35);border:1px solid var(--ln)}
+.hero{text-align:center;padding:8px 0 10px}
+.emb{width:74px;filter:drop-shadow(0 0 22px rgba(255,90,90,.8)) drop-shadow(0 8px 10px #000)}
+h1{font-size:clamp(2rem,9vw,3.2rem);font-weight:800;line-height:1.2;color:#fff;margin-top:8px;text-shadow:0 2px 0 #ffc2b6,0 5px 0 #d4142f,0 8px 0 #6d0618,0 16px 22px rgba(0,0,0,.7)}
+.meta{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.tag{display:inline-flex;align-items:center;padding:3px 14px;border-radius:99px;background:rgba(0,0,0,.45);border:1px solid var(--ln);color:var(--mu);font-size:.84rem;font-weight:600}
+.tag.g{color:#1a0310;background:linear-gradient(180deg,#ffe08a,#ffc857);border-color:transparent;font-family:Kanit,sans-serif;font-weight:700}
+/* แถบเตือนฉบับร่าง */
+.dr{display:flex;gap:12px;align-items:flex-start;margin:18px 0;padding:14px 16px;border-radius:20px;border:1px solid rgba(255,200,87,.6);background:linear-gradient(160deg,rgba(255,200,87,.16),rgba(255,200,87,.05));box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 10px 24px rgba(0,0,0,.4);font-size:.92rem;color:#f6dfe2}
+.dr svg{width:26px;height:26px;flex:none;margin-top:2px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.dr b{color:var(--gold)}
+/* สารบัญ */
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 20px}
+.toc a{display:inline-flex;align-items:center;gap:7px;padding:5px 13px 5px 6px;border-radius:99px;background:rgba(0,0,0,.38);border:1px solid var(--ln);color:#f6dfe2;font-size:.82rem;text-decoration:none;line-height:1.3}
+.toc a:active{background:rgba(255,200,87,.2)}
+.toc i{font:700 .78rem Kanit,sans-serif;font-style:normal;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;color:#1a0310;background:linear-gradient(180deg,#ffe08a,#ffc857)}
+/* การ์ดหัวข้อ */
+.pn{background:linear-gradient(180deg,#5d0b1f,#2b0613);border:1px solid var(--ln);border-radius:24px;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 14px 30px rgba(0,0,0,.55);padding:18px 18px 16px;margin-bottom:14px;scroll-margin-top:14px}
+.pn.hl{border-color:rgba(255,200,87,.6);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 0 0 1px rgba(255,200,87,.25),0 14px 30px rgba(0,0,0,.55)}
+h2{display:flex;align-items:center;gap:12px;font-size:1.2rem;font-weight:700;line-height:1.3;color:var(--gold2);margin-bottom:8px;text-shadow:0 2px 0 rgba(0,0,0,.45)}
+.no{flex:none;width:36px;height:36px;border-radius:12px;display:grid;place-items:center;font-size:1.05rem;font-weight:800;font-style:normal;color:#fff;text-shadow:0 1px 0 rgba(90,0,15,.7);background:linear-gradient(180deg,#ff7a63,#d4142f);box-shadow:inset 0 2px 0 rgba(255,255,255,.5),0 3px 0 #5e0415}
+p,li{color:#f6dfe2}p+p{margin-top:8px}
+ul{padding-left:1.3em;margin:6px 0}li{margin:4px 0}li::marker{color:var(--gold)}
+.ph{display:inline-block;padding:0 10px;border-radius:8px;border:1px dashed var(--gold);background:rgba(255,200,87,.12);color:var(--gold2);font-weight:600}
+/* ลิงก์ท้ายหน้า */
+.nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:26px}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:99px;border:1px solid var(--ln);background:rgba(255,255,255,.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 3px 0 rgba(0,0,0,.35);color:#fff;font:600 .92rem Kanit,sans-serif;text-decoration:none}
+.nav a:active{transform:translateY(3px)}
+.nav a[aria-current=page]{color:#1a0310;background:linear-gradient(180deg,#ffe08a,#ffc857);border-color:transparent}
+footer{padding:26px 0 44px;text-align:center;color:var(--mu);font-size:.8rem;line-height:1.6}footer svg{width:34px;display:block;margin:0 auto 8px}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<radialGradient id="gl"><stop offset="0" stop-color="#ffc857" stop-opacity=".5"/><stop offset="1" stop-color="#ffc857" stop-opacity="0"/></radialGradient>
+<g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g></defs></svg>
+
+<header class="top"><div class="w">
+<nav><a class="logo" href="index.html" aria-label="MUEANG WARS"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#mk"/></svg><span>MUEANG</span><b>WARS</b></a><a class="btn gh" href="index.html">กลับหน้าแรก</a></nav>
+<div class="hero">
+<svg class="emb" viewBox="0 0 140 192" role="img" aria-label="ตรา MUEANG WARS"><path d="M70 2L136 24V150L70 190L4 150V24Z" fill="#1a0310" stroke="#ffe08a" stroke-width="3" stroke-linejoin="round"/><circle cx="70" cy="92" r="54" fill="url(#gl)"/><g transform="translate(10 32)"><use href="#mk"/></g></svg>
+<h1>นโยบายความเป็นส่วนตัว</h1>
+<div class="meta"><span class="tag g">ฉบับร่าง รุ่น draft-2</span><span class="tag">ปรับปรุงล่าสุด 19 ต.ค. 2026</span></div>
+</div></div></header>
+
+<main class="w">
+<div class="dr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3z"/><path d="M12 10v4.5M12 17.4v.2"/></svg><div><b>ฉบับร่าง ยังไม่ผ่านการตรวจโดยนักกฎหมาย</b> เขียนให้ตรงกับสิ่งที่เกมทำอยู่จริงตอนนี้ (ช่วงทดสอบ) จุดที่ติดป้าย <span class="ph">[ให้ทนายยืนยัน]</span> คือจุดที่ยังยืนยันความถูกต้องทางกฎหมายไม่ได้</div></div>
+
+<nav class="toc" aria-label="สารบัญ">
+<a href="#p1"><i>1</i>ใครดูแลข้อมูลของคุณ</a><a href="#p2"><i>2</i>ข้อมูลที่เราเก็บ</a><a href="#p3"><i>3</i>ข้อมูลที่เก็บในเบราว์เซอร์</a><a href="#p4"><i>4</i>เราใช้ข้อมูลทำอะไร</a><a href="#p5"><i>5</i>ใครเห็นข้อมูลอะไร</a><a href="#p6"><i>6</i>ผู้ให้บริการและการส่งข้อมูลไปต่างประเทศ</a><a href="#p7"><i>7</i>เก็บนานแค่ไหน</a><a href="#p8"><i>8</i>สิทธิของคุณ</a><a href="#p9"><i>9</i>ความปลอดภัยและเหตุข้อมูลรั่ว</a><a href="#p10"><i>10</i>ผู้เล่นอายุต่ำกว่า 20 ปี</a><a href="#p11"><i>11</i>ผู้เล่นจากต่างประเทศ</a><a href="#p12"><i>12</i>ติดต่อและการเปลี่ยนนโยบาย</a>
+</nav>
+
+<section class="pn" id="p1"><h2><i class="no">1</i>ใครดูแลข้อมูลของคุณ</h2>
+<p>ผู้ดูแลข้อมูล (ผู้ควบคุมข้อมูลส่วนบุคคลตาม พ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562) คือ <b class="ph">[ใส่ชื่อ-นามสกุลของผู้ให้บริการ]</b> บุคคลธรรมดาที่ทำเกมนี้เพียงคนเดียว</p><p>ติดต่อ: อีเมล <b class="ph">[ใส่อีเมลติดต่อ]</b> · ที่อยู่รับจดหมายลงทะเบียน <b class="ph">[ใส่ที่อยู่รับจดหมาย]</b></p></section>
+
+<section class="pn" id="p2"><h2><i class="no">2</i>ข้อมูลที่เราเก็บ</h2>
+<ul><li><b>ข้อมูลบัญชี:</b> อีเมลและรหัสผ่าน (รหัสผ่านจัดเก็บโดยระบบยืนยันตัวตนของ Supabase ในรูปที่เข้ารหัสแล้ว เราอ่านรหัสจริงของคุณไม่ได้)</li><li><b>ข้อมูลโปรไฟล์:</b> ชื่อผู้เล่น ปีเกิด (เก็บแค่ปี ไม่เก็บวันเดือน) จังหวัดบ้านเกิด ภาคที่สังกัด อวตาร เวลาและรุ่นข้อกำหนดที่คุณยอมรับ สถานะว่าเรียนวิธีเล่นแล้วหรือยัง จำนวนรอบที่เล่น เวลาสร้างบัญชี เวลาเปลี่ยนชื่อล่าสุด และสถานะถูกระงับบัญชีพร้อมเหตุผล (ถ้ามี)</li><li><b>ข้อมูลการเล่น:</b> การส่งทัพ ผลรอบ คะแนนซีซัน และวันที่คุณเข้าเล่น (เก็บเป็นรายวัน)</li><li><b>ข้อมูลทางเทคนิค:</b> ผู้ให้บริการที่โฮสต์เว็บและฐานข้อมูลอาจเห็นที่อยู่ IP และบันทึกการเข้าใช้ตามปกติของการให้บริการเว็บ เราไม่ได้สร้างระบบเก็บ IP ของผู้เล่นขึ้นเองในเกม</li></ul><p>เราไม่ได้เก็บตำแหน่ง GPS รายชื่อติดต่อ รูปภาพ เสียงจากไมโครโฟน เบอร์โทร ชื่อจริง เลขบัตรประชาชน หรือข้อมูลการชำระเงิน เพราะตอนนี้เกมยังไม่รับเงิน</p></section>
+
+<section class="pn" id="p3"><h2><i class="no">3</i>ข้อมูลที่เก็บในเบราว์เซอร์</h2>
+<p>เกมเก็บข้อมูลเล็กน้อยในที่เก็บข้อมูลของเบราว์เซอร์ (localStorage) ไม่ใช้คุกกี้โฆษณาและไม่มีเครื่องมือวิเคราะห์พฤติกรรม (analytics)</p><ul><li><b>ข้อมูลเข้าสู่ระบบ</b> (ชื่อคีย์ขึ้นต้น sb- และลงท้าย -auth-token) ระบบของ Supabase เก็บไว้เพื่อให้คุณไม่ต้องล็อกอินใหม่ทุกครั้ง จำเป็นต่อการทำงานของบริการ</li><li><b>mw_seen</b> จำว่าคุณเห็นผลรอบล่าสุดแล้วหรือยัง เป็นเพียงความสะดวก ลบได้โดยล้างข้อมูลเว็บไซต์ในเบราว์เซอร์ <span class="ph">[ให้ทนายยืนยัน]</span></li></ul><p>ถ้าในอนาคตเราจะเพิ่มเครื่องมือวิเคราะห์หรือโฆษณา เราจะแจ้งและขอความยินยอมจากคุณก่อน</p></section>
+
+<section class="pn" id="p4"><h2><i class="no">4</i>เราใช้ข้อมูลทำอะไร</h2>
+<ul><li><b>ให้เกมทำงาน</b> สร้างและดูแลบัญชี จัดคุณเข้าทีมภาค คำนวณผลรอบ จัดอันดับ (เพื่อทำตามข้อตกลงการใช้งานที่คุณยอมรับ)</li><li><b>ให้คุณเข้าสู่ระบบและกู้รหัสผ่านได้</b> รวมถึงส่งอีเมลยืนยันและอีเมลตั้งรหัสผ่านใหม่</li><li><b>ป้องกันการโกงและแก้ปัญหาของระบบ</b> (เพื่อประโยชน์โดยชอบด้วยกฎหมายในการรักษาความเป็นธรรมและความปลอดภัยของเกม)</li><li><b>ปีเกิด</b> ใช้เป็นมาตรการเบื้องต้นเรื่องอายุผู้เล่น และใช้จำกัดฟีเจอร์ที่ต้องมีอายุถึงเกณฑ์ในอนาคต</li><li><b>บันทึกการยอมรับข้อกำหนด</b> เพื่อเป็นหลักฐานว่าคุณยอมรับรุ่นใด เมื่อใด</li></ul><p>เราใช้ข้อมูลเฉพาะตามวัตถุประสงค์เหล่านี้ ฐานทางกฎหมายที่เราอ้างคือการปฏิบัติตามข้อตกลงที่คุณยอมรับ ประโยชน์โดยชอบด้วยกฎหมาย และความยินยอมของคุณ <span class="ph">[ให้ทนายยืนยัน]</span></p></section>
+
+<section class="pn" id="p5"><h2><i class="no">5</i>ใครเห็นข้อมูลอะไร</h2>
+<p>ผู้เล่นอื่นเห็นได้เฉพาะ ชื่อผู้เล่น อวตาร ภาค และคะแนน (เช่นในตารางอันดับ) อีเมล ปีเกิด และจังหวัดบ้านเกิดของคุณไม่แสดงให้ผู้เล่นอื่นเห็น</p><p>เราไม่ขายข้อมูลของคุณ และไม่ให้ผู้ใดใช้ข้อมูลของคุณเพื่อโฆษณา</p></section>
+
+<section class="pn" id="p6"><h2><i class="no">6</i>ผู้ให้บริการและการส่งข้อมูลไปต่างประเทศ</h2>
+<ul><li><b>Supabase</b> เก็บฐานข้อมูลและระบบยืนยันตัวตน รวมถึงส่งอีเมลยืนยัน/ตั้งรหัสผ่านใหม่ โปรเจกต์ของเราตั้งอยู่ในภูมิภาค ap-northeast-2 (กรุงโซล เกาหลีใต้)</li><li><b>Vercel</b> โฮสต์หน้าเว็บ</li><li><b>Google Fonts และ jsDelivr</b> ส่งฟอนต์และไลบรารีให้เบราว์เซอร์ของคุณ ผู้ให้บริการเหล่านี้อาจเห็นที่อยู่ IP ของคุณตามปกติของการโหลดเว็บ</li><li><b>MET Norway</b> ให้ข้อมูลอากาศที่ใช้ในเกม เราดึงฝั่งเซิร์ฟเวอร์ ไม่ส่งข้อมูลของคุณไปที่นี่</li></ul><p>ผู้ให้บริการเหล่านี้อยู่หรือเก็บข้อมูลนอกประเทศไทย ข้อมูลของคุณจึงถูกส่งหรือเก็บในต่างประเทศ เราใช้เท่าที่จำเป็นต่อการให้บริการ และกำลังตรวจสอบว่ามาตรการคุ้มครองของผู้ให้บริการเป็นไปตามที่กฎหมายกำหนด <span class="ph">[ให้ทนายยืนยัน]</span></p></section>
+
+<section class="pn" id="p7"><h2><i class="no">7</i>เก็บนานแค่ไหน</h2>
+<ul><li>ข้อมูลบัญชีและข้อมูลการเล่น: เก็บตราบที่บัญชียังอยู่</li><li>เมื่อคุณขอลบบัญชี เราลบข้อมูลบัญชีและโปรไฟล์ภายใน 30 วันหลังยืนยันตัวตนได้ (ขยายได้อีก 30 วันถ้าซับซ้อนและเราจะแจ้งคุณ) สถิติรวมที่ไม่ระบุตัวตนได้อาจเหลืออยู่</li><li>บันทึกการระงับบัญชี (เหตุผลและอีเมลที่ถูกระงับ) เก็บต่อได้สูงสุด 12 เดือนหลังลบบัญชี เพื่อกันคนที่ถูกระงับกลับมาสมัครใหม่ <span class="ph">[ให้ทนายยืนยัน]</span></li><li>ถ้าเปิดรับเงินในอนาคต เอกสารทางบัญชีและภาษีต้องเก็บตามกฎหมาย (อย่างน้อย 5 ปี) และจะแจ้งเพิ่มในนโยบายนี้</li></ul></section>
+
+<section class="pn" id="p8"><h2><i class="no">8</i>สิทธิของคุณ</h2>
+<p>คุณมีสิทธิขอเข้าถึงและขอสำเนา แก้ไข ลบ ระงับการใช้ คัดค้านการใช้ ถอนความยินยอม และขอรับข้อมูลในรูปแบบที่อ่านได้ รวมถึงร้องเรียนต่อสำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล (สคส.)</p><p>วิธีขอ: ส่งอีเมลมาที่ <b class="ph">[ใส่อีเมลติดต่อ]</b> จากอีเมลที่ใช้สมัคร หรือส่งจดหมายลงทะเบียนมาที่ <b class="ph">[ใส่ที่อยู่รับจดหมาย]</b> ระบุชื่อผู้เล่นและสิ่งที่ต้องการ</p><p>เราจะตรวจคำขอภายใน 15 วัน และดำเนินการภายใน 30 วันหลังยืนยันตัวตนได้ ถ้าปฏิเสธ เราจะแจ้งเหตุผลเป็นลายลักษณ์อักษร ตอนนี้ทุกคำขอเป็นการดำเนินการด้วยมือ ชื่อผู้เล่นและอวตารเปลี่ยนเองได้ในเกม <span class="ph">[ให้ทนายยืนยัน]</span></p></section>
+
+<section class="pn" id="p9"><h2><i class="no">9</i>ความปลอดภัยและเหตุข้อมูลรั่ว</h2>
+<p>เราใช้ระบบสิทธิ์เข้าถึงข้อมูลรายแถวของฐานข้อมูล เพื่อให้ผู้เล่นอ่านได้เฉพาะข้อมูลของตัวเองเท่าที่จำเป็น และให้เว็บเชื่อมต่อผ่าน HTTPS แต่ไม่มีระบบใดปลอดภัยสมบูรณ์ ควรใช้รหัสผ่านที่เดายากและไม่ซ้ำกับที่อื่น</p><p>ถ้าเกิดเหตุข้อมูลรั่วไหลที่อาจกระทบสิทธิของคุณ เราจะแจ้ง สคส. ภายใน 72 ชั่วโมงนับจากที่รู้เหตุเท่าที่ทำได้ และแจ้งผู้เล่นที่ได้รับผลกระทบอย่างสูงโดยเร็ว</p></section>
+
+<section class="pn" id="p10"><h2><i class="no">10</i>ผู้เล่นอายุต่ำกว่า 20 ปี</h2>
+<ul><li>เกมรับผู้เล่นอายุ 13 ปีขึ้นไปในช่วงทดสอบ เก็บข้อมูลเท่าที่จำเป็นและไม่เก็บข้อมูลอ่อนไหว</li><li>ผู้เล่นที่อายุต่ำกว่า 20 ปียืนยันว่าผู้ปกครองรับทราบการเล่น ผู้ปกครองขอดู แก้ไข หรือลบข้อมูลของบุตรหลานได้โดยติดต่อเราตามข้อ 8</li><li>ถ้าผู้ปกครองพบว่าบุตรหลานที่อายุไม่ถึง 13 ปีสมัครไว้ ติดต่อเราเพื่อลบบัญชีได้ทันที</li><li>การถามปีเกิดตอนสมัครไม่ได้พิสูจน์อายุจริง</li></ul><p>ข้อความส่วนนี้ยังไม่ได้รับการยืนยันว่าเพียงพอตามหลักเรื่องความยินยอมของผู้เยาว์ <span class="ph">[ให้ทนายยืนยัน]</span></p></section>
+
+<section class="pn" id="p11"><h2><i class="no">11</i>ผู้เล่นจากต่างประเทศ</h2>
+<p>เกมนี้ทำสำหรับผู้เล่นในประเทศไทย ใช้ภาษาไทยและยังไม่ได้ตั้งใจให้บริการแก่ผู้เล่นในต่างประเทศ <span class="ph">[ให้ทนายยืนยัน]</span></p></section>
+
+<section class="pn" id="p12"><h2><i class="no">12</i>ติดต่อและการเปลี่ยนนโยบาย</h2>
+<p>ติดต่อ: <b class="ph">[ใส่อีเมลติดต่อ]</b></p><p>เราอาจปรับนโยบายนี้ ถ้าแก้เรื่องสำคัญจะแจ้งในเกมหรือหน้าเว็บก่อนมีผล</p></section>
+
+<div class="nav"><a href="terms.html">ข้อกำหนดการใช้งาน</a><a href="privacy.html" aria-current="page">นโยบายความเป็นส่วนตัว</a><a href="index.html">กลับหน้าแรก</a></div>
+</main>
+<footer><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#mk"/></svg>© 2026 MUEANG WARS · ราคาและไอเทมในเกมไม่ใช่เงินจริง</footer>
+</body></html>

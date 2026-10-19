@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="th"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a0310">
+<meta name="robots" content="noindex">
+<title>ลืมรหัสผ่าน · MUEANG WARS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Noto+Sans+Thai:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#fff4f0;--mu:#e3b9c0;--gold:#ffc857;--gold2:#ffe08a;--ln:rgba(255,130,130,.3);color-scheme:dark;font-family:'Noto Sans Thai',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html{background:#1a0310;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{min-height:100vh;min-height:100dvh;color:var(--ink);line-height:1.6;overflow-x:hidden;background:radial-gradient(90% 60% at 50% 0,rgba(255,61,87,.32),transparent 70%),linear-gradient(rgba(26,3,16,.86),rgba(20,2,13,.95)),url(img/pattern-kanok.webp) 0 0/260px,#1a0310;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);display:grid;place-items:center}
+a{color:var(--gold)}:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+h1,.btn{font-family:Kanit,sans-serif}
+.w{width:min(440px,100% - 32px);margin:24px auto}
+/* โลโก้ */
+.brand{display:flex;flex-direction:column;align-items:center;gap:6px;margin-bottom:18px;text-decoration:none;color:inherit}
+.emb{width:78px;filter:drop-shadow(0 0 22px rgba(255,90,90,.8)) drop-shadow(0 8px 10px #000)}
+.logo{display:flex;align-items:center;gap:10px;font:800 1.5rem Kanit,sans-serif;letter-spacing:.04em;line-height:1}
+.logo span{color:#fff;text-shadow:0 1px 0 #ffc2b6,0 3px 0 #d4142f,0 5px 0 #6d0618,0 9px 10px rgba(0,0,0,.7)}
+.logo b{color:var(--gold2);text-shadow:0 1px 0 #fff3c4,0 3px 0 #e08a12,0 5px 0 #7a3d05,0 9px 10px rgba(0,0,0,.7)}
+/* แผง */
+.pn{background:linear-gradient(180deg,#5d0b1f,#2b0613);border:1px solid var(--ln);border-radius:24px;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 14px 30px rgba(0,0,0,.55);padding:26px 20px 22px}
+.ico{width:56px;height:56px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.28),rgba(255,255,255,.06));box-shadow:inset 0 0 0 2px var(--gold),0 6px 14px rgba(0,0,0,.4)}
+.ico svg{width:28px;height:28px;fill:none;stroke:var(--gold2);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+h1{text-align:center;font-size:1.8rem;font-weight:800;line-height:1.2;color:#fff;text-shadow:0 2px 0 #ffc2b6,0 4px 0 #d4142f,0 6px 0 #6d0618,0 12px 16px rgba(0,0,0,.7)}
+.sub{text-align:center;color:var(--mu);margin:10px 0 4px}
+.lb{display:grid;gap:5px;font-size:.9rem;color:var(--mu);margin-top:14px}
+.in{width:100%;min-height:50px;border-radius:14px;border:1px solid var(--ln);background:rgba(0,0,0,.35);color:#fff;padding:0 14px;font:16px 'Noto Sans Thai',sans-serif;box-shadow:inset 0 2px 4px rgba(0,0,0,.3)}
+.in:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(255,200,87,.25),inset 0 2px 4px rgba(0,0,0,.3)}
+.hint{font-size:.78rem;color:var(--mu)}
+.err{color:#ff9a9a;min-height:1.4em;margin-top:10px;font-size:.92rem}
+.ok{color:#7ff0c4;margin-top:12px;padding:10px 12px;border-radius:14px;background:rgba(47,212,154,.1);border:1px solid rgba(47,212,154,.4);font-size:.92rem}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;margin-top:14px;border-radius:16px;border:0;cursor:pointer;color:#fff;font-weight:800;font-size:1.05rem;text-shadow:0 2px 0 rgba(90,0,15,.7);text-decoration:none;background:linear-gradient(180deg,#ff7a63,#ee2440 46%,#b50d26 50%,#d4142f);box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 5px 0 #5e0415,0 12px 22px rgba(230,20,50,.5)}
+.btn:active{transform:translateY(4px)}.btn:disabled{opacity:.55}
+.bk{display:block;text-align:center;margin-top:18px;font-size:.9rem}
+[hidden]{display:none!important}
+footer{text-align:center;color:var(--mu);font-size:.78rem;margin-top:16px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<radialGradient id="gl"><stop offset="0" stop-color="#ffc857" stop-opacity=".5"/><stop offset="1" stop-color="#ffc857" stop-opacity="0"/></radialGradient>
+<g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g></defs></svg>
+<main class="w">
+<a class="brand" href="index.html" aria-label="MUEANG WARS">
+<svg class="emb" viewBox="0 0 140 192" aria-hidden="true"><path d="M70 2L136 24V150L70 190L4 150V24Z" fill="#1a0310" stroke="#ffe08a" stroke-width="3" stroke-linejoin="round"/><circle cx="70" cy="92" r="54" fill="url(#gl)"/><g transform="translate(10 32)"><use href="#mk"/></g></svg>
+<span class="logo"><span>MUEANG</span><b>WARS</b></span></a>
+<div class="pn">
+
+<!-- ขั้น 1: ขอลิงก์ -->
+<section id="s1">
+ <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="M4 7.5l8 6 8-6"/></svg></div>
+ <h1>ลืมรหัสผ่าน</h1>
+ <p class="sub">ใส่อีเมลที่ใช้สมัคร เราจะส่งลิงก์ตั้งรหัสผ่านใหม่ให้</p>
+ <label class="lb">อีเมล<input class="in" id="em" type="email" autocomplete="email" inputmode="email"></label>
+ <div class="err" id="e1" role="alert"></div>
+ <div class="ok" id="o1" role="status" hidden></div>
+ <button class="btn" id="b1" type="button">ส่งลิงก์ตั้งรหัสผ่านใหม่</button>
+ <a class="bk" href="index.html">กลับหน้าแรก</a>
+</section>
+
+<!-- ขั้น 2: ตั้งรหัสใหม่ (เปิดจากลิงก์ในอีเมล) -->
+<section id="s2" hidden>
+ <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+ <h1>ตั้งรหัสผ่านใหม่</h1>
+ <p class="sub">ตั้งรหัสใหม่แล้วเข้าเล่นต่อได้เลย</p>
+ <label class="lb">รหัสผ่านใหม่<input class="in" id="p1" type="password" autocomplete="new-password"><span class="hint">อย่างน้อย 8 ตัว</span></label>
+ <label class="lb">ยืนยันรหัสผ่านใหม่<input class="in" id="p2" type="password" autocomplete="new-password"></label>
+ <div class="err" id="e2" role="alert"></div>
+ <button class="btn" id="b2" type="button">บันทึกรหัสผ่านใหม่</button>
+</section>
+
+<!-- ขั้น 3: ลิงก์ใช้ไม่ได้ -->
+<section id="s3" hidden>
+ <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3z"/><path d="M12 10v4.5M12 17.4v.2"/></svg></div>
+ <h1>ลิงก์ใช้ไม่ได้แล้ว</h1>
+ <p class="sub">ลิงก์ตั้งรหัสผ่านอาจหมดอายุหรือถูกใช้ไปแล้ว ขอลิงก์ใหม่ได้เลย</p>
+ <button class="btn" id="b3" type="button">ขอลิงก์ใหม่</button>
+</section>
+
+<!-- ขั้น 4: สำเร็จ -->
+<section id="s4" hidden>
+ <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
+ <h1>เรียบร้อย</h1>
+ <p class="sub">เปลี่ยนรหัสผ่านแล้ว</p>
+ <a class="btn" href="play.html">เข้าสนามรบ</a>
+</section>
+
+</div>
+<footer>© 2026 MUEANG WARS</footer>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+const SB_URL='https://tncbzfgdfxjrgrdgmzya.supabase.co',SB_KEY='sb_publishable_xrwJKdhhgt6i_I4pDvI79A_gucUyuVx';
+const sb=window.supabase?window.supabase.createClient(SB_URL,SB_KEY):null;
+const $=id=>document.getElementById(id);
+function show(n){[1,2,3,4].forEach(i=>$('s'+i).hidden=i!==n)}
+function netErr(m){m=String(m||'');
+ if(/rate limit|too many|seconds|security purposes/i.test(m))return 'ลองบ่อยเกินไป รอสักครู่แล้วลองใหม่';
+ if(/same.*password|different from the old/i.test(m))return 'รหัสใหม่ต้องไม่ซ้ำกับรหัสเดิม';
+ if(/password/i.test(m)&&/least|short|weak/i.test(m))return 'รหัสผ่านสั้นหรืออ่อนเกินไป';
+ if(/invalid.*email|email.*invalid/i.test(m))return 'รูปแบบอีเมลไม่ถูกต้อง';
+ if(/fetch|network/i.test(m))return 'เชื่อมต่ออินเทอร์เน็ตไม่ได้';
+ if(/session|jwt|expired/i.test(m))return 'ลิงก์หมดอายุ ขอลิงก์ใหม่อีกครั้ง';
+ return m||'มีบางอย่างผิดพลาด ลองใหม่อีกครั้ง'}
+
+/* เปิดจากลิงก์ในอีเมล: supabase-js อ่าน token จาก URL เองแล้วยิงเหตุการณ์ PASSWORD_RECOVERY */
+const hash=location.hash+location.search,fromMail=/type=recovery|access_token|code=|error_code|error=/.test(hash);
+let recovered=false;
+if(sb){
+ sb.auth.onAuthStateChange((ev)=>{if(ev==='PASSWORD_RECOVERY'){recovered=true;show(2);$('p1').focus()}});
+ if(fromMail){
+  if(/error_code|error=/.test(hash))show(3);
+  else setTimeout(()=>{if(!recovered)show(3)},4000)}
+}else{$('e1').textContent='เชื่อมต่อระบบไม่ได้ ลองรีเฟรชหน้า'}
+
+$('b1').onclick=async()=>{const e=$('em').value.trim(),b=$('b1');$('e1').textContent='';$('o1').hidden=true;
+ if(!/^\S+@\S+\.\S+$/.test(e))return $('e1').textContent='กรอกอีเมลให้ถูกต้อง';
+ if(!sb)return;b.disabled=true;
+ const {error}=await sb.auth.resetPasswordForEmail(e,{redirectTo:location.origin+location.pathname});
+ b.disabled=false;
+ if(error)return $('e1').textContent=netErr(error.message);
+ /* ไม่บอกว่าอีเมลนี้มีในระบบหรือไม่ (กันคนไล่เดาอีเมล) */
+ $('o1').hidden=false;$('o1').textContent='ถ้าอีเมลนี้สมัครไว้ เราส่งลิงก์ไปให้แล้ว ลองดูในกล่องจดหมายและสแปม (ลิงก์ใช้ได้ช่วงสั้นๆ)'};
+$('em').addEventListener('keydown',e=>{if(e.key==='Enter')$('b1').click()});
+
+$('b2').onclick=async()=>{const a=$('p1').value,c=$('p2').value,b=$('b2');$('e2').textContent='';
+ if(a.length<8)return $('e2').textContent='รหัสผ่านต้องยาวอย่างน้อย 8 ตัว';
+ if(a!==c)return $('e2').textContent='รหัสผ่านสองช่องไม่ตรงกัน';
+ b.disabled=true;
+ const {error}=await sb.auth.updateUser({password:a});
+ b.disabled=false;
+ if(error)return $('e2').textContent=netErr(error.message);
+ history.replaceState(null,'',location.pathname);show(4)};
+$('p2').addEventListener('keydown',e=>{if(e.key==='Enter')$('b2').click()});
+
+$('b3').onclick=()=>{history.replaceState(null,'',location.pathname);show(1)};
+</script></body></html>

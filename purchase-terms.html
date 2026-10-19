@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="th"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a0310">
+<title>เงื่อนไขการเติมเงินและซื้อของในเกม · MUEANG WARS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Noto+Sans+Thai:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#fff4f0;--mu:#e3b9c0;--gold:#ffc857;--gold2:#ffe08a;--ln:rgba(255,130,130,.3);color-scheme:dark;font-family:'Noto Sans Thai',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html{background:#1a0310;scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{color:var(--ink);line-height:1.75;overflow-x:hidden;background:linear-gradient(rgba(26,3,16,.86),rgba(20,2,13,.95)),url(img/pattern-kanok.webp) 0 0/260px,#1a0310;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+a{color:var(--gold)}:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+h1,h2,.btn,.no{font-family:Kanit,sans-serif}
+b{color:#fff;font-weight:600}
+.w{width:min(760px,100% - 28px);margin-inline:auto}
+/* หัวหน้า */
+.top{background:radial-gradient(90% 130% at 50% 0,rgba(255,61,87,.34),transparent 70%);padding-bottom:6px}
+nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.logo{display:flex;align-items:center;gap:10px;font:800 1.25rem Kanit,sans-serif;letter-spacing:.04em;line-height:1;color:inherit;text-decoration:none}
+.logo svg{width:36px;height:36px;flex:none}
+.logo span{color:#fff;text-shadow:0 1px 0 #ffc2b6,0 3px 0 #d4142f,0 5px 0 #6d0618,0 9px 10px rgba(0,0,0,.7)}
+.logo b{color:var(--gold2);text-shadow:0 1px 0 #fff3c4,0 3px 0 #e08a12,0 5px 0 #7a3d05,0 9px 10px rgba(0,0,0,.7)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 18px;border-radius:14px;font-weight:700;font-size:.9rem;color:#fff;text-decoration:none;cursor:pointer}
+.btn:active{transform:translateY(3px)}
+.gh{background:rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 4px 0 rgba(0,0,0,.35);border:1px solid var(--ln)}
+.hero{text-align:center;padding:8px 0 10px}
+.emb{width:74px;filter:drop-shadow(0 0 22px rgba(255,90,90,.8)) drop-shadow(0 8px 10px #000)}
+h1{font-size:clamp(2rem,9vw,3.2rem);font-weight:800;line-height:1.2;color:#fff;margin-top:8px;text-shadow:0 2px 0 #ffc2b6,0 5px 0 #d4142f,0 8px 0 #6d0618,0 16px 22px rgba(0,0,0,.7)}
+.meta{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.tag{display:inline-flex;align-items:center;padding:3px 14px;border-radius:99px;background:rgba(0,0,0,.45);border:1px solid var(--ln);color:var(--mu);font-size:.84rem;font-weight:600}
+.tag.g{color:#1a0310;background:linear-gradient(180deg,#ffe08a,#ffc857);border-color:transparent;font-family:Kanit,sans-serif;font-weight:700}
+/* แถบเตือนฉบับร่าง */
+.dr{display:flex;gap:12px;align-items:flex-start;margin:18px 0;padding:14px 16px;border-radius:20px;border:1px solid rgba(255,200,87,.6);background:linear-gradient(160deg,rgba(255,200,87,.16),rgba(255,200,87,.05));box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 10px 24px rgba(0,0,0,.4);font-size:.92rem;color:#f6dfe2}
+.dr svg{width:26px;height:26px;flex:none;margin-top:2px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.dr b{color:var(--gold)}
+/* สารบัญ */
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 20px}
+.toc a{display:inline-flex;align-items:center;gap:7px;padding:5px 13px 5px 6px;border-radius:99px;background:rgba(0,0,0,.38);border:1px solid var(--ln);color:#f6dfe2;font-size:.82rem;text-decoration:none;line-height:1.3}
+.toc a:active{background:rgba(255,200,87,.2)}
+.toc i{font:700 .78rem Kanit,sans-serif;font-style:normal;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;color:#1a0310;background:linear-gradient(180deg,#ffe08a,#ffc857)}
+/* การ์ดหัวข้อ */
+.pn{background:linear-gradient(180deg,#5d0b1f,#2b0613);border:1px solid var(--ln);border-radius:24px;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 14px 30px rgba(0,0,0,.55);padding:18px 18px 16px;margin-bottom:14px;scroll-margin-top:14px}
+.pn.hl{border-color:rgba(255,200,87,.6);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 0 0 1px rgba(255,200,87,.25),0 14px 30px rgba(0,0,0,.55)}
+h2{display:flex;align-items:center;gap:12px;font-size:1.2rem;font-weight:700;line-height:1.3;color:var(--gold2);margin-bottom:8px;text-shadow:0 2px 0 rgba(0,0,0,.45)}
+.no{flex:none;width:36px;height:36px;border-radius:12px;display:grid;place-items:center;font-size:1.05rem;font-weight:800;font-style:normal;color:#fff;text-shadow:0 1px 0 rgba(90,0,15,.7);background:linear-gradient(180deg,#ff7a63,#d4142f);box-shadow:inset 0 2px 0 rgba(255,255,255,.5),0 3px 0 #5e0415}
+p,li{color:#f6dfe2}p+p{margin-top:8px}
+ul{padding-left:1.3em;margin:6px 0}li{margin:4px 0}li::marker{color:var(--gold)}
+.ph{display:inline-block;padding:0 10px;border-radius:8px;border:1px dashed var(--gold);background:rgba(255,200,87,.12);color:var(--gold2);font-weight:600}
+/* ลิงก์ท้ายหน้า */
+.nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:26px}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:99px;border:1px solid var(--ln);background:rgba(255,255,255,.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 3px 0 rgba(0,0,0,.35);color:#fff;font:600 .92rem Kanit,sans-serif;text-decoration:none}
+.nav a:active{transform:translateY(3px)}
+.nav a[aria-current=page]{color:#1a0310;background:linear-gradient(180deg,#ffe08a,#ffc857);border-color:transparent}
+footer{padding:26px 0 44px;text-align:center;color:var(--mu);font-size:.8rem;line-height:1.6}footer svg{width:34px;display:block;margin:0 auto 8px}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<radialGradient id="gl"><stop offset="0" stop-color="#ffc857" stop-opacity=".5"/><stop offset="1" stop-color="#ffc857" stop-opacity="0"/></radialGradient>
+<g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g></defs></svg>
+
+<header class="top"><div class="w">
+<nav><a class="logo" href="index.html" aria-label="MUEANG WARS"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#mk"/></svg><span>MUEANG</span><b>WARS</b></a><a class="btn gh" href="index.html">กลับหน้าแรก</a></nav>
+<div class="hero">
+<svg class="emb" viewBox="0 0 140 192" role="img" aria-label="ตรา MUEANG WARS"><path d="M70 2L136 24V150L70 190L4 150V24Z" fill="#1a0310" stroke="#ffe08a" stroke-width="3" stroke-linejoin="round"/><circle cx="70" cy="92" r="54" fill="url(#gl)"/><g transform="translate(10 32)"><use href="#mk"/></g></svg>
+<h1>เงื่อนไขการเติมเงิน</h1>
+<div class="meta"><span class="tag g">ฉบับร่าง รุ่น draft-2</span><span class="tag">ปรับปรุงล่าสุด 19 ต.ค. 2026</span></div>
+</div></div></header>
+
+<main class="w">
+<div class="dr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3z"/><path d="M12 10v4.5M12 17.4v.2"/></svg><div><b>ฉบับร่าง ยังไม่มีผลบังคับใช้ ตอนนี้เกมยังไม่เปิดเติมเงิน</b> เอกสารนี้เตรียมไว้ใช้ตอนเปิดระบบเติมเงิน ยังไม่ผ่านการตรวจโดยนักกฎหมาย จุดที่ติดป้าย <span class="ph">[ให้ทนายยืนยัน]</span> ยังยืนยันความถูกต้องทางกฎหมายไม่ได้ ยังไม่ต้องลิงก์จากหน้าแรก</div></div>
+
+<nav class="toc" aria-label="สารบัญ">
+<a href="#b1"><i>1</i>ขอบเขตของเงื่อนไขนี้</a><a href="#b2"><i>2</i>ใครซื้อได้</a><a href="#b3"><i>3</i>เพชรคืออะไร</a><a href="#b4"><i>4</i>ราคาและแพ็กเกจ</a><a href="#b5"><i>5</i>วิธีชำระเงิน</a><a href="#b6"><i>6</i>หีบสุ่ม</a><a href="#b7"><i>7</i>การคืนเงิน</a><a href="#b8"><i>8</i>ซีซันและการรีเซ็ต</a><a href="#b9"><i>9</i>ข้อห้ามและการใช้ผิดวิธี</a><a href="#b10"><i>10</i>ใบเสร็จและภาษี</a><a href="#b11"><i>11</i>ติดต่อและร้องเรียน</a>
+</nav>
+
+<section class="pn" id="b1"><h2><i class="no">1</i>ขอบเขตของเงื่อนไขนี้</h2>
+<p>เงื่อนไขนี้ใช้กับการซื้อ “เพชร” และของในเกมด้วยเงินจริง เมื่อระบบเติมเงินเปิดให้ใช้ ใช้ร่วมกับ <a href="terms.html">ข้อกำหนดการใช้งาน</a> และ <a href="privacy.html">นโยบายความเป็นส่วนตัว</a></p><p>ผู้ขายคือ <b class="ph">[ใส่ชื่อ-นามสกุลของผู้ให้บริการ]</b> ติดต่อ <b class="ph">[ใส่อีเมลติดต่อ]</b> ทะเบียนพาณิชย์ <b class="ph">[ใส่เลขทะเบียนพาณิชย์อิเล็กทรอนิกส์ (ถ้ามี)]</b></p></section>
+
+<section class="pn" id="b2"><h2><i class="no">2</i>ใครซื้อได้</h2>
+<ul><li>ซื้อได้เฉพาะผู้ที่อายุ 20 ปีขึ้นไป ผู้ที่อายุต่ำกว่านี้เติมเงินและเปิดหีบเพชรไม่ได้ <span class="ph">[ให้ทนายยืนยัน]</span></li><li>ตอนสมัครเราถามปีเกิดเท่านั้น ไม่ได้พิสูจน์อายุ ถ้าพบว่าผู้ซื้ออายุไม่ถึง เราอาจยกเลิกคำสั่งซื้อ คืนเงินส่วนที่ยังไม่ได้ใช้ และระงับสิทธิซื้อ</li></ul></section>
+
+<section class="pn hl" id="b3"><h2><i class="no">3</i>เพชรคืออะไร</h2>
+<ul><li>เพชรเป็นของเสมือนที่ใช้ได้เฉพาะในเกม MUEANG WARS ของเราเท่านั้น ใช้ซื้อของตกแต่ง ของในร้านทางการ และเร่งเวลาอัปเกรดหมู่บ้าน</li><li>เพชรผูกกับบัญชี โอนหรือแลกให้ผู้เล่นอื่นไม่ได้ ไม่ใช่เงินจริง ไม่มีมูลค่าเป็นเงิน และเราไม่รับแลกหรือซื้อคืนเป็นเงิน</li><li>เพชรไม่ได้เก็บมูลค่าเป็นบาท การซื้อแพ็กเกจคือการซื้อเพชรจำนวนที่ระบุไว้ในแพ็กเกจ <span class="ph">[ให้ทนายยืนยัน]</span></li><li>เราไม่ขายกำลังพล โล่ หรือการลดเวลาเดินทัพ ด้วยเพชรหรือเงินจริง</li></ul></section>
+
+<section class="pn" id="b4"><h2><i class="no">4</i>ราคาและแพ็กเกจ</h2>
+<p>เราแสดงราคาเป็นบาทและจำนวนเพชรที่ได้ก่อนคุณกดสั่งซื้อทุกครั้ง ราคาที่แสดง<b class="ph">[ใส่: รวมภาษีมูลค่าเพิ่มแล้ว / ไม่มีภาษีมูลค่าเพิ่ม]</b> เราอาจเปลี่ยนราคาและแพ็กเกจได้ โดยไม่กระทบคำสั่งซื้อที่คุณสร้างไว้แล้ว</p></section>
+
+<section class="pn" id="b5"><h2><i class="no">5</i>วิธีชำระเงิน</h2>
+<ul><li>คุณโอนเงินเข้าบัญชีของเราตามยอดที่ระบบแสดง (ยอดอาจมีเศษสตางค์เพื่อจับคู่กับคำสั่งซื้อ) แล้วแนบสลิปในเกม เราไม่ใช้ตัวกลางชำระเงิน</li><li>เราตรวจว่าเงินเข้าบัญชีจริงแล้วจึงกดอนุมัติ เพชรเข้าบัญชีหลังอนุมัติเท่านั้น ตั้งเป้าอนุมัติภายใน <b class="ph">[ใส่เวลา เช่น 24 ชั่วโมง]</b> แต่ไม่ใช่การรับประกันเวลา</li><li>สลิปมีข้อมูลส่วนบุคคลของผู้โอน (เช่น ชื่อและเลขบัญชีบางส่วน) เราเก็บไว้เป็นความลับ ให้เฉพาะเราเข้าถึง และเก็บบันทึกคำสั่งซื้อและหลักฐานรับเงินตามระยะเวลาที่กฎหมายบัญชีและภาษีกำหนด <span class="ph">[ให้ทนายยืนยัน]</span></li><li>โอนผิดยอด ผิดบัญชี หรือโอนซ้ำ ติดต่อเราพร้อมสลิป เราจะตรวจและแก้ไขหรือคืนเงินส่วนที่เกิน</li></ul></section>
+
+<section class="pn" id="b6"><h2><i class="no">6</i>หีบสุ่ม</h2>
+<ul><li>หีบสุ่มที่เปิดด้วยเพชรแสดงอัตราดรอปของแต่ละรายการก่อนคุณเปิดทุกครั้ง และอัตราที่แสดงคือค่าที่ระบบใช้สุ่มจริง</li><li>ของที่ได้จากหีบเพชรเป็นของตกแต่งที่ผูกกับบัญชี เทรดหรือแลกเป็นเงินไม่ได้ ไม่มีมูลค่าเป็นเงิน</li><li>ผลการสุ่มเกิดฝั่งเซิร์ฟเวอร์ และเราเก็บหลักฐานผลสุ่มไว้ตรวจสอบ</li></ul><p>เราออกแบบหีบเพชรให้ได้เฉพาะของในเกมที่ใช้ได้ในเกมเท่านั้น ไม่มีเงินหรือสิ่งของมีค่าเป็นรางวัล เพื่อให้สอดคล้องกับคำวินิจฉัยของคณะกรรมการพิจารณากฎหมายของกระทรวงมหาดไทยเรื่องกล่องสุ่มในเกม (มี.ค. 2026) <span class="ph">[ให้ทนายยืนยัน]</span></p></section>
+
+<section class="pn" id="b7"><h2><i class="no">7</i>การคืนเงิน</h2>
+<ul><li>ขอคืนเงินได้ภายใน 7 วันนับจากวันที่เราอนุมัติ ถ้าเพชรจากคำสั่งซื้อนั้นยังไม่ถูกใช้เลย เราหักเพชรคืนและโอนเงินคืนเต็มจำนวนไปยังบัญชีที่โอนมา <span class="ph">[ให้ทนายยืนยัน]</span></li><li>เพชรที่ใช้ไปแล้ว หรือหีบที่เปิดแล้ว คืนเงินไม่ได้ เว้นแต่เกิดจากความผิดพลาดของระบบ เช่น เพชรเข้าผิดจำนวนหรือหักซ้ำ</li><li>ผู้ปกครองของผู้ซื้อที่ยังไม่ถึง 20 ปีขอคืนเงินได้ เราจะตรวจและคืนส่วนที่ยังไม่ได้ใช้ <span class="ph">[ให้ทนายยืนยัน]</span></li><li>ถ้าเราจะปิดเกม เราจะแจ้งล่วงหน้าอย่างน้อย 30 วัน และคืนเงินส่วนของเพชรที่ยังไม่ได้ใช้ซึ่งซื้อภายใน 12 เดือนก่อนวันปิด</li></ul></section>
+
+<section class="pn" id="b8"><h2><i class="no">8</i>ซีซันและการรีเซ็ต</h2>
+<p>ซีซันรีเซ็ตได้ แต่เพชร เหรียญ และคอลเลกชันอยู่ข้ามซีซัน เราจะไม่ลดหรือลบเพชรที่คุณซื้อโดยไม่มีเหตุตามเงื่อนไขนี้ เว้นแต่เป็นการคืนเงินหรือแก้ความผิดพลาดของระบบ</p></section>
+
+<section class="pn" id="b9"><h2><i class="no">9</i>ข้อห้ามและการใช้ผิดวิธี</h2>
+<ul><li>ห้ามซื้อ ขาย หรือแลกเพชร ไอเทม เหรียญ หรือบัญชีนอกเกมเพื่อเงินหรือสิ่งของมีค่า</li><li>ห้ามใช้บัญชีหรือสลิปปลอม ห้ามหลอกให้เราอนุมัติโดยไม่มีเงินเข้าจริง เราอาจยกเลิกเพชรที่ได้มาโดยไม่ชอบ และระงับบัญชี</li></ul></section>
+
+<section class="pn" id="b10"><h2><i class="no">10</i>ใบเสร็จและภาษี</h2>
+<p>ขอใบเสร็จหรือหลักฐานการซื้อได้ทางอีเมล <b class="ph">[ใส่อีเมลติดต่อ]</b> ภาษีของเราเราจัดการเอง ราคาที่แสดงให้ดูตามข้อ 4</p></section>
+
+<section class="pn" id="b11"><h2><i class="no">11</i>ติดต่อและร้องเรียน</h2>
+<p>มีปัญหาเรื่องการซื้อ ติดต่อ <b class="ph">[ใส่อีเมลติดต่อ]</b> เราจะตอบโดยเร็ว คุณยังมีสิทธิร้องเรียนต่อหน่วยงานคุ้มครองผู้บริโภคได้ตามกฎหมาย กฎหมายที่ใช้บังคับคือกฎหมายไทย <span class="ph">[ให้ทนายยืนยัน]</span></p></section>
+
+<div class="nav"><a href="terms.html">ข้อกำหนดการใช้งาน</a><a href="privacy.html">นโยบายความเป็นส่วนตัว</a><a href="purchase-terms.html" aria-current="page">เงื่อนไขการเติมเงิน</a><a href="index.html">กลับหน้าแรก</a></div>
+</main>
+<footer><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#mk"/></svg>© 2026 MUEANG WARS · ราคาและไอเทมในเกมไม่ใช่เงินจริง</footer>
+</body></html>

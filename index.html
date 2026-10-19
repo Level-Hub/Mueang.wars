@@ -172,7 +172,7 @@ nav .btn .av{margin-right:8px}
 
 <section><div class="fin"><h2>ซีซัน 8 กำลังชิงเมืองอยู่ตอนนี้</h2><p>17 – 31 ต.ค. 2026 · 952 รอบ ทุก 15 นาที เลือกภาค แล้วเข้าสนามได้เลย</p><a class="btn gl" href="#" data-a="register">สมัครเข้าสนามรบ</a></div></section>
 </main>
-<footer><svg viewBox="0 0 120 120"><use href="#mk"/></svg>© 2026 MUEANG WARS · ราคาและไอเทมในเกมไม่ใช่เงินจริง · ข้อมูลอากาศจาก <a href="https://www.met.no/en" target="_blank" rel="noopener" style="color:inherit">MET Norway</a> (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color:inherit">CC BY 4.0</a>)</footer>
+<footer><svg viewBox="0 0 120 120"><use href="#mk"/></svg>© 2026 MUEANG WARS · ราคาและไอเทมในเกมไม่ใช่เงินจริง · <a href="terms.html" style="color:inherit">ข้อกำหนด</a> · <a href="privacy.html" style="color:inherit">ความเป็นส่วนตัว</a> · ข้อมูลอากาศจาก <a href="https://www.met.no/en" target="_blank" rel="noopener" style="color:inherit">MET Norway</a> (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color:inherit">CC BY 4.0</a>)</footer>
 
 <div class="sh" id="sh" hidden><div class="pn sb" role="dialog" aria-modal="true" aria-labelledby="stt"><button class="x" id="sx" aria-label="ปิด" type="button">✕</button><div id="sc"></div></div></div>
 <div id="ts" role="status" hidden></div>
@@ -271,7 +271,7 @@ function renderReg(){const s=reg.step;let h='';
    '<label class="lb">รหัสผ่าน<input class="in" id="f_p" type="password" autocomplete="new-password" value="'+esc(f.pw)+'"><span class="hint">อย่างน้อย 8 ตัว</span></label>'+
    '<label class="lb">ยืนยันรหัสผ่าน<input class="in" id="f_p2" type="password" autocomplete="new-password" value="'+esc(f.pw2)+'"></label>')+
    '<label class="lb">ปีเกิด (พ.ศ. หรือ ค.ศ. ก็ได้)<input class="in" id="f_b" inputmode="numeric" maxlength="4" value="'+esc(f.by)+'"><span class="hint" id="by_h"></span></label>'+
-   '<label class="tm2"><input type="checkbox" id="f_t"'+(f.tm?' checked':'')+'><span>ฉันยอมรับข้อกำหนดการใช้งาน (ฉบับร่าง) และเข้าใจว่าเพชรและไอเทมในเกมไม่ใช่เงินจริง</span></label>'+
+   '<label class="tm2"><input type="checkbox" id="f_t"'+(f.tm?' checked':'')+'><span>ฉันยอมรับ<a href="terms.html" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">ข้อกำหนดการใช้งาน</a>และ<a href="privacy.html" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">นโยบายความเป็นส่วนตัว</a> (ฉบับร่าง) และเข้าใจว่าเพชรและไอเทมในเกมไม่ใช่เงินจริง</span></label>'+
    '<div class="err" id="er" role="alert"></div><div class="nv"><button type="button" class="btn gh" id="bk3">ย้อนกลับ</button><button type="button" class="btn gl" id="go">สมัคร</button></div>'}
  openSh(h);if(s===3)byHint()}
 function byHint(){const e=$('by_h'),v=byear($('f_b').value);if(e)e.textContent=v?'= ค.ศ. '+v:''}
@@ -280,7 +280,7 @@ async function startReg(r){if(!sb){toast('ยังเชื่อมต่อ�
  const had=await loadMe();updNav();if(me){openMe();return}
  Object.assign(reg,{r:r,p:0,a:'',step:1,ses:had,f:{u:'',e:'',pw:'',pw2:'',by:'',tm:false}});renderReg()}
 function openLogin(){if(!sb){toast('ยังเชื่อมต่อระบบไม่ได้ ลองรีเฟรชหน้า');return}
- openSh('<h2 id="stt">เข้าสู่ระบบ</h2><label class="lb">อีเมล<input class="in" id="l_e" type="email" autocomplete="email" inputmode="email"></label><label class="lb">รหัสผ่าน<input class="in" id="l_p" type="password" autocomplete="current-password"></label><div class="err" id="er" role="alert"></div><div class="nv"><button type="button" class="btn gl" id="lg">เข้าสู่ระบบ</button></div><p class="hint" style="margin-top:14px;text-align:center">ยังไม่มีบัญชี? <a href="#" data-a="register" style="color:var(--gold);text-decoration:underline">สมัครเลย</a></p>')}
+ openSh('<h2 id="stt">เข้าสู่ระบบ</h2><label class="lb">อีเมล<input class="in" id="l_e" type="email" autocomplete="email" inputmode="email"></label><label class="lb">รหัสผ่าน<input class="in" id="l_p" type="password" autocomplete="current-password"></label><div class="err" id="er" role="alert"></div><div class="nv"><button type="button" class="btn gl" id="lg">เข้าสู่ระบบ</button></div><p class="hint" style="margin-top:14px;text-align:center"><a href="reset.html" style="color:var(--gold);text-decoration:underline">ลืมรหัสผ่าน?</a></p><p class="hint" style="margin-top:6px;text-align:center">ยังไม่มีบัญชี? <a href="#" data-a="register" style="color:var(--gold);text-decoration:underline">สมัครเลย</a></p>')}
 function openMe(){const r=Math.max(0,RID.indexOf(me.region_id)),pv=PD.find(p=>p[0]===me.home_province);
  openSh('<h2 id="stt">โปรไฟล์ของคุณ</h2><div class="mec">'+av(me.avatar_key,'lg')+'<div><h3>'+esc(me.username)+'</h3><p>'+RG[r][0]+(pv?' · '+esc(pv[1]):'')+'</p></div></div><p class="sub" style="margin-bottom:6px">เปลี่ยนอวตาร (เฉพาะของภาคตัวเอง)</p>'+avPicker(r,me.avatar_key)+'<div class="err" id="er" role="alert"></div><div class="nv"><a class="btn gl" href="play.html" style="display:grid;place-items:center;text-decoration:none">เข้าสนามรบ</a><button type="button" class="btn gh" id="lo">ออกจากระบบ</button></div>')}
 async function doSubmit(){saveF();const f=reg.f,btn=$('go');
