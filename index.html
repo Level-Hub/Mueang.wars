@@ -212,7 +212,7 @@ tick();setInterval(tick,1000);
 /* ===== M3 step 1: auth + avatar (Supabase) ===== */
 const SB_URL='https://tncbzfgdfxjrgrdgmzya.supabase.co',SB_KEY='sb_publishable_xrwJKdhhgt6i_I4pDvI79A_gucUyuVx';
 const sb=window.supabase?window.supabase.createClient(SB_URL,SB_KEY):null;
-const RID=['north','northeast','central','south'],PFX=['n','e','m','s'],TERMS='draft-1';
+const RID=['north','northeast','central','south'],PFX=['n','e','m','s'],TERMS='v1.0';
 let me=null;
 const reg={r:-1,p:0,a:'',step:1,ses:false,f:{u:'',e:'',pw:'',pw2:'',by:'',tm:false}};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -271,7 +271,7 @@ function renderReg(){const s=reg.step;let h='';
    '<label class="lb">รหัสผ่าน<input class="in" id="f_p" type="password" autocomplete="new-password" value="'+esc(f.pw)+'"><span class="hint">อย่างน้อย 8 ตัว</span></label>'+
    '<label class="lb">ยืนยันรหัสผ่าน<input class="in" id="f_p2" type="password" autocomplete="new-password" value="'+esc(f.pw2)+'"></label>')+
    '<label class="lb">ปีเกิด (พ.ศ. หรือ ค.ศ. ก็ได้)<input class="in" id="f_b" inputmode="numeric" maxlength="4" value="'+esc(f.by)+'"><span class="hint" id="by_h"></span></label>'+
-   '<label class="tm2"><input type="checkbox" id="f_t"'+(f.tm?' checked':'')+'><span>ฉันยอมรับ<a href="terms.html" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">ข้อกำหนดการใช้งาน</a>และ<a href="privacy.html" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">นโยบายความเป็นส่วนตัว</a> (ฉบับร่าง) และเข้าใจว่าเพชรและไอเทมในเกมไม่ใช่เงินจริง</span></label>'+
+   '<label class="tm2"><input type="checkbox" id="f_t"'+(f.tm?' checked':'')+'><span>ฉันยอมรับ<a href="terms.html" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">ข้อกำหนดการใช้งาน</a>และ<a href="privacy.html" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">นโยบายความเป็นส่วนตัว</a> ถ้าฉันอายุต่ำกว่า 20 ปี ฉันยืนยันว่าผู้ปกครองรับทราบ และเข้าใจว่าเพชรและไอเทมในเกมไม่ใช่เงินจริง</span></label>'+
    '<div class="err" id="er" role="alert"></div><div class="nv"><button type="button" class="btn gh" id="bk3">ย้อนกลับ</button><button type="button" class="btn gl" id="go">สมัคร</button></div>'}
  openSh(h);if(s===3)byHint()}
 function byHint(){const e=$('by_h'),v=byear($('f_b').value);if(e)e.textContent=v?'= ค.ศ. '+v:''}

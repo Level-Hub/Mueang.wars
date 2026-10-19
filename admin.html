@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="th"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a0310">
+<meta name="robots" content="noindex,nofollow">
+<title>MUEANG WARS · แอดมิน</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Noto+Sans+Thai:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#fff4f0;--mu:#e3b9c0;--gold:#ffc857;--gold2:#ffe08a;--ln:rgba(255,130,130,.3);--c0:#2fd49a;--c1:#ffb02e;--c2:#ff3d57;--c3:#5a98ff;--k:var(--c2);color-scheme:dark;font-family:'Noto Sans Thai',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html{background:#1a0310;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{color:var(--ink);line-height:1.55;overflow-x:hidden;min-height:100dvh;background:linear-gradient(rgba(26,3,16,.86),rgba(20,2,13,.95)),url(img/pattern-kanok.webp) 0 0/260px,#1a0310;padding:env(safe-area-inset-top,0) 0 calc(24px + env(safe-area-inset-bottom,0))}
+button,a{touch-action:manipulation;color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+h1,h2,.btn,b{font-family:Kanit,sans-serif}
+.w{width:min(960px,100% - 28px);margin-inline:auto}
+nav{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:14px 0;gap:10px}
+nav .btn{min-height:40px;padding:0 14px;font-size:.88rem}
+.logo{display:flex;align-items:center;gap:9px;font:800 1.2rem/1 Kanit,sans-serif;letter-spacing:.04em}
+.logo svg{width:34px;height:34px;flex:none}
+.logo span{color:#fff;text-shadow:0 1px 0 #ffc2b6,0 3px 0 #d4142f,0 5px 0 #6d0618}
+.logo b{color:var(--gold2);text-shadow:0 1px 0 #fff3c4,0 3px 0 #e08a12,0 5px 0 #7a3d05}
+.pn{background:linear-gradient(180deg,#5d0b1f,#2b0613);border:1px solid var(--ln);border-radius:24px;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 14px 30px rgba(0,0,0,.55);padding:16px}
+h1{font-size:1.25rem;font-weight:800;margin-bottom:10px;text-shadow:0 2px 0 #6d0618}
+.hint{color:var(--mu);font-size:.85rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;border-radius:14px;font-weight:800;font-size:.98rem;color:#fff;border:0;cursor:pointer;text-shadow:0 2px 0 rgba(90,0,15,.7)}
+.btn:active:not(:disabled){transform:translateY(3px)}.btn:disabled{opacity:.45;filter:grayscale(.5)}
+.gl{background:linear-gradient(180deg,#ff7a63,#ee2440 46%,#b50d26 50%,#d4142f);box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 4px 0 #5e0415}
+.gh{background:rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 3px 0 rgba(0,0,0,.35);border:1px solid var(--ln)}
+.cols{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:14px;align-items:start}
+@media(max-width:760px){.cols{grid-template-columns:1fr}.cols.open #lp{display:none}.cols:not(.open) #tp{display:none}}
+#lst{display:flex;flex-direction:column;gap:8px;max-height:72dvh;overflow-y:auto}
+.th{display:block;width:100%;text-align:left;padding:10px 12px;border-radius:16px;border:1px solid var(--k);border-left-width:5px;background:rgba(255,255,255,.07);cursor:pointer;color:inherit;font:inherit}
+.th.on{background:rgba(255,200,87,.16)}
+.th .t{display:flex;justify-content:space-between;gap:8px;font:700 1rem Kanit,sans-serif}
+.th .t em{font-style:normal;min-width:24px;padding:0 8px;border-radius:99px;background:var(--gold);color:#1a0310;text-align:center;font-size:.8rem}
+.th p{font-size:.85rem;color:var(--mu);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.th small{font-size:.72rem;color:var(--mu)}
+#log{display:flex;flex-direction:column;gap:10px;max-height:56dvh;min-height:160px;overflow-y:auto;padding:2px}
+.m{max-width:86%;padding:10px 13px;border-radius:18px;white-space:pre-wrap;overflow-wrap:anywhere}
+.m small{display:block;margin-top:4px;font-size:.72rem;opacity:.75}
+.m.ad{align-self:flex-end;background:linear-gradient(180deg,#ff7a63,#d4142f);border-bottom-right-radius:6px}
+.m.us{align-self:flex-start;background:rgba(255,255,255,.1);border:1px solid var(--ln);border-bottom-left-radius:6px}
+textarea{width:100%;min-height:90px;max-height:200px;resize:vertical;border-radius:14px;border:1px solid var(--ln);background:rgba(0,0,0,.35);color:#fff;padding:12px 14px;font:16px 'Noto Sans Thai',sans-serif;margin-top:10px}
+textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(255,200,87,.25)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px}
+.who{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.who h2{font-size:1.1rem}
+.tag{display:inline-block;padding:2px 12px;border-radius:99px;background:var(--k);color:#1a0310;font:700 .8rem Kanit}
+.err{color:#ff9a9a;min-height:1.4em;margin-top:6px;font-size:.92rem}
+.empty{text-align:center;color:var(--mu);padding:30px 8px}
+@media(min-width:761px){#bk{display:none}}
+[hidden]{display:none!important}
+#ts{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:60;max-width:min(92vw,420px);padding:12px 18px;border-radius:16px;background:#2b0613;border:1px solid var(--gold);font-size:.92rem;text-align:center}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g></defs></svg>
+<div class="w">
+<nav><span class="logo"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#mk"/></svg><span>MUEANG</span><b>ADMIN</b></span><span style="display:flex;gap:8px"><button class="btn gh" id="rf" type="button">รีเฟรช</button><a class="btn gh" href="play.html">สนามรบ</a></span></nav>
+<p class="hint" id="ld" style="text-align:center;padding:60px 0">กำลังตรวจสิทธิ์…</p>
+<main id="app" hidden>
+ <div class="cols" id="cols">
+  <section class="pn" id="lp"><h1>กล่องข้อความ</h1><div id="lst"></div></section>
+  <section class="pn" id="tp">
+   <div class="who"><div><h2 id="un">เลือกบทสนทนา</h2><span class="hint" id="ui"></span></div><button class="btn gh" id="bk" type="button">กลับไปรายการ</button></div>
+   <div id="log"><p class="empty">เลือกบทสนทนาจากรายการ</p></div>
+   <textarea id="bd" maxlength="1000" placeholder="พิมพ์ข้อความตอบ" aria-label="ข้อความตอบ" disabled></textarea>
+   <div class="row"><span class="hint" id="ct">0/1000</span><button class="btn gl" id="sd" type="button" disabled>ส่งข้อความ</button></div>
+   <div class="err" id="er" role="alert"></div>
+  </section>
+ </div>
+</main></div>
+<div id="ts" hidden role="status"></div>
+<script>
+const SB_URL='https://tncbzfgdfxjrgrdgmzya.supabase.co',SB_KEY='sb_publishable_xrwJKdhhgt6i_I4pDvI79A_gucUyuVx';
+const sb=window.supabase?window.supabase.createClient(SB_URL,SB_KEY):null;
+const $=i=>document.getElementById(i),RID=['north','northeast','central','south'],RGN=['ภาคเหนือ','ภาคอีสาน','ภาคกลาง','ภาคใต้'];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function toast(t){const e=$('ts');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,3500)}
+const fT=d=>new Intl.DateTimeFormat('th-TH',{timeZone:'Asia/Bangkok',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).format(new Date(d))+' น.';
+const rk=r=>Math.max(0,RID.indexOf(r));
+let cur=null,sending=false,timer=null;
+async function loadList(){
+ const {data,error}=await sb.rpc('admin_support_threads');
+ if(error){toast(error.message);return}
+ const l=data||[];
+ $('lst').innerHTML=l.length?l.map(t=>'<button type="button" class="th'+(t.user_id===cur?' on':'')+'" data-u="'+esc(t.user_id)+'" style="--k:var(--c'+rk(t.region_id)+')"><span class="t"><span>'+esc(t.username||'(ไม่พบโปรไฟล์)')+'</span>'+(t.unread?'<em>'+t.unread+'</em>':'')+'</span><p>'+(t.last_from_admin?'คุณ: ':'')+esc(t.last_body||'')+'</p><small>'+fT(t.last_at)+'</small></button>').join(''):'<p class="empty">ยังไม่มีข้อความจากผู้เล่น</p>'}
+async function openThread(u,keepScroll){
+ const {data,error}=await sb.rpc('admin_open_support_thread',{p_user:u});
+ if(error){toast(error.message);return}
+ cur=u;const log=$('log'),near=!keepScroll||log.scrollHeight-log.scrollTop-log.clientHeight<80;
+ $('un').textContent=data.username||'(ไม่พบโปรไฟล์)';$('ui').textContent=(data.region_id?RGN[rk(data.region_id)]+' · ':'')+'รหัส '+String(u).slice(0,8);
+ log.innerHTML=(data.messages||[]).map(m=>'<div class="m '+(m.from_admin?'ad':'us')+'">'+esc(m.body)+'<small>'+fT(m.created_at)+'</small></div>').join('');
+ if(near)log.scrollTop=log.scrollHeight;
+ $('bd').disabled=false;$('sd').disabled=false;$('cols').classList.add('open');loadList()}
+async function reply(){
+ if(sending||!cur)return;const v=$('bd').value.trim(),er=$('er');er.textContent='';
+ if(!v)return er.textContent='พิมพ์ข้อความก่อน';
+ sending=true;$('sd').disabled=true;
+ const {error}=await sb.rpc('admin_reply_support',{p_user:cur,p_body:v});
+ sending=false;$('sd').disabled=false;
+ if(error)return er.textContent=error.message;
+ $('bd').value='';$('ct').textContent='0/1000';await openThread(cur);toast('ส่งแล้ว')}
+async function init(){
+ if(!sb){$('ld').textContent='โหลดระบบไม่สำเร็จ';return}
+ const {data:{session}}=await sb.auth.getSession();if(!session)return location.replace('index.html');
+ const {data:ok,error}=await sb.rpc('is_admin');
+ if(error||ok!==true)return location.replace('play.html');
+ $('ld').hidden=true;$('app').hidden=false;await loadList();
+ timer=setInterval(()=>{if(document.visibilityState==='visible'){loadList();if(cur)openThread(cur,true)}},20000)}
+$('lst').onclick=e=>{const b=e.target.closest('.th');if(b)openThread(b.dataset.u)};
+$('sd').onclick=reply;$('rf').onclick=()=>{loadList();if(cur)openThread(cur,true)};
+$('bk').onclick=()=>{$('cols').classList.remove('open')};
+$('bd').addEventListener('input',e=>{$('ct').textContent=e.target.value.length+'/1000'});
+$('bd').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey))reply()});
+init();
+</script></body></html>

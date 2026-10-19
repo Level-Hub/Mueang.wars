@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="th"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#1a0310">
+<meta name="robots" content="noindex">
+<title>MUEANG WARS · ติดต่อแอดมิน</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Noto+Sans+Thai:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#fff4f0;--mu:#e3b9c0;--gold:#ffc857;--gold2:#ffe08a;--ln:rgba(255,130,130,.3);--c0:#2fd49a;--c1:#ffb02e;--c2:#ff3d57;--c3:#5a98ff;color-scheme:dark;font-family:'Noto Sans Thai',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html{background:#1a0310;touch-action:pan-x pan-y;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{color:var(--ink);line-height:1.55;overflow-x:hidden;min-height:100dvh;-webkit-touch-callout:none;
+ background:linear-gradient(rgba(26,3,16,.86),rgba(20,2,13,.95)),url(img/pattern-kanok.webp) 0 0/260px,#1a0310;padding:env(safe-area-inset-top,0) 0 calc(24px + env(safe-area-inset-bottom,0))}
+button,a{touch-action:manipulation;color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+h1,h2,.btn,b{font-family:Kanit,sans-serif}
+.w{width:min(560px,100% - 28px);margin-inline:auto}
+nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.logo{display:flex;align-items:center;gap:9px;font:800 1.2rem/1 Kanit,sans-serif;letter-spacing:.04em}
+.logo svg{width:34px;height:34px;flex:none}
+.logo span{color:#fff;text-shadow:0 1px 0 #ffc2b6,0 3px 0 #d4142f,0 5px 0 #6d0618,0 8px 9px rgba(0,0,0,.7)}
+.logo b{color:var(--gold2);text-shadow:0 1px 0 #fff3c4,0 3px 0 #e08a12,0 5px 0 #7a3d05,0 8px 9px rgba(0,0,0,.7)}
+.pn{background:linear-gradient(180deg,#5d0b1f,#2b0613);border:1px solid var(--ln);border-radius:24px;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 14px 30px rgba(0,0,0,.55);padding:18px;margin-bottom:14px}
+h1{font-size:1.4rem;font-weight:800;line-height:1.2;margin-bottom:6px;text-shadow:0 2px 0 #6d0618}
+.sub,.hint{color:var(--mu);font-size:.85rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 22px;border-radius:16px;font-weight:800;font-size:1rem;color:#fff;border:0;cursor:pointer;text-shadow:0 2px 0 rgba(90,0,15,.7)}
+.btn:active:not(:disabled){transform:translateY(4px)}.btn:disabled{opacity:.45;filter:grayscale(.5)}
+.gl{background:linear-gradient(180deg,#ff7a63,#ee2440 46%,#b50d26 50%,#d4142f);box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 5px 0 #5e0415,0 12px 22px rgba(230,20,50,.5)}
+.gh{background:rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 4px 0 rgba(0,0,0,.35);border:1px solid var(--ln)}
+nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
+.tp{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}
+.tp button{min-height:38px;padding:0 14px;border-radius:99px;border:1px solid var(--ln);background:rgba(0,0,0,.35);color:#f6dfe2;font:600 .84rem 'Noto Sans Thai',sans-serif;cursor:pointer}
+.tp button:active{background:rgba(255,200,87,.2)}
+#log{display:flex;flex-direction:column;gap:10px;max-height:52dvh;min-height:140px;overflow-y:auto;padding:4px 2px;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.m{max-width:86%;padding:10px 13px;border-radius:18px;font-size:.96rem;white-space:pre-wrap;overflow-wrap:anywhere;-webkit-user-select:text;user-select:text}
+.m small{display:block;margin-top:4px;font-size:.72rem;opacity:.75}
+.m.me{align-self:flex-end;background:linear-gradient(180deg,#ff7a63,#d4142f);border-bottom-right-radius:6px;color:#fff}
+.m.ad{align-self:flex-start;background:rgba(255,255,255,.1);border:1px solid var(--ln);border-bottom-left-radius:6px}
+.m.ad .who{display:block;font:700 .78rem Kanit,sans-serif;color:var(--gold2);margin-bottom:2px}
+.m.nw{box-shadow:0 0 0 2px var(--gold)}
+.empty{text-align:center;color:var(--mu);padding:30px 8px}
+textarea{width:100%;min-height:92px;max-height:200px;resize:vertical;border-radius:14px;border:1px solid var(--ln);background:rgba(0,0,0,.35);color:#fff;padding:12px 14px;font:16px 'Noto Sans Thai',sans-serif;-webkit-user-select:text;user-select:text}
+textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(255,200,87,.25)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px}
+.err{color:#ff9a9a;min-height:1.4em;margin-top:6px;font-size:.92rem}
+.lk{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:6px;font-size:.84rem}.lk a{color:var(--gold);text-decoration:underline}
+#ld{text-align:center;padding:60px 0;color:var(--mu)}
+[hidden]{display:none!important}
+#ts{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:60;max-width:min(92vw,420px);padding:12px 18px;border-radius:16px;background:#2b0613;border:1px solid var(--gold);font-size:.92rem;text-align:center}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g></defs></svg>
+<div class="w">
+<nav><a class="logo" href="index.html" aria-label="MUEANG WARS"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#mk"/></svg><span>MUEANG</span><b>WARS</b></a><a class="btn gh" href="profile.html">โปรไฟล์</a></nav>
+<p id="ld">กำลังโหลด…</p>
+<main id="app" hidden>
+ <section class="pn">
+  <h1>ติดต่อแอดมิน</h1>
+  <p class="sub">แชตนี้คือช่องทางติดต่อเจ้าของเกมช่องทางเดียว ใช้ได้แม้บัญชีถูกระงับ เลือกหัวข้อด้านล่างเพื่อเริ่มพิมพ์ หรือพิมพ์เรื่องของคุณเองก็ได้</p>
+  <div class="tp" id="tp">
+   <button type="button" data-t="ขอลบบัญชีของฉัน">ขอลบบัญชี</button>
+   <button type="button" data-t="ขอสำเนาข้อมูลส่วนบุคคลของฉัน">ขอสำเนาข้อมูล</button>
+   <button type="button" data-t="ขอแก้ไขข้อมูลของฉัน: ">แก้ไขข้อมูล</button>
+   <button type="button" data-t="เรื่องการเติมเงิน/คืนเงิน: ">เติมเงิน/คืนเงิน</button>
+   <button type="button" data-t="แจ้งผู้เล่นหรือชื่อที่ไม่เหมาะสม ชื่อผู้เล่น: ">แจ้งผู้เล่น</button>
+   <button type="button" data-t="ขออุทธรณ์การระงับบัญชี: ">อุทธรณ์การระงับบัญชี</button>
+   <button type="button" data-t="แจ้งบั๊กหรือช่องโหว่: ">แจ้งบั๊ก</button>
+  </div>
+ </section>
+ <section class="pn">
+  <div id="log" role="log" aria-live="polite" aria-label="ข้อความ"></div>
+ </section>
+ <section class="pn">
+  <textarea id="bd" maxlength="1000" placeholder="พิมพ์ข้อความถึงแอดมิน" aria-label="ข้อความถึงแอดมิน"></textarea>
+  <div class="row"><span class="hint" id="ct">0/1000</span><button class="btn gl" id="sd" type="button">ส่งข้อความ</button></div>
+  <div class="err" id="er" role="alert"></div>
+  <p class="hint">ข้อความเก็บไว้กับบัญชีของคุณและแอดมินอ่านได้ ถูกลบพร้อมบัญชีเมื่อคุณขอลบ อย่าส่งรหัสผ่านหรือข้อมูลบัตร เรื่องคำขอเกี่ยวกับข้อมูลส่วนบุคคล เราตรวจภายใน 15 วันและดำเนินการภายใน 30 วัน</p>
+ </section>
+ <div class="lk"><a href="terms.html">ข้อกำหนดการใช้งาน</a><a href="privacy.html">นโยบายความเป็นส่วนตัว</a><a href="play.html">กลับสนามรบ</a></div>
+</main></div>
+<div id="ts" hidden role="status"></div>
+<script>
+const SB_URL='https://tncbzfgdfxjrgrdgmzya.supabase.co',SB_KEY='sb_publishable_xrwJKdhhgt6i_I4pDvI79A_gucUyuVx';
+const sb=window.supabase?window.supabase.createClient(SB_URL,SB_KEY):null;
+const $=i=>document.getElementById(i);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function toast(t){const e=$('ts');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,3500)}
+const fT=d=>new Intl.DateTimeFormat('th-TH',{timeZone:'Asia/Bangkok',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).format(new Date(d))+' น.';
+let sending=false,lastKey='',timer=null;
+function render(list,first){
+ const log=$('log'),near=first||log.scrollHeight-log.scrollTop-log.clientHeight<80;
+ const key=list.map(m=>m.id+(m.unread?'n':'')).join(',');
+ if(key===lastKey)return;lastKey=key;
+ log.innerHTML=list.length?list.map(m=>'<div class="m '+(m.from_admin?'ad'+(m.unread?' nw':''):'me')+'">'+(m.from_admin?'<span class="who">แอดมิน</span>':'')+esc(m.body)+'<small>'+fT(m.created_at)+'</small></div>').join(''):'<p class="empty">ยังไม่มีข้อความ เริ่มพิมพ์ได้เลย</p>';
+ if(near)log.scrollTop=log.scrollHeight}
+async function load(first){
+ const {data,error}=await sb.rpc('get_my_support_messages');
+ if(error){if(first){$('ld').textContent='โหลดไม่สำเร็จ: '+error.message}return false}
+ render(data||[],first);
+ if((data||[]).some(m=>m.unread))sb.rpc('mark_support_read').then(()=>{},()=>{});
+ return true}
+async function send(){
+ if(sending)return;const v=$('bd').value.trim(),er=$('er');er.textContent='';
+ if(!v)return er.textContent='พิมพ์ข้อความก่อน';
+ if(v.length>1000)return er.textContent='ข้อความยาวเกิน 1000 ตัวอักษร';
+ sending=true;$('sd').disabled=true;
+ const {error}=await sb.rpc('send_support_message',{p_body:v});
+ sending=false;$('sd').disabled=false;
+ if(error)return er.textContent=error.message;
+ $('bd').value='';$('ct').textContent='0/1000';lastKey='';await load(true);toast('ส่งแล้ว')}
+function poll(){clearInterval(timer);timer=setInterval(()=>{if(document.visibilityState==='visible')load(false)},15000)}
+async function init(){
+ if(!sb){$('ld').textContent='โหลดระบบไม่สำเร็จ ลองรีเฟรชหน้านี้';return}
+ const {data:{session}}=await sb.auth.getSession();if(!session)return location.replace('index.html');
+ if(!(await load(true)))return;
+ $('ld').hidden=true;$('app').hidden=false;$('log').scrollTop=$('log').scrollHeight;poll()}
+$('sd').onclick=send;
+$('bd').addEventListener('input',e=>{$('ct').textContent=e.target.value.length+'/1000'});
+$('bd').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey))send()});
+$('tp').onclick=e=>{const b=e.target.closest('button');if(!b)return;const t=b.dataset.t,x=$('bd');x.value=x.value?x.value+'\n'+t:t;x.focus();x.setSelectionRange(x.value.length,x.value.length);$('ct').textContent=x.value.length+'/1000'};
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&!$('app').hidden)load(false)});
+init();
+['gesturestart','gesturechange','gestureend'].forEach(t=>document.addEventListener(t,e=>e.preventDefault(),{passive:false}));
+</script></body></html>
