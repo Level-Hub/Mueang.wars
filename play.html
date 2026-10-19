@@ -240,6 +240,7 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
 .rr.me{margin:0 -15px;padding-inline:15px;border-radius:14px;background:linear-gradient(90deg,rgba(255,200,87,.2),rgba(255,200,87,.04))}
 .rk0{padding:6px 2px;color:var(--mu);font-size:14px}
 #od{display:block;line-height:1.6}#od .ic{vertical-align:-.25em;margin-right:4px}
+.pdf{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:2px 10px;margin:10px 14px 0;padding:10px 12px;border-radius:14px;background:var(--glass);border:1px solid var(--ln)}.pdf svg{width:26px;height:26px;grid-row:1/4;color:var(--gd,#ffc857)}.pdf>span{font-size:15px}.pdf b{font-size:1.35em;color:var(--gd,#ffc857)}.pdf small{color:var(--mu);font-size:12px;line-height:1.4}
 </style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head><body data-p="0"><svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g></defs></svg>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="i-map" viewBox="0 0 24 24"><path d="M3 6.5l6-2.5 6 2.5 6-2.5v13.5l-6 2.5-6-2.5-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></symbol>
@@ -475,17 +476,23 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden&&G.prof)to
 
 function estStock(){const v=G.vil;if(!v)return G.cfg.starter_troops||0;const t=(G.lv[v.level]||{}).troops_per_hour||0,el=(Date.now()-new Date(v.stock_updated_at))/36e5;
  return Math.max(Math.min(v.troops_stock+Math.floor(t*el),Math.floor(t*(G.cfg.stock_cap_hours||0))),v.troops_stock)}
+var DEF={};
+/* ค่าป้องกันรายจังหวัด: อ่านจาก RPC get_province_defense (สูตรเดียวกับตอนตัดสินรอบ) */
+function defHtml(i){const d=DEF[T[i].code];if(!d)return'';const hb=d.home_bonus_pct|0,sp=d.shield_pct|0,after=Math.round(d.base*(1+hb/100)),parts=['ฐาน '+d.base];
+ if(hb)parts.push('บ้านเกิด +'+hb+'%');if(sp)parts.push('โล่ใหม่ +'+sp+'% ถึงรอบที่ '+d.shield_until_round);
+ return '<div class="pdf">'+ic('shield')+'<span>ป้องกัน <b>'+d.defense+'</b> <small>(สำหรับรอบที่ '+d.for_round_no+')</small></span><small class="pdd">'+parts.join(' · ')+(sp?' · หลังโล่หมดเหลือ '+after:'')+'</small><small class="pdn">ภาคที่จะยึดต้องมีแรงรวมเกินค่านี้ ฐานเปลี่ยนตามจำนวนผู้เล่นที่ส่งทัพใน 24 ชม.</small></div>'}
 async function load(){
  const {data:s}=await sb.from('seasons').select('id').eq('status','active').maybeSingle();if(!s)return;
  if(Date.now()-HRT>6e5)await loadHr();
- const [t,r,v,w,d]=await Promise.all([
+ const [t,r,v,w,d,df]=await Promise.all([
   sb.from('tiles').select('province_code,owner_region').eq('season_id',s.id),
   sb.from('rounds').select('id,round_no,starts_at,planning_ends_at,discussion_ends_at,resolve_at,ends_at,status').eq('season_id',s.id).gt('resolve_at',new Date(Date.now()-12e4).toISOString()).order('starts_at').limit(8),
   sb.from('villages').select('level,troops_stock,stock_updated_at').eq('season_id',s.id).maybeSingle(),
   sb.from('province_weather').select('province_code,rain_level,temp_c,cloud_pct,weather_code'),
-  sb.from('deployments').select('round_id,province_code,troops').order('id',{ascending:false}).limit(60)]);
+  sb.from('deployments').select('round_id,province_code,troops').order('id',{ascending:false}).limit(60),
+  sb.rpc('get_province_defense').then(x=>x,()=>({data:null}))]);
  (t.data||[]).forEach(x=>{const i=IDX[x.province_code];if(i!=null)T[i].o=Math.max(0,RID.indexOf(x.owner_region))});
- G.rounds=r.data||[];G.vil=v.data;RAIN=T.map(()=>0);WX=T.map(()=>null);(w.data||[]).forEach(x=>{const i=IDX[x.province_code];if(i!=null){RAIN[i]=x.rain_level|0;WX[i]=x}});
+ DEF={};((df&&df.data)||[]).forEach(x=>{DEF[x.province_code]=x});G.rounds=r.data||[];G.vil=v.data;RAIN=T.map(()=>0);WX=T.map(()=>null);(w.data||[]).forEach(x=>{const i=IDX[x.province_code];if(i!=null){RAIN[i]=x.rain_level|0;WX[i]=x}});
  const open=new Set(G.rounds.filter(x=>x.status!=='revealed').map(x=>x.id));send={};
  (d.data||[]).forEach(x=>{const i=IDX[x.province_code];if(open.has(x.round_id)&&i!=null)send[i]=(send[i]||0)+x.troops});
  lv=G.vil?G.vil.level:1;stock=estStock();paint();arrows();mine();if(Date.now()-(G.nt||0)>3e4){G.nt=Date.now();news()}}
@@ -498,9 +505,9 @@ function live(){const n=Date.now(),R=G.rounds.find(r=>+new Date(r.starts_at)<=n&
 async function pick(i){const x=T[i];sel=i;$('sh').style.setProperty('--ac',col(me));$('sh').style.setProperty('--to',col(x.o));$('sh').scrollTop=0;map.append(x.e,x.l,x.d,x.q,lb,ar,pg,fxg);if(cam.z<2)auto=true;zoomTo(x.c[0],x.c[1],Math.max(cam.z,2.6));$('mapw').scrollIntoView({behavior:'smooth',block:'start'});
  const head=`<div class="ph"><span class="pe">${em(x.o)}</span><div class="pt"><small>จังหวัด</small><b>${x.n}</b></div><span class="tag">${RG[x.o][1]}</span></div>`;
  const rs=G.rounds.filter(r=>+new Date(r.planning_ends_at)>Date.now()&&r.status!=='revealed').slice(0,G.cfg.advance_rounds||3);
- if(x.o===me||!rs.length){$('sh').innerHTML=head+'<div class="pw">'+wxHtml(i)+'</div><div class="ps"><small>'+(x.o===me?ic('shield')+' จังหวัดของภาคคุณ':ic('clock')+' ตอนนี้ยังไม่มีรอบที่ส่งทัพได้')+'</small></div><div class="act"><button id="cl">ปิด</button></div>';$('sh').classList.add('open');$('cl').onclick=shut;paint();return}
+ if(x.o===me||!rs.length){$('sh').innerHTML=head+defHtml(i)+'<div class="pw">'+wxHtml(i)+'</div><div class="ps"><small>'+(x.o===me?ic('shield')+' จังหวัดของภาคคุณ':ic('clock')+' ตอนนี้ยังไม่มีรอบที่ส่งทัพได้')+'</small></div><div class="act"><button id="cl">ปิด</button></div>';$('sh').classList.add('open');$('cl').onclick=shut;paint();return}
  stock=estStock();G.n=Math.max(1,Math.round(stock/2));G.off=0;G.pv=null;G.mode='auto';G.pr=0;G.ps=0;
- $('sh').innerHTML=head+'<div class="pw">'+wxHtml(i)+dpHtml(i)+fcHtml(i)+'</div><div class="ps">'+`<small>${RAIN[i]?RLN[RAIN[i]]+'ตอนนี้ ผู้โจมตีอ่อนลง · ':''}ส่งแล้วเรียกกลับไม่ได้</small><select id="ro">${rs.map((r,k)=>`<option value="${k}">ส่งในรอบที่ ${r.round_no} · ตัดสิน ${hm(r.resolve_at)} น.</option>`).join('')}</select><div class="amt"><b id="rv">${G.n}</b> <small>/ <span id="mx">${stock}</span> กำลังพล</small></div><input id="rg" type="range" min="1" max="${Math.max(1,stock)}" value="${G.n}"><div class="q"><button data-f=".25">¼</button><button data-f=".5">½</button><button data-f="1">เต็ม</button></div><div class="um"><div class="ut"><button type="button" data-m="auto" class="on">ให้ระบบจัดให้</button><button type="button" data-m="custom">เลือกยูนิตเอง</button></div><div id="uc" hidden></div></div><div id="od"></div></div><div class="act"><button id="ok" class="go" disabled>${ic('swords')} ส่งทัพ</button><button id="cl">ปิด</button></div>`;
+ $('sh').innerHTML=head+defHtml(i)+'<div class="pw">'+wxHtml(i)+dpHtml(i)+fcHtml(i)+'</div><div class="ps">'+`<small>${RAIN[i]?RLN[RAIN[i]]+'ตอนนี้ ผู้โจมตีอ่อนลง · ':''}ส่งแล้วเรียกกลับไม่ได้</small><select id="ro">${rs.map((r,k)=>`<option value="${k}">ส่งในรอบที่ ${r.round_no} · ตัดสิน ${hm(r.resolve_at)} น.</option>`).join('')}</select><div class="amt"><b id="rv">${G.n}</b> <small>/ <span id="mx">${stock}</span> กำลังพล</small></div><input id="rg" type="range" min="1" max="${Math.max(1,stock)}" value="${G.n}"><div class="q"><button data-f=".25">¼</button><button data-f=".5">½</button><button data-f="1">เต็ม</button></div><div class="um"><div class="ut"><button type="button" data-m="auto" class="on">ให้ระบบจัดให้</button><button type="button" data-m="custom">เลือกยูนิตเอง</button></div><div id="uc" hidden></div></div><div id="od"></div></div><div class="act"><button id="ok" class="go" disabled>${ic('swords')} ส่งทัพ</button><button id="cl">ปิด</button></div>`;
  const g=$('rg');
  window.setN=n=>{G.n=Math.max(0,Math.min(stock,Math.floor(n)));g.value=G.n;g.style.setProperty('--p',(stock?G.n/stock*100:0)+'%');$('rv').textContent=G.n;sched()};
  g.oninput=()=>setN(g.value);$('ro').onchange=()=>{G.off=+$('ro').value;sched()};
