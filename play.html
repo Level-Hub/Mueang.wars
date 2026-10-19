@@ -225,11 +225,24 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
 #mz.mvg{will-change:transform}
 #mz.mvg .dt,#mz.mvg .al,#mz.mvg .cu,#mz.mvg .wi{animation-play-state:paused}
 .t{stroke:#1a0310;stroke-width:.7;transition:none}.t.m{stroke:var(--gd2);stroke-width:1.5}.t.s{filter:none;stroke:#fff;stroke-width:3}
+/* รอบสอง: แท็บอันดับ (ภาค/ผู้เล่น/จังหวัด) + แท็บ "ฉัน" */
+.seg{display:flex;gap:6px;margin:12px 14px 0;max-width:492px;padding:4px;border-radius:16px;background:rgba(0,0,0,.3);border:1px solid var(--ln)}
+.seg button{flex:1;min-height:42px;border-radius:12px;background:none;color:var(--mu);font:700 15px Kanit,"Noto Sans Thai",system-ui,sans-serif}
+.seg button.on{color:#1a0310;background:linear-gradient(180deg,#ffe08a,#ffc857);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 3px 0 rgba(0,0,0,.35)}
+.rr{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--ln)}.rr:last-child{border-bottom:0}
+.rr .n{flex:none;width:30px;display:flex;justify-content:center;font:800 15px Kanit,"Noto Sans Thai",system-ui,sans-serif;color:var(--mu)}
+.rr .e{flex:none;display:flex}
+.rr .nm{flex:1;min-width:0;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rr .nm small{display:block;font-weight:400;color:var(--mu);font-size:12px}
+.rr .pt{flex:none;font:800 17px Kanit,"Noto Sans Thai",system-ui,sans-serif;color:var(--gd2);font-variant-numeric:tabular-nums}
+.rr.me{margin:0 -15px;padding-inline:15px;border-radius:14px;background:linear-gradient(90deg,rgba(255,200,87,.2),rgba(255,200,87,.04))}
+.rk0{padding:6px 2px;color:var(--mu);font-size:14px}
+#od{display:block;line-height:1.6}#od .ic{vertical-align:-.25em;margin-right:4px}
 </style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head><body data-p="0"><svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g></defs></svg>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="i-map" viewBox="0 0 24 24"><path d="M3 6.5l6-2.5 6 2.5 6-2.5v13.5l-6 2.5-6-2.5-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></symbol>
 <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></symbol>
 <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H4.5A3 3 0 0 0 8 10M16 6h3.5A3 3 0 0 1 16 10"/><path d="M12 13v4M8.5 20h7M10 17h4"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.8 3.7-6 7-6s6.2 2.2 7 6"/></symbol>
 <symbol id="i-plan" viewBox="0 0 24 24"><path d="M4 20l1-4L16.5 4.5a2 2 0 0 1 3 3L8 19z"/><path d="M14.5 6.5l3 3"/></symbol>
 <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H10l-4 4v-4H4z"/><path d="M8 9.5h8M8 12.5h5"/></symbol>
 <symbol id="i-mega" viewBox="0 0 24 24"><path d="M3 10v4h3l8 4V6L6 10z"/><path d="M17.5 9a4 4 0 0 1 0 6M6 14l1.5 5.5h2.5L9 15.5"/></symbol>
@@ -283,10 +296,10 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
  <div class="st2"><div><small>ผลิตต่อชั่วโมง</small><b>+<span id="pr"></span></b></div><div><small>กำลังพลสะสม</small><b id="sk"></b></div></div>
  <div class="b pg"><i id="upb" style="background:linear-gradient(90deg,var(--c),var(--s))"></i></div>
  <button id="up" class="go" style="width:100%;margin-top:12px"></button></div></section>
- <section id="v2" hidden></section>
+ <section id="v2" hidden><div class="seg" id="seg"><button data-k="r" class="on">ภาค</button><button data-k="p">ผู้เล่น</button><button data-k="v">จังหวัด</button></div><div id="rkR"></div><div id="rkP" hidden></div><div id="rkV" hidden></div></section>
 </main>
 <div id="sh"></div>
-<nav><button data-v="0" class="on"><span data-i="map"></span>แผนที่</button><button data-v="1"><span data-i="home"></span>หมู่บ้าน</button><button data-v="2"><span data-i="trophy"></span>อันดับ</button></nav>
+<nav><button data-v="0" class="on"><span data-i="map"></span>แผนที่</button><button data-v="1"><span data-i="home"></span>หมู่บ้าน</button><button data-v="2"><span data-i="trophy"></span>อันดับ</button><button data-go="profile.html"><span data-i="user"></span>ฉัน</button></nav>
 <script>
 const ic=(n,c='')=>`<svg class="ic ${c}" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-${n}"/></svg>`;
 const EMK=['n','ne','c','s'],em=r=>`<svg class="em" viewBox="0 0 32 32" aria-hidden="true"><use href="#e-${EMK[r]}"/></svg>`;
@@ -379,7 +392,7 @@ if(cam.z>=2.2)lod();
  $('plan').innerHTML=`<b>${ic('lock')} ทัพที่ส่งไปแล้ว</b><br>${k.length?k.map(i=>'<span class="pc">'+T[i].n+' <b>'+send[i]+'</b></span>').join(''):'<small>ยังไม่ได้ส่ง แตะช่องบนแผนที่เพื่อดูชื่อและส่งกำลัง</small>'}<br><small>กำลังพลคงเหลือ ${Math.floor(stock)} · จุดขาว = ส่งกำลังแล้ว</small>`;
  $('log').innerHTML=log;
  const o=[0,1,2,3].sort((a,b)=>cnt[b]-cnt[a]);
- $('v2').innerHTML=o.map((r,j)=>`<div class="card" style="${r===me?'border-color:'+col(r):''}"><b><span class="rk">${medal(j)}<span style="color:${col(r)};display:flex">${em(r)}</span>${RG[r][1]}${r===me?' (คุณ)':''}</span></b> <span style="float:right"><b>${cnt[r]}</b> / 77</span><div class="b"><i style="width:${cnt[r]/77*100}%;background:${col(r)}"></i></div></div>`).join('');
+ $('rkR').innerHTML=o.map((r,j)=>`<div class="card" style="${r===me?'border-color:'+col(r):''}"><b><span class="rk">${medal(j)}<span style="color:${col(r)};display:flex">${em(r)}</span>${RG[r][1]}${r===me?' (คุณ)':''}</span></b> <span style="float:right"><b>${cnt[r]}</b> / 77</span><div class="b"><i style="width:${cnt[r]/77*100}%;background:${col(r)}"></i></div></div>`).join('');
 $('lv').textContent=lv;$('pr').textContent=(G.lv[lv]||{}).troops_per_hour||0;$('sk').textContent=Math.floor(stock);$('vil').innerHTML=VIL[Math.min(lv-1,5)];
 const nx=G.lv[lv+1];$('upb').style.width=nx?Math.min(100,stock/nx.upgrade_cost*100)+'%':'100%';
 $('up').innerHTML=nx?ic('up')+' อัปเกรด ('+nx.upgrade_cost+' กำลังพล)':'ระดับสูงสุดแล้ว';$('up').disabled=!nx||stock<nx.upgrade_cost;
@@ -388,8 +401,9 @@ $('up').innerHTML=nx?ic('up')+' อัปเกรด ('+nx.upgrade_cost+' ก�
 $('share').onclick=async()=>{try{if(navigator.share)await navigator.share({text:shareTx});else{await navigator.clipboard.writeText(shareTx);toast('คัดลอกข้อความแล้ว')}}catch(e){}};
 function shut(){if(auto){zoomTo(230,390,1,.5);auto=false}sel=-1;$('sh').classList.remove('open');paint()}
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+ if(b.dataset.go){location.href=b.dataset.go;return}
  document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));
- ['v0','v1','v2'].forEach((v,i)=>$(v).hidden=i!==+b.dataset.v);shut();
+ ['v0','v1','v2'].forEach((v,i)=>$(v).hidden=i!==+b.dataset.v);shut();if(b.dataset.v==='2')rankLoad();
 });
 document.querySelectorAll('[data-i]').forEach(e=>e.innerHTML=ic(e.dataset.i));
 paint();
@@ -436,6 +450,25 @@ const sb=window.supabase.createClient('https://tncbzfgdfxjrgrdgmzya.supabase.co'
 const RID=['north','northeast','central','south'],IDX={};T.forEach((x,i)=>IDX[x.code]=i);
 const esc2=t=>String(t).replace(/[<>&]/g,''),UN=id=>(G.units[id]&&G.units[id].name_th)||id;
 const hm=d=>new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Bangkok',hour:'2-digit',minute:'2-digit'}).format(new Date(d));
+/* ===== อันดับผู้เล่น/จังหวัด + บันทึกวันที่เข้าเล่น (รอบสอง) ===== */
+const RK={k:'r',t:{}};
+const rkRow=(n,r,nm,sub,pt,me)=>`<div class="rr${me?' me':''}"><span class="n">${n}</span><span class="e" style="color:${col(r)}">${em(r)}</span><span class="nm">${esc2(nm)}${me?' (คุณ)':''}${sub?'<small>'+sub+'</small>':''}</span><span class="pt">${pt}</span></div>`;
+const rkNo=j=>j<3?medal(j):j+1;
+function playersHtml(a){if(!a.length)return '<div class="card"><div class="rk0">ยังไม่มีผู้เล่นที่ได้คะแนน ส่งทัพไปยึดช่องหรือป้องกันช่องเพื่อเริ่มสะสมคะแนน</div></div>';
+ return '<div class="card">'+a.map(x=>rkRow(rkNo(+x.rank-1),Math.max(0,RID.indexOf(x.region_id)),x.username,'',(+x.points).toLocaleString('en-US'),x.is_me)).join('')+'</div>'+(a.length>=50?'<div class="rk0" style="margin:0 14px">แสดง 50 อันดับแรก</div>':'')}
+function provincesHtml(a){const h=G.prof&&G.prof.home_province,l=a.filter(x=>x.players>0).sort((x,y)=>y.points-x.points||y.players-x.players||String(x.name_th).localeCompare(y.name_th,'th')).slice(0,30);
+ if(!l.length)return '<div class="card"><div class="rk0">ยังไม่มีใครเลือกจังหวัดเป็นบ้านเกิด</div></div>';
+ return '<div class="card">'+l.map((x,j)=>rkRow(rkNo(j),Math.max(0,RID.indexOf(x.region_id)),x.name_th,x.players+' คน',(+x.points).toLocaleString('en-US'),h!=null&&+x.province_code===+h)).join('')+'</div><div class="rk0" style="margin:0 14px">คะแนนรวมของผู้เล่นที่เป็นคนจังหวัดนั้น (ไม่นับบอท)</div>'}
+async function rankLoad(){const k=RK.k;if(k==='r')return;const box=$(k==='p'?'rkP':'rkV');
+ if(RK.t[k]&&Date.now()-RK.t[k]<3e4)return;
+ if(!RK.t[k])box.innerHTML='<div class="card"><div class="rk0">กำลังโหลด…</div></div>';
+ const {data,error}=k==='p'?await sb.rpc('get_leaderboard_players',{p_limit:50}):await sb.rpc('get_leaderboard_provinces');
+ if(error){RK.t[k]=0;box.innerHTML='<div class="card"><div class="rk0">โหลดอันดับไม่สำเร็จ สลับแท็บแล้วลองใหม่</div></div>';return}
+ RK.t[k]=Date.now();box.innerHTML=k==='p'?playersHtml(data||[]):provincesHtml(data||[])}
+document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>{RK.k=b.dataset.k;document.querySelectorAll('#seg button').forEach(x=>x.classList.toggle('on',x===b));[['r','rkR'],['p','rkP'],['v','rkV']].forEach(([k,id])=>$(id).hidden=k!==RK.k);rankLoad()});
+let actD='';const touch=()=>{const d=new Date(Date.now()+7*36e5).toISOString().slice(0,10);if(d===actD)return;actD=d;sb.rpc('touch_activity').then(r=>{if(r.error)actD=''},()=>{actD=''})};
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&G.prof)touch()});
+
 function estStock(){const v=G.vil;if(!v)return G.cfg.starter_troops||0;const t=(G.lv[v.level]||{}).troops_per_hour||0,el=(Date.now()-new Date(v.stock_updated_at))/36e5;
  return Math.max(Math.min(v.troops_stock+Math.floor(t*el),Math.floor(t*(G.cfg.stock_cap_hours||0))),v.troops_stock)}
 async function load(){
@@ -478,8 +511,9 @@ function rpv(){const o=$('od'),b=$('ok');if(!o||!b)return;const p=G.pv;
  if(G.n<1){o.innerHTML=ic('warn')+' ใส่จำนวนกำลังพลก่อน';b.disabled=true;return}
  if(!p){o.textContent='กำลังคำนวณ…';b.disabled=true;return}
  const has=p.arrive_round_no!=null,pc=p.power_factor_pct,weak=!p.blocked&&has&&pc<50,u=has&&p.units?Object.entries(p.units).filter(([,v])=>v>0).map(([k,v])=>UN(k)+' '+v).join(' · '):'';
- const rl=has&&p.rain_level!=null?'<span class="rl">'+wic(p.rain_level>=3?'storm':p.rain_level?'rain':'sun')+(p.rain_level?' ตอนทัพถึง'+RLN[p.rain_level]+' · แรงบุก <b>−'+p.rain_penalty_pct+'%</b> · ลองเลื่อนไปรอบอื่นดูได้':' ตอนทัพถึงฟ้าโปร่ง ไม่มีฝนลดแรง')+'</span>':'';
- o.innerHTML=(p.blocked?ic('x')+' ส่งไม่ได้: '+esc2(p.reason||'')+'<br>':'')+(has?ic(weak||p.rain_level>=2?'warn':'check')+` ถึงรอบที่ ${p.arrive_round_no} (เดิน ${p.eta_rounds} รอบ) · ${esc2(u)}<br>ห่างเขตแดนภาคเรา ${p.ext} ช่อง · แรงโจมตีที่ไปถึง <b>${pc}%</b>`+(weak?' · แรงอ่อนมาก':'')+rl:'');markFc(p);
+ const sr=G.cfg.v2_supply_range??3,sph=G.cfg.v2_supply_per_hop||60,sdp=G.cfg.v2_supply_decay_pct??25,rng=sr+Math.floor((has&&p.units&&+p.units.supply||0)/sph),sup=!has?'':p.ext>=99?'เสบียงไม่ถึง (ไม่มีเส้นทางกลับฐาน)':p.ext<=rng?'เสบียงถึง '+rng+' ช่อง · อยู่ในระยะ ไม่เสียแรง':'เสบียงถึงแค่ '+rng+' ช่อง · เกิน '+(p.ext-rng)+' ช่อง แรงลด '+Math.min(100,sdp*(p.ext-rng))+'%';
+  const rl=has&&p.rain_level!=null?'<span class="rl">'+wic(p.rain_level>=3?'storm':p.rain_level?'rain':'sun')+(p.rain_level?' ตอนทัพถึง'+RLN[p.rain_level]+' · แรงบุก <b>−'+p.rain_penalty_pct+'%</b> · ลองเลื่อนไปรอบอื่นดูได้':' ตอนทัพถึงฟ้าโปร่ง ไม่มีฝนลดแรง')+'</span>':'';
+ o.innerHTML=(p.blocked?ic('x')+' ส่งไม่ได้: '+esc2(p.reason||'')+'<br>':'')+(has?ic(weak||p.rain_level>=2?'warn':'check')+` ถึงรอบที่ ${p.arrive_round_no} (เดิน ${p.eta_rounds} รอบ) · ${esc2(u)}<br>ห่างเขตแดนภาคเรา <b>${p.ext>=99?'ไม่มีเส้นทาง':p.ext+' ช่อง'}</b><br>${sup}<br>แรงโจมตีที่ไปถึง <b>${pc}%</b>`+(weak?' · แรงอ่อนมาก':'')+rl:'');markFc(p);
  b.disabled=!!p.blocked;b.style.background=weak?'linear-gradient(90deg,#e08a12,#ffb02e)':'';b.innerHTML=ic('swords')+(weak?' ส่งทั้งที่แรงอ่อน':' ส่งทัพ')}
 async function send1(){const i=sel,p=G.pv;if(G.busy||!p||p.blocked||G.n<1)return;G.busy=true;$('ok').disabled=true;
  const {data,error}=await sb.rpc('send_troops_v2',{p_province:T[i].code,p_troops:G.n,p_offset:G.off});G.busy=false;
@@ -489,8 +523,8 @@ async function send1(){const i=sel,p=G.pv;if(G.busy||!p||p.blocked||G.n<1)return
 $('up').onclick=async()=>{const {error}=await sb.rpc('upgrade_village');if(error)return toast(error.message,'warn');await load();toast('หมู่บ้านเลื่อนเป็นระดับ '+lv,'flag')};
 (async()=>{try{
  const {data:{session}}=await sb.auth.getSession();if(!session)return location.replace('index.html');
- const {data:p}=await sb.from('profiles').select('username,avatar_key,region_id').eq('id',session.user.id).maybeSingle();if(!p)return location.replace('index.html');
- G.prof=p;const [u,c,l]=await Promise.all([sb.from('unit_types').select('id,name_th'),sb.from('game_config').select('key,value').in('key',['starter_troops','stock_cap_hours','advance_rounds','rain_attacker_penalty_pct_per_level']),sb.from('village_levels').select('level,upgrade_cost,troops_per_hour')]);
+ const {data:p}=await sb.from('profiles').select('username,avatar_key,region_id,home_province').eq('id',session.user.id).maybeSingle();if(!p)return location.replace('index.html');
+ G.prof=p;touch();const [u,c,l]=await Promise.all([sb.from('unit_types').select('id,name_th'),sb.from('game_config').select('key,value').in('key',['starter_troops','stock_cap_hours','advance_rounds','rain_attacker_penalty_pct_per_level','v2_supply_range','v2_supply_per_hop','v2_supply_decay_pct']),sb.from('village_levels').select('level,upgrade_cost,troops_per_hour')]);
  (u.data||[]).forEach(x=>G.units[x.id]=x);(c.data||[]).forEach(x=>G.cfg[x.key]=Number(x.value));(l.data||[]).forEach(x=>G.lv[x.level]=x);rlLegend();
  go(Math.max(0,RID.indexOf(p.region_id)));await load();live();setInterval(live,500);setInterval(()=>{if(!document.hidden&&!$('sh').classList.contains('open'))load()},15000)
 }catch(e){console.error(e)}document.body.style.visibility=''})();

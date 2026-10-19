@@ -121,6 +121,23 @@ footer{padding:26px 0 44px;text-align:center;color:var(--mu);font-size:.82rem}fo
 nav .btn .av{margin-right:8px}
 .mec{display:flex;gap:14px;align-items:center;margin-bottom:12px}.mec h3{font-size:1.25rem}.mec p{color:var(--mu);font-size:.9rem}
 #ts{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:60;max-width:min(92vw,420px);padding:12px 18px;border-radius:16px;background:#2b0613;border:1px solid var(--gold);color:#fff;font-size:.92rem;text-align:center}#ts[hidden]{display:none}
+/* dropdown เลือกจังหวัด (แทน select ของเบราว์เซอร์) */
+.dd{position:relative}
+.dd-t{width:100%;min-height:54px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 14px 0 16px;border-radius:16px;border:2px solid var(--k);background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(0,0,0,.28));color:#fff;font:700 1.08rem Kanit,sans-serif;text-align:left;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 4px 0 rgba(0,0,0,.4)}
+.dd-t:active{transform:translateY(3px);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 1px 0 rgba(0,0,0,.4)}
+.dd-t .ph{color:var(--mu);font-weight:500}
+.dd-t:disabled{opacity:.5;cursor:default;box-shadow:none}.dd-t:disabled:active{transform:none}
+.dd-t .cv{width:24px;height:24px;flex:none;fill:none;stroke:var(--gold);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.dd.on .cv{transform:rotate(180deg)}.dd.on .dd-t{border-color:var(--gold)}
+.dd-l{position:relative;margin-top:10px;max-height:min(264px,40dvh);overflow-y:auto;overscroll-behavior:contain;border-radius:18px;border:1px solid var(--k);background:linear-gradient(180deg,#5d0b1f,#2b0613);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 12px 26px rgba(0,0,0,.55);scrollbar-width:thin;scrollbar-color:var(--gold) transparent;animation:ddin .18s ease-out}
+.dd-l[hidden]{display:none}
+@keyframes ddin{from{opacity:0;transform:translateY(-6px)}}
+.dd-o{position:relative;width:100%;min-height:50px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 16px;border:0;border-bottom:1px solid rgba(255,130,130,.16);background:none;color:#fff;font:500 1.05rem Kanit,sans-serif;text-align:left;cursor:pointer}
+.dd-o:last-child{border-bottom:0}.dd-o:active{background:rgba(255,255,255,.1)}
+.dd-o svg{width:22px;height:22px;flex:none;fill:none;stroke:var(--gold);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+.dd-o[aria-selected=true]{background:linear-gradient(90deg,rgba(255,200,87,.22),rgba(255,200,87,.05));color:#ffe08a;font-weight:700}
+.dd-o[aria-selected=true]::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:4px;border-radius:0 4px 4px 0;background:var(--k)}
+.dd-o[aria-selected=true] svg{opacity:1}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <radialGradient id="gl"><stop offset="0" stop-color="#ffc857" stop-opacity=".5"/><stop offset="1" stop-color="#ffc857" stop-opacity="0"/></radialGradient>
@@ -204,7 +221,8 @@ function toast(t){const e=$('ts');e.textContent=t;e.hidden=false;clearTimeout(to
 function openSh(h){scE.innerHTML=h;shE.hidden=false;document.body.style.overflow='hidden';const f=scE.querySelector('input,select,button');f&&f.focus({preventScroll:true})}
 function closeSh(){shE.hidden=true;document.body.style.overflow=''}
 $('sx').addEventListener('click',closeSh);shE.addEventListener('click',e=>{if(e.target===shE)closeSh()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!shE.hidden)closeSh()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!shE.hidden){const l=$('ddl');if(l&&!l.hidden){ddSet(false);$('ddt').focus();return}closeSh()}
+ if((e.key==='ArrowDown'||e.key==='ArrowUp')&&e.target.closest&&e.target.closest('.dd-t,.dd-o')){const l=$('ddl');if(!l)return;e.preventDefault();if(l.hidden)ddSet(true);const o=[...l.querySelectorAll('.dd-o')],i=o.indexOf(document.activeElement),n=e.key==='ArrowDown'?Math.min(o.length-1,i+1):Math.max(0,i<0?0:i-1);o[n]&&o[n].focus()}});
 const AVP=['img/{k}.webp','img/avatars/{k}.webp','img/avatar/{k}.webp','img/{k}.png','img/{k}.jpg','img/{k}.jpeg','img/avatar-{k}.webp','img/avatar_{k}.webp'];
 function avErr(i){const n=+(i.dataset.t||0)+1;if(n>=AVP.length){console.warn('[avatar] ไม่พบไฟล์รูป',i.dataset.k,'— ลองมาแล้ว',AVP.map(x=>x.replace('{k}',i.dataset.k)));i.remove();return}i.dataset.t=n;i.src=AVP[n].replace('{k}',i.dataset.k)}
 function av(key,cls){const k=Math.max(0,PFX.indexOf(key[0]));return '<span class="av '+(cls||'')+'" style="--k:var(--c'+k+')" data-n="'+esc(key[1])+'"><img src="'+AVP[0].replace('{k}',esc(key))+'" data-k="'+esc(key)+'" alt="" decoding="async" onerror="avErr(this)"></span>'}
@@ -226,13 +244,21 @@ async function loadMe(){me=null;if(!sb)return false;
 function updNav(){const b=$('nb');if(!b)return;b.innerHTML=me?av(me.avatar_key,'sm')+esc(me.username):'เข้าสู่ระบบ';b.dataset.a=me?'me':'login'}
 function dots(n){return '<div class="dots" aria-hidden="true">'+[1,2,3].map(i=>'<i class="'+(i<=n?'on':'')+'"></i>').join('')+'</div>'}
 function saveF(){const q=i=>scE.querySelector('#'+i);if(!q('f_u'))return;const f=reg.f;f.u=q('f_u').value;if(q('f_e'))f.e=q('f_e').value;if(q('f_p'))f.pw=q('f_p').value;if(q('f_p2'))f.pw2=q('f_p2').value;f.by=q('f_b').value;f.tm=q('f_t').checked}
+const CK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',CV='<svg class="cv" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+function ddHtml(){const r=reg.r,dis=r<0,pv=PD.find(p=>p[0]===reg.p&&p[2]===r);
+ const ls=dis?'':PD.filter(p=>p[2]===r).sort((a,b)=>a[1].localeCompare(b[1],'th')).map(p=>'<button type="button" class="dd-o" role="option" data-p="'+p[0]+'" aria-selected="'+(reg.p===p[0])+'"><span>'+esc(p[1])+'</span>'+CK+'</button>').join('');
+ return '<div class="lb">จังหวัดบ้านเกิด<div class="dd" id="dd" style="--k:'+(dis?'var(--ln)':'var(--c'+r+')')+'"><input type="hidden" id="pv" value="'+(pv?pv[0]:0)+'"><button type="button" class="dd-t" id="ddt" aria-haspopup="listbox" aria-expanded="false"'+(dis?' disabled':'')+'><span class="'+(pv?'':'ph')+'" id="ddv">'+(dis?'เลือกภาคก่อน':pv?esc(pv[1]):'แตะเพื่อเลือกจังหวัด')+'</span>'+CV+'</button><div class="dd-l" id="ddl" role="listbox" aria-label="จังหวัดบ้านเกิด" hidden>'+ls+'</div></div></div>'}
+function ddSet(open){const d=$('dd'),l=$('ddl'),t=$('ddt');if(!d||!l||t.disabled)return;
+ l.hidden=!open;d.classList.toggle('on',open);t.setAttribute('aria-expanded',open);
+ if(open){const s=l.querySelector('[aria-selected=true]');l.scrollTop=s?Math.max(0,s.offsetTop-l.clientHeight/2+s.offsetHeight/2):0;setTimeout(()=>d.scrollIntoView({block:'nearest',behavior:'smooth'}),30)}}
+function ddPick(c){const p=PD.find(x=>x[0]===c);if(!p)return;reg.p=c;$('pv').value=c;const v=$('ddv');v.textContent=p[1];v.className='';
+ scE.querySelectorAll('.dd-o').forEach(b=>b.setAttribute('aria-selected',+b.dataset.p===c));er('');ddSet(false)}
 function renderReg(){const s=reg.step;let h='';
  if(s===1){
   const cnt=[0,0,0,0];PD.forEach(p=>cnt[p[2]]++);
   h='<h2 id="stt">เลือกภาคและบ้านเกิด</h2>'+dots(1)+'<p class="sub">จังหวัดบ้านเกิดของคุณกำหนดว่าคุณอยู่ทีมภาคไหน</p><div class="rp">'+
    RG.map((r,k)=>'<button type="button" class="rs" style="--k:var(--c'+k+')" data-r="'+k+'" aria-pressed="'+(reg.r===k)+'">'+r[0]+'<small>'+cnt[k]+' จังหวัด</small></button>').join('')+'</div>'+
-   '<label class="lb">จังหวัดบ้านเกิด<select class="in" id="pv"'+(reg.r<0?' disabled':'')+'><option value="0">'+(reg.r<0?'เลือกภาคก่อน':'เลือกจังหวัด')+'</option>'+
-   (reg.r<0?'':PD.filter(p=>p[2]===reg.r).sort((a,b)=>a[1].localeCompare(b[1],'th')).map(p=>'<option value="'+p[0]+'"'+(reg.p===p[0]?' selected':'')+'>'+esc(p[1])+'</option>').join(''))+'</select></label>'+
+   ddHtml()+
    '<div class="err" id="er" role="alert"></div><div class="nv"><button type="button" class="btn gl" id="nx">ต่อไป</button></div>'}
  else if(s===2){
   h='<h2 id="stt">เลือกอวตาร</h2>'+dots(2)+'<p class="sub">อวตารของ'+RG[reg.r][0]+' เลือกได้ 1 ใน 5 เปลี่ยนทีหลังได้</p>'+avPicker(reg.r,reg.a)+
@@ -286,7 +312,10 @@ document.addEventListener('click',async e=>{const t=e.target;
   if(k==='register'){if(me)location.href='play.html';else startReg(a.dataset.r!==undefined?+a.dataset.r:-1)}
   else if(k==='login'){openLogin()}else if(k==='me'){me?openMe():openLogin()}return}
  if(shE.hidden||!shE.contains(t))return;
- const rs=t.closest('.rs');if(rs){reg.r=+rs.dataset.r;reg.p=0;reg.a='';renderReg();return}
+ if(t.closest('#ddt')){ddSet($('ddl').hidden);return}
+ const dop=t.closest('.dd-o');if(dop){ddPick(+dop.dataset.p);return}
+ if($('ddl')&&!$('ddl').hidden&&!t.closest('#dd'))ddSet(false);
+ const rs=t.closest('.rs');if(rs){reg.r=+rs.dataset.r;reg.p=0;reg.a='';renderReg();ddSet(true);return}
  const ab=t.closest('.ab');
  if(ab){const k=ab.dataset.k;
   if(me&&scE.querySelector('.mec')){
