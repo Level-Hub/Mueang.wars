@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="th"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#1a0310">
+<title>MUEANG WARS · สอนเล่น</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Noto+Sans+Thai:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#fff4f0;--mu:#e3b9c0;--gold:#ffc857;--gold2:#ffe08a;--ln:rgba(255,130,130,.3);--c0:#2fd49a;--c1:#ffb02e;--c2:#ff3d57;--c3:#5a98ff;--k:var(--c2);color-scheme:dark;font-family:'Noto Sans Thai',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html{background:#1a0310;touch-action:pan-x pan-y;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{color:var(--ink);line-height:1.6;overflow-x:hidden;min-height:100dvh;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;
+ background:linear-gradient(rgba(26,3,16,.86),rgba(20,2,13,.95)),url(img/pattern-kanok.webp) 0 0/260px,#1a0310;padding:env(safe-area-inset-top,0) 0 calc(24px + env(safe-area-inset-bottom,0))}
+button,a{touch-action:manipulation;color:inherit;text-decoration:none;font-family:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+h1,h2,h3,.btn,b{font-family:Kanit,sans-serif}
+.w{width:min(560px,100% - 28px);margin-inline:auto}
+nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.logo{display:flex;align-items:center;gap:9px;font:800 1.2rem/1 Kanit,sans-serif;letter-spacing:.04em}
+.logo svg{width:34px;height:34px;flex:none}
+.logo span{color:#fff;text-shadow:0 1px 0 #ffc2b6,0 3px 0 #d4142f,0 5px 0 #6d0618,0 8px 9px rgba(0,0,0,.7)}
+.logo b{color:var(--gold2);text-shadow:0 1px 0 #fff3c4,0 3px 0 #e08a12,0 5px 0 #7a3d05,0 8px 9px rgba(0,0,0,.7)}
+.pn{background:linear-gradient(180deg,#5d0b1f,#2b0613);border:1px solid var(--ln);border-radius:24px;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 14px 30px rgba(0,0,0,.55);padding:20px 18px;margin-bottom:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 22px;border-radius:16px;font-weight:800;font-size:1rem;color:#fff;border:0;cursor:pointer;text-shadow:0 2px 0 rgba(90,0,15,.7)}
+.btn:active:not(:disabled){transform:translateY(4px)}.btn:disabled{opacity:.4;filter:grayscale(.5)}
+.gl{background:linear-gradient(180deg,#ff7a63,#ee2440 46%,#b50d26 50%,#d4142f);box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 5px 0 #5e0415,0 12px 22px rgba(230,20,50,.5)}
+.gh{background:rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 4px 0 rgba(0,0,0,.35);border:1px solid var(--ln)}
+nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
+.st{display:inline-block;padding:2px 12px;border-radius:99px;background:var(--gold);color:#1a0310;font:700 .8rem Kanit;margin-bottom:8px}
+h2{font-size:1.4rem;font-weight:800;line-height:1.2;margin-bottom:10px;text-shadow:0 2px 0 #6d0618}
+#card p{margin-bottom:10px;font-size:1rem}
+#card p.mu{color:var(--mu);font-size:.88rem}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.chip{padding:10px 12px;border-radius:16px;border:1px solid var(--k);background:linear-gradient(160deg,rgba(255,255,255,.1),transparent)}
+.chip b{display:block;font-size:1.5rem;line-height:1.15;color:var(--gold2)}.chip span{font-size:.8rem;color:var(--mu)}
+.ul{padding:10px 12px;margin-bottom:8px;border-radius:16px;border-left:5px solid var(--k);background:rgba(255,255,255,.07)}
+.ul h3{font-size:1.05rem}.ul p{margin:0!important;font-size:.88rem!important;color:var(--mu)}
+.dots{display:flex;justify-content:center;gap:7px;margin:14px 0}
+.dots i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.22)}.dots i.on{background:var(--gold);width:22px;border-radius:9px}
+.nv{display:flex;gap:10px}.nv .btn{flex:1}
+#ts{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:60;max-width:min(92vw,420px);padding:12px 18px;border-radius:16px;background:#2b0613;border:1px solid var(--gold);color:#fff;font-size:.92rem;text-align:center}#ts[hidden]{display:none}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g></defs></svg>
+<div class="w">
+<nav><a class="logo" href="index.html" aria-label="MUEANG WARS"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#mk"/></svg><span>MUEANG</span><b>WARS</b></a><a class="btn gh" href="play.html">สนามรบ</a></nav>
+<main><div class="pn" id="card"><p class="mu" id="ld">กำลังโหลด…</p></div>
+<div class="dots" id="dots"></div><div class="nv" id="nv"></div></main>
+</div>
+<div id="ts" role="status" hidden></div>
+<script>
+const SB_URL='https://tncbzfgdfxjrgrdgmzya.supabase.co',SB_KEY='sb_publishable_xrwJKdhhgt6i_I4pDvI79A_gucUyuVx';
+const sb=window.supabase?window.supabase.createClient(SB_URL,SB_KEY):null;
+const $=i=>document.getElementById(i);
+function toast(t){const e=$('ts');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,3500)}
+['gesturestart','gesturechange','gestureend'].forEach(e=>document.addEventListener(e,x=>x.preventDefault()));
+const D={cfg:{},u:[],lv:[],done:false};let i=0,busy=false;
+const g=k=>{const v=Number(D.cfg[k]);return Number.isFinite(v)?v:null};
+const n=v=>v==null||Number.isNaN(v)?'—':v;
+const mul=(a,b)=>a==null||b==null?null:a*b;
+const chip=(a,b,k)=>'<div class="chip"'+(k!=null?' style="--k:var(--c'+k+')"':'')+'><b>'+n(a)+'</b><span>'+b+'</span></div>';
+const lvMin=()=>D.lv[0]||{},lvMax=()=>D.lv[D.lv.length-1]||{};
+const UD={guard:'ทหารพื้นฐาน แรงโจมตีเต็ม แต่เดินช้าสุด',raid:'เดินเร็ว ไปถึงไวกว่า แต่แรงโจมตีน้อยกว่า',supply:'ไม่ได้ตีเอง ช่วยให้กำลังไม่อ่อนลงเมื่อไปไกล'};
+const S=[
+{t:'เกมนี้เล่นยังไง',h:()=>'<p>ประเทศไทยมี <b>77 จังหวัด</b> แต่ละจังหวัดคือ <b>1 ช่อง</b> ที่ชิงกันได้ คุณอยู่ทีมภาคตามบ้านเกิด ภาคละ 1 ทีม รวม 4 ทีม</p><p>ส่งกำลังพลไปยึดช่องของภาคอื่น ภาคไหนยึดได้มาก ได้คะแนนมาก จบซีซันภาคที่นำก็ชนะ</p><p class="mu">เรียนจบใน 1 นาที แล้วลุยได้เลย</p>'},
+{t:'กำลังพลมาจากไหน',h:()=>{const a=lvMin(),b=lvMax(),c=g('stock_cap_hours');return '<p>หมู่บ้านของคุณผลิตกำลังพลให้ทุกชั่วโมง แม้คุณไม่ได้เปิดเกม แต่เก็บสะสมได้ไม่เกินเพดาน</p><div class="chips">'+chip(a.troops_per_hour,'กำลังพล/ชม. ตอนเริ่ม (Lv '+n(a.level)+')',0)+chip(mul(a.troops_per_hour,c),'เพดานสะสมตอนเริ่ม',1)+chip(b.troops_per_hour,'กำลังพล/ชม. ที่ Lv '+n(b.level),2)+chip(mul(b.troops_per_hour,c),'เพดานที่ Lv '+n(b.level),3)+'</div><p>เพดานคือผลิตเต็ม '+n(c)+' ชั่วโมง ถ้าเต็มแล้วจะไม่เพิ่มอีก ดังนั้นอย่าปล่อยค้างนาน อัปเกรดหมู่บ้านเพื่อผลิตไวขึ้น</p>'}},
+{t:'รอบทุก '+'<span id="rmt">…</span>',h:()=>'<p>เกมตัดสินผลทุก <b>'+n(g('round_minutes'))+' นาที</b> เรียกว่า 1 รอบ ทุกทัพที่ถึงช่องเดียวกันในรอบเดียวกันจะถูกรวมกำลังแล้วเทียบกัน</p><p>คุณวางกำลังล่วงหน้าได้ไม่เกิน <b>'+n(g('advance_rounds'))+' รอบ</b> และ <b>ทัพที่ออกเดินทางแล้วเรียกกลับไม่ได้</b> คิดก่อนกดส่ง</p>'},
+{t:'ทหาร 3 แบบ',h:()=>'<p>ตอนส่งทัพ คุณเลือกส่วนผสมยูนิตได้ ถ้าไม่เลือก ระบบจัดให้เอง</p>'+D.u.map((u,k)=>'<div class="ul" style="--k:var(--c'+(k%4)+')"><h3>'+u.name_th+'</h3><p>'+(UD[u.id]||'')+' · เดิน '+n(u.speed)+' ช่อง/รอบ · แรงโจมตี '+n(Math.round(u.atk_mult*100))+'%</p></div>').join('')},
+{t:'ระยะ และทัพเดินกี่รอบ',h:()=>{const hp=6,rm=g('round_minutes'),us=D.u.filter(u=>u.atk_mult>0);return '<p>ระยะนับเป็น <b>ช่อง</b> นับจากเขตของภาคคุณไปจังหวัดเป้าหมาย ยิ่งไกลยิ่งใช้เวลา</p><p>เดินกี่รอบ = ระยะ ÷ ความเร็วของยูนิต (ปัดขึ้น) ตัวอย่างเป้าหมายไกล '+hp+' ช่อง:</p>'+us.map((u,k)=>'<div class="ul" style="--k:var(--c'+(k%4)+')"><h3>'+u.name_th+'</h3><p>ถึงใน '+Math.ceil(hp/u.speed)+' รอบ (ราว '+n(mul(Math.ceil(hp/u.speed),rm))+' นาที)</p></div>').join('')+'<p class="mu">ผลแพ้ชนะตัดสินที่รอบที่ทัพ <b>ถึง</b> ไม่ใช่รอบที่ส่ง แผงส่งทัพจะบอกจำนวนรอบให้ก่อนกดส่ง</p>'}},
+{t:'เสบียง และแรงที่ถึง',h:()=>'<p>ทัพที่ไปไม่ไกลเกิน <b>'+n(g('v2_supply_range'))+' ช่อง</b> จากเขตภาคตัวเองจะมีแรงเต็ม 100%</p><p>ไกลกว่านั้นแรงลดลงช่องละประมาณ <b>'+n(g('v2_supply_decay_pct'))+'%</b> ใส่ยูนิตเสบียงไปด้วยช่วยลดโทษนี้ได้</p><p>ตัวเลข <b>แรงที่ถึง (%)</b> ในแผงส่งทัพคือค่าจริงที่คำนวณให้แล้ว ดูตัวนี้ก่อนกดส่งทุกครั้ง</p>'},
+{t:'ป้องกัน และโล่',h:()=>{const sr=g('v2_shield_rounds');return '<p>ทุกช่องมีกำลังป้องกันอย่างน้อย <b>'+n(g('v2_defense_min'))+'</b> ยิ่งมีผู้เล่นภาคนั้นส่งกำลังมาก ยิ่งป้องกันแน่น ช่องในภาคบ้านเกิดเดิมได้โบนัสอีก <b>'+n(g('v2_turf_pct'))+'%</b></p><div class="chips">'+chip((g('v2_shield_pct')==null?null:'+'+g('v2_shield_pct')+'%'),'โล่หลังยึดได้',1)+chip(sr,'รอบที่โล่อยู่ (ราว '+n(mul(sr,g('round_minutes')))+' นาที)',2)+'</div><p>ช่องที่เพิ่งยึดได้จะมีโล่ป้องกันชั่วคราว ยึดแล้วรีบตั้งรับต่อ เสมอกัน ช่องไม่เปลี่ยนเจ้าของ</p>'}},
+{t:'ฝนทำให้บุกยาก',h:()=>{const p=g('rain_attacker_penalty_pct_per_level');return '<p>ถ้าจังหวัดเป้าหมายฝนตก ทัพที่ไปบุกจะอ่อนลง ฝนยิ่งหนักยิ่งอ่อน (3 ระดับ)</p><div class="chips">'+chip(p==null?null:'−'+p+'%','ฝนเบา (ระดับ 1)',3)+chip(p==null?null:'−'+p*2+'%','ฝนกลาง (ระดับ 2)',3)+chip(p==null?null:'−'+p*3+'%','ฝนหนัก (ระดับ 3)',3)+'</div><p>ผู้ตั้งรับไม่เสียเปรียบ ดูพยากรณ์ฝนในแผงจังหวัดก่อนส่ง เลือกจังหวัดที่ฟ้าโปร่งจะได้เปรียบ</p>'}},
+{t:'ประสานกับภาค',h:()=>{const u=g('underdog_max_mult_x100');return '<p>ทัพที่ไปถึงต่างรอบหรือต่างช่อง <b>ไม่รวมกำลังกัน</b> ถ้าต่างคนต่างตี มักตีไม่ทะลุเพราะป้องกันสูง</p><p>วิธีชนะคือ <b>ตกลงกับเพื่อนในภาค</b> เลือกช่องเดียวกัน แล้วส่งให้ไปถึงรอบเดียวกัน กำลังจะรวมกันจนเอาชนะป้องกันได้</p><p>ภาคที่คนน้อยได้ตัวคูณกำลังสูงสุด <b>'+(u==null?'—':u/100)+' เท่า</b> เป็นตัวช่วยให้ทุกภาคสู้กันได้</p>'}}
+];
+function render(){const s=S[i],last=i===S.length-1;
+ $('card').innerHTML='<span class="st">ข้อ '+(i+1)+' จาก '+S.length+'</span><h2>'+s.t+'</h2>'+s.h();
+ const r=$('rmt');if(r)r.textContent=n(g('round_minutes'))+' นาที';
+ $('dots').innerHTML=S.map((_,k)=>'<i class="'+(k===i?'on':'')+'"></i>').join('');
+ $('nv').innerHTML='<button class="btn gh" id="bk"'+(i?'':' disabled')+'>ย้อนกลับ</button><button class="btn gl" id="nx">'+(last?(D.done?'กลับสนามรบ':'เข้าสนามรบ'):'ถัดไป')+'</button>';
+ $('bk').onclick=()=>{if(i>0){i--;render()}};
+ $('nx').onclick=()=>last?finish():(i++,render());scrollTo(0,0)}
+async function finish(){if(busy)return;busy=true;$('nx').disabled=true;
+ if(!D.done){const {error}=await sb.rpc('complete_tutorial');if(error){toast('บันทึกไม่สำเร็จ: '+error.message);busy=false;$('nx').disabled=false;return}}
+ location.href='play.html'}
+async function init(){
+ if(!sb){$('ld').textContent='เชื่อมต่อระบบไม่ได้ ลองรีเฟรชหน้า';return}
+ const {data:{session}}=await sb.auth.getSession();if(!session)return location.replace('index.html');
+ const [c,u,l,p]=await Promise.all([sb.from('game_config').select('key,value'),sb.from('unit_types').select('id,name_th,speed,atk_mult').order('speed'),sb.from('village_levels').select('level,troops_per_hour').order('level'),sb.from('profiles').select('tutorial_done_at').eq('id',session.user.id).maybeSingle()]);
+ const err=c.error||u.error||l.error||p.error;
+ if(err||!p.data){$('card').innerHTML='<p>โหลดไม่สำเร็จ'+(err?': '+err.message:'')+'</p><p class="mu">ถ้ายังไม่มีโปรไฟล์ ให้กลับไปสมัครที่หน้าแรกก่อน</p>';$('nv').innerHTML='<button class="btn gl" onclick="init()">ลองใหม่</button>';return}
+ c.data.forEach(r=>D.cfg[r.key]=r.value);D.u=u.data.map(x=>({...x,atk_mult:Number(x.atk_mult)}));D.lv=l.data;D.done=!!p.data.tutorial_done_at;render()}
+init();
+</script></body></html>

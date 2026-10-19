@@ -302,7 +302,7 @@ async function doSubmit(){saveF();const f=reg.f,btn=$('go');
   if(error)throw error;
   await loadMe();updNav();
   const r=Math.max(0,RID.indexOf(me?me.region_id:RID[reg.r]));
-  openSh('<h2 id="stt">ยินดีต้อนรับสู่สนามรบ</h2><div class="mec" style="margin-top:14px">'+av(me?me.avatar_key:reg.a,'lg')+'<div><h3>'+esc(me?me.username:f.u)+'</h3><p>ทีม'+RG[r][0]+'</p></div></div><p class="sub">สมัครเรียบร้อย พร้อมเข้าสนามรบแล้ว</p><div class="nv"><button type="button" class="btn gl" id="dn">เข้าสนามรบ</button></div>')
+  openSh('<h2 id="stt">ยินดีต้อนรับสู่สนามรบ</h2><div class="mec" style="margin-top:14px">'+av(me?me.avatar_key:reg.a,'lg')+'<div><h3>'+esc(me?me.username:f.u)+'</h3><p>ทีม'+RG[r][0]+'</p></div></div><p class="sub">สมัครเรียบร้อย ดูวิธีเล่นสั้นๆ ก่อนลุยจะเล่นได้คล่องขึ้น</p><div class="nv"><button type="button" class="btn gh" id="sk">ข้ามไปสนามรบ</button><button type="button" class="btn gl" id="dn">เรียนวิธีเล่น</button></div>')
  }catch(x){
   renderReg2(netErr(x.message))}}
 function renderReg2(msg){reg.step=3;renderReg();er(msg)}
@@ -330,7 +330,7 @@ document.addEventListener('click',async e=>{const t=e.target;
  else if(id==='bk2'){reg.step=1;renderReg()}
  else if(id==='bk3'){saveF();reg.step=2;renderReg()}
  else if(id==='go'){doSubmit()}
- else if(id==='dn'){location.href='play.html'}
+ else if(id==='dn'){location.href='learn.html'}else if(id==='sk'){location.href='play.html'}
  else if(id==='lg'){const em=$('l_e').value.trim(),pw=$('l_p').value;if(!em||!pw)return er('กรอกอีเมลและรหัสผ่าน');
   t.disabled=true;er('');
   const {error}=await sb.auth.signInWithPassword({email:em,password:pw});
