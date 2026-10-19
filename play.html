@@ -65,6 +65,9 @@ button:active{transform:scale(.96)}button:disabled{opacity:.35}
 .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}.tag{color:#fff;font-size:12px;padding:3px 10px;border-radius:99px}
 .amt b{font-size:30px}.q,.act{display:flex;gap:8px;margin-top:8px}.q button{flex:1;padding:8px 0}.act .go{flex:2}.act button+button{flex:1}
 #od{margin-top:8px;font-size:13px;color:var(--mu)}
+.um{margin-top:10px}.ut{display:flex;gap:8px}.ut button{flex:1;padding:8px 0;border-radius:99px;border:1.5px solid var(--ln);background:transparent;color:var(--tx);font-weight:700}.ut button.on{background:var(--gd,#e0b13a);color:#2a0a12;border-color:var(--gd,#e0b13a)}
+#uc{margin-top:8px;padding:8px 10px;border-radius:12px;border:1px dashed var(--ln);font-size:13px}#uc[hidden]{display:none}.ur{margin:6px 0}.ur small{display:block;color:var(--mu);line-height:1.4}.ur input{width:100%}.ur b{color:var(--tx)}
+.nw{margin:7px 0;font-size:13px;line-height:1.5}.nw small{color:var(--mu)}
 nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--ln);padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px));z-index:7}
 nav button{flex:1;background:none;color:var(--mu);font-size:13px;padding:6px 0;line-height:1.3}nav button.on{color:var(--tx);font-weight:700;background:var(--glass)}
 
@@ -290,7 +293,8 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
 <linearGradient id="rg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:color-mix(in srgb,var(--s) 80%,#fff)"/><stop offset="1" style="stop-color:color-mix(in srgb,var(--s) 82%,#000)"/></linearGradient>
 <marker id="ah" viewBox="0 0 6 6" refX="4" refY="3" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0L6,3L0,6Z" fill="#fff"/></marker></defs></svg></div></div></div>
  <div class="card" id="plan"></div>
- <div class="card"><div id="log"></div><button id="share" style="margin-top:8px"><i data-i="share"></i>แชร์สถานะ</button></div></section>
+ <div class="card" id="mine"></div>
+  <div class="card"><div id="log"></div><button id="share" style="margin-top:8px"><i data-i="share"></i>แชร์สถานะ</button></div></section>
  <section id="v1" hidden><div class="card vc"><div class="sky"><div id="vil"></div></div>
  <div class="lvb"><small>ระดับหมู่บ้าน</small><b id="lv"></b></div>
  <div class="st2"><div><small>ผลิตต่อชั่วโมง</small><b>+<span id="pr"></span></b></div><div><small>กำลังพลสะสม</small><b id="sk"></b></div></div>
@@ -484,7 +488,7 @@ async function load(){
  G.rounds=r.data||[];G.vil=v.data;RAIN=T.map(()=>0);WX=T.map(()=>null);(w.data||[]).forEach(x=>{const i=IDX[x.province_code];if(i!=null){RAIN[i]=x.rain_level|0;WX[i]=x}});
  const open=new Set(G.rounds.filter(x=>x.status!=='revealed').map(x=>x.id));send={};
  (d.data||[]).forEach(x=>{const i=IDX[x.province_code];if(open.has(x.round_id)&&i!=null)send[i]=(send[i]||0)+x.troops});
- lv=G.vil?G.vil.level:1;stock=estStock();paint();arrows()}
+ lv=G.vil?G.vil.level:1;stock=estStock();paint();arrows();mine();if(Date.now()-(G.nt||0)>3e4){G.nt=Date.now();news()}}
 function live(){const n=Date.now(),R=G.rounds.find(r=>+new Date(r.starts_at)<=n&&n<+new Date(r.ends_at));
  if(R){rd=R.round_no;const a=+new Date(R.starts_at),p=+new Date(R.planning_ends_at),d=+new Date(R.discussion_ends_at),e=+new Date(R.ends_at);PH=n<p?0:n<d?1:2;
   const A=[a,p,d][PH],Z=[p,d,e][PH],q=Math.max(0,Math.ceil((Z-n)/1000));$('sec').style.fontSize='11px';$('sec').textContent=Math.floor(q/60)+':'+String(q%60).padStart(2,'0');
@@ -495,16 +499,29 @@ async function pick(i){const x=T[i];sel=i;$('sh').style.setProperty('--ac',col(m
  const head=`<div class="ph"><span class="pe">${em(x.o)}</span><div class="pt"><small>จังหวัด</small><b>${x.n}</b></div><span class="tag">${RG[x.o][1]}</span></div>`;
  const rs=G.rounds.filter(r=>+new Date(r.planning_ends_at)>Date.now()&&r.status!=='revealed').slice(0,G.cfg.advance_rounds||3);
  if(x.o===me||!rs.length){$('sh').innerHTML=head+'<div class="pw">'+wxHtml(i)+'</div><div class="ps"><small>'+(x.o===me?ic('shield')+' จังหวัดของภาคคุณ':ic('clock')+' ตอนนี้ยังไม่มีรอบที่ส่งทัพได้')+'</small></div><div class="act"><button id="cl">ปิด</button></div>';$('sh').classList.add('open');$('cl').onclick=shut;paint();return}
- stock=estStock();G.n=Math.max(1,Math.round(stock/2));G.off=0;G.pv=null;
- $('sh').innerHTML=head+'<div class="pw">'+wxHtml(i)+dpHtml(i)+fcHtml(i)+'</div><div class="ps">'+`<small>${RAIN[i]?RLN[RAIN[i]]+'ตอนนี้ ผู้โจมตีอ่อนลง · ':''}ส่งแล้วเรียกกลับไม่ได้</small><select id="ro">${rs.map((r,k)=>`<option value="${k}">ส่งในรอบที่ ${r.round_no} · ตัดสิน ${hm(r.resolve_at)} น.</option>`).join('')}</select><div class="amt"><b id="rv">${G.n}</b> <small>/ <span id="mx">${stock}</span> กำลังพล</small></div><input id="rg" type="range" min="1" max="${Math.max(1,stock)}" value="${G.n}"><div class="q"><button data-f=".25">¼</button><button data-f=".5">½</button><button data-f="1">เต็ม</button></div><div id="od"></div></div><div class="act"><button id="ok" class="go" disabled>${ic('swords')} ส่งทัพ</button><button id="cl">ปิด</button></div>`;
+ stock=estStock();G.n=Math.max(1,Math.round(stock/2));G.off=0;G.pv=null;G.mode='auto';G.pr=0;G.ps=0;
+ $('sh').innerHTML=head+'<div class="pw">'+wxHtml(i)+dpHtml(i)+fcHtml(i)+'</div><div class="ps">'+`<small>${RAIN[i]?RLN[RAIN[i]]+'ตอนนี้ ผู้โจมตีอ่อนลง · ':''}ส่งแล้วเรียกกลับไม่ได้</small><select id="ro">${rs.map((r,k)=>`<option value="${k}">ส่งในรอบที่ ${r.round_no} · ตัดสิน ${hm(r.resolve_at)} น.</option>`).join('')}</select><div class="amt"><b id="rv">${G.n}</b> <small>/ <span id="mx">${stock}</span> กำลังพล</small></div><input id="rg" type="range" min="1" max="${Math.max(1,stock)}" value="${G.n}"><div class="q"><button data-f=".25">¼</button><button data-f=".5">½</button><button data-f="1">เต็ม</button></div><div class="um"><div class="ut"><button type="button" data-m="auto" class="on">ให้ระบบจัดให้</button><button type="button" data-m="custom">เลือกยูนิตเอง</button></div><div id="uc" hidden></div></div><div id="od"></div></div><div class="act"><button id="ok" class="go" disabled>${ic('swords')} ส่งทัพ</button><button id="cl">ปิด</button></div>`;
  const g=$('rg');
  window.setN=n=>{G.n=Math.max(0,Math.min(stock,Math.floor(n)));g.value=G.n;g.style.setProperty('--p',(stock?G.n/stock*100:0)+'%');$('rv').textContent=G.n;sched()};
  g.oninput=()=>setN(g.value);$('ro').onchange=()=>{G.off=+$('ro').value;sched()};
  document.querySelectorAll('.q button').forEach(b=>b.onclick=()=>setN(Math.max(1,Math.round(stock*b.dataset.f))));
+ document.querySelectorAll('.ut button').forEach(b=>b.onclick=()=>{G.mode=b.dataset.m;document.querySelectorAll('.ut button').forEach(x=>x.classList.toggle('on',x===b));ucUi();sched()});ucUi();
  $('cl').onclick=shut;$('ok').onclick=send1;$('sh').classList.add('open');paint();setN(G.n)}
-function sched(){clearTimeout(G.tm);G.pv=null;rpv();if(G.n<1)return;G.tm=setTimeout(dopv,250)}
+/* เลือกยูนิตเอง: ทัพเร็ว/เสบียง เป็น % ของกำลังที่ส่ง ที่เหลือเป็นทหารพื้นฐาน */
+const UDS={guard:'แรงโจมตีเต็ม แต่เดินช้าสุด',raid:'เดินเร็ว ถึงไวกว่า แต่แรงโจมตีน้อยกว่า',supply:'ไม่ตีเอง ช่วยให้แรงไม่อ่อนเมื่อไปไกล'};
+function unitSplit(){const n=G.n,r=Math.round(n*G.pr/100),su=Math.min(n-r,Math.round(n*G.ps/100));return{guard:n-r-su,raid:r,supply:su}}
+function pUnits(){if(G.mode!=='custom')return null;const u=unitSplit(),o={};Object.entries(u).forEach(([k,v])=>{if(v>0)o[k]=v});return o}
+function ucUi(){const b=$('uc');if(!b)return;if(G.mode!=='custom'){b.hidden=true;b.innerHTML='';return}
+ b.hidden=false;const U=G.units,sp=k=>U[k]&&U[k].speed?' · เดิน '+U[k].speed+' ช่อง/รอบ':'',at=k=>U[k]&&U[k].atk_mult!=null?' · แรงโจมตี '+Math.round(U[k].atk_mult*100)+'%':'';
+ b.innerHTML='<div class="ur"><b id="ug"></b><small>'+UN('guard')+at('guard')+sp('guard')+' — '+UDS.guard+' (ส่วนที่เหลือจากสองอย่างล่าง)</small></div>'
+ +'<div class="ur"><b id="ura"></b><input id="urs" type="range" min="0" max="100" step="5" value="'+G.pr+'"><small>'+UN('raid')+at('raid')+sp('raid')+' — '+UDS.raid+'</small></div>'
+ +'<div class="ur"><b id="usa"></b><input id="uss" type="range" min="0" max="100" step="5" value="'+G.ps+'"><small>'+UN('supply')+at('supply')+sp('supply')+' — '+UDS.supply+'</small></div>';
+ $('urs').oninput=()=>{G.pr=+$('urs').value;if(G.pr+G.ps>100){G.ps=100-G.pr;$('uss').value=G.ps}ucLb();sched()};
+ $('uss').oninput=()=>{G.ps=+$('uss').value;if(G.pr+G.ps>100){G.pr=100-G.ps;$('urs').value=G.pr}ucLb();sched()};ucLb()}
+function ucLb(){const u=unitSplit();if(!$('ug'))return;$('ug').textContent=UN('guard')+' '+u.guard;$('ura').textContent=UN('raid')+' '+u.raid+' ('+G.pr+'%)';$('usa').textContent=UN('supply')+' '+u.supply+' ('+G.ps+'%)'}
+function sched(){clearTimeout(G.tm);G.pv=null;ucLb();rpv();if(G.n<1)return;G.tm=setTimeout(dopv,250)}
 async function dopv(){const my=++G.seq;if(sel<0)return;
- const {data,error}=await sb.rpc('v2_preview_send',{p_province:T[sel].code,p_troops:G.n,p_offset:G.off});if(my!==G.seq)return;
+ const {data,error}=await sb.rpc('v2_preview_send',{p_province:T[sel].code,p_troops:G.n,p_offset:G.off,p_units:pUnits()});if(my!==G.seq)return;
  G.pv=error?{blocked:true,reason:error.message}:data;
  if(data&&typeof data.stock==='number'&&data.stock!==stock){stock=data.stock;const m=$('mx'),g=$('rg');if(m)m.textContent=stock;if(g)g.max=Math.max(1,stock)}rpv()}
 function rpv(){const o=$('od'),b=$('ok');if(!o||!b)return;const p=G.pv;
@@ -515,16 +532,48 @@ function rpv(){const o=$('od'),b=$('ok');if(!o||!b)return;const p=G.pv;
   const rl=has&&p.rain_level!=null?'<span class="rl">'+wic(p.rain_level>=3?'storm':p.rain_level?'rain':'sun')+(p.rain_level?' ตอนทัพถึง'+RLN[p.rain_level]+' · แรงบุก <b>−'+p.rain_penalty_pct+'%</b> · ลองเลื่อนไปรอบอื่นดูได้':' ตอนทัพถึงฟ้าโปร่ง ไม่มีฝนลดแรง')+'</span>':'';
  o.innerHTML=(p.blocked?ic('x')+' ส่งไม่ได้: '+esc2(p.reason||'')+'<br>':'')+(has?ic(weak||p.rain_level>=2?'warn':'check')+` ถึงรอบที่ ${p.arrive_round_no} (เดิน ${p.eta_rounds} รอบ) · ${esc2(u)}<br>ห่างเขตแดนภาคเรา <b>${p.ext>=99?'ไม่มีเส้นทาง':p.ext+' ช่อง'}</b><br>${sup}<br>แรงโจมตีที่ไปถึง <b>${pc}%</b>`+(weak?' · แรงอ่อนมาก':'')+rl:'');markFc(p);
  b.disabled=!!p.blocked;b.style.background=weak?'linear-gradient(90deg,#e08a12,#ffb02e)':'';b.innerHTML=ic('swords')+(weak?' ส่งทั้งที่แรงอ่อน':' ส่งทัพ')}
+/* ข่าวสนามรบ: สรุปผลรอบที่เปิดผลแล้ว (round_tile_results อ่านได้หลังเปิดผล) */
+async function news(){try{
+ const {data:s}=await sb.from('seasons').select('id').eq('status','active').maybeSingle();if(!s)return;
+ const {data:rr}=await sb.from('rounds').select('id,round_no').eq('season_id',s.id).eq('status','revealed').order('round_no',{ascending:false}).limit(5);
+ if(!rr||!rr.length){log='<small>ยังไม่มีรอบที่เปิดผล</small>';paint();return}
+ const {data:tt}=await sb.from('round_tile_results').select('round_id,province_code,prev_owner,new_owner').in('round_id',rr.map(r=>r.id));
+ const by={};(tt||[]).forEach(t=>(by[t.round_id]=by[t.round_id]||[]).push(t));
+ log='<b>'+ic('swords')+' ข่าวสนามรบ</b>'+rr.map(r=>{const a=by[r.id]||[],cap=a.filter(t=>t.new_owner!==t.prev_owner),hold=a.length-cap.length;
+  const nm=t=>IDX[t.province_code]!=null?T[IDX[t.province_code]].n:'#'+t.province_code,rg=o=>{const k=RID.indexOf(o);return k>=0?RG[k][1]:'?'};
+  const cl=cap.slice(0,4).map(t=>'<br><small>• '+esc2(rg(t.new_owner))+' ยึด '+esc2(nm(t))+'</small>').join('')+(cap.length>4?'<br><small>…และอีก '+(cap.length-4)+' ช่อง</small>':'');
+  return '<div class="nw"><b>รอบที่ '+r.round_no+'</b> · '+(a.length?'มีศึก '+a.length+' ช่อง · ยึดได้ '+cap.length+' · ตีไม่ทะลุ '+hold+cl:'<small>ไม่มีศึก</small>')+'</div>'}).join('');
+ paint()}catch(e){console.error(e)}}
+/* ผลทัพของฉัน: deployments (อ่านได้เฉพาะของตัวเอง) + round_tile_results (อ่านได้หลังเปิดผล) */
+async function mine(){const box=$('mine');if(!box||me<0)return;
+ const {data:d,error}=await sb.from('deployments').select('round_id,province_code,troops').order('id',{ascending:false}).limit(40);
+ if(error||!d)return;
+ const ids=[...new Set(d.map(x=>x.round_id))],rs={},rt={};
+ if(ids.length){const [a,b]=await Promise.all([sb.from('rounds').select('id,round_no,status,resolve_at').in('id',ids),sb.from('round_tile_results').select('round_id,province_code,prev_owner,new_owner,region_totals').in('round_id',ids)]);
+  (a.data||[]).forEach(r=>rs[r.id]=r);(b.data||[]).forEach(r=>rt[r.round_id+'_'+r.province_code]=r)}
+ const g={};d.forEach(x=>{const k=x.round_id+'_'+x.province_code;(g[k]=g[k]||{r:rs[x.round_id],p:x.province_code,n:0,k}).n+=x.troops});
+ const mid=RID[me],rows=Object.values(g).filter(x=>x.r&&IDX[x.p]!=null).sort((a,b)=>b.r.round_no-a.r.round_no).slice(0,8);
+ const line=x=>{const r=x.r,nm=T[IDX[x.p]].n,h='<div style="margin:7px 0;font-size:13px"><b>'+nm+'</b> ส่ง '+x.n+' · รอบที่ '+r.round_no+'<br>';
+  if(r.status!=='revealed')return h+'<small>'+ic('clock')+' รอผล · ตัดสิน '+hm(r.resolve_at)+' น.</small></div>';
+  const t=rt[x.k];if(!t)return h+'<small>ไม่มีบันทึกผลของช่องนี้</small></div>';
+  const o=t.region_totals||{},my=o[mid],df=o.defense,rl=o.rain_level|0,ex=(my!=null&&df!=null?' (แรงรวมภาคเรา '+Math.round(my)+' · ป้องกัน '+Math.round(df)+')':'')+(rl?' · ฝนลดแรงบุก':'');
+  if(t.new_owner===mid&&t.prev_owner!==mid)return h+'<small>'+ic('flag')+' ภาคเรายึดได้'+ex+'</small></div>';
+  if(t.new_owner!==t.prev_owner)return h+'<small>ภาคอื่นยึดช่องนี้ไป'+ex+'</small></div>';
+  return h+'<small>'+ic('shield')+' ตีไม่ทะลุ ช่องไม่เปลี่ยนมือ'+ex+'</small></div>'};
+ try{const nr=rows.find(x=>x.r.status==='revealed'&&rt[x.k]);if(nr){const t=rt[nr.k],kk=nr.k;let seen=null;try{seen=localStorage.getItem('mw_seen')}catch(e){}
+  if(seen!==kk){try{localStorage.setItem('mw_seen',kk)}catch(e){}
+   const win=t.new_owner===mid&&t.prev_owner!==mid;toast('ผลทัพ '+T[IDX[nr.p]].n+' (รอบ '+nr.r.round_no+'): '+(win?'ภาคเรายึดได้':t.new_owner!==t.prev_owner?'ภาคอื่นยึดไป':'ตีไม่ทะลุ'),win?'flag':'shield')}}}catch(e){}
+ box.innerHTML='<b>'+ic('swords')+' ผลทัพของฉัน</b>'+(rows.length?rows.map(line).join(''):'<br><small>ยังไม่เคยส่งทัพ</small>')+'<div style="margin-top:8px"><a class="pc" href="learn.html" style="color:var(--gold);text-decoration:none">'+ic('search')+' สอนเล่น</a>'+(G.prof&&!G.prof.tutorial_done_at?' <small>ยังไม่ได้เรียน</small>':'')+'</div>'}
 async function send1(){const i=sel,p=G.pv;if(G.busy||!p||p.blocked||G.n<1)return;G.busy=true;$('ok').disabled=true;
- const {data,error}=await sb.rpc('send_troops_v2',{p_province:T[i].code,p_troops:G.n,p_offset:G.off});G.busy=false;
+ const {data,error}=await sb.rpc('send_troops_v2',{p_province:T[i].code,p_troops:G.n,p_offset:G.off,p_units:pUnits()});G.busy=false;
  if(error){toast(error.message,'warn');sched();return}
  const x=T[i];navigator.vibrate&&navigator.vibrate(25);fly(origin(me,x.c),x.c,col(me),Math.min(8,Math.ceil(G.n/10)));ring(x.c,col(me));
  toast(`ส่ง ${G.n} ไป${x.n} ถึงรอบที่ ${data.arrive_round_no}`,'swords');await load();shut()}
 $('up').onclick=async()=>{const {error}=await sb.rpc('upgrade_village');if(error)return toast(error.message,'warn');await load();toast('หมู่บ้านเลื่อนเป็นระดับ '+lv,'flag')};
 (async()=>{try{
  const {data:{session}}=await sb.auth.getSession();if(!session)return location.replace('index.html');
- const {data:p}=await sb.from('profiles').select('username,avatar_key,region_id,home_province').eq('id',session.user.id).maybeSingle();if(!p)return location.replace('index.html');
- G.prof=p;touch();const [u,c,l]=await Promise.all([sb.from('unit_types').select('id,name_th'),sb.from('game_config').select('key,value').in('key',['starter_troops','stock_cap_hours','advance_rounds','rain_attacker_penalty_pct_per_level','v2_supply_range','v2_supply_per_hop','v2_supply_decay_pct']),sb.from('village_levels').select('level,upgrade_cost,troops_per_hour')]);
+ const {data:p}=await sb.from('profiles').select('username,avatar_key,region_id,home_province,tutorial_done_at').eq('id',session.user.id).maybeSingle();if(!p)return location.replace('index.html');
+ G.prof=p;touch();const [u,c,l]=await Promise.all([sb.from('unit_types').select('id,name_th,speed,atk_mult'),sb.from('game_config').select('key,value').in('key',['starter_troops','stock_cap_hours','advance_rounds','rain_attacker_penalty_pct_per_level','v2_supply_range','v2_supply_per_hop','v2_supply_decay_pct']),sb.from('village_levels').select('level,upgrade_cost,troops_per_hour')]);
  (u.data||[]).forEach(x=>G.units[x.id]=x);(c.data||[]).forEach(x=>G.cfg[x.key]=Number(x.value));(l.data||[]).forEach(x=>G.lv[x.level]=x);rlLegend();
  go(Math.max(0,RID.indexOf(p.region_id)));await load();live();setInterval(live,500);setInterval(()=>{if(!document.hidden&&!$('sh').classList.contains('open'))load()},15000)
 }catch(e){console.error(e)}document.body.style.visibility=''})();
