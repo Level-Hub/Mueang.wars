@@ -87,13 +87,42 @@ footer{padding:26px 0 44px;text-align:center;color:var(--mu);font-size:.82rem}fo
 @media(min-width:760px){.rg{grid-template-columns:repeat(2,1fr)}.st{grid-template-columns:repeat(3,1fr)}.live{grid-template-columns:auto 1fr;align-items:center;gap:28px}}
 @media(min-width:960px){.rg{grid-template-columns:repeat(4,1fr)}.mg{grid-template-columns:1.05fr 1fr}.rc{min-height:340px}.rail{margin-inline:0;padding-inline:2px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* signup / login sheet (M3 step 1) */
+.sh{position:fixed;inset:0;z-index:50;background:rgba(10,1,7,.8);display:flex;align-items:flex-end;justify-content:center}.sh[hidden]{display:none}
+.sb{position:relative;width:min(520px,100%);max-height:94dvh;overflow:auto;padding:22px 18px calc(22px + env(safe-area-inset-bottom,0px));border-radius:26px 26px 0 0}
+@media(min-width:760px){.sh{align-items:center}.sb{border-radius:26px}}
+.sb h2{font-size:1.6rem;padding-right:44px}.sb .sub{margin:4px 0 14px}
+.x{position:absolute;top:10px;right:10px;width:44px;height:44px;border-radius:14px;border:1px solid var(--ln);background:rgba(255,255,255,.1);color:#fff;font-size:1.1rem;cursor:pointer}
+.dots{display:flex;gap:6px;margin:0 0 12px}.dots i{height:5px;flex:1;border-radius:3px;background:rgba(255,255,255,.18)}.dots i.on{background:var(--gold)}
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.rs{min-height:64px;border-radius:16px;border:2px solid var(--k);background:linear-gradient(160deg,rgba(255,255,255,.1),transparent);color:#fff;font:700 1.05rem Kanit;cursor:pointer;display:grid;place-items:center;padding:6px}
+.rs small{display:block;font:400 .72rem 'Noto Sans Thai';color:var(--mu)}
+.rs[aria-pressed=true]{background:var(--k);color:#1a0310}.rs[aria-pressed=true] small{color:#3a0a16}
+.lb{display:grid;gap:5px;font-size:.9rem;color:var(--mu);margin-top:12px}
+.in{width:100%;min-height:50px;border-radius:14px;border:1px solid var(--ln);background:rgba(0,0,0,.35);color:#fff;padding:0 14px;font:16px 'Noto Sans Thai',sans-serif}
+.in:disabled{opacity:.5}select.in option{color:#000}
+.hint{font-size:.78rem;color:var(--mu)}
+.err{color:#ff9a9a;min-height:1.4em;margin-top:10px;font-size:.92rem}
+.nv{display:flex;gap:10px;margin-top:14px}.nv .btn{flex:1;min-height:50px;padding:0 14px}
+.tm2{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:.88rem;color:var(--mu)}.tm2 input{width:22px;height:22px;flex:none;margin-top:2px;accent-color:#ffc857}
+.ap{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:6px 0}
+.ab{background:none;border:0;padding:4px;border-radius:50%;cursor:pointer}
+.av{--s:40px;width:var(--s);height:var(--s);border-radius:50%;border:3px solid var(--k);background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.4),var(--k));display:inline-grid;place-items:center;position:relative;overflow:hidden;flex:none;vertical-align:middle}
+.av::before{content:attr(data-n);font:800 1.1em Kanit;color:#1a0310}
+.av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ab .av{--s:100%;height:auto;aspect-ratio:1}
+.ab[aria-pressed=true] .av{box-shadow:0 0 0 3px #1a0310,0 0 0 6px var(--gold)}
+.av.lg{--s:96px;font-size:1.6rem}.av.sm{--s:26px;font-size:.7rem;border-width:2px}
+nav .btn .av{margin-right:8px}
+.mec{display:flex;gap:14px;align-items:center;margin-bottom:12px}.mec h3{font-size:1.25rem}.mec p{color:var(--mu);font-size:.9rem}
+#ts{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:60;max-width:min(92vw,420px);padding:12px 18px;border-radius:16px;background:#2b0613;border:1px solid var(--gold);color:#fff;font-size:.92rem;text-align:center}#ts[hidden]{display:none}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <radialGradient id="gl"><stop offset="0" stop-color="#ffc857" stop-opacity=".5"/><stop offset="1" stop-color="#ffc857" stop-opacity="0"/></radialGradient>
 <g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g></defs></svg>
 
 <header class="hero" id="top"><div class="w">
-<nav><a class="logo" href="#top"><svg viewBox="0 0 120 120"><use href="#mk"/></svg><span>MUEANG</span><b>WARS</b></a><a class="btn gh" href="#" data-a="login">เข้าสู่ระบบ</a></nav>
+<nav><a class="logo" href="#top"><svg viewBox="0 0 120 120"><use href="#mk"/></svg><span>MUEANG</span><b>WARS</b></a><a class="btn gh" href="#" id="nb" data-a="login">เข้าสู่ระบบ</a></nav>
 <svg class="emb" viewBox="0 0 140 192" role="img" aria-label="ตรา MUEANG WARS"><path d="M70 2L136 24V150L70 190L4 150V24Z" fill="#1a0310" stroke="#ffe08a" stroke-width="3" stroke-linejoin="round"/><circle cx="70" cy="92" r="54" fill="url(#gl)"/><g transform="translate(10 32)"><use href="#mk"/></g></svg>
 <h1>MUEANG<span>WARS</span></h1>
 <p class="lead">ภาคของคุณกำลังถูกรุมยึด ส่งกำลังพลก่อนที่จังหวัดบ้านเกิดจะตกเป็นของคนอื่น</p>
@@ -117,12 +146,15 @@ footer{padding:26px 0 44px;text-align:center;color:var(--mu);font-size:.82rem}fo
 <section id="how"><h2>เล่นยังไง</h2><p class="sub">เข้าวันละไม่กี่นาทีก็สู้ได้</p><div class="st">
 <div class="pn s" data-n="1"><div><h3>สะสมกำลังพล</h3><p>หมู่บ้านผลิตกำลังพลให้ตลอดเวลา สะสมได้สูงสุด 8 ชั่วโมง</p></div></div>
 <div class="pn s" data-n="2"><div><h3>ส่งไปยึดช่อง</h3><p>เลือกจังหวัดของภาคอื่น วางกำลังพลล่วงหน้าได้ไม่เกิน 3 รอบ</p></div></div>
-<div class="pn s" data-n="3"><div><h3>รอผลทุก 15 นาที</h3><p>ใครส่งมากกว่าชนะ ฝนทำให้ผู้บุกอ่อนลง ช่องที่เพิ่งยึดมีโล่ป้องกัน</p></div></div></div></section>
+<div class="pn s" data-n="3"><div><h3>รอผลทุก 15 นาที</h3><p>ใครส่งมากกว่าชนะ ฝนจริงที่จังหวัดเป้าหมายทำให้ผู้บุกอ่อนลง 10–30% ดูพยากรณ์ก่อนส่งได้ ช่องที่เพิ่งยึดมีโล่ป้องกัน</p></div></div></div></section>
 
 <section><div class="fin"><h2>ซีซัน 8 กำลังชิงเมืองอยู่ตอนนี้</h2><p>17 – 31 ต.ค. 2026 · 952 รอบ ทุก 15 นาที เลือกภาค แล้วเข้าสนามได้เลย</p><a class="btn gl" href="#" data-a="register">สมัครเข้าสนามรบ</a></div></section>
 </main>
-<footer><svg viewBox="0 0 120 120"><use href="#mk"/></svg>© 2026 MUEANG WARS · ราคาและไอเทมในเกมไม่ใช่เงินจริง</footer>
+<footer><svg viewBox="0 0 120 120"><use href="#mk"/></svg>© 2026 MUEANG WARS · ราคาและไอเทมในเกมไม่ใช่เงินจริง · ข้อมูลอากาศจาก <a href="https://www.met.no/en" target="_blank" rel="noopener" style="color:inherit">MET Norway</a> (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color:inherit">CC BY 4.0</a>)</footer>
 
+<div class="sh" id="sh" hidden><div class="pn sb" role="dialog" aria-modal="true" aria-labelledby="stt"><button class="x" id="sx" aria-label="ปิด" type="button">✕</button><div id="sc"></div></div></div>
+<div id="ts" role="status" hidden></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
 const $=i=>document.getElementById(i),pad=n=>String(n).padStart(2,'0');
 // province data from the demo: [code, name, region 0 north/1 isan/2 central/3 south, cx, cy, svg path]
@@ -131,7 +163,7 @@ const RG=[['ภาคเหนือ','ป้อมสูง ตั้งรั�
 const cnt=[0,0,0,0];PD.forEach(p=>cnt[p[2]]++);
 $('mw').innerHTML='<svg viewBox="0 0 460 780" role="img" aria-label="แผนที่ประเทศไทย 77 จังหวัด">'+PD.map((p,i)=>'<path class="p r'+p[2]+'" data-i="'+i+'" d="'+p[5]+'"/>').join('')+'</svg>';
 $('chips').innerHTML=RG.map((r,k)=>'<div class="chip" style="--k:var(--c'+k+')"><b>'+cnt[k]+'</b><span>'+r[0]+'</span></div>').join('');
-$('rg').innerHTML=RG.map((r,k)=>'<article class="rc" style="--k:var(--c'+k+');--x:'+r[2]+'"><em>'+cnt[k]+' จังหวัด</em><h3>'+r[0]+'</h3><p>'+r[1]+'</p><a class="btn" href="#" data-a="register">เลือกภาคนี้</a></article>').join('');
+$('rg').innerHTML=RG.map((r,k)=>'<article class="rc" style="--k:var(--c'+k+');--x:'+r[2]+'"><em>'+cnt[k]+' จังหวัด</em><h3>'+r[0]+'</h3><p>'+r[1]+'</p><a class="btn" href="#" data-a="register" data-r="'+k+'">เลือกภาคนี้</a></article>').join('');
 let sel;$('mw').addEventListener('click',e=>{const t=e.target.closest('.p');if(!t)return;sel&&sel.classList.remove('s');sel=t;t.classList.add('s');const p=PD[t.dataset.i];
  $('info').innerHTML='<b style="color:var(--c'+p[2]+')">'+p[1]+'</b><p class="sub" style="margin:2px 0 0">'+RG[p[2]][0]+' · '+RG[p[2]][1]+'</p>'});
 const ps=[...document.querySelectorAll('.p')],fd=$('feed');
@@ -155,5 +187,123 @@ function tick(){const now=Date.now(),b=new Date(now+H7),h=b.getUTCHours(),m=b.ge
   $('cd').firstChild.nodeValue=pad(Math.floor(L/3600))+':'+pad(Math.floor(L%3600/60))+':'+pad(L%60);$('cl').textContent='ถึงเปิดสนาม';
   $('fill').style.width='100%';$('ph').textContent='หมู่บ้านยังผลิตกำลังพลต่อในช่วงพัก'}}
 tick();setInterval(tick,1000);
-document.querySelectorAll('[data-a]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();console.log('TODO action:',a.dataset.a)}));
+/* ===== M3 step 1: auth + avatar (Supabase) ===== */
+const SB_URL='https://tncbzfgdfxjrgrdgmzya.supabase.co',SB_KEY='sb_publishable_xrwJKdhhgt6i_I4pDvI79A_gucUyuVx';
+const sb=window.supabase?window.supabase.createClient(SB_URL,SB_KEY):null;
+const RID=['north','northeast','central','south'],PFX=['n','e','m','s'],TERMS='draft-1';
+let me=null;
+const reg={r:-1,p:0,a:'',step:1,ses:false,f:{u:'',e:'',pw:'',pw2:'',by:'',tm:false}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const shE=$('sh'),scE=$('sc');
+function toast(t){const e=$('ts');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,3500)}
+function openSh(h){scE.innerHTML=h;shE.hidden=false;document.body.style.overflow='hidden';const f=scE.querySelector('input,select,button');f&&f.focus({preventScroll:true})}
+function closeSh(){shE.hidden=true;document.body.style.overflow=''}
+$('sx').addEventListener('click',closeSh);shE.addEventListener('click',e=>{if(e.target===shE)closeSh()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!shE.hidden)closeSh()});
+function av(key,cls){const k=Math.max(0,PFX.indexOf(key[0]));return '<span class="av '+(cls||'')+'" style="--k:var(--c'+k+')" data-n="'+esc(key[1])+'"><img src="img/'+esc(key)+'.webp" alt="" loading="lazy" onerror="this.remove()"></span>'}
+function avPicker(r,sel){let h='<div class="ap">';for(let i=1;i<=5;i++){const k=PFX[r]+i;h+='<button type="button" class="ab" data-k="'+k+'" aria-pressed="'+(k===sel)+'" aria-label="อวตาร '+i+'">'+av(k)+'</button>'}return h+'</div>'}
+function nowYear(){return new Date(Date.now()+7*36e5).getUTCFullYear()}
+function byear(v){v=parseInt(v,10);if(!v)return 0;return v>=2400?v-543:v}
+function netErr(m){m=String(m||'');
+ if(/already registered|already been registered/i.test(m))return 'อีเมลนี้สมัครไว้แล้ว ลองเข้าสู่ระบบแทน';
+ if(/invalid login/i.test(m))return 'อีเมลหรือรหัสผ่านไม่ถูก';
+ if(/password/i.test(m)&&/least|short|weak/i.test(m))return 'รหัสผ่านสั้นหรืออ่อนเกินไป';
+ if(/rate limit|too many|seconds/i.test(m))return 'ลองบ่อยเกินไป รอสักครู่แล้วลองใหม่';
+ if(/invalid.*email|email.*invalid/i.test(m))return 'รูปแบบอีเมลไม่ถูกต้อง';
+ if(/fetch|network/i.test(m))return 'เชื่อมต่ออินเทอร์เน็ตไม่ได้';
+ return m||'มีบางอย่างผิดพลาด ลองใหม่อีกครั้ง'}
+async function loadMe(){me=null;if(!sb)return false;
+ const {data:{session}}=await sb.auth.getSession();if(!session)return false;
+ const {data}=await sb.from('profiles').select('username,avatar_key,region_id,home_province').eq('id',session.user.id).maybeSingle();
+ me=data||null;return true}
+function updNav(){const b=$('nb');if(!b)return;b.innerHTML=me?av(me.avatar_key,'sm')+esc(me.username):'เข้าสู่ระบบ';b.dataset.a=me?'me':'login'}
+function dots(n){return '<div class="dots" aria-hidden="true">'+[1,2,3].map(i=>'<i class="'+(i<=n?'on':'')+'"></i>').join('')+'</div>'}
+function saveF(){const q=i=>scE.querySelector('#'+i);if(!q('f_u'))return;const f=reg.f;f.u=q('f_u').value;if(q('f_e'))f.e=q('f_e').value;if(q('f_p'))f.pw=q('f_p').value;if(q('f_p2'))f.pw2=q('f_p2').value;f.by=q('f_b').value;f.tm=q('f_t').checked}
+function renderReg(){const s=reg.step;let h='';
+ if(s===1){
+  const cnt=[0,0,0,0];PD.forEach(p=>cnt[p[2]]++);
+  h='<h2 id="stt">เลือกภาคและบ้านเกิด</h2>'+dots(1)+'<p class="sub">จังหวัดบ้านเกิดของคุณกำหนดว่าคุณอยู่ทีมภาคไหน</p><div class="rp">'+
+   RG.map((r,k)=>'<button type="button" class="rs" style="--k:var(--c'+k+')" data-r="'+k+'" aria-pressed="'+(reg.r===k)+'">'+r[0]+'<small>'+cnt[k]+' จังหวัด</small></button>').join('')+'</div>'+
+   '<label class="lb">จังหวัดบ้านเกิด<select class="in" id="pv"'+(reg.r<0?' disabled':'')+'><option value="0">'+(reg.r<0?'เลือกภาคก่อน':'เลือกจังหวัด')+'</option>'+
+   (reg.r<0?'':PD.filter(p=>p[2]===reg.r).sort((a,b)=>a[1].localeCompare(b[1],'th')).map(p=>'<option value="'+p[0]+'"'+(reg.p===p[0]?' selected':'')+'>'+esc(p[1])+'</option>').join(''))+'</select></label>'+
+   '<div class="err" id="er" role="alert"></div><div class="nv"><button type="button" class="btn gl" id="nx">ต่อไป</button></div>'}
+ else if(s===2){
+  h='<h2 id="stt">เลือกอวตาร</h2>'+dots(2)+'<p class="sub">อวตารของ'+RG[reg.r][0]+' เลือกได้ 1 ใน 5 เปลี่ยนทีหลังได้</p>'+avPicker(reg.r,reg.a)+
+   '<div class="err" id="er" role="alert"></div><div class="nv"><button type="button" class="btn gh" id="bk2">ย้อนกลับ</button><button type="button" class="btn gl" id="nx">ต่อไป</button></div>'}
+ else{const f=reg.f;
+  h='<h2 id="stt">ตั้งชื่อและบัญชี</h2>'+dots(3)+
+   (reg.ses?'<p class="sub">บัญชีสร้างไว้แล้ว เหลือแค่ตั้งชื่อผู้เล่น</p>':'')+
+   '<label class="lb">ชื่อผู้เล่น<input class="in" id="f_u" autocomplete="username" maxlength="20" value="'+esc(f.u)+'"><span class="hint">3–20 ตัว ใช้ ก-ฮ สระ A-Z ตัวเลข และ _ ได้</span></label>'+
+   (reg.ses?'':'<label class="lb">อีเมล<input class="in" id="f_e" type="email" autocomplete="email" inputmode="email" value="'+esc(f.e)+'"></label>'+
+   '<label class="lb">รหัสผ่าน<input class="in" id="f_p" type="password" autocomplete="new-password" value="'+esc(f.pw)+'"><span class="hint">อย่างน้อย 8 ตัว</span></label>'+
+   '<label class="lb">ยืนยันรหัสผ่าน<input class="in" id="f_p2" type="password" autocomplete="new-password" value="'+esc(f.pw2)+'"></label>')+
+   '<label class="lb">ปีเกิด (พ.ศ. หรือ ค.ศ. ก็ได้)<input class="in" id="f_b" inputmode="numeric" maxlength="4" value="'+esc(f.by)+'"><span class="hint" id="by_h"></span></label>'+
+   '<label class="tm2"><input type="checkbox" id="f_t"'+(f.tm?' checked':'')+'><span>ฉันยอมรับข้อกำหนดการใช้งาน (ฉบับร่าง) และเข้าใจว่าเพชรและไอเทมในเกมไม่ใช่เงินจริง</span></label>'+
+   '<div class="err" id="er" role="alert"></div><div class="nv"><button type="button" class="btn gh" id="bk3">ย้อนกลับ</button><button type="button" class="btn gl" id="go">สมัคร</button></div>'}
+ openSh(h);if(s===3)byHint()}
+function byHint(){const e=$('by_h'),v=byear($('f_b').value);if(e)e.textContent=v?'= ค.ศ. '+v:''}
+function er(t){const e=$('er');if(e)e.textContent=t||''}
+async function startReg(r){if(!sb){toast('ยังเชื่อมต่อระบบไม่ได้ ลองรีเฟรชหน้า');return}
+ const had=await loadMe();updNav();if(me){openMe();return}
+ Object.assign(reg,{r:r,p:0,a:'',step:1,ses:had,f:{u:'',e:'',pw:'',pw2:'',by:'',tm:false}});renderReg()}
+function openLogin(){if(!sb){toast('ยังเชื่อมต่อระบบไม่ได้ ลองรีเฟรชหน้า');return}
+ openSh('<h2 id="stt">เข้าสู่ระบบ</h2><label class="lb">อีเมล<input class="in" id="l_e" type="email" autocomplete="email" inputmode="email"></label><label class="lb">รหัสผ่าน<input class="in" id="l_p" type="password" autocomplete="current-password"></label><div class="err" id="er" role="alert"></div><div class="nv"><button type="button" class="btn gl" id="lg">เข้าสู่ระบบ</button></div><p class="hint" style="margin-top:14px;text-align:center">ยังไม่มีบัญชี? <a href="#" data-a="register" style="color:var(--gold);text-decoration:underline">สมัครเลย</a></p>')}
+function openMe(){const r=Math.max(0,RID.indexOf(me.region_id)),pv=PD.find(p=>p[0]===me.home_province);
+ openSh('<h2 id="stt">โปรไฟล์ของคุณ</h2><div class="mec">'+av(me.avatar_key,'lg')+'<div><h3>'+esc(me.username)+'</h3><p>'+RG[r][0]+(pv?' · '+esc(pv[1]):'')+'</p></div></div><p class="sub" style="margin-bottom:6px">เปลี่ยนอวตาร (เฉพาะของภาคตัวเอง)</p>'+avPicker(r,me.avatar_key)+'<div class="err" id="er" role="alert"></div><div class="nv"><a class="btn gl" href="play.html" style="display:grid;place-items:center;text-decoration:none">เข้าสนามรบ</a><button type="button" class="btn gh" id="lo">ออกจากระบบ</button></div>')}
+async function doSubmit(){saveF();const f=reg.f,btn=$('go');
+ if(!/^[A-Za-z0-9_ก-๙]{3,20}$/.test(f.u))return er('ชื่อผู้เล่นต้องยาว 3–20 ตัว ใช้ ก-ฮ สระ A-Z ตัวเลข และ _ เท่านั้น');
+ if(!reg.ses){
+  if(!/^\S+@\S+\.\S+$/.test(f.e.trim()))return er('กรอกอีเมลให้ถูกต้อง');
+  if(f.pw.length<8)return er('รหัสผ่านต้องยาวอย่างน้อย 8 ตัว');
+  if(f.pw!==f.pw2)return er('รหัสผ่านสองช่องไม่ตรงกัน')}
+ const y=byear(f.by);if(!y||y<1930||y>nowYear())return er('ปีเกิดไม่ถูกต้อง');
+ if(!f.tm)return er('ต้องติ๊กยอมรับข้อกำหนดก่อน');
+ er('');btn.disabled=true;btn.textContent='กำลังสมัคร…';
+ try{
+  if(!reg.ses){
+   const {data,error}=await sb.auth.signUp({email:f.e.trim(),password:f.pw});
+   if(error)throw error;
+   if(!data.session){er('ระบบต้องยืนยันอีเมลก่อน เปิดอีเมลกดลิงก์ แล้วกลับมาเข้าสู่ระบบ');btn.disabled=false;btn.textContent='สมัคร';return}
+   reg.ses=true}
+  const {error}=await sb.rpc('register_profile',{p_username:f.u,p_home_province:reg.p,p_birth_year:y,p_terms_version:TERMS,p_avatar_key:reg.a});
+  if(error)throw error;
+  await loadMe();updNav();
+  const r=Math.max(0,RID.indexOf(me?me.region_id:RID[reg.r]));
+  openSh('<h2 id="stt">ยินดีต้อนรับสู่สนามรบ</h2><div class="mec" style="margin-top:14px">'+av(me?me.avatar_key:reg.a,'lg')+'<div><h3>'+esc(me?me.username:f.u)+'</h3><p>ทีม'+RG[r][0]+'</p></div></div><p class="sub">สมัครเรียบร้อย พร้อมเข้าสนามรบแล้ว</p><div class="nv"><button type="button" class="btn gl" id="dn">เข้าสนามรบ</button></div>')
+ }catch(x){
+  renderReg2(netErr(x.message))}}
+function renderReg2(msg){reg.step=3;renderReg();er(msg)}
+document.addEventListener('click',async e=>{const t=e.target;
+ const a=t.closest('[data-a]');
+ if(a){e.preventDefault();const k=a.dataset.a;
+  if(k==='register'){if(me)location.href='play.html';else startReg(a.dataset.r!==undefined?+a.dataset.r:-1)}
+  else if(k==='login'){openLogin()}else if(k==='me'){me?openMe():openLogin()}return}
+ if(shE.hidden||!shE.contains(t))return;
+ const rs=t.closest('.rs');if(rs){reg.r=+rs.dataset.r;reg.p=0;reg.a='';renderReg();return}
+ const ab=t.closest('.ab');
+ if(ab){const k=ab.dataset.k;
+  if(me&&scE.querySelector('.mec')){
+   const {data,error}=await sb.rpc('set_avatar',{p_avatar_key:k});
+   if(error){er(netErr(error.message));return}
+   me.avatar_key=data||k;updNav();openMe();toast('เปลี่ยนอวตารแล้ว');return}
+  reg.a=k;scE.querySelectorAll('.ab').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===k));return}
+ const id=t.id;
+ if(id==='nx'){
+  if(reg.step===1){const v=+($('pv')||{}).value;if(reg.r<0)return er('เลือกภาคก่อน');if(!v)return er('เลือกจังหวัดบ้านเกิด');reg.p=v;reg.step=2;renderReg()}
+  else if(reg.step===2){if(!reg.a)return er('แตะเลือกอวตารก่อน');reg.step=3;renderReg()}}
+ else if(id==='bk2'){reg.step=1;renderReg()}
+ else if(id==='bk3'){saveF();reg.step=2;renderReg()}
+ else if(id==='go'){doSubmit()}
+ else if(id==='dn'){location.href='play.html'}
+ else if(id==='lg'){const em=$('l_e').value.trim(),pw=$('l_p').value;if(!em||!pw)return er('กรอกอีเมลและรหัสผ่าน');
+  t.disabled=true;er('');
+  const {error}=await sb.auth.signInWithPassword({email:em,password:pw});
+  t.disabled=false;if(error)return er(netErr(error.message));
+  await loadMe();updNav();
+  if(me){location.href='play.html'}else{startReg(-1)}}
+ else if(id==='lo'){await sb.auth.signOut();me=null;updNav();closeSh();toast('ออกจากระบบแล้ว')}});
+document.addEventListener('input',e=>{if(e.target.id==='f_b')byHint()});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&!shE.hidden&&e.target.tagName==='INPUT'&&e.target.type!=='checkbox'){const b=scE.querySelector('#go,#lg,#nx');b&&b.click()}});
+if(sb){loadMe().then(updNav);sb.auth.onAuthStateChange(()=>setTimeout(()=>loadMe().then(updNav),0))}
+
 </script></body></html>
