@@ -61,6 +61,7 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
 .rank.rk-ad{padding:2px 12px;background:linear-gradient(180deg,#eef2fa,#b9c4d6 55%,#8793a8);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 2px 0 #3d4658}
 .ttl{display:block;margin-top:5px;color:var(--gold2);font:600 .82rem Kanit,sans-serif;letter-spacing:.05em}
 .pn.adm{border-color:rgba(255,200,87,.55)}
+#wl[hidden]{display:none}.wr{display:flex;align-items:center;gap:10px;margin:2px 0 12px;font:800 1.9rem/1 Kanit,sans-serif;color:#ffe08a;text-shadow:0 2px 0 rgba(90,0,15,.7)}.wr small{font:600 .95rem Kanit,sans-serif;color:var(--mu);text-shadow:none}
 .gd{background:linear-gradient(180deg,#ffe9a6,#ffc857 46%,#d98c12 50%,#f0b030);color:#2b0613;text-shadow:0 1px 0 rgba(255,255,255,.55);box-shadow:inset 0 2px 0 rgba(255,255,255,.75),0 5px 0 #7a3d05,0 12px 22px rgba(255,200,87,.3)}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head><body>
@@ -78,6 +79,7 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
   <p class="hint" id="nh"></p><div class="err" id="ner" role="alert"></div>
   <button class="btn gl" id="rn" type="button">บันทึกชื่อ</button></section>
  <section class="pn"><h2>เปลี่ยนอวตาร</h2><p class="sub">เลือกได้เฉพาะของภาคตัวเอง</p><div id="avp"></div><div class="err" id="aer" role="alert"></div></section>
+ <section class="pn" id="wl" hidden><h2>กระเป๋า</h2><div class="wr"><svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#ffc857" stroke="#7a3d05" stroke-width="1.8"/><circle cx="12" cy="12" r="6.2" fill="none" stroke="#b8700b" stroke-width="1.8"/></svg><b id="wc">0</b><small>เหรียญ</small></div><a class="btn gh" href="collection.html" style="width:100%">ใช้เหรียญเปิดหีบ</a></section>
  <section class="pn"><h2>คอลเลกชัน</h2><p class="sub">เก็บไอเทมประจำจังหวัด เปิดหีบ และดูคลังของคุณ</p><a class="btn gl" id="cl" href="collection.html" style="width:100%">เปิดคอลเลกชัน</a></section>
  <section class="pn"><h2>ติดต่อแอดมิน</h2><p class="sub">ขอลบบัญชี ขอสำเนาข้อมูล เติมเงินหรือคืนเงิน แจ้งผู้เล่นที่ไม่เหมาะสม หรืออุทธรณ์การระงับบัญชี</p><a class="btn gl" id="sp" href="support.html" style="width:100%">เปิดแชทแอดมิน</a></section>
  <div class="act"><a class="btn gh" href="play.html">กลับสนามรบ</a><button class="btn gh" id="lo" type="button">ออกจากระบบ</button></div>
@@ -110,6 +112,9 @@ function paint(){const r=Math.max(0,RID.indexOf(S.region_id));$('app').style.set
  $('nh').textContent=w?'เปลี่ยนชื่อได้อีกครั้ง '+fDT(w):'ชื่อ 3–20 ตัว ใช้ ก-ฮ A-Z ตัวเลข _ ไม่มีช่องว่าง · เปลี่ยนแล้วต้องรอ '+S.rename_cooldown_days+' วันถึงเปลี่ยนได้อีก';
  if(!$('nm').value)$('nm').placeholder=S.username;
  let h='<div class="ap">';for(let i=1;i<=5;i++){const k=PFX[r]+i;h+='<button type="button" class="ab" data-k="'+k+'" aria-pressed="'+(k===S.avatar_key)+'" aria-label="อวตาร '+i+'">'+av(k)+'</button>'}$('avp').innerHTML=h+'</div>'}
+/* ยอดเหรียญ: ดึงสดทุกครั้งที่เปิดหน้า ไม่เก็บค่าไว้ในเครื่อง ถ้าโหลดไม่ได้ให้ซ่อนการ์ดเงียบ ๆ */
+function wallet(){sb.rpc('get_my_wallet').then(r=>{const d=r&&!r.error?(Array.isArray(r.data)?r.data[0]:r.data):null,c=d&&Number(d.coins);
+  if(c==null||isNaN(c)){$('wl').hidden=true;return}$('wc').textContent=nf(c);$('wl').hidden=false},()=>{$('wl').hidden=true})}
 function admPaint(){const b=$('admc');
  if(!ADM){b.innerHTML='';return}
  b.innerHTML='<section class="pn adm"><h2>ห้องบัญชาการ</h2><p class="sub">ตอบแชทผู้เล่นและจัดการหลังบ้าน เห็นเฉพาะแอดมิน</p><a class="btn gd" id="adl" href="admin.html" style="width:100%">เปิดหน้าแอดมิน</a></section>';
@@ -119,7 +124,7 @@ async function load(){
  const {data:{session}}=await sb.auth.getSession();if(!session)return location.replace('index.html');
  const [{data,error},adm]=await Promise.all([sb.rpc('get_my_stats'),sb.rpc('get_my_staff_role').then(r=>(r&&!r.error&&r.data)||null,()=>null)]);ADM=adm;
  if(error){if(/ไม่พบโปรไฟล์/.test(error.message))return location.replace('index.html');$('ld').textContent='โหลดไม่สำเร็จ: '+error.message;return}
- S=data;$('ld').hidden=true;$('app').hidden=false;paint();admPaint();
+ S=data;$('ld').hidden=true;$('app').hidden=false;paint();admPaint();wallet();
  sb.rpc('get_support_unread').then(r=>{const n=r&&r.data;if(n>0)$('sp').textContent='เปิดแชทแอดมิน (ข้อความใหม่ '+n+')'},()=>{})}
 $('rn').onclick=async()=>{if(busy)return;const v=$('nm').value.trim(),er=$('ner');er.textContent='';
  if(!/^[A-Za-z0-9_ก-๙]{3,20}$/.test(v))return er.textContent='ชื่อต้องเป็น ก-ฮ/A-Z/ตัวเลข/_ ยาว 3-20 ตัว ไม่มีช่องว่าง';

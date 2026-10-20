@@ -39,14 +39,28 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
 .od{margin:0 0 6px;padding:10px 12px;border-radius:14px;background:rgba(0,0,0,.3);border:1px solid var(--ln);font-size:.86rem}.od div{display:flex;justify-content:space-between;gap:8px;padding:2px 0}
 .pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:6px;margin-top:10px}.pc{padding:6px 8px;border-radius:12px;border:1px solid var(--ln);background:rgba(0,0,0,.28);font-size:.78rem;line-height:1.25}.pc b{display:block;font-size:.85rem}.pc.full{border-color:var(--gold);background:rgba(255,200,87,.14)}.pc.zero{opacity:.55}
 .iv{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px}.it{position:relative;padding:8px;border-radius:16px;border:1px solid var(--ln);background:rgba(0,0,0,.28);text-align:center;font-size:.8rem}.it img{width:100%;aspect-ratio:1;object-fit:contain;border-radius:12px;background:rgba(255,255,255,.06)}.it b{display:block;margin-top:4px;font-size:.85rem;line-height:1.2}.it small{color:var(--mu)}.it i{position:absolute;top:6px;right:8px;font:700 .8rem Kanit;font-style:normal;background:var(--gold);color:#1a0310;border-radius:99px;padding:0 8px}
-#rv{position:fixed;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;background:rgba(10,0,6,.97);padding:20px}#rv[hidden]{display:none}
+#rv,#dg{position:fixed;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;background:rgba(10,0,6,.97);padding:20px}#rv[hidden],#dg[hidden]{display:none}
 .r1{--rc:var(--c0)}.r2{--rc:var(--c3)}.r3{--rc:var(--gold)}
 .ph{position:relative;aspect-ratio:1;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;color:var(--rc,var(--gold));border:2px solid var(--rc,var(--gold));background:color-mix(in srgb,var(--rc,#fff) 20%,#1a0310);font:700 .85rem Kanit}
 .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#2b0613}.ph.ok span{display:none}
 .ph.r3{box-shadow:0 0 14px rgba(255,200,87,.4)}.ph.xs{width:44px;flex:none;font-size:.62rem;border-width:1px;border-radius:10px}
 .dim .ph{filter:brightness(.7) saturate(.5)}.dim>.sb b{color:var(--mu)}
-.sel{display:block;margin:8px 0}.sel span{display:block;color:var(--mu);font-size:.85rem;margin-bottom:4px}
-select{width:100%;min-height:50px;border-radius:16px;border:1px solid var(--ln);background:rgba(0,0,0,.35);color:var(--ink);font:600 16px 'Noto Sans Thai',sans-serif;padding:0 14px}
+.sel{display:block;margin:8px 0}.sel .cap{display:block;color:var(--mu);font-size:.85rem;margin-bottom:4px}
+.dd{position:relative}
+.dd-t{width:100%;min-height:54px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 14px 0 16px;border-radius:16px;border:2px solid var(--k);background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(0,0,0,.28));color:#fff;font:700 1.02rem Kanit,sans-serif;text-align:left;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 4px 0 rgba(0,0,0,.4)}
+.dd-t:active{transform:translateY(3px);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 1px 0 rgba(0,0,0,.4)}
+.dd-t .pl{color:var(--mu);font-weight:500}
+.dd-t .cv{width:24px;height:24px;flex:none;fill:none;stroke:var(--gold);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.dd.on .cv{transform:rotate(180deg)}.dd.on .dd-t{border-color:var(--gold)}
+.dd-l{position:relative;margin-top:10px;max-height:min(264px,40dvh);overflow-y:auto;overscroll-behavior:contain;border-radius:18px;border:1px solid var(--k);background:linear-gradient(180deg,#5d0b1f,#2b0613);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 12px 26px rgba(0,0,0,.55);scrollbar-width:thin;scrollbar-color:var(--gold) transparent;animation:ddin .18s ease-out}
+.dd-l[hidden]{display:none}
+@keyframes ddin{from{opacity:0;transform:translateY(-6px)}}
+.dd-o{position:relative;width:100%;min-height:50px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 16px;border:0;border-bottom:1px solid rgba(255,130,130,.16);background:none;color:#fff;font:500 1rem Kanit,sans-serif;text-align:left;cursor:pointer}
+.dd-o:last-child{border-bottom:0}.dd-o:active{background:rgba(255,255,255,.1)}
+.dd-o svg{width:22px;height:22px;flex:none;fill:none;stroke:var(--gold);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+.dd-o[aria-selected=true]{background:linear-gradient(90deg,rgba(255,200,87,.22),rgba(255,200,87,.05));color:#ffe08a;font-weight:700}
+.dd-o[aria-selected=true]::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:4px;border-radius:0 4px 4px 0;background:var(--k)}
+.dd-o[aria-selected=true] svg{opacity:1}
 .btn.full{width:100%}.ck{padding:10px 0;border-top:1px solid var(--ln)}.ck:first-child{border-top:0}.ck .hint{margin-top:6px}
 .pp{margin:8px 0}.pi,.sc{display:flex;align-items:center;gap:10px;padding:8px 0}.pi+.pi,.sc+.sc{border-top:1px solid var(--ln)}
 .sb{flex:1;min-width:0}.sb b{display:block;line-height:1.25}.sb small{color:var(--mu);font-size:.78rem}
@@ -54,8 +68,12 @@ select{width:100%;min-height:50px;border-radius:16px;border:1px solid var(--ln);
 .sn{font:700 .9rem Kanit;text-align:right;white-space:nowrap}.sn .btn{min-height:40px;padding:0 14px;font-size:.9rem;margin-top:4px}.sn small{display:block;color:var(--mu);font:400 .75rem 'Noto Sans Thai'}
 .tg{color:var(--gold2);font-style:normal;font-size:.78rem}
 .it .ph{border-radius:12px}.it small{display:block}
-#rv{overflow:auto}.rb{width:min(360px,100%);text-align:center;margin:auto}.ch{font-size:5.5rem;line-height:1;animation:shake .9s ease-in-out}.rb .res{display:none}.rb.show .ch{display:none}.rb.show .res{display:block;animation:pop .55s cubic-bezier(.2,1.4,.4,1)}
+#rv,#dg{overflow:auto}.rb{width:min(360px,100%);text-align:center;margin:auto}.ch{font-size:5.5rem;line-height:1;animation:shake .9s ease-in-out}.rb .res{display:none}.rb.show .ch{display:none}.rb.show .res{display:block;animation:pop .55s cubic-bezier(.2,1.4,.4,1)}
 .res>.ph{width:46%;margin:0 auto}.res h2{margin:10px 0 2px}.res p{color:var(--mu);font-size:.9rem;margin-bottom:12px}.rl{text-align:left;margin-bottom:12px}.rl .pi{padding:7px 0}
+.dz{width:100%;min-height:38px;padding:0 10px;margin-top:6px;font-size:.82rem;border-radius:12px}
+.dgb{width:min(360px,100%);text-align:center;margin:auto}.dgb>.ph{width:46%;margin:0 auto}.dgb h2{margin:10px 0 2px}.dgb p{color:var(--mu);font-size:.9rem;margin-bottom:12px}
+.stp{display:flex;align-items:center;justify-content:center;gap:14px;margin:4px 0 12px}.stp .btn{min-height:48px;min-width:58px;padding:0;font-size:1.4rem}.stp b{min-width:52px;font-size:1.7rem;color:var(--gold2)}
+.dgv{margin:0 0 14px;font-size:1.05rem;color:var(--ink)}.dgv b{color:var(--gold2);font-size:1.35rem}
 @keyframes shake{0%,100%{transform:rotate(0)}15%{transform:rotate(-14deg) scale(1.05)}30%{transform:rotate(12deg) scale(1.1)}45%{transform:rotate(-10deg) scale(1.15)}60%{transform:rotate(8deg) scale(1.2)}80%{transform:scale(1.3)}}
 @keyframes pop{0%{transform:scale(.3);opacity:0}100%{transform:scale(1);opacity:1}}
 @media(prefers-reduced-motion:reduce){.ch,.rb.show .res{animation:none}}
@@ -72,11 +90,12 @@ select{width:100%;min-height:50px;border-radius:16px;border:1px solid var(--ln);
   <section class="pn"><h2>หีบของฉัน</h2><p class="sub">หีบให้เศษของไอเทม เก็บเศษให้ครบแล้วกดประกอบ</p><div id="ch"></div></section>
   <section class="pn" id="shs"><h2>เศษของฉัน</h2><div id="sh"></div></section>
   <section class="pn"><h2>คอลเลกชัน</h2><p class="sub" id="cs"></p><div class="pg" id="pg"></div></section>
-  <section class="pn"><h2>คลังของฉัน</h2><div class="iv" id="iv"></div></section>
+  <section class="pn"><h2>คลังของฉัน</h2><p class="sub" id="ivs" hidden></p><div class="iv" id="iv"></div></section>
  </div>
  <div class="act"><a class="btn gh" href="play.html">กลับสนามรบ</a><a class="btn gh" href="profile.html">โปรไฟล์</a></div>
 </main></div>
 <div id="rv" hidden role="dialog" aria-modal="true" aria-label="ผลการเปิดหีบ"><div class="rb" id="rb"><div class="ch" aria-hidden="true"><svg viewBox="0 0 64 64" width="88" height="88" fill="none" stroke="#f0c36b" stroke-width="3" stroke-linejoin="round" aria-hidden="true"><path d="M8 28h48v24a3 3 0 0 1-3 3H11a3 3 0 0 1-3-3z" fill="#6a1520"/><path d="M8 28V18a3 3 0 0 1 3-3h42a3 3 0 0 1 3 3v10z" fill="#8c1d2c"/><path d="M8 28h48"/><rect x="27" y="24" width="10" height="12" rx="2" fill="#f0c36b" stroke="#f0c36b"/></svg></div><div class="res" id="rs"></div></div></div>
+<div id="dg" hidden role="dialog" aria-modal="true" aria-label="ย่อยของซ้ำเป็นเหรียญ"><div class="dgb" id="dc"></div></div>
 <div id="ts" hidden role="status"></div>
 <script>
 const SB_URL='https://tncbzfgdfxjrgrdgmzya.supabase.co',SB_KEY='sb_publishable_xrwJKdhhgt6i_I4pDvI79A_gucUyuVx';
@@ -84,7 +103,8 @@ const sb=window.supabase?window.supabase.createClient(SB_URL,SB_KEY):null;
 const $=i=>document.getElementById(i),nf=n=>Number(n||0).toLocaleString('th-TH');
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function toast(t){const e=$('ts');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,3500)}
-let O=null,PN={},busy=false,OD={},LP=0;
+let O=null,PN={},busy=false,OD={},LP=0,DR=null,DZ=null;
+const CK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',CV='<svg class="cv" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
 try{LP=+localStorage.getItem('mw_prov')||0}catch(e){}
 const RN={'1':'สามัญ','2':'หายาก','3':'ตำนาน'},rn=r=>RN[r]||'',pn=c=>c?(PN[c]||('#'+c)):'ของตกแต่ง';
 /* รูปไอเทมอยู่ที่ img/{art_key}.webp (R39) ถ้าไม่มีไฟล์ให้เหลือการ์ดตัวอักษรสีตามความหายาก */
@@ -109,13 +129,27 @@ async function preview(cid){const c=O.chests.find(x=>x.id==cid),box=$('pp'+cid),
 function sync(cid){const c=O.chests.find(x=>x.id==cid),s=$('pv'+cid),b=document.querySelector('[data-open="'+cid+'"]'),h=$('hn'+cid);if(!c||!b)return;
  let why='';if(c.price>O.coins)why='เหรียญไม่พอ ขาดอีก '+nf(c.price-O.coins);else if(c.pick_province&&!(s&&s.value))why='เลือกจังหวัดก่อนเปิดหีบ';
  b.disabled=!!why;h.textContent=why;h.hidden=!why;if(c.pick_province)preview(cid)}
+const provLbl=p=>p.t+' · มี '+p.o+'/'+p.n;
+function ddHtml(c,provs){const cur=provs.find(p=>p.c===LP);
+ return '<div class="sel"><span class="cap">เลือกจังหวัดที่จะได้เศษ</span><div class="dd" data-dd="'+c.id+'"><input type="hidden" id="pv'+c.id+'" data-pv="'+c.id+'" value="'+(cur?cur.c:'')+'">'+
+  '<button type="button" class="dd-t" aria-haspopup="listbox" aria-expanded="false"><span class="'+(cur?'':'pl')+'">'+(cur?esc(provLbl(cur)):'แตะเพื่อเลือกจังหวัด')+'</span>'+CV+'</button>'+
+  '<div class="dd-l" role="listbox" aria-label="จังหวัด" hidden>'+provs.map(p=>'<button type="button" class="dd-o" role="option" data-p="'+p.c+'" data-t="'+esc(provLbl(p))+'" aria-selected="'+(cur&&cur.c===p.c)+'"><span>'+esc(provLbl(p))+'</span>'+CK+'</button>').join('')+'</div></div></div>'}
+function ddSet(d,open){const l=d.querySelector('.dd-l'),t=d.querySelector('.dd-t');
+ if(open)document.querySelectorAll('.dd.on').forEach(o=>{if(o!==d)ddSet(o,false)});
+ l.hidden=!open;d.classList.toggle('on',open);t.setAttribute('aria-expanded',open);
+ if(open){const s=l.querySelector('[aria-selected=true]');l.scrollTop=s?Math.max(0,s.offsetTop-l.clientHeight/2+s.offsetHeight/2):0;setTimeout(()=>d.scrollIntoView({block:'nearest',behavior:'smooth'}),30)}}
+function pickProv(code){LP=code;try{localStorage.setItem('mw_prov',String(LP))}catch(x){}
+ document.querySelectorAll('.dd').forEach(d=>{const o=d.querySelector('.dd-o[data-p="'+code+'"]');if(!o)return;
+  d.querySelector('input').value=code;const v=d.querySelector('.dd-t span');v.textContent=o.dataset.t;v.className='';
+  d.querySelectorAll('.dd-o').forEach(b=>b.setAttribute('aria-selected',b===o));ddSet(d,false)});
+ O.chests.forEach(c=>sync(c.id));document.querySelectorAll('.od').forEach(x=>x.hidden=true)}
 function paint(){
  $('ld').hidden=true;$('app').hidden=false;
  $('soon').hidden=O.enabled;$('on').hidden=!O.enabled;if(!O.enabled)return;
  $('cn').innerHTML='เหรียญ '+nf(O.coins);
  const provs=O.progress.map(p=>({c:p.province_code,t:pn(p.province_code),o:p.owned,n:p.total})).sort((a,b)=>a.t.localeCompare(b.t,'th'));
  $('ch').innerHTML=O.chests.length?O.chests.map(c=>'<div class="ck"><div class="rw"><div><b>'+esc(c.name_th)+'</b><small>'+(c.price?'ใช้ '+nf(c.price)+' เหรียญต่อการเปิด':'เปิดฟรี')+' · ได้ '+c.shards_per_open+' เศษ</small></div><button class="btn gh" data-odds="'+esc(c.kind)+'" data-for="'+c.id+'">อัตราดรอป</button></div>'+
-   (c.pick_province?'<label class="sel"><span>เลือกจังหวัดที่จะได้เศษ</span><select id="pv'+c.id+'" data-pv="'+c.id+'"><option value="">เลือกจังหวัด…</option>'+provs.map(p=>'<option value="'+p.c+'"'+(p.c===LP?' selected':'')+'>'+esc(p.t)+' · มี '+p.o+'/'+p.n+'</option>').join('')+'</select></label><div class="pp" id="pp'+c.id+'"></div>':'<p class="hint">หีบนี้สุ่มจังหวัดให้</p>')+
+   (c.pick_province?ddHtml(c,provs)+'<div class="pp" id="pp'+c.id+'"></div>':'<p class="hint">หีบนี้สุ่มจังหวัดให้</p>')+
    '<button class="btn gl full" data-open="'+c.id+'">เปิดหีบ</button><p class="hint" id="hn'+c.id+'" hidden></p><div class="od" id="od'+c.id+'" hidden></div></div>').join('')
    :'<p class="hint">ยังไม่มีหีบให้เปิด ได้หีบจากการเล่นในสนามรบ</p>';
  O.chests.forEach(c=>sync(c.id));
@@ -127,11 +161,15 @@ function paint(){
  const have=O.progress.filter(p=>p.owned>0).length,full=O.progress.filter(p=>p.owned>=p.total&&p.total>0).length,pcs=O.inventory.filter(i=>i.kind==='specialty').length;
  $('cs').textContent=O.progress.length?'ครบ '+nf(full)+' จังหวัด · เก็บแล้ว '+nf(have)+'/'+nf(O.progress.length)+' จังหวัด · ของพื้นเมือง '+nf(pcs)+' ชนิด':'ยังไม่มีไอเทมในระบบ';
  $('pg').innerHTML=O.progress.map(p=>'<div class="pc '+(p.owned>=p.total?'full':p.owned?'':'zero')+'"><b>'+esc(pn(p.province_code))+'</b>'+p.owned+'/'+p.total+'</div>').join('');
- $('iv').innerHTML=O.inventory.length?O.inventory.map(i=>'<div class="it">'+tile(i.art_key,i.rarity)+(i.qty>1?'<i>×'+i.qty+'</i>':'')+'<b>'+esc(i.name_th)+'</b><small>'+esc(rn(i.rarity))+' · '+esc(pn(i.province_code))+(i.bound?' · ผูกบัญชี':'')+'</small></div>').join(''):'<p class="hint">คลังยังว่าง</p>'}
+ const tot={};O.inventory.forEach(i=>tot[i.item_id]=(tot[i.item_id]||0)+i.qty);
+ const dzMax=i=>DR&&!i.bound&&i.qty>=1&&(tot[i.item_id]||0)>1&&+(DR.coins||{})[i.rarity]>0?Math.min(i.qty,tot[i.item_id]-1,99):0;
+ const anyDz=O.inventory.some(i=>dzMax(i)>0);$('ivs').hidden=!anyDz;if(anyDz)$('ivs').textContent='ของซ้ำที่ไม่ผูกบัญชีย่อยเป็นเหรียญได้ ต้องเหลือไว้ในคลังอย่างน้อย 1 ชิ้น';
+ $('iv').innerHTML=O.inventory.length?O.inventory.map(i=>{const m=dzMax(i);return '<div class="it">'+tile(i.art_key,i.rarity)+(i.qty>1?'<i>×'+i.qty+'</i>':'')+'<b>'+esc(i.name_th)+'</b><small>'+esc(rn(i.rarity))+' · '+esc(pn(i.province_code))+(i.bound?' · ผูกบัญชี':'')+'</small>'+(m?'<button type="button" class="btn gh dz" data-dis="'+i.item_id+'">ย่อย +'+nf(+DR.coins[i.rarity])+'</button>':'')+'</div>'}).join(''):'<p class="hint">คลังยังว่าง</p>'}
 async function load(){
  if(!sb){$('ld').textContent='โหลดระบบไม่สำเร็จ ลองรีเฟรชหน้านี้';return}
  const {data:{session}}=await sb.auth.getSession();if(!session)return location.replace('index.html');
- const [o,p]=await Promise.all([sb.rpc('get_collection_overview'),sb.from('provinces').select('code,name_th')]);
+ const [o,p,dr]=await Promise.all([sb.rpc('get_collection_overview'),sb.from('provinces').select('code,name_th'),sb.rpc('get_dissolve_rules')]);
+ DR=dr&&!dr.error&&dr.data&&dr.data.enabled&&dr.data.coins?dr.data:null;
  if(o.error){$('ld').textContent='โหลดไม่สำเร็จ: '+o.error.message;return}
  (p.data||[]).forEach(x=>PN[x.code]=x.name_th);O=o.data;paint()}
 async function odds(kind,id){const box=$('od'+id);if(!box.hidden){box.hidden=true;return}
@@ -159,6 +197,21 @@ async function openChest(id){if(busy)return;busy=true;
  if(error){busy=false;toast(error.message);return}
  /* ได้ผลจากเซิร์ฟเวอร์แล้วค่อยเล่นอนิเมชัน (ห้ามสุ่มฝั่งเครื่อง) */
  showRv(chestHtml(data),true)}
+function dzFind(id){const rows=O.inventory.filter(i=>i.item_id==id),u=rows.find(i=>!i.bound),t=rows.reduce((a,i)=>a+i.qty,0);
+ if(!u||!DR)return null;const max=Math.min(u.qty,t-1,99),val=+(DR.coins||{})[u.rarity];if(max<1||!(val>0))return null;
+ return {id:u.item_id,name:u.name_th,r:u.rarity,art:u.art_key,max:max,val:val,q:1}}
+function dzPaint(){const z=DZ;
+ $('dc').innerHTML='<h2>ย่อยของซ้ำเป็นเหรียญ</h2>'+tile(z.art,z.r)+'<h2>'+esc(z.name)+'</h2><p>'+esc(rn(z.r))+' · ชิ้นละ '+nf(z.val)+' เหรียญ<br>ย่อยแล้วเหรียญเข้ากระเป๋าทันที เอาของกลับคืนไม่ได้</p>'+
+  (z.max>1?'<div class="stp"><button type="button" class="btn gh" data-dzm="-1" aria-label="ลดจำนวน"'+(z.q<=1?' disabled':'')+'>−</button><b aria-live="polite">'+z.q+'</b><button type="button" class="btn gh" data-dzm="1" aria-label="เพิ่มจำนวน"'+(z.q>=z.max?' disabled':'')+'>+</button></div>':'')+
+  '<p class="dgv">ย่อย '+z.q+' ชิ้น จะได้ <b>'+nf(z.val*z.q)+'</b> เหรียญ</p><div class="act"><button type="button" class="btn gh" data-dzx>ยกเลิก</button><button type="button" class="btn gl" data-dzy>ยืนยันย่อย</button></div>'}
+function dzOpen(id){if(busy)return;const z=dzFind(id);if(!z){toast('ย่อยชิ้นนี้ไม่ได้');return}
+ DZ=z;dzPaint();$('dg').hidden=false;const x=$('dc').querySelector('[data-dzx]');x&&x.focus()}
+function dzClose(){DZ=null;$('dg').hidden=true}
+async function dzGo(){if(busy||!DZ)return;busy=true;const z=DZ;
+ const {data,error}=await sb.rpc('dissolve_item',{p_item_id:+z.id,p_qty:z.q});
+ dzClose();
+ if(error){busy=false;toast(error.message);await load();return}
+ showRv('<h2>ย่อยสำเร็จ</h2>'+tile(z.art,z.r)+'<h2>'+esc(z.name)+'</h2><p>ย่อย '+data.dissolved+' ชิ้น · ได้ '+nf(data.coins_gained)+' เหรียญ<br>เหรียญคงเหลือ '+nf(data.coins)+' · เหลือในคลัง '+data.left+' ชิ้น</p>',false)}
 async function craft(itemId){if(busy)return;busy=true;
  const {data,error}=await sb.rpc('craft_item',{p_item_id:+itemId});
  if(error){busy=false;toast(error.message);return}
@@ -166,10 +219,16 @@ async function craft(itemId){if(busy)return;busy=true;
  showRv('<h2>ประกอบสำเร็จ</h2>'+tile(it.art_key,it.rarity)+'<h2>'+esc(it.name_th)+'</h2><p>'+esc(rn(it.rarity))+' · '+esc(pn(it.province_code))+(data.is_new?' · ของใหม่ในคลัง!':' · ได้เพิ่มอีก 1 ชิ้น')+(data.bound?' · ผูกบัญชี':'')+'<br>ใช้ '+data.used+' เศษ · เหลือ '+data.shards_left+' เศษ</p>',false)}
 document.addEventListener('click',e=>{const a=e.target.closest('[data-open]'),b=e.target.closest('[data-odds]'),c=e.target.closest('[data-craft]');
  if(a&&!a.disabled)openChest(a.dataset.open);else if(c&&!c.disabled)craft(c.dataset.craft);else if(b)odds(b.dataset.odds,b.dataset.for)});
-document.addEventListener('change',e=>{const s=e.target.closest('select[data-pv]');if(!s)return;
- LP=+s.value||0;try{localStorage.setItem('mw_prov',String(LP))}catch(x){}
- document.querySelectorAll('select[data-pv]').forEach(o=>{if(o!==s&&o.querySelector('option[value="'+s.value+'"]'))o.value=s.value});
- O.chests.forEach(c=>sync(c.id));document.querySelectorAll('.od').forEach(x=>x.hidden=true)});
+document.addEventListener('click',e=>{const d=e.target.closest('[data-dis]'),m=e.target.closest('[data-dzm]'),y=e.target.closest('[data-dzy]'),x=e.target.closest('[data-dzx]');
+ if(d)dzOpen(d.dataset.dis);else if(m&&DZ&&!m.disabled){DZ.q=Math.max(1,Math.min(DZ.max,DZ.q+(+m.dataset.dzm)));dzPaint();const b=$('dc').querySelector('[data-dzm="'+m.dataset.dzm+'"]');b&&!b.disabled&&b.focus()}
+ else if(y&&!y.disabled)dzGo();else if(x||e.target.id==='dg')dzClose()});
+document.addEventListener('click',e=>{const t=e.target.closest('.dd-t'),o=e.target.closest('.dd-o');
+ if(o){pickProv(+o.dataset.p);return}
+ if(t){const d=t.closest('.dd');ddSet(d,d.querySelector('.dd-l').hidden);return}
+ if(!e.target.closest('.dd'))document.querySelectorAll('.dd.on').forEach(d=>ddSet(d,false))});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(DZ&&!busy)dzClose();return document.querySelectorAll('.dd.on').forEach(d=>ddSet(d,false))}
+ if((e.key==='ArrowDown'||e.key==='ArrowUp')&&e.target.closest&&e.target.closest('.dd-t,.dd-o')){const d=e.target.closest('.dd'),l=d.querySelector('.dd-l');e.preventDefault();if(l.hidden)ddSet(d,true);
+  const os=[...l.querySelectorAll('.dd-o')],i=os.indexOf(document.activeElement),n=e.key==='ArrowDown'?Math.min(os.length-1,i+1):Math.max(0,i<0?0:i-1);os[n]&&os[n].focus()}});
 load();
 ['gesturestart','gesturechange','gestureend'].forEach(t=>document.addEventListener(t,e=>e.preventDefault(),{passive:false}));
 document.addEventListener('touchmove',e=>{if(e.touches.length>1||(e.scale&&e.scale!==1))e.preventDefault()},{passive:false});

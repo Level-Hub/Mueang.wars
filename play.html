@@ -200,6 +200,7 @@ html{background:#1a0310}
 body{font-family:'Noto Sans Thai',system-ui,sans-serif;background:linear-gradient(rgba(26,3,16,.86),rgba(20,2,13,.95)),url(img/pattern-kanok.webp) 0 0/260px,#1a0310;background-attachment:scroll}
 header{background:linear-gradient(180deg,#5d0b1f,#2b0613);backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom:1px solid rgba(255,200,87,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 10px 24px rgba(0,0,0,.5)}
 .bd{flex-direction:column;align-items:flex-start;gap:4px}
+.lr{display:flex;align-items:center;gap:10px}.cb{display:inline-flex;align-items:center;gap:5px;min-height:32px;padding:0 11px 0 8px;border-radius:99px;border:1px solid rgba(255,200,87,.65);background:rgba(0,0,0,.42);color:#ffe08a;font:700 .82rem Kanit,sans-serif;text-decoration:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}.cb:active{transform:translateY(2px)}.cb[hidden]{display:none}
 .logo{display:flex;align-items:center;gap:9px;font:800 1.2rem/1 Kanit,sans-serif;letter-spacing:.04em;background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#fff;text-decoration:none}
 .logo svg{width:34px;height:34px;flex:none}
 .logo span{color:#fff;text-shadow:0 1px 0 #ffc2b6,0 3px 0 #d4142f,0 5px 0 #6d0618,0 8px 9px rgba(0,0,0,.7)}
@@ -292,7 +293,7 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
 </defs></svg>
 
 <header>
- <div class="top"><div class="bd"><a class="logo" href="index.html" aria-label="MUEANG WARS"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#mk"/></svg><span>MUEANG</span><b>WARS</b></a><small id="rn">กำลังโหลด…</small></div>
+ <div class="top"><div class="bd"><div class="lr"><a class="logo" href="index.html" aria-label="MUEANG WARS"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#mk"/></svg><span>MUEANG</span><b>WARS</b></a><a class="cb" id="cb" href="collection.html" aria-label="เหรียญของคุณ ไปหน้าคอลเลกชัน" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#ffc857" stroke="#7a3d05" stroke-width="1.8"/><circle cx="12" cy="12" r="6.2" fill="none" stroke="#b8700b" stroke-width="1.8"/></svg><b id="cbn">0</b></a></div><small id="rn">กำลังโหลด…</small></div>
  <svg viewBox="0 0 52 52" width="54" height="54"><circle cx="26" cy="26" r="22" class="g"/><circle id="arc" cx="26" cy="26" r="22" class="a"/><text id="sec" x="26" y="31.5" text-anchor="middle">--</text></svg></div>
  <div class="steps"><span id="s0"><i data-i="plan"></i>วางแผนลับ</span><span id="s1"><i data-i="chat"></i>ปรึกษา</span><span id="s2"><i data-i="mega"></i>เปิดผล</span></div>
 </header>
@@ -647,10 +648,14 @@ async function send1(){const i=sel,p=G.pv;if(G.busy||!p||p.blocked||G.n<1)return
  toast(`ส่ง ${G.n} ไป${x.n} ถึงรอบที่ ${data.arrive_round_no}`,'swords');await load();shut()}
 $('up').onclick=async()=>{const {data:to,error}=await sb.rpc('upgrade_village');if(error)return toast(error.message,'warn');await load();
   if(upNow())toast('เริ่มอัปเกรดเป็นระดับ '+to+' เสร็จใน '+upLeft(),'clock');else toast('หมู่บ้านเลื่อนเป็นระดับ '+lv,'flag')};
+/* ป้ายเหรียญ: ดึงสดทุกครั้งที่เปิด/กลับมาที่หน้านี้ ไม่เก็บไว้ในเครื่อง ถ้าโหลดไม่ได้ให้ซ่อนเงียบ ๆ */
+function coins(){sb.rpc('get_my_wallet').then(r=>{const d=r&&!r.error?(Array.isArray(r.data)?r.data[0]:r.data):null,c=d&&Number(d.coins);
+  if(c==null||isNaN(c)){$('cb').hidden=true;return}$('cbn').textContent=c.toLocaleString('th-TH');$('cb').hidden=false},()=>{$('cb').hidden=true})}
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&G.prof)coins()});
 (async()=>{try{
  const {data:{session}}=await sb.auth.getSession();if(!session)return location.replace('index.html');
  const {data:p}=await sb.from('profiles').select('username,avatar_key,region_id,home_province,tutorial_done_at').eq('id',session.user.id).maybeSingle();if(!p)return location.replace('index.html');
- G.prof=p;touch();const [u,c,l]=await Promise.all([sb.from('unit_types').select('id,name_th,speed,atk_mult'),sb.from('game_config').select('key,value').in('key',['starter_troops','stock_cap_hours','advance_rounds','rain_attacker_penalty_pct_per_level','v2_supply_range','v2_supply_per_hop','v2_supply_decay_pct','upgrade_timed_enabled','speedup_enabled','speedup_minutes_per_diamond','solo_bonus_enabled','bonus_first_capture','bonus_upgrade_per_level']),sb.from('village_levels').select('level,upgrade_cost,troops_per_hour,upgrade_wait_hours')]);
+ G.prof=p;touch();coins();const [u,c,l]=await Promise.all([sb.from('unit_types').select('id,name_th,speed,atk_mult'),sb.from('game_config').select('key,value').in('key',['starter_troops','stock_cap_hours','advance_rounds','rain_attacker_penalty_pct_per_level','v2_supply_range','v2_supply_per_hop','v2_supply_decay_pct','upgrade_timed_enabled','speedup_enabled','speedup_minutes_per_diamond','solo_bonus_enabled','bonus_first_capture','bonus_upgrade_per_level']),sb.from('village_levels').select('level,upgrade_cost,troops_per_hour,upgrade_wait_hours')]);
  (u.data||[]).forEach(x=>G.units[x.id]=x);(c.data||[]).forEach(x=>G.cfg[x.key]=Number(x.value));(l.data||[]).forEach(x=>G.lv[x.level]=x);rlLegend();
  go(Math.max(0,RID.indexOf(p.region_id)));await load();live();setInterval(live,500);setInterval(()=>{if(!document.hidden&&!$('sh').classList.contains('open'))load()},15000)
 }catch(e){console.error(e)}document.body.style.visibility=''})();
