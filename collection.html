@@ -40,8 +40,22 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
 .pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:6px;margin-top:10px}.pc{padding:6px 8px;border-radius:12px;border:1px solid var(--ln);background:rgba(0,0,0,.28);font-size:.78rem;line-height:1.25}.pc b{display:block;font-size:.85rem}.pc.full{border-color:var(--gold);background:rgba(255,200,87,.14)}.pc.zero{opacity:.55}
 .iv{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px}.it{position:relative;padding:8px;border-radius:16px;border:1px solid var(--ln);background:rgba(0,0,0,.28);text-align:center;font-size:.8rem}.it img{width:100%;aspect-ratio:1;object-fit:contain;border-radius:12px;background:rgba(255,255,255,.06)}.it b{display:block;margin-top:4px;font-size:.85rem;line-height:1.2}.it small{color:var(--mu)}.it i{position:absolute;top:6px;right:8px;font:700 .8rem Kanit;font-style:normal;background:var(--gold);color:#1a0310;border-radius:99px;padding:0 8px}
 #rv{position:fixed;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;background:rgba(10,0,6,.97);padding:20px}#rv[hidden]{display:none}
-.rb{width:min(340px,100%);text-align:center}.ch{font-size:5.5rem;line-height:1;animation:shake .9s ease-in-out}.rb .res{display:none}.rb.show .ch{display:none}.rb.show .res{display:block;animation:pop .55s cubic-bezier(.2,1.4,.4,1)}
-.res img{width:60%;aspect-ratio:1;object-fit:contain;border-radius:20px;background:rgba(255,255,255,.08);border:2px solid var(--gold)}.res h2{margin:10px 0 2px}.res p{color:var(--mu);font-size:.9rem;margin-bottom:12px}
+.r1{--rc:var(--c0)}.r2{--rc:var(--c3)}.r3{--rc:var(--gold)}
+.ph{position:relative;aspect-ratio:1;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;color:var(--rc,var(--gold));border:2px solid var(--rc,var(--gold));background:color-mix(in srgb,var(--rc,#fff) 20%,#1a0310);font:700 .85rem Kanit}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#2b0613}.ph.ok span{display:none}
+.ph.r3{box-shadow:0 0 14px rgba(255,200,87,.4)}.ph.xs{width:44px;flex:none;font-size:.62rem;border-width:1px;border-radius:10px}
+.dim .ph{filter:brightness(.7) saturate(.5)}.dim>.sb b{color:var(--mu)}
+.sel{display:block;margin:8px 0}.sel span{display:block;color:var(--mu);font-size:.85rem;margin-bottom:4px}
+select{width:100%;min-height:50px;border-radius:16px;border:1px solid var(--ln);background:rgba(0,0,0,.35);color:var(--ink);font:600 16px 'Noto Sans Thai',sans-serif;padding:0 14px}
+.btn.full{width:100%}.ck{padding:10px 0;border-top:1px solid var(--ln)}.ck:first-child{border-top:0}.ck .hint{margin-top:6px}
+.pp{margin:8px 0}.pi,.sc{display:flex;align-items:center;gap:10px;padding:8px 0}.pi+.pi,.sc+.sc{border-top:1px solid var(--ln)}
+.sb{flex:1;min-width:0}.sb b{display:block;line-height:1.25}.sb small{color:var(--mu);font-size:.78rem}
+.bar{height:8px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden;margin-top:5px}.bar i{display:block;height:100%;border-radius:99px;background:var(--rc,var(--gold))}
+.sn{font:700 .9rem Kanit;text-align:right;white-space:nowrap}.sn .btn{min-height:40px;padding:0 14px;font-size:.9rem;margin-top:4px}.sn small{display:block;color:var(--mu);font:400 .75rem 'Noto Sans Thai'}
+.tg{color:var(--gold2);font-style:normal;font-size:.78rem}
+.it .ph{border-radius:12px}.it small{display:block}
+#rv{overflow:auto}.rb{width:min(360px,100%);text-align:center;margin:auto}.ch{font-size:5.5rem;line-height:1;animation:shake .9s ease-in-out}.rb .res{display:none}.rb.show .ch{display:none}.rb.show .res{display:block;animation:pop .55s cubic-bezier(.2,1.4,.4,1)}
+.res>.ph{width:46%;margin:0 auto}.res h2{margin:10px 0 2px}.res p{color:var(--mu);font-size:.9rem;margin-bottom:12px}.rl{text-align:left;margin-bottom:12px}.rl .pi{padding:7px 0}
 @keyframes shake{0%,100%{transform:rotate(0)}15%{transform:rotate(-14deg) scale(1.05)}30%{transform:rotate(12deg) scale(1.1)}45%{transform:rotate(-10deg) scale(1.15)}60%{transform:rotate(8deg) scale(1.2)}80%{transform:scale(1.3)}}
 @keyframes pop{0%{transform:scale(.3);opacity:0}100%{transform:scale(1);opacity:1}}
 @media(prefers-reduced-motion:reduce){.ch,.rb.show .res{animation:none}}
@@ -55,7 +69,8 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
  <section class="pn" id="soon" hidden><h2>คอลเลกชันเร็วๆนี้</h2><p class="sub">ระบบหีบและคอลเลกชันของพื้นเมืองยังไม่เปิดให้เล่น แวะกลับมาใหม่นะ</p></section>
  <div id="on" hidden>
   <div class="cw"><span id="cn"></span></div>
-  <section class="pn"><h2>หีบของฉัน</h2><div id="ch"></div></section>
+  <section class="pn"><h2>หีบของฉัน</h2><p class="sub">หีบให้เศษของไอเทม เก็บเศษให้ครบแล้วกดประกอบ</p><div id="ch"></div></section>
+  <section class="pn" id="shs"><h2>เศษของฉัน</h2><div id="sh"></div></section>
   <section class="pn"><h2>คอลเลกชัน</h2><p class="sub" id="cs"></p><div class="pg" id="pg"></div></section>
   <section class="pn"><h2>คลังของฉัน</h2><div class="iv" id="iv"></div></section>
  </div>
@@ -69,20 +84,50 @@ const sb=window.supabase?window.supabase.createClient(SB_URL,SB_KEY):null;
 const $=i=>document.getElementById(i),nf=n=>Number(n||0).toLocaleString('th-TH');
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function toast(t){const e=$('ts');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,3500)}
-let O=null,PN={},busy=false;
-/* รูปไอเทมอยู่ที่ img/{art_key}.webp (R39) ถ้าไม่มีไฟล์ให้ซ่อนรูป */
-const pic=k=>k?'<img src="img/'+esc(k)+'.webp" alt="" decoding="async" onerror="this.remove()">':'';
+let O=null,PN={},busy=false,OD={},LP=0;
+try{LP=+localStorage.getItem('mw_prov')||0}catch(e){}
+const RN={'1':'สามัญ','2':'หายาก','3':'ตำนาน'},rn=r=>RN[r]||'',pn=c=>c?(PN[c]||('#'+c)):'ของตกแต่ง';
+/* รูปไอเทมอยู่ที่ img/{art_key}.webp (R39) ถ้าไม่มีไฟล์ให้เหลือการ์ดตัวอักษรสีตามความหายาก */
+const tile=(k,r,x)=>'<div class="ph r'+esc(r)+(x?' '+x:'')+'">'+(k?'<img src="img/'+esc(k)+'.webp" alt="" decoding="async" onload="this.parentNode.classList.add(\'ok\')" onerror="this.remove()">':'')+'<span>'+esc(rn(r))+'</span></div>';
+const ownSet=()=>new Set(O.inventory.filter(i=>i.qty>0).map(i=>i.item_id));
+const shardQty=()=>{const m={};O.shards.forEach(s=>m[s.item_id]=s.qty);return m};
+const pct=(h,n)=>Math.min(100,Math.round(h*100/Math.max(1,n)));
+async function getOdds(kind,prov){const k=kind+'|'+(prov||0);
+ if(!OD[k]){const {data,error}=await sb.rpc('get_chest_odds',{p_kind:kind,p_province:prov?+prov:null});if(error)throw error;OD[k]=data}return OD[k]}
+async function preview(cid){const c=O.chests.find(x=>x.id==cid),box=$('pp'+cid),s=$('pv'+cid);if(!c||!box)return;
+ if(!s||!s.value){box.innerHTML='<p class="hint">เลือกจังหวัดเพื่อดูว่าต้องเก็บเศษอะไรบ้าง</p>';return}
+ const want=s.value;box.innerHTML='<p class="hint">กำลังโหลด…</p>';
+ let d;try{d=await getOdds(c.kind,want)}catch(e){box.textContent=e.message;return}
+ if(!$('pv'+cid)||$('pv'+cid).value!==want)return;
+ const ow=ownSet(),sq=shardQty(),L=d.items.find(i=>i.rarity==='3'),lim=(O.shard_rules&&O.shard_rules.pity_chests)||0,
+  m=((O.pity||[]).find(p=>p.province_code==want)||{}).miss||0;
+ let note='';
+ if(L&&lim>0&&!ow.has(L.item_id)&&(sq[L.item_id]||0)<L.need)
+  note=m>=lim?'โชคช่วย: หีบถัดไปของจังหวัดนี้มีโอกาสได้เศษตำนานเพิ่มขึ้น':'เปิดหีบจังหวัดนี้อีก '+(lim-m)+' ใบ ถ้ายังไม่ได้ตำนาน โอกาสเศษตำนานจะเริ่มเพิ่มขึ้น';
+ box.innerHTML=d.items.map(i=>{const h=sq[i.item_id]||0,o=ow.has(i.item_id);
+  return '<div class="pi r'+esc(i.rarity)+(o?'':' dim')+'"><div class="ph r'+esc(i.rarity)+' xs"><span>'+esc(rn(i.rarity))+'</span></div><div class="sb"><b>'+esc(i.name_th)+'</b><small>'+esc(rn(i.rarity))+' · ได้ '+i.pct+'% ต่อเศษ</small><div class="bar"><i style="width:'+(o?100:pct(h,i.need))+'%"></i></div></div><span class="sn">'+(o?'มีแล้ว':h+'/'+i.need)+'</span></div>'}).join('')+(note?'<p class="hint">'+esc(note)+'</p>':'')}
+function sync(cid){const c=O.chests.find(x=>x.id==cid),s=$('pv'+cid),b=document.querySelector('[data-open="'+cid+'"]'),h=$('hn'+cid);if(!c||!b)return;
+ let why='';if(c.price>O.coins)why='เหรียญไม่พอ ขาดอีก '+nf(c.price-O.coins);else if(c.pick_province&&!(s&&s.value))why='เลือกจังหวัดก่อนเปิดหีบ';
+ b.disabled=!!why;h.textContent=why;h.hidden=!why;if(c.pick_province)preview(cid)}
 function paint(){
  $('ld').hidden=true;$('app').hidden=false;
  $('soon').hidden=O.enabled;$('on').hidden=!O.enabled;if(!O.enabled)return;
  $('cn').innerHTML='เหรียญ '+nf(O.coins);
- $('ch').innerHTML=O.chests.length?O.chests.map(c=>'<div class="rw"><div><b>'+esc(c.name_th)+'</b><small>'+(c.price?'ใช้ '+nf(c.price)+' เหรียญต่อการเปิด':'เปิดฟรี')+'</small></div>'+
-   '<button class="btn gh" data-odds="'+esc(c.kind)+'" data-for="'+c.id+'">อัตราดรอป</button><button class="btn gl" data-open="'+c.id+'"'+(c.price>O.coins?' disabled':'')+'>เปิดหีบ</button></div><div class="od" id="od'+c.id+'" hidden></div>').join('')
+ const provs=O.progress.map(p=>({c:p.province_code,t:pn(p.province_code),o:p.owned,n:p.total})).sort((a,b)=>a.t.localeCompare(b.t,'th'));
+ $('ch').innerHTML=O.chests.length?O.chests.map(c=>'<div class="ck"><div class="rw"><div><b>'+esc(c.name_th)+'</b><small>'+(c.price?'ใช้ '+nf(c.price)+' เหรียญต่อการเปิด':'เปิดฟรี')+' · ได้ '+c.shards_per_open+' เศษ</small></div><button class="btn gh" data-odds="'+esc(c.kind)+'" data-for="'+c.id+'">อัตราดรอป</button></div>'+
+   (c.pick_province?'<label class="sel"><span>เลือกจังหวัดที่จะได้เศษ</span><select id="pv'+c.id+'" data-pv="'+c.id+'"><option value="">เลือกจังหวัด…</option>'+provs.map(p=>'<option value="'+p.c+'"'+(p.c===LP?' selected':'')+'>'+esc(p.t)+' · มี '+p.o+'/'+p.n+'</option>').join('')+'</select></label><div class="pp" id="pp'+c.id+'"></div>':'<p class="hint">หีบนี้สุ่มจังหวัดให้</p>')+
+   '<button class="btn gl full" data-open="'+c.id+'">เปิดหีบ</button><p class="hint" id="hn'+c.id+'" hidden></p><div class="od" id="od'+c.id+'" hidden></div></div>').join('')
    :'<p class="hint">ยังไม่มีหีบให้เปิด ได้หีบจากการเล่นในสนามรบ</p>';
+ O.chests.forEach(c=>sync(c.id));
+ const ow=ownSet();
+ const sh=O.shards.filter(s=>s.qty>0).sort((a,b)=>(b.qty>=b.need)-(a.qty>=a.need)||b.rarity-a.rarity||a.province_code-b.province_code||a.item_id-b.item_id);
+ $('sh').innerHTML=sh.length?sh.map(s=>{const ok=s.qty>=s.need,o=ow.has(s.item_id);
+  return '<div class="sc r'+esc(s.rarity)+(o?'':' dim')+'">'+tile(s.art_key,s.rarity,'xs')+'<div class="sb"><b>'+esc(s.name_th)+'</b><small>'+esc(rn(s.rarity))+' · '+esc(pn(s.province_code))+(s.qty_bound?' · เศษผูกบัญชี '+s.qty_bound:'')+(o?' · มีในคลังแล้ว':'')+'</small><div class="bar"><i style="width:'+pct(s.qty,s.need)+'%"></i></div>'+(ok&&s.qty_unbound<s.need?'<small class="tg">ประกอบแล้วจะผูกบัญชี</small>':'')+'</div><div class="sn">'+s.qty+'/'+s.need+'<br><button class="btn '+(ok?'gl':'gh')+'" data-craft="'+s.item_id+'"'+(ok?'':' disabled')+'>ประกอบ</button></div></div>'}).join('')
+  :'<p class="hint">ยังไม่มีเศษ เปิดหีบเพื่อเริ่มเก็บ</p>';
  const have=O.progress.filter(p=>p.owned>0).length,full=O.progress.filter(p=>p.owned>=p.total&&p.total>0).length,pcs=O.inventory.filter(i=>i.kind==='specialty').length;
  $('cs').textContent=O.progress.length?'ครบ '+nf(full)+' จังหวัด · เก็บแล้ว '+nf(have)+'/'+nf(O.progress.length)+' จังหวัด · ของพื้นเมือง '+nf(pcs)+' ชนิด':'ยังไม่มีไอเทมในระบบ';
- $('pg').innerHTML=O.progress.map(p=>'<div class="pc '+(p.owned>=p.total?'full':p.owned?'':'zero')+'"><b>'+esc(PN[p.province_code]||('#'+p.province_code))+'</b>'+p.owned+'/'+p.total+'</div>').join('');
- $('iv').innerHTML=O.inventory.length?O.inventory.map(i=>'<div class="it">'+pic(i.art_key)+(i.qty>1?'<i>×'+i.qty+'</i>':'')+'<b>'+esc(i.name_th)+'</b><small>'+(i.province_code?esc(PN[i.province_code]||''):'ของตกแต่ง')+(i.bound?' · ผูกบัญชี':'')+'</small></div>').join(''):'<p class="hint">คลังยังว่าง</p>'}
+ $('pg').innerHTML=O.progress.map(p=>'<div class="pc '+(p.owned>=p.total?'full':p.owned?'':'zero')+'"><b>'+esc(pn(p.province_code))+'</b>'+p.owned+'/'+p.total+'</div>').join('');
+ $('iv').innerHTML=O.inventory.length?O.inventory.map(i=>'<div class="it">'+tile(i.art_key,i.rarity)+(i.qty>1?'<i>×'+i.qty+'</i>':'')+'<b>'+esc(i.name_th)+'</b><small>'+esc(rn(i.rarity))+' · '+esc(pn(i.province_code))+(i.bound?' · ผูกบัญชี':'')+'</small></div>').join(''):'<p class="hint">คลังยังว่าง</p>'}
 async function load(){
  if(!sb){$('ld').textContent='โหลดระบบไม่สำเร็จ ลองรีเฟรชหน้านี้';return}
  const {data:{session}}=await sb.auth.getSession();if(!session)return location.replace('index.html');
@@ -91,19 +136,40 @@ async function load(){
  (p.data||[]).forEach(x=>PN[x.code]=x.name_th);O=o.data;paint()}
 async function odds(kind,id){const box=$('od'+id);if(!box.hidden){box.hidden=true;return}
  box.hidden=false;box.textContent='กำลังโหลด…';
- const {data,error}=await sb.rpc('get_chest_odds',{p_kind:kind});if(error){box.textContent=error.message;return}
- box.innerHTML=(data.items.length?'<b>ตามความหายาก</b>'+data.by_rarity.map(r=>'<div><span>'+esc(r.rarity)+'</span><span>'+r.pct+'%</span></div>').join('')+'<b style="display:block;margin-top:6px">ตามไอเทม</b>'+data.items.map(i=>'<div><span>'+esc(i.name_th)+'</span><span>'+i.pct+'%</span></div>').join(''):'หีบนี้ยังไม่มีของ')}
-async function openChest(id){if(busy)return;busy=true;
- const {data,error}=await sb.rpc('open_chest',{p_grant_id:+id});
- if(error){busy=false;toast(error.message);return}
- /* ได้ผลจากเซิร์ฟเวอร์แล้วค่อยเล่นอนิเมชัน (ห้ามสุ่มฝั่งเครื่อง) */
- const it=data.item;$('rs').innerHTML=pic(it.art_key)+'<h2>'+esc(it.name_th)+'</h2><p>'+esc(it.rarity)+(it.province_code?' · '+esc(PN[it.province_code]||''):'')+(data.is_new?' · ของใหม่ในคลัง!':'')+'</p><button class="btn gl" id="ok" type="button">เยี่ยม</button>';
+ let d;try{const s=$('pv'+id);d=await getOdds(kind,s&&s.value)}catch(e){box.textContent=e.message;return}
+ const need=d.need||{},lim=d.pity_chests||0;
+ box.innerHTML='<b>โอกาสต่อเศษ 1 ชิ้น</b>'+d.by_rarity.map(r=>'<div><span>'+esc(rn(r.rarity))+' (ต้องใช้ '+(need[r.rarity]||'?')+' เศษ)</span><span>'+r.pct+'%</span></div>').join('')+
+  (lim?'<p class="hint" style="margin-top:6px">ถ้าเปิดหีบจังหวัดเดิมครบ '+lim+' ใบแล้วยังประกอบตำนานของจังหวัดนั้นไม่ได้ โอกาสเศษตำนานจะเพิ่มขึ้นทีละนิดทุกหีบ</p>':'')}
+function showRv(html,anim){$('rs').innerHTML=html+'<button class="btn gl" id="ok" type="button">เยี่ยม</button>';
  $('rb').classList.remove('show');$('rv').hidden=false;
  const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
- setTimeout(()=>$('rb').classList.add('show'),still?0:950);
+ setTimeout(()=>{$('rb').classList.add('show');$('ok').focus()},anim&&!still?950:0);
  $('ok').onclick=async()=>{$('rv').hidden=true;busy=false;await load()}}
-document.addEventListener('click',e=>{const a=e.target.closest('[data-open]'),b=e.target.closest('[data-odds]');
- if(a&&!a.disabled)openChest(a.dataset.open);else if(b)odds(b.dataset.odds,b.dataset.for)});
+function chestHtml(d){const m=new Map();d.shards.forEach(s=>{const e=m.get(s.item_id)||Object.assign({},s,{n:0});e.n++;m.set(s.item_id,e)});
+ const pr={};d.progress.forEach(p=>pr[p.item_id]=p);
+ const arr=[...m.values()].sort((a,b)=>b.rarity-a.rarity||b.n-a.n),leg=arr.some(x=>x.rarity==='3');
+ return '<h2>'+(leg?'ได้เศษตำนาน!':'ได้ '+d.shards.length+' เศษ')+'</h2><p>'+esc(pn(d.province_code))+(d.boosted?' · หีบนี้โอกาสเศษตำนานเพิ่มขึ้น':'')+'</p><div class="rl">'+
+  arr.map(x=>{const p=pr[x.item_id]||{have:x.n,need:1,owned:false},rd=p.have>=p.need&&!p.owned;
+   return '<div class="pi r'+esc(x.rarity)+'">'+tile(x.art_key,x.rarity,'xs')+'<div class="sb"><b>'+esc(x.name_th)+'</b><small>'+esc(rn(x.rarity))+' · +'+x.n+' เศษ'+(rd?' · <span class="tg">ประกอบได้แล้ว</span>':p.owned?' · มีในคลังแล้ว':'')+'</small><div class="bar"><i style="width:'+pct(p.have,p.need)+'%"></i></div></div><span class="sn">'+p.have+'/'+p.need+'</span></div>'}).join('')+
+  '</div><p>เหรียญคงเหลือ '+nf(d.coins)+'</p>'}
+async function openChest(id){if(busy)return;busy=true;
+ const c=O.chests.find(x=>x.id==id),s=$('pv'+id),args={p_grant_id:+id};
+ if(c&&c.pick_province){if(!s||!s.value){busy=false;toast('เลือกจังหวัดก่อนเปิดหีบ');return}args.p_province=+s.value}
+ const {data,error}=await sb.rpc('open_chest',args);
+ if(error){busy=false;toast(error.message);return}
+ /* ได้ผลจากเซิร์ฟเวอร์แล้วค่อยเล่นอนิเมชัน (ห้ามสุ่มฝั่งเครื่อง) */
+ showRv(chestHtml(data),true)}
+async function craft(itemId){if(busy)return;busy=true;
+ const {data,error}=await sb.rpc('craft_item',{p_item_id:+itemId});
+ if(error){busy=false;toast(error.message);return}
+ const it=data.item;
+ showRv('<h2>ประกอบสำเร็จ</h2>'+tile(it.art_key,it.rarity)+'<h2>'+esc(it.name_th)+'</h2><p>'+esc(rn(it.rarity))+' · '+esc(pn(it.province_code))+(data.is_new?' · ของใหม่ในคลัง!':' · ได้เพิ่มอีก 1 ชิ้น')+(data.bound?' · ผูกบัญชี':'')+'<br>ใช้ '+data.used+' เศษ · เหลือ '+data.shards_left+' เศษ</p>',false)}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-open]'),b=e.target.closest('[data-odds]'),c=e.target.closest('[data-craft]');
+ if(a&&!a.disabled)openChest(a.dataset.open);else if(c&&!c.disabled)craft(c.dataset.craft);else if(b)odds(b.dataset.odds,b.dataset.for)});
+document.addEventListener('change',e=>{const s=e.target.closest('select[data-pv]');if(!s)return;
+ LP=+s.value||0;try{localStorage.setItem('mw_prov',String(LP))}catch(x){}
+ document.querySelectorAll('select[data-pv]').forEach(o=>{if(o!==s&&o.querySelector('option[value="'+s.value+'"]'))o.value=s.value});
+ O.chests.forEach(c=>sync(c.id));document.querySelectorAll('.od').forEach(x=>x.hidden=true)});
 load();
 ['gesturestart','gesturechange','gestureend'].forEach(t=>document.addEventListener(t,e=>e.preventDefault(),{passive:false}));
 document.addEventListener('touchmove',e=>{if(e.touches.length>1||(e.scale&&e.scale!==1))e.preventDefault()},{passive:false});
