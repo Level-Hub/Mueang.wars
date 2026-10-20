@@ -239,6 +239,12 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
 .rr .pt{flex:none;font:800 17px Kanit,"Noto Sans Thai",system-ui,sans-serif;color:var(--gd2);font-variant-numeric:tabular-nums}
 .rr.me{margin:0 -15px;padding-inline:15px;border-radius:14px;background:linear-gradient(90deg,rgba(255,200,87,.2),rgba(255,200,87,.04))}
 .rk0{padding:6px 2px;color:var(--mu);font-size:14px}
+/* ยศ CEO ในตารางอันดับ (เห็นเฉพาะแถวของบัญชีแอดมิน) */
+.rr.adm{border-radius:14px;background:linear-gradient(90deg,rgba(255,200,87,.16),rgba(255,200,87,.03))}
+.ceo-nm{background:linear-gradient(100deg,#fff3c4,#ffc857 40%,#fff8de 55%,#e8a21c);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;font-family:Kanit,"Noto Sans Thai",sans-serif;font-weight:800}
+.rkc{display:inline-flex;align-items:center;gap:4px;margin-left:6px;padding:0 8px 0 5px;border-radius:99px;background:linear-gradient(180deg,#ffe9a6,#ffc857 55%,#d98c12);-webkit-text-fill-color:#2b0613;color:#2b0613;font:800 11px/17px Kanit,"Noto Sans Thai",sans-serif;letter-spacing:.08em;vertical-align:1px}
+.rkc svg{width:15px;height:11px}
+.rkc.ad{padding:0 8px;background:linear-gradient(180deg,#eef2fa,#b9c4d6 55%,#8793a8)}
 #od{display:block;line-height:1.6}#od .ic{vertical-align:-.25em;margin-right:4px}
 .pdf{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:2px 10px;margin:10px 14px 0;padding:10px 12px;border-radius:14px;background:var(--glass);border:1px solid var(--ln)}.pdf svg{width:26px;height:26px;grid-row:1/4;color:var(--gd,#ffc857)}.pdf>span{font-size:15px}.pdf b{font-size:1.35em;color:var(--gd,#ffc857)}.pdf small{color:var(--mu);font-size:12px;line-height:1.4}
 /* ธงเป้าหมายภาค (R46) */
@@ -469,10 +475,11 @@ const esc2=t=>String(t).replace(/[<>&]/g,''),UN=id=>(G.units[id]&&G.units[id].na
 const hm=d=>new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Bangkok',hour:'2-digit',minute:'2-digit'}).format(new Date(d));
 /* ===== อันดับผู้เล่น/จังหวัด + บันทึกวันที่เข้าเล่น (รอบสอง) ===== */
 const RK={k:'r',t:{}};
-const rkRow=(n,r,nm,sub,pt,me)=>`<div class="rr${me?' me':''}"><span class="n">${n}</span><span class="e" style="color:${col(r)}">${em(r)}</span><span class="nm">${esc2(nm)}${me?' (คุณ)':''}${sub?'<small>'+sub+'</small>':''}</span><span class="pt">${pt}</span></div>`;
+const CRN='<svg viewBox="0 0 44 30" aria-hidden="true"><path d="M3 24L6 8L15 17L22 4L29 17L38 8L41 24Z" fill="#7a3d05"/><rect x="3" y="24" width="38" height="5" rx="1.6" fill="#7a3d05"/></svg>';
+const rkRow=(n,r,nm,sub,pt,me,adm)=>`<div class="rr${me?' me':''}${adm==='ceo'?' adm':''}"><span class="n">${n}</span><span class="e" style="color:${col(r)}">${em(r)}</span><span class="nm">${adm==='ceo'?'<span class="ceo-nm">'+esc2(nm)+'</span><span class="rkc">'+CRN+'CEO</span>':adm==='admin'?esc2(nm)+'<span class="rkc ad">ADMIN</span>':esc2(nm)}${me?' (คุณ)':''}${sub?'<small>'+sub+'</small>':''}</span><span class="pt">${pt}</span></div>`;
 const rkNo=j=>j<3?medal(j):j+1;
 function playersHtml(a){if(!a.length)return '<div class="card"><div class="rk0">ยังไม่มีผู้เล่นที่ได้คะแนน ส่งทัพไปยึดช่องหรือป้องกันช่องเพื่อเริ่มสะสมคะแนน</div></div>';
- return '<div class="card">'+a.map(x=>rkRow(rkNo(+x.rank-1),Math.max(0,RID.indexOf(x.region_id)),x.username,'',(+x.points).toLocaleString('en-US'),x.is_me)).join('')+'</div>'+(a.length>=50?'<div class="rk0" style="margin:0 14px">แสดง 50 อันดับแรก</div>':'')}
+ return '<div class="card">'+a.map(x=>rkRow(rkNo(+x.rank-1),Math.max(0,RID.indexOf(x.region_id)),x.username,'',(+x.points).toLocaleString('en-US'),x.is_me,x.staff_role||null)).join('')+'</div>'+(a.length>=50?'<div class="rk0" style="margin:0 14px">แสดง 50 อันดับแรก</div>':'')}
 function provincesHtml(a){const h=G.prof&&G.prof.home_province,l=a.filter(x=>x.players>0).sort((x,y)=>y.points-x.points||y.players-x.players||String(x.name_th).localeCompare(y.name_th,'th')).slice(0,30);
  if(!l.length)return '<div class="card"><div class="rk0">ยังไม่มีใครเลือกจังหวัดเป็นบ้านเกิด</div></div>';
  return '<div class="card">'+l.map((x,j)=>rkRow(rkNo(j),Math.max(0,RID.indexOf(x.region_id)),x.name_th,x.players+' คน',(+x.points).toLocaleString('en-US'),h!=null&&+x.province_code===+h)).join('')+'</div><div class="rk0" style="margin:0 14px">คะแนนรวมของผู้เล่นที่เป็นคนจังหวัดนั้น (ไม่นับบอท)</div>'}

@@ -46,14 +46,31 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
 .act{display:flex;gap:10px}.act .btn{flex:1}
 #ts{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:60;max-width:min(92vw,420px);padding:12px 18px;border-radius:16px;background:#2b0613;border:1px solid var(--gold);font-size:.92rem;text-align:center}#ts[hidden]{display:none}
 #ld{text-align:center;padding:60px 0;color:var(--mu)}
+/* ยศ CEO: เห็นเฉพาะบัญชีแอดมิน */
+.pn.ceo-pn{border-color:rgba(255,200,87,.75);background:linear-gradient(180deg,#6b0f24,#2b0613);box-shadow:inset 0 1px 0 rgba(255,236,170,.5),0 0 0 1px rgba(255,200,87,.28),0 14px 34px rgba(0,0,0,.6),0 0 42px rgba(255,200,87,.16)}
+.ceo-pn .mec{margin-top:12px}
+.crown-w{position:relative;display:inline-block;flex:none}
+.crown-w .crown{position:absolute;left:50%;top:-22px;width:50px;height:34px;transform:translateX(-50%);z-index:2;filter:drop-shadow(0 3px 3px rgba(0,0,0,.65))}
+.av.ceo{border-color:#ffc857;box-shadow:0 0 0 3px #1a0310,0 0 0 5px #ffc857,0 0 26px rgba(255,200,87,.5)}
+.ceo-nm{display:inline-block;max-width:100%;background:linear-gradient(100deg,#fff3c4 0%,#ffc857 28%,#fff8de 50%,#e8a21c 72%,#ffe08a 100%) 0 0/220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 0 rgba(109,6,24,.95));animation:shn 5s linear infinite}
+@keyframes shn{to{background-position:-220% 0}}
+@media(prefers-reduced-motion:reduce){.ceo-nm{animation:none}}
+.rkr{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:4px}.rkr .tag{margin-top:0}
+.rank{display:inline-flex;align-items:center;gap:6px;padding:2px 12px 2px 8px;border-radius:99px;background:linear-gradient(180deg,#ffe9a6,#ffc857 55%,#d98c12);color:#2b0613;font:800 .8rem Kanit,sans-serif;letter-spacing:.08em;box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 2px 0 #7a3d05}
+.rank svg{width:18px;height:13px;flex:none}
+.rank.rk-ad{padding:2px 12px;background:linear-gradient(180deg,#eef2fa,#b9c4d6 55%,#8793a8);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 2px 0 #3d4658}
+.ttl{display:block;margin-top:5px;color:var(--gold2);font:600 .82rem Kanit,sans-serif;letter-spacing:.05em}
+.pn.adm{border-color:rgba(255,200,87,.55)}
+.gd{background:linear-gradient(180deg,#ffe9a6,#ffc857 46%,#d98c12 50%,#f0b030);color:#2b0613;text-shadow:0 1px 0 rgba(255,255,255,.55);box-shadow:inset 0 2px 0 rgba(255,255,255,.75),0 5px 0 #7a3d05,0 12px 22px rgba(255,200,87,.3)}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head><body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3c4"/><stop offset=".55" stop-color="#ffc857"/><stop offset="1" stop-color="#d98c12"/></linearGradient><symbol id="crn" viewBox="0 0 44 30"><path d="M3 24L6 8L15 17L22 4L29 17L38 8L41 24Z" fill="url(#cg)" stroke="#7a3d05" stroke-width="1.6" stroke-linejoin="round"/><rect x="3" y="24" width="38" height="4.6" rx="1.6" fill="url(#cg)" stroke="#7a3d05" stroke-width="1.6"/><circle cx="6" cy="8" r="2.5" fill="#ff3d57" stroke="#7a3d05"/><circle cx="22" cy="4" r="2.8" fill="#5a98ff" stroke="#7a3d05"/><circle cx="38" cy="8" r="2.5" fill="#2fd49a" stroke="#7a3d05"/></symbol></defs></svg>
 <div class="w">
 <nav><a class="logo" href="index.html" aria-label="MUEANG WARS"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#mk"/></svg><span>MUEANG</span><b>WARS</b></a><a class="btn gh" href="play.html">สนามรบ</a></nav>
 <p id="ld">กำลังโหลดโปรไฟล์…</p>
 <main id="app" hidden>
- <section class="pn"><div class="mec" id="idc"></div></section>
+ <section class="pn" id="idp"><div class="mec" id="idc"></div></section>
+ <div id="admc"></div>
  <section class="pn"><h2>สถิติซีซันนี้</h2><div class="stg" id="stg"></div>
   <p class="hint" style="margin-top:10px">ช่องที่ยึด = ช่องที่ภาคคุณยึดได้ในรอบที่คุณส่งทัพไปช่องนั้น · ป้องกันสำเร็จ = ช่องของภาคคุณที่ถูกโจมตีแต่ยังรอด ในรอบที่คุณส่งทัพ · อันดับไม่นับบอท</p></section>
  <section class="pn"><h2>เปลี่ยนชื่อผู้เล่น</h2>
@@ -78,9 +95,14 @@ function av(key,cls){const k=Math.max(0,PFX.indexOf(key[0]));return '<span class
 function toast(t){const e=$('ts');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,3500)}
 const TZ={timeZone:'Asia/Bangkok'},fD=d=>new Intl.DateTimeFormat('th-TH',{...TZ,day:'numeric',month:'short',year:'numeric'}).format(new Date(d)),
  fDT=d=>new Intl.DateTimeFormat('th-TH',{...TZ,day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).format(new Date(d))+' น.',nf=n=>Number(n||0).toLocaleString('th-TH');
-let S=null,busy=false;
+let S=null,busy=false,ADM=null;/* null=ผู้เล่น · 'admin' · 'ceo' */
 function paint(){const r=Math.max(0,RID.indexOf(S.region_id));$('app').style.setProperty('--k','var(--c'+r+')');
- $('idc').innerHTML=av(S.avatar_key,'lg')+'<div><h1>'+esc(S.username)+'</h1><span class="tag">'+RGN[r]+'</span><p>บ้านเกิด '+esc(S.home_name||'-')+'</p></div>';
+ $('idp').classList.toggle('ceo-pn',ADM==='ceo');
+ $('idc').innerHTML=ADM==='ceo'
+  ?'<span class="crown-w"><svg class="crown" viewBox="0 0 44 30" aria-hidden="true"><use href="#crn"/></svg>'+av(S.avatar_key,'lg ceo')+'</span><div><h1><span class="ceo-nm">'+esc(S.username)+'</span></h1><div class="rkr"><span class="rank"><svg viewBox="0 0 44 30" aria-hidden="true"><use href="#crn"/></svg>CEO</span><span class="tag">'+RGN[r]+'</span></div><span class="ttl">ผู้ก่อตั้ง MUEANG WARS</span><p>บ้านเกิด '+esc(S.home_name||'-')+'</p></div>'
+  :ADM==='admin'
+  ?av(S.avatar_key,'lg')+'<div><h1>'+esc(S.username)+'</h1><div class="rkr"><span class="rank rk-ad">ADMIN</span><span class="tag">'+RGN[r]+'</span></div><p>บ้านเกิด '+esc(S.home_name||'-')+'</p></div>'
+  :av(S.avatar_key,'lg')+'<div><h1>'+esc(S.username)+'</h1><span class="tag">'+RGN[r]+'</span><p>บ้านเกิด '+esc(S.home_name||'-')+'</p></div>';
  const rk=S.rank?'#'+nf(S.rank)+' <small>จาก '+nf(S.players)+'</small>':'—';
  $('stg').innerHTML=[['คะแนนซีซัน',nf(S.points)],['อันดับผู้เล่น',rk],['ช่องที่ยึด',nf(S.captured)],['ป้องกันสำเร็จ',nf(S.defended)],['กำลังพลที่ส่ง',nf(S.troops_sent)],['รอบที่ส่งทัพ',nf(S.rounds_played)],['วันที่เล่น',nf(S.days_played)],['เข้าร่วมเมื่อ',fD(S.joined_at)]]
   .map(([l,v])=>'<div class="sc"><b>'+v+'</b><span>'+l+'</span></div>').join('');
@@ -88,12 +110,16 @@ function paint(){const r=Math.max(0,RID.indexOf(S.region_id));$('app').style.set
  $('nh').textContent=w?'เปลี่ยนชื่อได้อีกครั้ง '+fDT(w):'ชื่อ 3–20 ตัว ใช้ ก-ฮ A-Z ตัวเลข _ ไม่มีช่องว่าง · เปลี่ยนแล้วต้องรอ '+S.rename_cooldown_days+' วันถึงเปลี่ยนได้อีก';
  if(!$('nm').value)$('nm').placeholder=S.username;
  let h='<div class="ap">';for(let i=1;i<=5;i++){const k=PFX[r]+i;h+='<button type="button" class="ab" data-k="'+k+'" aria-pressed="'+(k===S.avatar_key)+'" aria-label="อวตาร '+i+'">'+av(k)+'</button>'}$('avp').innerHTML=h+'</div>'}
+function admPaint(){const b=$('admc');
+ if(!ADM){b.innerHTML='';return}
+ b.innerHTML='<section class="pn adm"><h2>ห้องบัญชาการ</h2><p class="sub">ตอบแชทผู้เล่นและจัดการหลังบ้าน เห็นเฉพาะแอดมิน</p><a class="btn gd" id="adl" href="admin.html" style="width:100%">เปิดหน้าแอดมิน</a></section>';
+ sb.rpc('admin_support_threads').then(r=>{const n=(r&&r.data||[]).reduce((a,t)=>a+(+t.unread||0),0);const a=$('adl');if(n>0&&a)a.textContent='เปิดหน้าแอดมิน (ข้อความใหม่ '+n+')'},()=>{})}
 async function load(){
  if(!sb){$('ld').textContent='โหลดระบบไม่สำเร็จ ลองรีเฟรชหน้านี้';return}
  const {data:{session}}=await sb.auth.getSession();if(!session)return location.replace('index.html');
- const {data,error}=await sb.rpc('get_my_stats');
+ const [{data,error},adm]=await Promise.all([sb.rpc('get_my_stats'),sb.rpc('get_my_staff_role').then(r=>(r&&!r.error&&r.data)||null,()=>null)]);ADM=adm;
  if(error){if(/ไม่พบโปรไฟล์/.test(error.message))return location.replace('index.html');$('ld').textContent='โหลดไม่สำเร็จ: '+error.message;return}
- S=data;$('ld').hidden=true;$('app').hidden=false;paint();
+ S=data;$('ld').hidden=true;$('app').hidden=false;paint();admPaint();
  sb.rpc('get_support_unread').then(r=>{const n=r&&r.data;if(n>0)$('sp').textContent='เปิดแชทแอดมิน (ข้อความใหม่ '+n+')'},()=>{})}
 $('rn').onclick=async()=>{if(busy)return;const v=$('nm').value.trim(),er=$('ner');er.textContent='';
  if(!/^[A-Za-z0-9_ก-๙]{3,20}$/.test(v))return er.textContent='ชื่อต้องเป็น ก-ฮ/A-Z/ตัวเลข/_ ยาว 3-20 ตัว ไม่มีช่องว่าง';

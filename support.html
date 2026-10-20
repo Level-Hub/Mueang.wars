@@ -38,6 +38,8 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
 .m.me{align-self:flex-end;background:linear-gradient(180deg,#ff7a63,#d4142f);border-bottom-right-radius:6px;color:#fff}
 .m.ad{align-self:flex-start;background:rgba(255,255,255,.1);border:1px solid var(--ln);border-bottom-left-radius:6px}
 .m.ad .who{display:block;font:700 .78rem Kanit,sans-serif;color:var(--gold2);margin-bottom:2px}
+.m.ad .who.ceo{display:inline-flex;align-items:center;gap:5px;padding:1px 10px 1px 6px;border-radius:99px;background:linear-gradient(180deg,#ffe9a6,#ffc857 55%,#d98c12);color:#2b0613;letter-spacing:.08em;box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 2px 0 #7a3d05;margin-bottom:5px}
+.who.ceo svg{width:16px;height:11px}
 .m.nw{box-shadow:0 0 0 2px var(--gold)}
 .empty{text-align:center;color:var(--mu);padding:30px 8px}
 textarea{width:100%;min-height:92px;max-height:200px;resize:vertical;border-radius:14px;border:1px solid var(--ln);background:rgba(0,0,0,.35);color:#fff;padding:12px 14px;font:16px 'Noto Sans Thai',sans-serif;-webkit-user-select:text;user-select:text}
@@ -93,7 +95,7 @@ function render(list,first){
  const log=$('log'),near=first||log.scrollHeight-log.scrollTop-log.clientHeight<80;
  const key=list.map(m=>m.id+(m.unread?'n':'')).join(',');
  if(key===lastKey)return;lastKey=key;
- log.innerHTML=list.length?list.map(m=>'<div class="m '+(m.from_admin?'ad'+(m.unread?' nw':''):'me')+'">'+(m.from_admin?'<span class="who">แอดมิน</span>':'')+esc(m.body)+'<small>'+fT(m.created_at)+'</small></div>').join(''):'<p class="empty">ยังไม่มีข้อความ เริ่มพิมพ์ได้เลย</p>';
+ log.innerHTML=list.length?list.map(m=>'<div class="m '+(m.from_admin?'ad'+(m.unread?' nw':''):'me')+'">'+(m.from_admin?(m.staff_role==='ceo'?'<span class="who ceo"><svg viewBox="0 0 44 30" aria-hidden="true"><path d="M3 24L6 8L15 17L22 4L29 17L38 8L41 24Z" fill="#7a3d05"/><rect x="3" y="24" width="38" height="5" rx="1.6" fill="#7a3d05"/></svg>CEO</span>':'<span class="who">แอดมิน</span>'):'')+esc(m.body)+'<small>'+fT(m.created_at)+'</small></div>').join(''):'<p class="empty">ยังไม่มีข้อความ เริ่มพิมพ์ได้เลย</p>';
  if(near)log.scrollTop=log.scrollHeight}
 async function load(first){
  const {data,error}=await sb.rpc('get_my_support_messages');
