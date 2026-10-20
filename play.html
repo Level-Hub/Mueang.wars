@@ -245,7 +245,7 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
 .rkc{display:inline-flex;align-items:center;gap:4px;margin-left:6px;padding:0 8px 0 5px;border-radius:99px;background:linear-gradient(180deg,#ffe9a6,#ffc857 55%,#d98c12);-webkit-text-fill-color:#2b0613;color:#2b0613;font:800 11px/17px Kanit,"Noto Sans Thai",sans-serif;letter-spacing:.08em;vertical-align:1px}
 .rkc svg{width:15px;height:11px}
 .rkc.ad{padding:0 8px;background:linear-gradient(180deg,#eef2fa,#b9c4d6 55%,#8793a8)}
-#od{display:block;line-height:1.6}#od .ic{vertical-align:-.25em;margin-right:4px}
+#od .es{display:block;margin-top:4px;color:#ffd98a}#od .es small{opacity:.7}#od{display:block;line-height:1.6}#od .ic{vertical-align:-.25em;margin-right:4px}
 .pdf{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:2px 10px;margin:10px 14px 0;padding:10px 12px;border-radius:14px;background:var(--glass);border:1px solid var(--ln)}.pdf svg{width:26px;height:26px;grid-row:1/4;color:var(--gd,#ffc857)}.pdf>span{font-size:15px}.pdf b{font-size:1.35em;color:var(--gd,#ffc857)}.pdf small{color:var(--mu);font-size:12px;line-height:1.4}
 /* ธงเป้าหมายภาค (R46) */
 .fg .fh{display:flex;align-items:center;gap:8px}.fg .fh svg{width:22px;height:22px;color:var(--gd)}.fg .fh b{font-family:Kanit,sans-serif;font-size:16px}
@@ -573,8 +573,11 @@ function rpv(){const o=$('od'),b=$('ok');if(!o||!b)return;const p=G.pv;
  if(!p){o.textContent='กำลังคำนวณ…';b.disabled=true;return}
  const has=p.arrive_round_no!=null,pc=p.power_factor_pct,weak=!p.blocked&&has&&pc<50,u=has&&p.units?Object.entries(p.units).filter(([,v])=>v>0).map(([k,v])=>UN(k)+' '+v).join(' · '):'';
  const sr=G.cfg.v2_supply_range??3,sph=G.cfg.v2_supply_per_hop||60,sdp=G.cfg.v2_supply_decay_pct??25,rng=sr+Math.floor((has&&p.units&&+p.units.supply||0)/sph),sup=!has?'':p.ext>=99?'เสบียงไม่ถึง (ไม่มีเส้นทางกลับฐาน)':p.ext<=rng?'เสบียงถึง '+rng+' ช่อง · อยู่ในระยะ ไม่เสียแรง':'เสบียงถึงแค่ '+rng+' ช่อง · เกิน '+(p.ext-rng)+' ช่อง แรงลด '+Math.min(100,sdp*(p.ext-rng))+'%';
+  const nn=v=>typeof v==='number'&&isFinite(v),fx=v=>Math.round(v).toLocaleString('th-TH'),
+  est=has&&!p.blocked&&nn(p.defense_est)?'<span class="es">'+ic('shield')+' ป้องกันประมาณ <b>'+fx(p.defense_est)+'</b>'+(p.tile_home?' <i>(เขตบ้านเกิด ×1.3)</i>':'')+(p.tile_shielded?' <i>(มีโล่ ×1.5)</i>':'')+(nn(p.attack_est)?' · ทัพเราประมาณ <b>'+fx(p.attack_est)+'</b>':'')+(nn(p.need_troops_est)?' · ควรส่งอย่างน้อย ~<b>'+fx(p.need_troops_est)+'</b>':'')+'<br><small>เป็นค่าประมาณ ไม่รวมฝน ทัพภาคอื่นที่มาพร้อมกัน และตัวคูณภาคตามหลัง</small></span>':'',
+  bn=has&&!p.blocked&&G.cfg.solo_bonus_enabled&&G.cfg.bonus_first_capture?'<span class="es">'+ic('check')+' ยึดหมู่บ้านครั้งแรกรับโบนัส +'+G.cfg.bonus_first_capture+(G.cfg.bonus_upgrade_per_level?' · อัปเกรดหมู่บ้านทุกเลเวล +'+G.cfg.bonus_upgrade_per_level:'')+'</span>':'';
   const rl=has&&p.rain_level!=null?'<span class="rl">'+wic(p.rain_level>=3?'storm':p.rain_level?'rain':'sun')+(p.rain_level?' ตอนทัพถึง'+RLN[p.rain_level]+' · แรงบุก <b>−'+p.rain_penalty_pct+'%</b> · ลองเลื่อนไปรอบอื่นดูได้':' ตอนทัพถึงฟ้าโปร่ง ไม่มีฝนลดแรง')+'</span>':'';
- o.innerHTML=(p.blocked?ic('x')+' ส่งไม่ได้: '+esc2(p.reason||'')+'<br>':'')+(has?ic(weak||p.rain_level>=2?'warn':'check')+` ถึงรอบที่ ${p.arrive_round_no} (เดิน ${p.eta_rounds} รอบ) · ${esc2(u)}<br>ห่างเขตแดนภาคเรา <b>${p.ext>=99?'ไม่มีเส้นทาง':p.ext+' ช่อง'}</b><br>${sup}<br>แรงโจมตีที่ไปถึง <b>${pc}%</b>`+(weak?' · แรงอ่อนมาก':'')+rl:'');markFc(p);
+ o.innerHTML=(p.blocked?ic('x')+' ส่งไม่ได้: '+esc2(p.reason||'')+'<br>':'')+(has?ic(weak||p.rain_level>=2?'warn':'check')+` ถึงรอบที่ ${p.arrive_round_no} (เดิน ${p.eta_rounds} รอบ) · ${esc2(u)}<br>ห่างเขตแดนภาคเรา <b>${p.ext>=99?'ไม่มีเส้นทาง':p.ext+' ช่อง'}</b><br>${sup}<br>แรงโจมตีที่ไปถึง <b>${pc}%</b>`+(weak?' · แรงอ่อนมาก':'')+rl+est+bn:'');markFc(p);
  b.disabled=!!p.blocked;b.style.background=weak?'linear-gradient(90deg,#e08a12,#ffb02e)':'';b.innerHTML=ic('swords')+(weak?' ส่งทั้งที่แรงอ่อน':' ส่งทัพ')}
 /* ข่าวสนามรบ: สรุปผลรอบที่เปิดผลแล้ว (round_tile_results อ่านได้หลังเปิดผล) */
 async function news(){try{
@@ -647,7 +650,7 @@ $('up').onclick=async()=>{const {data:to,error}=await sb.rpc('upgrade_village');
 (async()=>{try{
  const {data:{session}}=await sb.auth.getSession();if(!session)return location.replace('index.html');
  const {data:p}=await sb.from('profiles').select('username,avatar_key,region_id,home_province,tutorial_done_at').eq('id',session.user.id).maybeSingle();if(!p)return location.replace('index.html');
- G.prof=p;touch();const [u,c,l]=await Promise.all([sb.from('unit_types').select('id,name_th,speed,atk_mult'),sb.from('game_config').select('key,value').in('key',['starter_troops','stock_cap_hours','advance_rounds','rain_attacker_penalty_pct_per_level','v2_supply_range','v2_supply_per_hop','v2_supply_decay_pct','upgrade_timed_enabled','speedup_enabled','speedup_minutes_per_diamond']),sb.from('village_levels').select('level,upgrade_cost,troops_per_hour,upgrade_wait_hours')]);
+ G.prof=p;touch();const [u,c,l]=await Promise.all([sb.from('unit_types').select('id,name_th,speed,atk_mult'),sb.from('game_config').select('key,value').in('key',['starter_troops','stock_cap_hours','advance_rounds','rain_attacker_penalty_pct_per_level','v2_supply_range','v2_supply_per_hop','v2_supply_decay_pct','upgrade_timed_enabled','speedup_enabled','speedup_minutes_per_diamond','solo_bonus_enabled','bonus_first_capture','bonus_upgrade_per_level']),sb.from('village_levels').select('level,upgrade_cost,troops_per_hour,upgrade_wait_hours')]);
  (u.data||[]).forEach(x=>G.units[x.id]=x);(c.data||[]).forEach(x=>G.cfg[x.key]=Number(x.value));(l.data||[]).forEach(x=>G.lv[x.level]=x);rlLegend();
  go(Math.max(0,RID.indexOf(p.region_id)));await load();live();setInterval(live,500);setInterval(()=>{if(!document.hidden&&!$('sh').classList.contains('open'))load()},15000)
 }catch(e){console.error(e)}document.body.style.visibility=''})();
