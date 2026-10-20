@@ -177,6 +177,7 @@ nav .btn .av{margin-right:8px}
 <div class="sh" id="sh" hidden><div class="pn sb" role="dialog" aria-modal="true" aria-labelledby="stt"><button class="x" id="sx" aria-label="ปิด" type="button">✕</button><div id="sc"></div></div></div>
 <div id="ts" role="status" hidden></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 <script>
 const $=i=>document.getElementById(i),pad=n=>String(n).padStart(2,'0');
 // province data from the demo: [code, name, region 0 north/1 isan/2 central/3 south, cx, cy, svg path]
@@ -231,6 +232,23 @@ tick();setInterval(tick,1000);
 /* ===== M3 step 1: auth + avatar (Supabase) ===== */
 const SB_URL='https://tncbzfgdfxjrgrdgmzya.supabase.co',SB_KEY='sb_publishable_xrwJKdhhgt6i_I4pDvI79A_gucUyuVx';
 const sb=window.supabase?window.supabase.createClient(SB_URL,SB_KEY):null;
+/* Cloudflare Turnstile (CAPTCHA) · Site key เป็นค่าสาธารณะ ใส่ในหน้าเว็บได้ · Secret key อยู่ที่ Supabase เท่านั้น
+   st: off = ไม่มีวิดเจ็ตในหน้านี้ · pending = รอผลตรวจ · ok = ได้โทเคนแล้ว · fail = โหลดวิดเจ็ตไม่ได้ (ส่งต่อโดยไม่มีโทเคน ให้เซิร์ฟเวอร์ตัดสิน) */
+const TS_KEY='0x4AAAAAAFccxqxPOXgxPczH',TS={id:null,tok:'',st:'off',gen:0};
+function tsMount(){const g=++TS.gen;
+ if(TS.id!==null&&window.turnstile){try{window.turnstile.remove(TS.id)}catch(e){}}
+ TS.id=null;TS.tok='';TS.st='off';
+ if(!document.getElementById('cf'))return;
+ TS.st='pending';let n=0;
+ (function go(){const c=document.getElementById('cf');if(g!==TS.gen||!c)return;
+  if(!window.turnstile){if(++n>40){TS.st='fail';return}setTimeout(go,250);return}
+  try{TS.id=window.turnstile.render(c,{sitekey:TS_KEY,theme:'dark',size:'flexible',
+   callback:t=>{TS.tok=t;TS.st='ok'},
+   'expired-callback':()=>{TS.tok='';TS.st='pending'},
+   'timeout-callback':()=>{TS.tok='';TS.st='pending'},
+   'error-callback':()=>{TS.tok='';TS.st='fail'}})}catch(e){TS.st='fail'}})()}
+function tsReset(){TS.tok='';if(TS.id!==null&&window.turnstile){TS.st='pending';try{window.turnstile.reset(TS.id)}catch(e){TS.st='fail'}}}
+function tsGate(){return TS.st==='pending'?null:(TS.tok||'')}  /* null = ยังไม่พร้อม · '' = ไม่มีโทเคน · อื่น ๆ = โทเคน */
 const RID=['north','northeast','central','south'],PFX=['n','e','m','s'],TERMS='v1.0';
 /* ===== ข้อมูลจริงของหน้าแรก: ซีซัน · เจ้าของจังหวัด · ข่าวสนามรบ (คนยังไม่ล็อกอินอ่านได้) =====
    อ่านตรงจาก seasons / rounds / tiles (anon อ่านได้) + RPC get_public_battle_news (ไม่มีชื่อผู้เล่น)
@@ -295,6 +313,7 @@ function avPicker(r,sel){let h='<div class="ap">';for(let i=1;i<=5;i++){const k=
 function nowYear(){return new Date(Date.now()+7*36e5).getUTCFullYear()}
 function byear(v){v=parseInt(v,10);if(!v)return 0;return v>=2400?v-543:v}
 function netErr(m){m=String(m||'');
+ if(/captcha/i.test(m))return 'ยืนยันตัวตนไม่ผ่าน ลองกดอีกครั้ง หรือรีเฟรชหน้า';
  if(/already registered|already been registered/i.test(m))return 'อีเมลนี้สมัครไว้แล้ว ลองเข้าสู่ระบบแทน';
  if(/invalid login/i.test(m))return 'อีเมลหรือรหัสผ่านไม่ถูก';
  if(/password/i.test(m)&&/least|short|weak/i.test(m))return 'รหัสผ่านสั้นหรืออ่อนเกินไป';
@@ -337,15 +356,15 @@ function renderReg(){const s=reg.step;let h='';
    '<label class="lb">ยืนยันรหัสผ่าน<input class="in" id="f_p2" type="password" autocomplete="new-password" value="'+esc(f.pw2)+'"></label>')+
    '<label class="lb">ปีเกิด (พ.ศ. หรือ ค.ศ. ก็ได้)<input class="in" id="f_b" inputmode="numeric" maxlength="4" value="'+esc(f.by)+'"><span class="hint" id="by_h"></span></label>'+
    '<label class="tm2"><input type="checkbox" id="f_t"'+(f.tm?' checked':'')+'><span>ฉันยอมรับ<a href="terms.html" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">ข้อกำหนดการใช้งาน</a>และ<a href="privacy.html" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">นโยบายความเป็นส่วนตัว</a> ถ้าฉันอายุต่ำกว่า 20 ปี ฉันยืนยันว่าผู้ปกครองรับทราบ และเข้าใจว่าเพชรและไอเทมในเกมไม่ใช่เงินจริง</span></label>'+
-   '<div class="err" id="er" role="alert"></div><div class="nv"><button type="button" class="btn gh" id="bk3">ย้อนกลับ</button><button type="button" class="btn gl" id="go">สมัคร</button></div>'}
- openSh(h);if(s===3)byHint()}
+   (reg.ses?'':'<div id="cf" style="margin:12px 0 2px;min-height:65px"></div>')+'<div class="err" id="er" role="alert"></div><div class="nv"><button type="button" class="btn gh" id="bk3">ย้อนกลับ</button><button type="button" class="btn gl" id="go">สมัคร</button></div>'}
+ openSh(h);tsMount();if(s===3)byHint()}
 function byHint(){const e=$('by_h'),v=byear($('f_b').value);if(e)e.textContent=v?'= ค.ศ. '+v:''}
 function er(t){const e=$('er');if(e)e.textContent=t||''}
 async function startReg(r){if(!sb){toast('ยังเชื่อมต่อระบบไม่ได้ ลองรีเฟรชหน้า');return}
  const had=await loadMe();updNav();if(me){openMe();return}
  Object.assign(reg,{r:r,p:0,a:'',step:1,ses:had,f:{u:'',e:'',pw:'',pw2:'',by:'',tm:false}});renderReg()}
 function openLogin(){if(!sb){toast('ยังเชื่อมต่อระบบไม่ได้ ลองรีเฟรชหน้า');return}
- openSh('<h2 id="stt">เข้าสู่ระบบ</h2><label class="lb">อีเมล<input class="in" id="l_e" type="email" autocomplete="email" inputmode="email"></label><label class="lb">รหัสผ่าน<input class="in" id="l_p" type="password" autocomplete="current-password"></label><div class="err" id="er" role="alert"></div><div class="nv"><button type="button" class="btn gl" id="lg">เข้าสู่ระบบ</button></div><p class="hint" style="margin-top:14px;text-align:center"><a href="reset.html" style="color:var(--gold);text-decoration:underline">ลืมรหัสผ่าน?</a></p><p class="hint" style="margin-top:6px;text-align:center">ยังไม่มีบัญชี? <a href="#" data-a="register" style="color:var(--gold);text-decoration:underline">สมัครเลย</a></p>')}
+ openSh('<h2 id="stt">เข้าสู่ระบบ</h2><label class="lb">อีเมล<input class="in" id="l_e" type="email" autocomplete="email" inputmode="email"></label><label class="lb">รหัสผ่าน<input class="in" id="l_p" type="password" autocomplete="current-password"></label><div id="cf" style="margin:12px 0 2px;min-height:65px"></div><div class="err" id="er" role="alert"></div><div class="nv"><button type="button" class="btn gl" id="lg">เข้าสู่ระบบ</button></div><p class="hint" style="margin-top:14px;text-align:center"><a href="reset.html" style="color:var(--gold);text-decoration:underline">ลืมรหัสผ่าน?</a></p><p class="hint" style="margin-top:6px;text-align:center">ยังไม่มีบัญชี? <a href="#" data-a="register" style="color:var(--gold);text-decoration:underline">สมัครเลย</a></p>');tsMount()}
 function openMe(){const r=Math.max(0,RID.indexOf(me.region_id)),pv=PD.find(p=>p[0]===me.home_province);
  openSh('<h2 id="stt">โปรไฟล์ของคุณ</h2><div class="mec">'+av(me.avatar_key,'lg')+'<div><h3>'+esc(me.username)+'</h3><p>'+RG[r][0]+(pv?' · '+esc(pv[1]):'')+'</p></div></div><p class="sub" style="margin-bottom:6px">เปลี่ยนอวตาร (เฉพาะของภาคตัวเอง)</p>'+avPicker(r,me.avatar_key)+'<div class="err" id="er" role="alert"></div><div class="nv"><a class="btn gl" href="play.html" style="display:grid;place-items:center;text-decoration:none">เข้าสนามรบ</a><button type="button" class="btn gh" id="lo">ออกจากระบบ</button></div>')}
 async function doSubmit(){saveF();const f=reg.f,btn=$('go');
@@ -356,12 +375,14 @@ async function doSubmit(){saveF();const f=reg.f,btn=$('go');
   if(f.pw!==f.pw2)return er('รหัสผ่านสองช่องไม่ตรงกัน')}
  const y=byear(f.by);if(!y||y<1930||y>nowYear())return er('ปีเกิดไม่ถูกต้อง');
  if(!f.tm)return er('ต้องติ๊กยอมรับข้อกำหนดก่อน');
+ if(!reg.ses&&tsGate()===null)return er('กำลังยืนยันตัวตน รอสักครู่แล้วกดสมัครอีกครั้ง');
  er('');btn.disabled=true;btn.textContent='กำลังสมัคร…';
  try{
   if(!reg.ses){
-   const {data,error}=await sb.auth.signUp({email:f.e.trim(),password:f.pw});
+   const ct=tsGate();
+   const {data,error}=await sb.auth.signUp({email:f.e.trim(),password:f.pw,options:ct?{captchaToken:ct}:undefined});
    if(error)throw error;
-   if(!data.session){er('ระบบต้องยืนยันอีเมลก่อน เปิดอีเมลกดลิงก์ แล้วกลับมาเข้าสู่ระบบ');btn.disabled=false;btn.textContent='สมัคร';return}
+   if(!data.session){tsReset();er('ระบบต้องยืนยันอีเมลก่อน เปิดอีเมลกดลิงก์ แล้วกลับมาเข้าสู่ระบบ');btn.disabled=false;btn.textContent='สมัคร';return}
    reg.ses=true}
   const {error}=await sb.rpc('register_profile',{p_username:f.u,p_home_province:reg.p,p_birth_year:y,p_terms_version:TERMS,p_avatar_key:reg.a});
   if(error)throw error;
@@ -397,9 +418,10 @@ document.addEventListener('click',async e=>{const t=e.target;
  else if(id==='go'){doSubmit()}
  else if(id==='dn'){location.href='learn.html'}else if(id==='sk'){location.href='play.html'}
  else if(id==='lg'){const em=$('l_e').value.trim(),pw=$('l_p').value;if(!em||!pw)return er('กรอกอีเมลและรหัสผ่าน');
+  const ct=tsGate();if(ct===null)return er('กำลังยืนยันตัวตน รอสักครู่แล้วกดอีกครั้ง');
   t.disabled=true;er('');
-  const {error}=await sb.auth.signInWithPassword({email:em,password:pw});
-  t.disabled=false;if(error)return er(netErr(error.message));
+  const {error}=await sb.auth.signInWithPassword({email:em,password:pw,options:ct?{captchaToken:ct}:undefined});
+  t.disabled=false;if(error){tsReset();return er(netErr(error.message))}
   await loadMe();updNav();
   if(me){location.href='play.html'}else{startReg(-1)}}
  else if(id==='lo'){await sb.auth.signOut();me=null;updNav();closeSh();toast('ออกจากระบบแล้ว')}});

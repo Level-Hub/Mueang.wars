@@ -54,6 +54,7 @@ footer{text-align:center;color:var(--mu);font-size:.78rem;margin-top:16px}
  <h1>ลืมรหัสผ่าน</h1>
  <p class="sub">ใส่อีเมลที่ใช้สมัคร เราจะส่งลิงก์ตั้งรหัสผ่านใหม่ให้</p>
  <label class="lb">อีเมล<input class="in" id="em" type="email" autocomplete="email" inputmode="email"></label>
+ <div id="cf" style="margin:12px 0 2px;min-height:65px"></div>
  <div class="err" id="e1" role="alert"></div>
  <div class="ok" id="o1" role="status" hidden></div>
  <button class="btn" id="b1" type="button">ส่งลิงก์ตั้งรหัสผ่านใหม่</button>
@@ -91,12 +92,29 @@ footer{text-align:center;color:var(--mu);font-size:.78rem;margin-top:16px}
 <footer>© 2026 MUEANG WARS · <a href="terms.html">ข้อกำหนด</a> · <a href="privacy.html">ความเป็นส่วนตัว</a></footer>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 <script>
 const SB_URL='https://tncbzfgdfxjrgrdgmzya.supabase.co',SB_KEY='sb_publishable_xrwJKdhhgt6i_I4pDvI79A_gucUyuVx';
 const sb=window.supabase?window.supabase.createClient(SB_URL,SB_KEY):null;
+/* Cloudflare Turnstile (CAPTCHA) · Site key เป็นค่าสาธารณะ · Secret key อยู่ที่ Supabase เท่านั้น
+   st: pending = รอผลตรวจ · ok = ได้โทเคนแล้ว · fail = โหลดวิดเจ็ตไม่ได้ (ส่งต่อโดยไม่มีโทเคน ให้เซิร์ฟเวอร์ตัดสิน) */
+const TS_KEY='0x4AAAAAAFccxqxPOXgxPczH',TS={id:null,tok:'',st:'off',gen:0};
+function tsMount(){const g=++TS.gen;
+ if(TS.id!==null&&window.turnstile){try{window.turnstile.remove(TS.id)}catch(e){}}
+ TS.id=null;TS.tok='';TS.st='pending';let n=0;
+ (function go(){const c=document.getElementById('cf');if(g!==TS.gen||!c)return;
+  if(!window.turnstile){if(++n>40){TS.st='fail';return}setTimeout(go,250);return}
+  try{TS.id=window.turnstile.render(c,{sitekey:TS_KEY,theme:'dark',size:'flexible',
+   callback:t=>{TS.tok=t;TS.st='ok'},
+   'expired-callback':()=>{TS.tok='';TS.st='pending'},
+   'timeout-callback':()=>{TS.tok='';TS.st='pending'},
+   'error-callback':()=>{TS.tok='';TS.st='fail'}})}catch(e){TS.st='fail'}})()}
+function tsReset(){TS.tok='';if(TS.id!==null&&window.turnstile){TS.st='pending';try{window.turnstile.reset(TS.id)}catch(e){TS.st='fail'}}}
+function tsGate(){return TS.st==='pending'?null:(TS.tok||'')}  /* null = ยังไม่พร้อม · '' = ไม่มีโทเคน · อื่น ๆ = โทเคน */
 const $=id=>document.getElementById(id);
-function show(n){[1,2,3,4].forEach(i=>$('s'+i).hidden=i!==n)}
+function show(n){[1,2,3,4].forEach(i=>$('s'+i).hidden=i!==n);if(n===1)tsMount()}
 function netErr(m){m=String(m||'');
+ if(/captcha/i.test(m))return 'ยืนยันตัวตนไม่ผ่าน ลองกดอีกครั้ง หรือรีเฟรชหน้า';
  if(/rate limit|too many|seconds|security purposes/i.test(m))return 'ลองบ่อยเกินไป รอสักครู่แล้วลองใหม่';
  if(/same.*password|different from the old/i.test(m))return 'รหัสใหม่ต้องไม่ซ้ำกับรหัสเดิม';
  if(/password/i.test(m)&&/least|short|weak/i.test(m))return 'รหัสผ่านสั้นหรืออ่อนเกินไป';
@@ -114,12 +132,15 @@ if(sb){
   if(/error_code|error=/.test(hash))show(3);
   else setTimeout(()=>{if(!recovered)show(3)},4000)}
 }else{$('e1').textContent='เชื่อมต่อระบบไม่ได้ ลองรีเฟรชหน้า'}
+if(!fromMail)tsMount();
 
 $('b1').onclick=async()=>{const e=$('em').value.trim(),b=$('b1');$('e1').textContent='';$('o1').hidden=true;
  if(!/^\S+@\S+\.\S+$/.test(e))return $('e1').textContent='กรอกอีเมลให้ถูกต้อง';
- if(!sb)return;b.disabled=true;
- const {error}=await sb.auth.resetPasswordForEmail(e,{redirectTo:location.origin+location.pathname});
- b.disabled=false;
+ if(!sb)return;
+ const ct=tsGate();if(ct===null)return $('e1').textContent='กำลังยืนยันตัวตน รอสักครู่แล้วกดอีกครั้ง';
+ b.disabled=true;
+ const {error}=await sb.auth.resetPasswordForEmail(e,ct?{redirectTo:location.origin+location.pathname,captchaToken:ct}:{redirectTo:location.origin+location.pathname});
+ b.disabled=false;tsReset();
  if(error)return $('e1').textContent=netErr(error.message);
  /* ไม่บอกว่าอีเมลนี้มีในระบบหรือไม่ (กันคนไล่เดาอีเมล) */
  $('o1').hidden=false;$('o1').textContent='ถ้าอีเมลนี้สมัครไว้ เราส่งลิงก์ไปให้แล้ว ลองดูในกล่องจดหมายและสแปม (ลิงก์ใช้ได้ช่วงสั้นๆ)'};
