@@ -37,9 +37,12 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
 .m small{display:block;margin-top:4px;font-size:.72rem;opacity:.75}
 .m.me{align-self:flex-end;background:linear-gradient(180deg,#ff7a63,#d4142f);border-bottom-right-radius:6px;color:#fff}
 .m.ad{align-self:flex-start;background:rgba(255,255,255,.1);border:1px solid var(--ln);border-bottom-left-radius:6px}
-.m.ad .who{display:block;font:700 .78rem Kanit,sans-serif;color:var(--gold2);margin-bottom:2px}
-.m.ad .who.ceo{display:inline-flex;align-items:center;gap:5px;padding:1px 10px 1px 6px;border-radius:99px;background:linear-gradient(180deg,#ffe9a6,#ffc857 55%,#d98c12);color:#2b0613;letter-spacing:.08em;box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 2px 0 #7a3d05;margin-bottom:5px}
-.who.ceo svg{width:16px;height:11px}
+/* ป้ายยศ: CEO ทอง+มงกุฎ · แอดมิน เงิน+โล่ (ชุดเดียวกับ profile.html play.html admin.html) */
+.m.ad .rank{display:flex;width:fit-content;margin-bottom:5px}
+.rank{display:inline-flex;align-items:center;gap:6px;padding:2px 12px 2px 8px;border-radius:99px;background:linear-gradient(180deg,#ffe9a6,#ffc857 55%,#d98c12);color:#2b0613;font:800 .8rem Kanit,sans-serif;letter-spacing:.08em;box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 2px 0 #7a3d05;white-space:nowrap}
+.rank svg{width:18px;height:13px;flex:none}
+.rank.rk-ad{letter-spacing:0;color:#1b2233;background:linear-gradient(180deg,#f4f8ff,#c3cfe4 55%,#8896b0);box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 2px 0 #3d4658}
+.rank.rk-ad svg{width:13px;height:15px}
 .m.nw{box-shadow:0 0 0 2px var(--gold)}
 .empty{text-align:center;color:var(--mu);padding:30px 8px}
 textarea{width:100%;min-height:92px;max-height:200px;resize:vertical;border-radius:14px;border:1px solid var(--ln);background:rgba(0,0,0,.35);color:#fff;padding:12px 14px;font:16px 'Noto Sans Thai',sans-serif;-webkit-user-select:text;user-select:text}
@@ -53,7 +56,7 @@ textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(2
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head><body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3c4"/><stop offset=".55" stop-color="#ffc857"/><stop offset="1" stop-color="#d98c12"/></linearGradient><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#c3cfe4"/><stop offset="1" stop-color="#8896b0"/></linearGradient><symbol id="crn" viewBox="0 0 44 30"><path d="M3 24L6 8L15 17L22 4L29 17L38 8L41 24Z" fill="url(#cg)" stroke="#7a3d05" stroke-width="1.6" stroke-linejoin="round"/><rect x="3" y="24" width="38" height="4.6" rx="1.6" fill="url(#cg)" stroke="#7a3d05" stroke-width="1.6"/><circle cx="6" cy="8" r="2.5" fill="#ff3d57" stroke="#7a3d05"/><circle cx="22" cy="4" r="2.8" fill="#5a98ff" stroke="#7a3d05"/><circle cx="38" cy="8" r="2.5" fill="#2fd49a" stroke="#7a3d05"/></symbol><symbol id="shd" viewBox="0 0 30 34"><path d="M15 2L27 6V16C27 24 21.5 30 15 32C8.5 30 3 24 3 16V6Z" fill="url(#sg)" stroke="#3d4658" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 16.5L14 20.5L21 12.5" fill="none" stroke="#3d4658" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol></defs></svg>
 <div class="w">
 <nav><a class="logo" href="index.html" aria-label="MUEANG WARS"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#mk"/></svg><span>MUEANG</span><b>WARS</b></a><a class="btn gh" href="profile.html">โปรไฟล์</a></nav>
 <p id="ld">กำลังโหลด…</p>
@@ -91,11 +94,14 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'
 function toast(t){const e=$('ts');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,3500)}
 const fT=d=>new Intl.DateTimeFormat('th-TH',{timeZone:'Asia/Bangkok',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).format(new Date(d))+' น.';
 let sending=false,lastKey='',timer=null;
+/* ป้ายยศผู้ตอบ: ceo = ทอง+มงกุฎ · อื่น ๆ (admin) = เงิน+โล่ */
+function badge(role){if(role==='ceo')return '<span class="rank"><svg viewBox="0 0 44 30" aria-hidden="true"><use href="#crn"/></svg>CEO</span>';
+ return '<span class="rank rk-ad"><svg viewBox="0 0 30 34" aria-hidden="true"><use href="#shd"/></svg>แอดมิน</span>'}
 function render(list,first){
  const log=$('log'),near=first||log.scrollHeight-log.scrollTop-log.clientHeight<80;
- const key=list.map(m=>m.id+(m.unread?'n':'')).join(',');
+ const key=list.map(m=>m.id+(m.unread?'n':'')+(m.staff_role||'')).join(',');
  if(key===lastKey)return;lastKey=key;
- log.innerHTML=list.length?list.map(m=>'<div class="m '+(m.from_admin?'ad'+(m.unread?' nw':''):'me')+'">'+(m.from_admin?(m.staff_role==='ceo'?'<span class="who ceo"><svg viewBox="0 0 44 30" aria-hidden="true"><path d="M3 24L6 8L15 17L22 4L29 17L38 8L41 24Z" fill="#7a3d05"/><rect x="3" y="24" width="38" height="5" rx="1.6" fill="#7a3d05"/></svg>CEO</span>':'<span class="who">แอดมิน</span>'):'')+esc(m.body)+'<small>'+fT(m.created_at)+'</small></div>').join(''):'<p class="empty">ยังไม่มีข้อความ เริ่มพิมพ์ได้เลย</p>';
+ log.innerHTML=list.length?list.map(m=>'<div class="m '+(m.from_admin?'ad'+(m.unread?' nw':''):'me')+'">'+(m.from_admin?badge(m.staff_role):'')+esc(m.body)+'<small>'+fT(m.created_at)+'</small></div>').join(''):'<p class="empty">ยังไม่มีข้อความ เริ่มพิมพ์ได้เลย</p>';
  if(near)log.scrollTop=log.scrollHeight}
 async function load(first){
  const {data,error}=await sb.rpc('get_my_support_messages');
