@@ -108,6 +108,8 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
  <div id="on" hidden>
   <div class="cw"><span class="cc" aria-hidden="true"></span><span id="cn"></span></div>
   <section class="pn"><h2>หีบของฉัน</h2><p class="sub">หีบให้เศษของไอเทม เก็บเศษให้ครบแล้วกดประกอบ</p><div id="ch"></div></section>
+  <section class="pn" id="pls" hidden><h2>เป้าหมายซีซัน</h2><div id="pl"></div></section>
+  <section class="pn" id="rts"><h2>อัตราสุ่ม</h2><div id="rt"><p class="hint">กำลังโหลด…</p></div></section>
   <section class="pn" id="shs"><h2>เศษของฉัน</h2><div id="sh"></div></section>
   <section class="pn"><h2>คอลเลกชัน</h2><p class="sub" id="cs"></p><div class="pg" id="pg"></div></section>
   <section class="pn"><h2>คลังของฉัน</h2><p class="sub" id="ivs" hidden></p><div class="iv" id="iv"></div></section>
@@ -168,10 +170,16 @@ function paint(){
  $('soon').hidden=O.enabled;$('on').hidden=!O.enabled;if(!O.enabled)return;
  $('cn').innerHTML='<small>เหรียญ</small> '+nf(O.coins);
  const provs=O.progress.map(p=>({c:p.province_code,t:pn(p.province_code),o:p.owned,n:p.total})).sort((a,b)=>a.t.localeCompare(b.t,'th'));
- $('ch').innerHTML=O.chests.length?O.chests.map(c=>'<div class="ck"><div class="rw"><svg class="ci" viewBox="0 0 64 64" aria-hidden="true"><use href="#chest"/></svg><div><b>'+esc(c.name_th)+'</b><small>'+(c.price?'ใช้ '+nf(c.price)+' เหรียญต่อการเปิด':'เปิดฟรี')+' · ได้ '+c.shards_per_open+' เศษ</small></div><button class="btn gh" data-odds="'+esc(c.kind)+'" data-for="'+c.id+'">อัตราดรอป</button></div>'+
-   (c.pick_province?ddHtml(c,provs)+'<div class="pp" id="pp'+c.id+'"></div>':'<p class="hint">หีบนี้สุ่มจังหวัดให้</p>')+
-   '<button class="btn gl full" data-open="'+c.id+'">เปิดหีบ</button><p class="hint" id="hn'+c.id+'" hidden></p><div class="od" id="od'+c.id+'" hidden></div></div>').join('')
-   :'<p class="hint">ยังไม่มีหีบให้เปิด ได้หีบจากการเล่นในสนามรบ</p>';
+ const nc=O.chests.length,nb=O.chests.filter(c=>c.bound).length,c0=O.chests[0],sp=(O.shop||[])[0],bp=sp?+sp.price:0,sp0=c0?c0.shards_per_open:sp?sp.shards_per_open:0,bd=n=>bp*n>O.coins?' disabled':'',SN={milestone:'หลักไมล์',season:'รางวัลซีซัน',buy:'ซื้อ',admin:'แอดมินแจก'},src=Object.entries(O.chests.reduce((m,c)=>(m[c.source_type]=(m[c.source_type]||0)+1,m),{})).map(([k,v])=>(SN[k]||'อื่น ๆ')+' '+v).join(' · ');
+ $('ch').innerHTML='<div class="ck"><div class="rw"><svg class="ci" viewBox="0 0 64 64" aria-hidden="true"><use href="#chest"/></svg><div><b>หีบที่มี '+nf(nc)+' ใบ</b><small>เปิดฟรี · ได้ '+sp0+' เศษต่อใบ'+(nb?' · ผูกบัญชี '+nb+' ใบ':'')+'</small></div></div>'+(nc?'<p class="hint">ที่มา: '+src+'</p>':'')+
+  (c0?(c0.pick_province?ddHtml(c0,provs)+'<div class="pp" id="pp'+c0.id+'"></div>':'<p class="hint">หีบนี้สุ่มจังหวัดให้</p>')+'<button class="btn gl full" data-open="'+c0.id+'">เปิดหีบ</button><p class="hint" id="hn'+c0.id+'" hidden></p>':'<p class="hint">ยังไม่มีหีบ ซื้อด้วยเหรียญหรือรับจากรางวัล</p>')+'</div>'+
+  (sp?'<div class="ck"><div class="rw"><div><b>ซื้อหีบ</b><small>ใบละ '+nf(bp)+' เหรียญ · ซื้อแล้วเปิดฟรี</small></div></div><div class="act"><button class="btn gh" data-buy="1"'+bd(1)+'>ซื้อ 1 ใบ</button><button class="btn gh" data-buy="5"'+bd(5)+'>ซื้อ 5 ใบ</button></div>'+(bp>O.coins?'<p class="hint">เหรียญไม่พอ ขาดอีก '+nf(bp-O.coins)+'</p>':'')+'</div>':'');
+const P=O.play||{};
+ if(P.chest_on||P.coin_on){const ms=(P.milestones||[]).filter(x=>x>0),pt=+P.points||0,nx=ms.find(x=>pt<x);$('pls').hidden=false;
+  $('pl').innerHTML='<p class="hint" style="margin-bottom:8px">คะแนนซีซันของฉัน <b>'+nf(pt)+'</b></p>'+
+   (P.chest_on?'<div class="od">'+ms.map(x=>'<div><span>ถึง '+nf(x)+' คะแนน → หีบฟรี 1 ใบ</span><span>'+(pt>=x?'ผ่านแล้ว ✓':'อีก '+nf(x-pt))+'</span></div>').join('')+'</div>'+(nx?'<p class="hint">อีก '+nf(nx-pt)+' คะแนนได้หีบใบถัดไป</p>':''):'')+
+   (P.coin_on?'<p class="hint">เหรียญจากการเล่น: 1 คะแนน = '+P.coin_per_point+' เหรียญ · วันนี้ได้ '+nf(P.earned_today)+'/'+nf(P.coin_cap)+' · รีเซ็ตเที่ยงคืนเวลาไทย</p>':'')+
+   '<p class="hint">หีบรางวัลท้ายซีซันแจกอัตโนมัติหลังซีซันจบ สำหรับผู้เล่นที่เล่นครบเกณฑ์</p>'}else $('pls').hidden=true;
  O.chests.forEach(c=>sync(c.id));
  const ow=ownSet();
  const sh=O.shards.filter(s=>s.qty>0).sort((a,b)=>(b.qty>=b.need)-(a.qty>=a.need)||b.rarity-a.rarity||a.province_code-b.province_code||a.item_id-b.item_id);
@@ -191,7 +199,7 @@ async function load(){
  const [o,p,dr]=await Promise.all([sb.rpc('get_collection_overview'),sb.from('provinces').select('code,name_th'),sb.rpc('get_dissolve_rules')]);
  DR=dr&&!dr.error&&dr.data&&dr.data.enabled&&dr.data.coins?dr.data:null;
  if(o.error){$('ld').textContent='โหลดไม่สำเร็จ: '+o.error.message;return}
- (p.data||[]).forEach(x=>PN[x.code]=x.name_th);O=o.data;paint()}
+ (p.data||[]).forEach(x=>PN[x.code]=x.name_th);O=o.data;paint();if(O.enabled)rates()}
 async function odds(kind,id){const box=$('od'+id);if(!box.hidden){box.hidden=true;return}
  box.hidden=false;box.textContent='กำลังโหลด…';
  let d;try{const s=$('pv'+id);d=await getOdds(kind,s&&s.value)}catch(e){box.textContent=e.message;return}
@@ -210,6 +218,13 @@ function chestHtml(d){const m=new Map();d.shards.forEach(s=>{const e=m.get(s.ite
   arr.map(x=>{const p=pr[x.item_id]||{have:x.n,need:1,owned:false},rd=p.have>=p.need&&!p.owned;
    return '<div class="pi r'+esc(x.rarity)+'">'+tile(x.art_key,x.rarity,'xs')+'<div class="sb"><b>'+esc(x.name_th)+'</b><small>'+esc(rn(x.rarity))+' · +'+x.n+' เศษ'+(rd?' · <span class="tg">ประกอบได้แล้ว</span>':p.owned?' · มีในคลังแล้ว':'')+'</small><div class="bar"><i style="width:'+pct(p.have,p.need)+'%"></i></div></div><span class="sn">'+p.have+'/'+p.need+'</span></div>'}).join('')+
   '</div><p>เหรียญคงเหลือ '+nf(d.coins)+'</p>'}
+async function buy(n){if(busy)return;busy=true;try{const {data,error}=await sb.rpc('buy_chest',{p_qty:n});if(error){toast(error.message);return}toast('ซื้อหีบ '+data.bought+' ใบ · เหรียญเหลือ '+nf(data.coins));await load()}finally{busy=false}}
+async function rates(){const sp=(O.shop||[])[0],R=O.shard_rules||{};let d=null;try{d=await getOdds(sp?sp.kind:'province',0)}catch(e){}
+ if(!d||!d.by_rarity){$('rts').hidden=true;return}
+ const need=R.need||{},st=+R.pity_step||0,cap=+R.pity_cap||0,lim=+R.pity_chests||0;
+ $('rts').hidden=false;$('rt').innerHTML='<p class="hint" style="margin-bottom:8px">หีบ 1 ใบให้ '+(sp?sp.shards_per_open:d.shards_per_open)+' เศษ สุ่มทีละเศษแยกกัน จากไอเทม 4 ชิ้นของจังหวัดที่เลือก</p><div class="od">'+
+  d.by_rarity.map(r=>'<div><span>'+esc(rn(r.rarity))+' (รวมทุกชิ้น) · ประกอบต้องใช้ '+(need[r.rarity]||'?')+' เศษ</span><span>'+r.pct+'%</span></div>').join('')+'</div>'+
+  (lim&&st?'<p class="hint">โชคช่วย: ถ้าเปิดหีบจังหวัดเดิมครบ '+lim+' ใบแล้วยังประกอบตำนานของจังหวัดนั้นไม่ได้ ตั้งแต่ใบถัดไปโอกาสเศษตำนานเพิ่มขึ้นใบละ '+st+' จุดเปอร์เซ็นต์'+(cap?' (เพิ่มรวมสูงสุด '+cap+')':'')+' ส่วนที่เพิ่มหักจากเศษสามัญ และนับใหม่เมื่อมีเศษตำนานครบหรือประกอบได้แล้ว</p>':'')+'<p class="hint">ตัวเลขดึงจากระบบจริงทุกครั้งที่เปิดหน้านี้</p>'}
 async function openChest(id){if(busy)return;busy=true;
  const c=O.chests.find(x=>x.id==id),s=$('pv'+id),args={p_grant_id:+id};
  if(c&&c.pick_province){if(!s||!s.value){busy=false;toast('เลือกจังหวัดก่อนเปิดหีบ');return}args.p_province=+s.value}
@@ -238,7 +253,7 @@ async function craft(itemId){if(busy)return;busy=true;
  const it=data.item;
  showRv('<h2>ประกอบสำเร็จ</h2>'+tile(it.art_key,it.rarity)+'<h2>'+esc(it.name_th)+'</h2><p>'+esc(rn(it.rarity))+' · '+esc(pn(it.province_code))+(data.is_new?' · ของใหม่ในคลัง!':' · ได้เพิ่มอีก 1 ชิ้น')+(data.bound?' · ผูกบัญชี':'')+'<br>ใช้ '+data.used+' เศษ · เหลือ '+data.shards_left+' เศษ</p>',false,it.rarity)}
 document.addEventListener('click',e=>{const a=e.target.closest('[data-open]'),b=e.target.closest('[data-odds]'),c=e.target.closest('[data-craft]');
- if(a&&!a.disabled)openChest(a.dataset.open);else if(c&&!c.disabled)craft(c.dataset.craft);else if(b)odds(b.dataset.odds,b.dataset.for)});
+ if(a&&!a.disabled)openChest(a.dataset.open);else if(c&&!c.disabled)craft(c.dataset.craft);else if(b)odds(b.dataset.odds,b.dataset.for);else{const y=e.target.closest('[data-buy]');if(y&&!y.disabled)buy(+y.dataset.buy)}});
 document.addEventListener('click',e=>{const d=e.target.closest('[data-dis]'),m=e.target.closest('[data-dzm]'),y=e.target.closest('[data-dzy]'),x=e.target.closest('[data-dzx]');
  if(d)dzOpen(d.dataset.dis);else if(m&&DZ&&!m.disabled){DZ.q=Math.max(1,Math.min(DZ.max,DZ.q+(+m.dataset.dzm)));dzPaint();const b=$('dc').querySelector('[data-dzm="'+m.dataset.dzm+'"]');b&&!b.disabled&&b.focus()}
  else if(y&&!y.disabled)dzGo();else if(x||e.target.id==='dg')dzClose()});

@@ -166,7 +166,7 @@ nav .btn .av{margin-right:8px}
 <section><h2>ของดีประจำจังหวัด</h2><p class="sub">ปัดดูได้ จะทยอยเพิ่มครบ 77 จังหวัด</p><div class="rail" id="rail"></div></section>
 
 <section id="how"><h2>เล่นยังไง</h2><p class="sub">เข้าวันละไม่กี่นาทีก็สู้ได้</p><div class="st">
-<div class="pn s" data-n="1"><div><h3>สะสมกำลังพล</h3><p>หมู่บ้านผลิตกำลังพลให้ตลอดเวลา สะสมได้สูงสุด 12 ชั่วโมง</p></div></div>
+<div class="pn s" data-n="1"><div><h3>สะสมกำลังพล</h3><p>หมู่บ้านผลิตกำลังพลให้ตลอดเวลา สะสมได้สูงสุด <span data-cap>12</span> ชั่วโมง</p></div></div>
 <div class="pn s" data-n="2"><div><h3>ส่งไปยึดช่อง</h3><p>เลือกจังหวัดของภาคอื่น วางกำลังพลล่วงหน้าได้ไม่เกิน 3 รอบ</p></div></div>
 <div class="pn s" data-n="3"><div><h3>รอผลทุก 15 นาที</h3><p>ใครส่งมากกว่าชนะ ฝนจริงที่จังหวัดเป้าหมายทำให้ผู้บุกอ่อนลง 10–30% ดูพยากรณ์ก่อนส่งได้ ช่องที่เพิ่งยึดมีโล่ป้องกัน</p></div></div></div></section>
 
@@ -294,6 +294,9 @@ async function loadLive(){
   (ti.data||[]).forEach(r=>{const k=RID.indexOf(r.owner_region);if(k>=0)OWN[r.province_code]=k});
   NEWS=nw.error?null:(nw.data||[]);LIVE=1;paintLive()
  }catch(x){if(LIVE===0){LIVE=-1;SEA=false;NEWS=null;paintLive()}}/* เคยโหลดได้แล้วแต่รอบนี้พลาด = คงข้อมูลจริงรอบล่าสุดไว้ */}
+/* เพดานสะสมกำลังพลอ่านจาก game_config.stock_cap_hours (anon อ่านได้) · พลาดก็คงเลข 12 ที่เขียนไว้ในหน้า */
+async function loadCap(){try{const r=await sb.from('game_config').select('value').eq('key','stock_cap_hours').maybeSingle();const v=r.data?+r.data.value:0;if(v>0)document.querySelectorAll('[data-cap]').forEach(e=>{e.textContent=v})}catch(x){}}
+loadCap();
 loadLive();setInterval(()=>{if(document.visibilityState==='visible')loadLive()},60000);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')loadLive()});
 let me=null;
