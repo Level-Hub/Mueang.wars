@@ -308,6 +308,12 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
 .fg .fr{display:flex;align-items:center;gap:8px;padding:6px 0;border-top:1px solid var(--ln);font-size:14px}.fg .fr:first-of-type{border-top:0}.fg .fr span{flex:1}.fg .fr small{display:block}
 .fg button,.fgp button{padding:7px 12px;border-radius:12px;border:1.5px solid var(--gd);background:rgba(0,0,0,.3);color:var(--gd2);font-size:13px}.fg button:disabled,.fgp button:disabled{opacity:.45}
 .fg .fa{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}.fgp{margin:0 0 10px;padding:9px 12px;border-radius:14px;background:var(--glass);border:1px solid var(--ln);display:flex;align-items:center;gap:8px}.fgp>span{flex:1;font-size:13.5px}.fgp small{display:block;color:var(--mu);font-size:12px}
+#ann{display:flex;flex-direction:column;gap:6px;margin:8px 14px 0}#ann[hidden]{display:none}
+#ann .an{display:flex;align-items:flex-start;gap:9px;padding:9px 6px 9px 12px;border-radius:14px;background:linear-gradient(180deg,rgba(93,11,31,.96),rgba(43,6,19,.96));border:1px solid rgba(255,200,87,.55);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 6px 16px -8px #000c;color:var(--tx)}
+#ann .an .ic{flex:none;width:20px;height:20px;margin-top:1px;fill:none;stroke:var(--gd2);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#ann .an span{flex:1;min-width:0;font-size:.9rem;line-height:1.45;overflow-wrap:anywhere}
+#ann .an button{flex:none;width:32px;height:32px;border:0;border-radius:10px;background:transparent;color:var(--mu);font:600 20px/1 Kanit,sans-serif;cursor:pointer}
+#ann .an button:active{background:var(--glass)}
 </style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head><body data-p="0"><svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g></defs></svg>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="i-map" viewBox="0 0 24 24"><path d="M3 6.5l6-2.5 6 2.5 6-2.5v13.5l-6 2.5-6-2.5-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></symbol>
@@ -350,6 +356,7 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
  <div class="steps"><span id="s0"><i data-i="plan"></i>วางแผนลับ</span><span id="s1"><i data-i="chat"></i>ปรึกษา</span><span id="s2"><i data-i="mega"></i>เปิดผล</span></div>
 </header>
 <div id="toast"></div>
+<div id="ann" role="region" aria-label="ประกาศจากทีมงาน" hidden></div>
 <div class="chips" id="chips"></div>
 <main>
  <section id="v0"><div class="zm"><small><i data-i="search"></i> แตะจังหวัด = ซูมเข้า</small><button data-z="1">1×</button><button data-z="2">2×</button><button data-z="3.5">3.5×</button></div><div id="mapw"><div id="vp"><div id="mz"><svg id="map" viewBox="0 0 460 780"><defs><filter id="fx" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="7" stdDeviation="7" flood-opacity=".4"/></filter><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#000" stop-opacity=".28"/></linearGradient><filter id="bl" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation="3"/></filter>
@@ -537,6 +544,19 @@ const esc2=t=>String(t).replace(/[<>&]/g,''),UN=id=>(G.units[id]&&G.units[id].na
 const hm=d=>new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Bangkok',hour:'2-digit',minute:'2-digit'}).format(new Date(d));
 /* ===== อันดับผู้เล่น/จังหวัด + บันทึกวันที่เข้าเล่น (รอบสอง) ===== */
 const RK={k:'r',t:{}};
+/* ประกาศจากทีมงาน: อ่านตาราง announcements (RLS ให้เห็นเฉพาะที่ยังไม่ปิดและยังไม่หมดเวลา) แสดงสูงสุด 3 รายการ ใช้ textContent ไม่ใช้ innerHTML กับข้อความ โพลทุก 60 วินาที ล้มเหลว = ซ่อนแถบเงียบ ๆ */
+const ANK='mw_ann_x';let ANX=[];try{ANX=JSON.parse(sessionStorage.getItem(ANK)||'[]')}catch(e){}
+function annShow(a){const b=$('ann');b.textContent='';let n=0;
+ a.forEach(x=>{const key=String(x.id),t=String(x.body||x.message||x.text||'').trim().slice(0,200);if(!t||ANX.indexOf(key)>=0||n>=3)return;n++;
+  const d=document.createElement('div');d.className='an';d.innerHTML=ic('mega');
+  const sp=document.createElement('span');sp.textContent=t;d.appendChild(sp);
+  const c=document.createElement('button');c.type='button';c.textContent='\u00d7';c.setAttribute('aria-label','ซ่อนประกาศนี้');
+  c.onclick=()=>{ANX.push(key);try{sessionStorage.setItem(ANK,JSON.stringify(ANX.slice(-30)))}catch(e){}d.remove();if(!b.children.length)b.hidden=true};
+  d.appendChild(c);b.appendChild(d)});
+ b.hidden=!n}
+async function annLoad(){try{const {data,error}=await sb.from('announcements').select('*');if(error||!Array.isArray(data))return;
+ const now=Date.now(),ts=x=>Date.parse(x.created_at||x.starts_at||x.posted_at||'')||0;
+ annShow(data.filter(x=>x&&x.id!=null&&!x.ended_at&&!x.closed_at&&(!x.ends_at||Date.parse(x.ends_at)>now)&&(!x.expires_at||Date.parse(x.expires_at)>now)).sort((p,q)=>ts(q)-ts(p)).slice(0,3))}catch(e){}}
 const SHD='<svg viewBox="0 0 30 34" aria-hidden="true"><path d="M15 2L27 6V16C27 24 21.5 30 15 32C8.5 30 3 24 3 16V6Z" fill="#fff" fill-opacity=".55" stroke="#1b2233" stroke-width="2.2" stroke-linejoin="round"/><path d="M10 16.5L14 20.5L21 12.5" fill="none" stroke="#1b2233" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const CRN='<svg viewBox="0 0 44 30" aria-hidden="true"><path d="M3 24L6 8L15 17L22 4L29 17L38 8L41 24Z" fill="#7a3d05"/><rect x="3" y="24" width="38" height="5" rx="1.6" fill="#7a3d05"/></svg>';
 /* ป้าย VIP 1-3 (R53 · ตกแต่งอย่างเดียว · ทีมงานไม่ขึ้น) */
@@ -706,7 +726,7 @@ function fgCard(){const b=$('flag');if(!b)return;
  const f=FG.flag,m=FG.meter,st=FG.strike,my=FG.my_vote,top=(FG.top||[]).slice(1);
  let h=head+'<div class="fb"><b>'+esc2(f.name_th)+'</b><br><small>ของ'+rgName(f.owner_region)+' · '+f.votes+' โหวต จาก '+FG.voters+' คนที่โหวตธง</small>';
  if(m){const pct=Math.max(0,Math.min(100,m.pct|0));h+='<div class="mt'+(m.ready?' ok':'')+'"><i style="width:'+pct+'%"></i></div><small>แรงที่ภาคเรากำลังส่งไป <b>'+m.committed+'</b> / ป้องกัน <b>'+m.needed+'</b> ('+m.pct+'%) · '+m.players+' คน'+(m.rain_level?' · ฝนลดแรงบุกแล้ว':'')+'<br>'+(m.ready?'แรงพอจะยึดได้ถ้าไม่มีใครเพิ่มป้องกัน':'ยังไม่พอ ต้องส่งเพิ่มอีกอย่างน้อย '+Math.max(1,m.needed-m.committed+1))+'</small>'}
- if(st){h+='<br><small>'+ic('clock')+' ตีพร้อมกันรอบที่ '+st.round_no+' · '+hm(st.starts_at)+' น.'+(FG.my_offset_for_strike==null?'<br>ทัพของคุณไปถึงไม่ทันรอบนี้':'<br>ส่งให้ทันรอบนี้: เลือก "ส่งในรอบ" ลำดับที่ '+((FG.my_offset_for_strike|0)+1)+' ในแผงจังหวัด')+'</small>'}
+ if(st){h+='<br><small>'+ic('clock')+' ตีพร้อมกันรอบที่ '+st.round_no+' · '+hm(st.starts_at)+' น.'+(FG.my_offset_for_strike==null?((Date.parse(st.starts_at)-Date.now())>(G.cfg.advance_rounds||3)*15*60000?'<br>ยังไกลเกินส่งล่วงหน้า (ส่งได้ล่วงหน้า '+(G.cfg.advance_rounds||3)+' รอบ) ทัพที่ส่งไปจังหวัดนี้ตอนนี้ยังตีตามปกติตอนถึง ไม่เสียเปล่า เพียงแต่ไม่นับในมาตรวัดนี้ พอใกล้ถึงเวลา ระบบจะบอกว่าให้ส่งในรอบไหน':'<br>ทัพของคุณไปถึงไม่ทันรอบนี้'):'<br>ส่งให้ทันรอบนี้: เลือก "ส่งในรอบ" ลำดับที่ '+((FG.my_offset_for_strike|0)+1)+' ในแผงจังหวัด')+'</small>'}
  h+='<div class="fa"><button data-fg="go:'+f.province_code+'">'+ic('swords')+' ไปที่จังหวัดนี้</button>'+(my?'<button data-fg="clear">ยกเลิกโหวตของฉัน</button>':'')+'</div></div>';
  if(top.length){h+='<small>จังหวัดอื่นที่เพื่อนร่วมภาคโหวต</small>'+top.map(t=>'<div class="fr"><span>'+esc2(t.name_th)+'<small>'+t.votes+' โหวต · ห่างเขตแดน '+t.ext+' ช่อง</small></span><button data-fg="vote:'+t.province_code+'"'+(FG.can_vote&&my!==t.province_code?'':' disabled')+'>'+(my===t.province_code?'โหวตแล้ว':'โหวต')+'</button></div>').join('')}
  if(!FG.can_vote)h+='<br><small>'+esc2(FG.vote_block_reason||'')+'</small>';
@@ -759,7 +779,7 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden&&G.prof)co
  const {data:p}=await sb.from('profiles').select('username,avatar_key,region_id,home_province,tutorial_done_at').eq('id',session.user.id).maybeSingle();if(!p)return location.replace('index.html');
  G.prof=p;touch();coins();const [u,c,l]=await Promise.all([sb.from('unit_types').select('id,name_th,speed,atk_mult'),sb.from('game_config').select('key,value').in('key',['starter_troops','stock_cap_hours','advance_rounds','rain_attacker_penalty_pct_per_level','v2_supply_range','v2_supply_per_hop','v2_supply_decay_pct','upgrade_timed_enabled','speedup_enabled','speedup_minutes_per_diamond','solo_bonus_enabled','bonus_first_capture','bonus_upgrade_per_level']),sb.from('village_levels').select('level,upgrade_cost,troops_per_hour,upgrade_wait_hours')]);
  (u.data||[]).forEach(x=>G.units[x.id]=x);(c.data||[]).forEach(x=>G.cfg[x.key]=Number(x.value));(l.data||[]).forEach(x=>G.lv[x.level]=x);rlLegend();
- go(Math.max(0,RID.indexOf(p.region_id)));await load();live();setInterval(live,500);setInterval(()=>{if(!document.hidden&&!$('sh').classList.contains('open'))load()},15000)
+ go(Math.max(0,RID.indexOf(p.region_id)));annLoad();setInterval(()=>{if(!document.hidden)annLoad()},60000);await load();live();setInterval(live,500);setInterval(()=>{if(!document.hidden&&!$('sh').classList.contains('open'))load()},15000)
 }catch(e){console.error(e)}document.body.style.visibility=''})();
 
 /* ล็อกซูม: กันท่าจีบนิ้วบน iOS (ซูมแผนที่ใช้ปุ่ม +/− ของเกม) */
