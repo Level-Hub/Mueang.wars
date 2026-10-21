@@ -156,17 +156,46 @@ summary em{font-style:normal;color:var(--mu);font:400 .78rem 'Noto Sans Thai'}
 .lv span{min-width:0;overflow-wrap:anywhere}.lv b{flex:none;max-width:45%;overflow-wrap:anywhere;text-align:right}
 .tp2{text-align:center;padding:30px 12px}
 .tp2 b{display:block;font-size:1.1rem;margin-bottom:6px}
+
+/* ===== กลุ่ม C: รูปโปรไฟล์ผู้ส่ง · อ่านแล้ว · ออนไลน์ · เก็บเธรด · อนุมัติรูป ===== */
+.pic{--sz:34px;--k:var(--c2);--rg:var(--k);width:var(--sz);height:var(--sz);border-radius:50%;flex:none;position:relative;overflow:hidden;display:inline-grid;place-items:center;border:2px solid var(--rg);background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.4),var(--k));box-shadow:0 0 0 2px #1a0310;vertical-align:middle}
+.pic::before{content:attr(data-n);font:800 calc(var(--sz)*.4) Kanit,sans-serif;color:#1a0310}
+.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pic.ceo{--rg:#ffc857;box-shadow:0 0 0 2px #1a0310,0 0 10px rgba(255,200,87,.55)}
+.pic.adm{--rg:#c3cfe4;box-shadow:0 0 0 2px #1a0310,0 0 10px rgba(160,190,255,.5)}
+.pic.v1{--rg:#6ee7b7}.pic.v2{--rg:#c084fc}.pic.v3{--rg:#fda4af}
+.pic.sm{--sz:26px}
+.m .mh{flex-wrap:wrap}.m .mh .mn{font:700 .85rem Kanit,sans-serif;min-width:0;overflow-wrap:anywhere}
+.m .rd{display:inline-block;margin-left:6px;font-weight:700;color:var(--gold2)}
+.th .t .tn{display:flex;align-items:center;gap:7px;min-width:0;overflow:hidden}
+.th .t .tn>span.nm{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tgs{display:flex;flex-wrap:wrap;gap:5px;margin:2px 0}
+.tg{display:inline-block;padding:0 9px;border-radius:99px;font:700 .72rem/1.6 Kanit,sans-serif;border:1px solid var(--ln);background:rgba(0,0,0,.3);color:var(--mu)}
+.tg.k{color:#bff5de;border-color:#6ee7b7}
+.chips .tg{display:inline-flex;align-items:center;min-height:30px;padding:0 11px;font-size:.85rem;line-height:1}.tg.i{color:#1a0310;background:var(--gold);border-color:var(--gold2)}
+#un{display:flex;align-items:center;gap:8px;min-width:0}#un .nmx{min-width:0;overflow-wrap:anywhere}
+.stf{display:flex;align-items:center;gap:10px;font:700 .8rem Kanit,sans-serif;color:var(--mu)}
+.stf span{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.od{width:10px;height:10px;border-radius:50%;background:#6b5a60;box-shadow:0 0 0 2px #1a0310;flex:none}.od.on{background:#34e08a;box-shadow:0 0 0 2px #1a0310,0 0 8px rgba(52,224,138,.8)}
+.tb em{font-style:normal;margin-left:6px;min-width:20px;display:inline-block;padding:0 6px;border-radius:99px;background:var(--gold);color:#1a0310;font-size:.75rem;line-height:1.5}
+.pav{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--ln)}
+.pav:first-of-type{border-top:0}
+.pav .avi{width:84px;height:84px;border-radius:18px;object-fit:cover;flex:none;border:2px solid var(--ln);background:rgba(0,0,0,.35)}
+.pav .pb{min-width:0;flex:1}.pav .pb b{display:block;font:800 1rem Kanit,sans-serif;overflow-wrap:anywhere}
+.pav .pbtn{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.pav .pbtn .btn{flex:1 1 110px}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g><symbol id="cn" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#ffc857" stroke="#7a3d05" stroke-width="1.6"/><circle cx="12" cy="12" r="6.4" fill="none" stroke="#d98c12" stroke-width="1.6"/><path d="M12 8v8M9.6 10.2h3.6a1.5 1.5 0 010 3h-2.4a1.5 1.5 0 000 3H14.4" fill="none" stroke="#7a3d05" stroke-width="1.5" stroke-linecap="round"/></symbol><symbol id="dm" viewBox="0 0 24 24"><path d="M12 22L2.5 9.5L7 3h10l4.5 6.5Z" fill="#5ad7ff" stroke="#0b4f6c" stroke-width="1.6" stroke-linejoin="round"/><path d="M2.5 9.5h19M9 3l3 6.5L15 3M12 22L9 9.5M12 22l3-12.5" fill="none" stroke="#0b4f6c" stroke-width="1.2" stroke-linejoin="round"/></symbol></defs></svg>
 <div class="w">
-<nav><span class="logo"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#mk"/></svg><span>MUEANG</span><b>ADMIN</b></span><span class="nr"><span id="me"></span><button class="btn gh" id="rf" type="button">รีเฟรช</button><a class="btn gh" href="play.html">สนามรบ</a></span></nav>
+<nav><span class="logo"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#mk"/></svg><span>MUEANG</span><b>ADMIN</b></span><span class="nr"><span id="me"></span><span class="stf" id="onl" hidden aria-label="สถานะทีมงานออนไลน์"></span><button class="btn gh" id="rf" type="button">รีเฟรช</button><a class="btn gh" href="play.html">สนามรบ</a></span></nav>
 <p class="hint" id="ld" style="text-align:center;padding:60px 0">กำลังตรวจสิทธิ์…</p>
 <main id="app" hidden>
  <div class="tabs" id="tabs" role="tablist" aria-label="หมวดงานแอดมิน">
   <button class="tb on" type="button" role="tab" data-t="chat">ข้อความ</button>
   <button class="tb" type="button" role="tab" data-t="led">ประวัติเหรียญ</button>
   <button class="tb" type="button" role="tab" data-t="ann">ประกาศ</button>
+  <button class="tb" type="button" role="tab" data-t="av">รูปโปรไฟล์<em id="avn" hidden>0</em></button>
   <button class="tb cx" type="button" role="tab" data-t="sw" hidden>สวิตช์ระบบ</button>
   <button class="tb cx" type="button" role="tab" data-t="cfg" hidden>ตัวเลขเศรษฐกิจ</button>
   <button class="tb" type="button" role="tab" data-t="top">คิวเติมเงิน</button>
@@ -213,6 +242,12 @@ summary em{font-style:normal;color:var(--mu);font:400 .78rem 'Noto Sans Thai'}
   <div id="alist"></div>
  </section>
 
+ <section class="pn" id="p-av" hidden>
+  <h1>รูปโปรไฟล์รออนุมัติ</h1>
+  <p class="hint">รูปที่ผู้เล่นอัปโหลดเอง ผู้เล่นคนอื่นจะเห็นเมื่ออนุมัติแล้วเท่านั้น</p>
+  <div id="avl"></div>
+ </section>
+
  <section class="pn cx" id="p-sw" hidden>
   <h1>สวิตช์ระบบ</h1>
   <p class="hint">ทุกการเปลี่ยนผู้เล่นเห็นผลทันที ต้องใส่เหตุผลและมีบันทึกไว้</p>
@@ -253,13 +288,21 @@ function badge(role,vip){const v=vipOf(vip);
  if(role==='admin')return '<span class="rkc ad">'+SHD+'แอดมิน</span>';
  return v?'<span class="rkv v'+v+'">'+DMD+'VIP '+v+'</span>':''}
 function nameFx(n,role,vip){const s=esc(n||'(ไม่พบโปรไฟล์)'),v=vipOf(vip);return role==='ceo'?'<span class="ceo-nm">'+s+'</span>':role==='admin'?'<span class="adm-nm">'+s+'</span>':v?'<span class="vn'+v+'">'+s+'</span>':s}
+
+/* รูปโปรไฟล์ ชุดเดียวกับ play.html: photo_url (https) ก่อน ไม่มี/โหลดไม่ได้ใช้รูปอวตารจาก avatar_key */
+const AVP=['img/{k}.webp','img/avatars/{k}.webp','img/avatar/{k}.webp','img/{k}.png','img/{k}.jpg','img/{k}.jpeg','img/avatar-{k}.webp','img/avatar_{k}.webp'],PFX=['n','e','m','s'];
+const aEsc=t=>String(t==null?'':t).replace(/[<>&"']/g,'');
+function avErr(i){if(i.dataset.ph){delete i.dataset.ph;i.dataset.t=0;i.src=AVP[0].replace('{k}',i.dataset.k);return}const n=+(i.dataset.t||0)+1;if(n>=AVP.length){i.remove();return}i.dataset.t=n;i.src=AVP[n].replace('{k}',i.dataset.k)}
+const avKey=k=>{k=String(k||'c1').replace(/[^a-z0-9]/gi,'');return k||'c1'};
+function pic(key,photo,cls,role,vip){const k=avKey(key),ph=typeof photo==='string'&&/^https:\/\//.test(photo)?photo:'',v=vipOf(vip),r=Math.max(0,PFX.indexOf(k[0]));
+ return '<span class="pic'+(role==='ceo'?' ceo':role==='admin'?' adm':v?' v'+v:'')+(cls?' '+cls:'')+'" style="--k:var(--c'+r+')" data-n="'+aEsc(k[1]||'')+'"><img src="'+(ph?aEsc(ph):AVP[0].replace('{k}',k))+'" data-k="'+k+'"'+(ph?' data-ph="1"':'')+' alt="" decoding="async" loading="lazy" onerror="avErr(this)"></span>'}
 const ico=(id)=>'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#'+id+'"/></svg>';
 const isCeo=()=>ROLE==='ceo';
 async function loadList(){
  const {data,error}=await sb.rpc('admin_support_threads');
  if(error){toast(error.message);return}
  const l=data||[];
- $('lst').innerHTML=l.length?l.map(t=>'<button type="button" class="th'+(t.user_id===cur?' on':'')+'" data-u="'+esc(t.user_id)+'" style="--k:var(--c'+rk(t.region_id)+')"><span class="t"><span>'+esc(t.username||'(ไม่พบโปรไฟล์)')+'</span>'+(t.unread?'<em>'+t.unread+'</em>':'')+'</span><p>'+(t.last_from_admin?'ทีมงาน: ':'')+esc(t.last_body||'')+'</p><small>'+fT(t.last_at)+'</small></button>').join(''):'<p class="empty">ยังไม่มีข้อความจากผู้เล่น</p>'}
+ $('lst').innerHTML=l.length?l.map(t=>'<button type="button" class="th'+(t.user_id===cur?' on':'')+'" data-u="'+esc(t.user_id)+'" style="--k:var(--c'+rk(t.region_id)+')"><span class="t"><span class="tn">'+pic(t.avatar_key,t.photo_url,'sm',t.staff_role,0)+'<span class="nm">'+esc(t.username||'(ไม่พบโปรไฟล์)')+'</span>'+badge(t.staff_role,0)+'</span>'+(t.unread?'<em>'+t.unread+'</em>':'')+'</span>'+((t.important||t.kept)?'<span class="tgs">'+(t.important?'<span class="tg i">สำคัญ</span>':'')+(t.kept?'<span class="tg k">เก็บไว้</span>':'')+'</span>':'')+'<p>'+(t.last_from_admin?'ทีมงาน: ':'')+esc(t.last_body||'')+'</p><small>'+fT(t.last_at)+'</small></button>').join(''):'<p class="empty">ยังไม่มีข้อความจากผู้เล่น</p>'}
 function actions(){
  const d=info,box=$('ac'),b=[],staff=!!d.is_staff,isMe=d.user_id===MYID;
  if(!staff&&!isMe)b.push(d.banned_at?'<button class="btn gh" type="button" data-a="unban">ปลดแบน</button>':'<button class="btn gl" type="button" data-a="ban">แบน</button>');
@@ -267,18 +310,18 @@ function actions(){
   b.push('<button class="btn gd" type="button" data-a="chest">ให้หีบ</button>','<button class="btn gd" type="button" data-a="wallet">ปรับกระเป๋า</button>');
   if(!staff&&!isMe)b.push('<button class="btn sv" type="button" data-a="vip">ตั้ง VIP'+(d.vip_level?' (ตอนนี้ '+d.vip_level+')':'')+'</button>');
   if(!isMe&&d.staff_role!=='ceo')b.push(d.staff_role==='admin'?'<button class="btn gh" type="button" data-a="demote">ถอดแอดมิน</button>':'<button class="btn sv" type="button" data-a="promote">เลื่อนเป็นแอดมิน</button>')}
- b.push('<button class="btn gh" type="button" data-a="ledger">ดูประวัติเหรียญ</button>');
+ b.push('<button class="btn gh" type="button" data-a="ledger">ดูประวัติเหรียญ</button>','<button class="btn gh" type="button" data-a="keep">'+(d.kept?'เลิกเก็บเธรด':'เก็บเธรด')+'</button>');
  box.innerHTML=b.join('');box.hidden=false;$('chh').hidden=!isCeo()}
 async function openThread(u,keepScroll){
  const {data,error}=await sb.rpc('admin_open_support_thread',{p_user:u});
  if(error){toast(error.message);return}
  info=data;cur=u;const log=$('log'),near=!keepScroll||log.scrollHeight-log.scrollTop-log.clientHeight<80,sr=data.staff_role||null;
  $('tp').classList.toggle('t-ceo',sr==='ceo');$('tp').classList.toggle('t-ad',sr==='admin');
- $('un').innerHTML=nameFx(data.username,sr,data.vip_level);$('ui').textContent=(data.region_id?RGN[rk(data.region_id)]+' · ':'')+'รหัส '+String(u).slice(0,8);
- $('ch').innerHTML=badge(sr,data.vip_level)+'<span class="chip">'+ico('cn')+nf(data.coins)+' เหรียญ</span><span class="chip">'+ico('dm')+nf(data.diamonds)+' เพชร</span>'+(data.banned_at?'<span class="chip bn">ถูกแบน'+(data.ban_reason?' · '+esc(data.ban_reason):'')+'</span>':'');$('ch').hidden=false;
+ $('un').innerHTML=pic(data.avatar_key,data.photo_url,'',sr,data.vip_level)+'<span class="nmx">'+nameFx(data.username,sr,data.vip_level)+'</span>';$('ui').textContent=(data.region_id?RGN[rk(data.region_id)]+' · ':'')+'รหัส '+String(u).slice(0,8);
+ $('ch').innerHTML=badge(sr,data.vip_level)+'<span class="chip">'+ico('cn')+nf(data.coins)+' เหรียญ</span><span class="chip">'+ico('dm')+nf(data.diamonds)+' เพชร</span>'+(data.banned_at?'<span class="chip bn">ถูกแบน'+(data.ban_reason?' · '+esc(data.ban_reason):'')+'</span>':'')+(data.important?'<span class="tg i">สำคัญ</span>':'')+(data.kept?'<span class="tg k">เก็บไว้ ไม่ลบเอง</span>':data.purge_at?'<span class="chip">จะลบเธรด '+fT(data.purge_at)+'</span>':'');$('ch').hidden=false;
  actions();
- log.innerHTML=(data.messages||[]).length?data.messages.map(m=>{const r=m.from_admin?(m.staff_role||'admin'):null;
-  return '<div class="m '+(m.from_admin?'ad'+(r==='admin'?' ra':''):'us')+'">'+(m.from_admin?'<div class="mh">'+badge(r)+'</div>':'')+esc(m.body)+'<small>'+fT(m.created_at)+'</small><button type="button" class="x" data-id="'+esc(m.id)+'" aria-label="ลบข้อความ">✕</button></div>'}).join(''):'<p class="empty">ยังไม่มีข้อความ</p>';
+ log.innerHTML=(data.messages||[]).length?data.messages.map(m=>{const r=m.from_admin?(m.staff_role||'admin'):null,sv=m.from_admin?0:m.sender_vip,nmx=m.sender_username||(m.from_admin?'ทีมงาน':'');
+  return '<div class="m '+(m.from_admin?'ad'+(r==='admin'?' ra':''):'us')+'"><div class="mh">'+pic(m.sender_avatar_key,m.sender_photo_url,'sm',r,sv)+'<span class="mn">'+nameFx(nmx,r,sv)+'</span>'+badge(r,sv)+'</div>'+esc(m.body)+'<small>'+fT(m.created_at)+(m.from_admin&&m.read_at?'<span class="rd">อ่านแล้ว '+fT(m.read_at)+'</span>':'')+'</small><button type="button" class="x" data-id="'+esc(m.id)+'" aria-label="ลบข้อความ">✕</button></div>'}).join(''):'<p class="empty">ยังไม่มีข้อความ</p>';
  if(near)log.scrollTop=log.scrollHeight;
  $('bd').disabled=false;$('sd').disabled=false;$('cols').classList.add('open');loadList()}
 async function reply(){
@@ -319,6 +362,7 @@ async function act(a){
   run:(v,w)=>sb.rpc('admin_adjust_wallet',{p_user:u,p_currency:v.cur,p_delta:Number(v.delta),p_reason:w})};
  else if(a==='vip')o={title:'ตั้ง VIP '+nm,desc:'ป้ายและสีชื่อตามระดับ ตกแต่งอย่างเดียว ไม่มีผลต่อการเล่น · ตอนนี้: '+(info.vip_level?'VIP '+info.vip_level:'ไม่มี'),fields:[{id:'lv',type:'select',label:'ระดับ',opts:[['1','VIP 1 · เขียว'],['2','VIP 2 · ม่วง'],['3','VIP 3 · ชมพู'],['0','ถอด VIP']]},{...RS}],ok:'ตั้ง',cls:'sv',run:(v,w)=>sb.rpc('admin_set_vip',{p_user:u,p_level:Number(v.lv),p_reason:w})};
  else if(a==='promote'||a==='demote'){const p=a==='promote';o={title:(p?'เลื่อนเป็นแอดมิน ':'ถอดแอดมิน ')+nm,desc:p?'แอดมินตอบแชต แบน และลบข้อความได้ แต่ปรับกระเป๋า แจกหีบ หรือเลื่อนคนไม่ได้':'บัญชีนี้จะกลับเป็นผู้เล่นทั่วไป',fields:[{...RS}],ok:p?'เลื่อน':'ถอด',cls:p?'sv':'gl',run:(v,w)=>sb.rpc('admin_set_staff_role',{p_user:u,p_role:p?'admin':'none',p_reason:w})}}
+ else if(a==='keep'){const k=!info.kept;o={title:(k?'เก็บเธรด ':'เลิกเก็บเธรด ')+nm,desc:k?'เธรดนี้จะไม่ถูกลบอัตโนมัติ':'เธรดนี้จะกลับไปลบอัตโนมัติตามเวลาปกติ',fields:[{...RS}],ok:k?'เก็บ':'เลิกเก็บ',cls:k?'gd':'gl',run:(v,w)=>sb.rpc('admin_set_thread_keep',{p_user:u,p_keep:k,p_reason:w})}}
  if(!o)return;
  const ok=await askG(o);if(ok){toast('ทำรายการแล้ว');await openThread(u,true)}}
 async function delMsg(id){
@@ -381,7 +425,8 @@ const SW_WARN={
  upgrade_timed_enabled:'อัปเกรดหมู่บ้านจะเสร็จทันทีไม่มีเวลารอ',
  hall_of_fame_enabled:'ท้ายซีซันจะไม่บันทึกหอเกียรติยศ',
  solo_bonus_enabled:'ผู้เล่นจะไม่ได้โบนัสยึดครั้งแรกและโบนัสอัปเกรดหมู่บ้าน',
- region_flag_enabled:'ธงเป้าหมายภาคจะปักและโหวตไม่ได้'};
+ region_flag_enabled:'ธงเป้าหมายภาคจะปักและโหวตไม่ได้',
+ custom_avatar_enabled:'ผู้เล่นทุกคนจะเห็นรูปอวตารเดิม และตั้งรูปของตัวเองไม่ได้'};
 let SWD=[];
 async function loadSw(){
  if(!isCeo())return;
@@ -426,15 +471,39 @@ async function saveCfg(key,inp){
  const sim=x.risk==='sim';
  const ok=await askG({title:'แก้ '+(x.label||key),desc:key+'\nเดิม '+fmtV(x.value)+' → ใหม่ '+n+'\nช่วงที่รับ '+x.min+'–'+x.max+(sim?'\n\nเตือน: ค่านี้ต้องจำลองก่อนแก้ ถ้ายังไม่ได้จำลอง อย่าแก้':''),fields:[{...RS}],ok:'บันทึก',cls:sim?'gl':'gd',run:(v,w)=>sb.rpc('admin_set_config',{p_key:key,p_value:n,p_reason:w})});
  if(ok){toast('บันทึกแล้ว');loadCfg()}}
+/* ===== รูปโปรไฟล์รออนุมัติ (ทุกยศ · หลังบ้านตรวจสิทธิ์ซ้ำ) ===== */
+const httpsOnly=u=>typeof u==='string'&&/^https:\/\//.test(u)?u:'';
+function avCount(n){const e=$('avn');e.textContent=n>99?'99+':n;e.hidden=!n}
+async function loadAvCount(){const {data,error}=await sb.rpc('admin_list_pending_avatars');if(!error&&Array.isArray(data))avCount(data.length)}
+async function loadAv(){
+ const {data,error}=await sb.rpc('admin_list_pending_avatars');
+ if(error){toast(error.message);return}
+ const l=Array.isArray(data)?data:[];avCount(l.length);
+ $('avl').innerHTML=l.length?l.map(x=>'<div class="pav"><img class="avi" src="'+esc(httpsOnly(x.url))+'" alt="" loading="lazy" onerror="this.style.visibility=\'hidden\'"><div class="pb"><b>'+esc(x.username||'(ไม่พบโปรไฟล์)')+'</b><small class="hint">'+(x.region_id?esc(RGN[rk(x.region_id)])+' · ':'')+'ส่งเมื่อ '+(x.submitted_at?fT(x.submitted_at):'-')+'</small><div class="pbtn"><button type="button" class="btn gd" data-ap="'+esc(x.user_id)+'" data-n="'+esc(x.username||'ผู้เล่น')+'">อนุมัติ</button><button type="button" class="btn gl" data-rj="'+esc(x.user_id)+'" data-n="'+esc(x.username||'ผู้เล่น')+'">ปฏิเสธ</button></div></div></div>').join(''):'<p class="empty">ไม่มีรูปรออนุมัติ</p>'}
+async function reviewAv(u,nm,approve){
+ const o=approve
+  ?{title:'อนุมัติรูป '+nm,desc:'ผู้เล่นคนอื่นจะเห็นรูปนี้ทันที',noReason:true,ok:'อนุมัติ',cls:'gd',run:()=>sb.rpc('admin_review_avatar',{p_user:u,p_approve:true,p_reason:'อนุมัติรูปโปรไฟล์'})}
+  :{title:'ปฏิเสธรูป '+nm,desc:'รูปนี้จะไม่แสดงกับผู้เล่นคนอื่น',fields:[{...RS}],ok:'ปฏิเสธ',cls:'gl',run:(v,w)=>sb.rpc('admin_review_avatar',{p_user:u,p_approve:false,p_reason:w})};
+ const ok=await askG(o);if(ok){toast(approve?'อนุมัติแล้ว':'ปฏิเสธแล้ว');loadAv()}}
+/* ===== ทีมงานออนไลน์ + heartbeat (~45 วินาที ตอนหน้าเปิดอยู่) ===== */
+async function loadOnline(){
+ const {data,error}=await sb.rpc('get_staff_online');
+ const e=$('onl');if(error||!Array.isArray(data)){e.hidden=true;return}
+ e.innerHTML=data.map(x=>'<span title="'+(x.online?'ออนไลน์':'ออฟไลน์')+'"><i class="od'+(x.online?' on':'')+'" aria-hidden="true"></i>'+(x.role==='ceo'?'CEO':'แอดมิน')+'<span class="sr" style="position:absolute;left:-9999px">'+(x.online?'ออนไลน์':'ออฟไลน์')+'</span></span>').join('');e.hidden=false}
+async function beat(){
+ if(document.visibilityState!=='visible')return;
+ try{await sb.rpc('staff_heartbeat')}catch(e){}
+ loadOnline();loadAvCount()}
 /* ===== แท็บ ===== */
 function setTab(t){
  if((t==='sw'||t==='cfg')&&!isCeo())return;
  TAB=t;
  document.querySelectorAll('#tabs .tb').forEach(b=>{const on=b.dataset.t===t;b.classList.toggle('on',on);b.setAttribute('aria-selected',on)});
- ['chat','led','ann','sw','cfg','top'].forEach(k=>{const s=$('p-'+k);if(s)s.hidden=k!==t});
+ ['chat','led','ann','av','sw','cfg','top'].forEach(k=>{const s=$('p-'+k);if(s)s.hidden=k!==t});
  if(t==='chat'){loadList();if(cur)openThread(cur,true)}
  else if(t==='led')loadLedger();
  else if(t==='ann')loadAnn();
+ else if(t==='av')loadAv();
  else if(t==='sw')loadSw();
  else if(t==='cfg')loadCfg()}
 function refresh(){setTab(TAB)}
@@ -447,7 +516,7 @@ async function init(){
  const ceo=isCeo();
  $('fs').hidden=!ceo;$('lsw').hidden=!ceo;$('lhn').hidden=ceo;
  document.querySelectorAll('.cx').forEach(e=>{if(e.classList.contains('tb'))e.hidden=!ceo});
- $('ld').hidden=true;$('app').hidden=false;ledChip();await loadList();
+ $('ld').hidden=true;$('app').hidden=false;ledChip();await loadList();beat();setInterval(beat,45000);
  timer=setInterval(()=>{if(document.visibilityState==='visible'&&!asking&&TAB==='chat'){loadList();if(cur)openThread(cur,true)}},20000)}
 $('tabs').onclick=e=>{const b=e.target.closest('.tb');if(b&&!b.hidden)setTab(b.dataset.t)};
 $('lst').onclick=$('sr').onclick=e=>{const b=e.target.closest('.th');if(b)openThread(b.dataset.u)};
@@ -462,6 +531,7 @@ $('lmore').onclick=()=>loadLedger(true);
 $('ab').addEventListener('input',e=>{$('ac2').textContent=e.target.value.length+'/200'});
 $('ap').onclick=postAnn;
 $('alist').onclick=e=>{const b=e.target.closest('[data-e]');if(b)endAnn(b.dataset.e)};
+$('avl').onclick=e=>{const a=e.target.closest('[data-ap]'),r=e.target.closest('[data-rj]');if(a)reviewAv(a.dataset.ap,a.dataset.n,true);else if(r)reviewAv(r.dataset.rj,r.dataset.n,false)};
 $('swl').onclick=e=>{const b=e.target.closest('[data-s]');if(b)setSw(b.dataset.s,Number(b.dataset.v))};
 $('cfl').onclick=e=>{const b=e.target.closest('[data-sv]');if(b)saveCfg(b.dataset.sv,b.closest('.cf').querySelector('input'))};
 $('sd').onclick=reply;$('rf').onclick=refresh;
