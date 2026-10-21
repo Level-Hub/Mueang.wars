@@ -37,12 +37,34 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
 .m small{display:block;margin-top:4px;font-size:.72rem;opacity:.75}
 .m.me{align-self:flex-end;background:linear-gradient(180deg,#ff7a63,#d4142f);border-bottom-right-radius:6px;color:#fff}
 .m.ad{align-self:flex-start;background:rgba(255,255,255,.1);border:1px solid var(--ln);border-bottom-left-radius:6px}
-/* ป้ายยศ: CEO ทอง+มงกุฎ · แอดมิน เงิน+โล่ (ชุดเดียวกับ profile.html play.html admin.html) */
-.m.ad .rank{display:flex;width:fit-content;margin-bottom:5px}
+/* RANKBLOCK v1 · ชุดป้ายยศ/VIP เดียวกันทุกไฟล์ (CEO ทอง+มงกุฎ · แอดมิน เงิน+โล่ · VIP1 มรกต VIP2 ม่วง VIP3 ชมพูกุหลาบ · ไม่ใช้อีโมจิ) */
 .rank{display:inline-flex;align-items:center;gap:6px;padding:2px 12px 2px 8px;border-radius:99px;background:linear-gradient(180deg,#ffe9a6,#ffc857 55%,#d98c12);color:#2b0613;font:800 .8rem Kanit,sans-serif;letter-spacing:.08em;box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 2px 0 #7a3d05;white-space:nowrap}
 .rank svg{width:18px;height:13px;flex:none}
 .rank.rk-ad{letter-spacing:0;color:#1b2233;background:linear-gradient(180deg,#f4f8ff,#c3cfe4 55%,#8896b0);box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 2px 0 #3d4658}
 .rank.rk-ad svg{width:13px;height:15px}
+.vipb{display:inline-flex;align-items:center;gap:5px;padding:2px 11px 2px 7px;border-radius:99px;background:linear-gradient(180deg,var(--va),var(--vb));color:var(--vt);font:800 .78rem Kanit,sans-serif;letter-spacing:.04em;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 2px 0 var(--vc);white-space:nowrap}
+.vipb svg{width:15px;height:14px;flex:none}
+.vipb.v1{--va:#6ee7b7;--vb:#10b981;--vc:#047857;--vt:#052e22}
+.vipb.v2{--va:#c084fc;--vb:#9333ea;--vc:#6b21a8;--vt:#fff}
+.vipb.v3{--va:#fda4af;--vb:#f43f5e;--vc:#9f1239;--vt:#3b0211}
+.vn1{color:#6ee7b7}.vn2{color:#c084fc}.vn3{color:#fda4af}
+/* /RANKBLOCK */
+.r{display:flex;align-items:flex-end;gap:8px;max-width:94%}
+.r.ad{align-self:flex-start}
+.r.me{align-self:flex-end;flex-direction:column;align-items:flex-end;gap:3px;max-width:86%}
+.r .m{max-width:100%}
+.r.ad .m{flex:1;min-width:0}
+.who{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:5px}.who b{font-size:.85rem;overflow-wrap:anywhere}
+.rd{font-size:.72rem;color:var(--mu)}
+.av{--s:36px;width:var(--s);height:var(--s);border-radius:50%;border:2px solid var(--k,var(--c2));background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.4),var(--k,var(--c2)));display:inline-grid;place-items:center;position:relative;overflow:hidden;flex:none}
+.av::before{content:attr(data-n);font:800 1em Kanit;color:#1a0310}
+.av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.av.sf{--k:#8896b0}.av.sf.c{--k:#ffc857}.av.sf svg{width:20px;height:20px;position:relative}
+#ol{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}
+.ch{display:inline-flex;align-items:center;gap:7px;min-height:30px;padding:0 12px;border-radius:99px;border:1px solid var(--ln);background:rgba(0,0,0,.35);font:600 .8rem 'Noto Sans Thai',sans-serif;color:var(--mu)}
+.ch i{width:9px;height:9px;border-radius:50%;background:#7b6a70;flex:none}
+.ch.on{color:var(--ink);border-color:rgba(47,212,154,.6)}.ch.on i{background:#2fd49a;box-shadow:0 0 0 3px rgba(47,212,154,.25)}
+#pg{margin-top:10px;text-align:center}
 .m.nw{box-shadow:0 0 0 2px var(--gold)}
 .empty{text-align:center;color:var(--mu);padding:30px 8px}
 textarea{width:100%;min-height:92px;max-height:200px;resize:vertical;border-radius:14px;border:1px solid var(--ln);background:rgba(0,0,0,.35);color:#fff;padding:12px 14px;font:16px 'Noto Sans Thai',sans-serif;-webkit-user-select:text;user-select:text}
@@ -56,7 +78,7 @@ textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(2
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head><body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3c4"/><stop offset=".55" stop-color="#ffc857"/><stop offset="1" stop-color="#d98c12"/></linearGradient><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#c3cfe4"/><stop offset="1" stop-color="#8896b0"/></linearGradient><symbol id="crn" viewBox="0 0 44 30"><path d="M3 24L6 8L15 17L22 4L29 17L38 8L41 24Z" fill="url(#cg)" stroke="#7a3d05" stroke-width="1.6" stroke-linejoin="round"/><rect x="3" y="24" width="38" height="4.6" rx="1.6" fill="url(#cg)" stroke="#7a3d05" stroke-width="1.6"/><circle cx="6" cy="8" r="2.5" fill="#ff3d57" stroke="#7a3d05"/><circle cx="22" cy="4" r="2.8" fill="#5a98ff" stroke="#7a3d05"/><circle cx="38" cy="8" r="2.5" fill="#2fd49a" stroke="#7a3d05"/></symbol><symbol id="shd" viewBox="0 0 30 34"><path d="M15 2L27 6V16C27 24 21.5 30 15 32C8.5 30 3 24 3 16V6Z" fill="url(#sg)" stroke="#3d4658" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 16.5L14 20.5L21 12.5" fill="none" stroke="#3d4658" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3c4"/><stop offset=".55" stop-color="#ffc857"/><stop offset="1" stop-color="#d98c12"/></linearGradient><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#c3cfe4"/><stop offset="1" stop-color="#8896b0"/></linearGradient><symbol id="crn" viewBox="0 0 44 30"><path d="M3 24L6 8L15 17L22 4L29 17L38 8L41 24Z" fill="url(#cg)" stroke="#7a3d05" stroke-width="1.6" stroke-linejoin="round"/><rect x="3" y="24" width="38" height="4.6" rx="1.6" fill="url(#cg)" stroke="#7a3d05" stroke-width="1.6"/><circle cx="6" cy="8" r="2.5" fill="#ff3d57" stroke="#7a3d05"/><circle cx="22" cy="4" r="2.8" fill="#5a98ff" stroke="#7a3d05"/><circle cx="38" cy="8" r="2.5" fill="#2fd49a" stroke="#7a3d05"/></symbol><symbol id="shd" viewBox="0 0 30 34"><path d="M15 2L27 6V16C27 24 21.5 30 15 32C8.5 30 3 24 3 16V6Z" fill="url(#sg)" stroke="#3d4658" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 16.5L14 20.5L21 12.5" fill="none" stroke="#3d4658" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="dmd" viewBox="0 0 24 22"><path d="M7 1.5H17L22.5 8L12 20.5L1.5 8Z" fill="#fff" fill-opacity=".94" stroke="rgba(0,0,0,.5)" stroke-width="1.4" stroke-linejoin="round"/><path d="M1.5 8H22.5M7 1.5L9.5 8L12 20.5L14.5 8L17 1.5" fill="none" stroke="rgba(0,0,0,.38)" stroke-width="1.1" stroke-linejoin="round"/></symbol></defs></svg>
 <div class="w">
 <nav><a class="logo" href="index.html" aria-label="MUEANG WARS"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#mk"/></svg><span>MUEANG</span><b>WARS</b></a><a class="btn gh" href="profile.html">โปรไฟล์</a></nav>
 <p id="ld">กำลังโหลด…</p>
@@ -64,6 +86,8 @@ textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(2
  <section class="pn">
   <h1>ติดต่อแอดมิน</h1>
   <p class="sub">แชตนี้คือช่องทางติดต่อเจ้าของเกมช่องทางเดียว ใช้ได้แม้บัญชีถูกระงับ เลือกหัวข้อด้านล่างเพื่อเริ่มพิมพ์ หรือพิมพ์เรื่องของคุณเองก็ได้</p>
+  <div id="ol" hidden aria-label="สถานะทีมงาน"></div>
+  <p class="hint" id="ofl" hidden style="margin-top:8px">ตอนนี้ทีมงานออฟไลน์ ข้อความของคุณจะถูกตอบเมื่อทีมงานกลับมา</p>
   <div class="tp" id="tp">
    <button type="button" data-t="ขอลบบัญชีของฉัน">ขอลบบัญชี</button>
    <button type="button" data-t="ขอสำเนาข้อมูลส่วนบุคคลของฉัน">ขอสำเนาข้อมูล</button>
@@ -76,12 +100,13 @@ textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(2
  </section>
  <section class="pn">
   <div id="log" role="log" aria-live="polite" aria-label="ข้อความ"></div>
+  <p class="hint" id="pg" hidden></p>
  </section>
  <section class="pn">
   <textarea id="bd" maxlength="1000" placeholder="พิมพ์ข้อความถึงแอดมิน" aria-label="ข้อความถึงแอดมิน"></textarea>
   <div class="row"><span class="hint" id="ct">0/1000</span><button class="btn gl" id="sd" type="button">ส่งข้อความ</button></div>
   <div class="err" id="er" role="alert"></div>
-  <p class="hint">ข้อความเก็บไว้กับบัญชีของคุณและแอดมินอ่านได้ ถูกลบพร้อมบัญชีเมื่อคุณขอลบ อย่าส่งรหัสผ่านหรือข้อมูลบัตร เรื่องคำขอเกี่ยวกับข้อมูลส่วนบุคคล เราตรวจภายใน 15 วันและดำเนินการภายใน 30 วัน</p>
+  <p class="hint" id="rt">ข้อความในแชตนี้หายอัตโนมัติ ทั้งแชตจะถูกลบเมื่อเงียบไปนานตามเวลาที่ระบบกำหนด เรื่องที่ต้องมีหลักฐาน เช่น ลบบัญชี คืนเงิน อุทธรณ์ แอดมินอาจกดเก็บแชตไว้ให้ ถ้าจำเป็นให้จดหรือแคปหน้าจอไว้เอง แอดมินอ่านข้อความได้ อย่าส่งรหัสผ่านหรือข้อมูลบัตร เรื่องคำขอเกี่ยวกับข้อมูลส่วนบุคคล เราตรวจภายใน 15 วันและดำเนินการภายใน 30 วัน</p>
  </section>
  <div class="lk"><a href="terms.html">ข้อกำหนดการใช้งาน</a><a href="privacy.html">นโยบายความเป็นส่วนตัว</a><a href="play.html">กลับสนามรบ</a></div>
 </main></div>
@@ -93,16 +118,44 @@ const $=i=>document.getElementById(i);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function toast(t){const e=$('ts');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,3500)}
 const fT=d=>new Intl.DateTimeFormat('th-TH',{timeZone:'Asia/Bangkok',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).format(new Date(d))+' น.';
-let sending=false,lastKey='',timer=null;
+let sending=false,lastKey=null,timer=null,RET=null,SBO=SB_URL+'/storage/v1/object/public/avatars/';
+const PFX=['n','e','m','s'];
+const AVP=['img/{k}.webp','img/avatars/{k}.webp','img/avatar/{k}.webp','img/{k}.png','img/{k}.jpg','img/{k}.jpeg','img/avatar-{k}.webp','img/avatar_{k}.webp'];
+function avErr(i){const n=+(i.dataset.t||0)+1;if(n>=AVP.length){i.remove();return}i.dataset.t=n;i.src=AVP[n].replace('{k}',i.dataset.k)}
+const okPh=u=>typeof u==='string'&&u.indexOf(SBO)===0&&!/["'<>\s]/.test(u);
+function av(key,ph){const k=Math.max(0,PFX.indexOf(key[0]));return '<span class="av" style="--k:var(--c'+k+')" data-n="'+esc(key[1])+'"><img src="'+AVP[0].replace('{k}',esc(key))+'" data-k="'+esc(key)+'" alt="" decoding="async" onerror="avErr(this)">'+(okPh(ph)?'<img src="'+esc(ph)+'" alt="" decoding="async" onerror="this.remove()">':'')+'</span>'}
+/* รูปผู้ตอบ: อวตารมาตรฐานของเขา + รูปที่อนุมัติแล้ว (หลังบ้านส่งมาเฉพาะที่อนุมัติ) · ข้อความเก่าที่ไม่มีข้อมูลผู้ส่งใช้ไอคอนยศแทน */
+function sAv(m){const k=m.sender_avatar_key;if(typeof k==='string'&&/^[nems][1-5]$/.test(k))return av(k,m.sender_photo_url);
+ const c=m.staff_role==='ceo';return '<span class="av sf'+(c?' c':'')+'" aria-hidden="true"><svg viewBox="'+(c?'0 0 44 30':'0 0 30 34')+'"><use href="#'+(c?'crn':'shd')+'"/></svg></span>'}
 /* ป้ายยศผู้ตอบ: ceo = ทอง+มงกุฎ · อื่น ๆ (admin) = เงิน+โล่ */
 function badge(role){if(role==='ceo')return '<span class="rank"><svg viewBox="0 0 44 30" aria-hidden="true"><use href="#crn"/></svg>CEO</span>';
  return '<span class="rank rk-ad"><svg viewBox="0 0 30 34" aria-hidden="true"><use href="#shd"/></svg>แอดมิน</span>'}
+const fH=h=>h>=24&&h%24===0?(h/24)+' วัน':h+' ชั่วโมง';
+const dayOf=d=>new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Bangkok'}).format(new Date(d));
+const fR=d=>dayOf(d)===dayOf(Date.now())?new Intl.DateTimeFormat('th-TH',{timeZone:'Asia/Bangkok',hour:'2-digit',minute:'2-digit'}).format(new Date(d))+' น.':fT(d);
 function render(list,first){
  const log=$('log'),near=first||log.scrollHeight-log.scrollTop-log.clientHeight<80;
- const key=list.map(m=>m.id+(m.unread?'n':'')+(m.staff_role||'')).join(',');
+ let lr=-1;list.forEach((m,i)=>{if(!m.from_admin&&m.read_at)lr=i});
+ const key=list.map(m=>m.id+(m.unread?'n':'')+(m.staff_role||'')+(m.read_at?'r'+m.read_at:'')+'|'+(m.sender_username||'')+(m.sender_avatar_key||'')+(m.sender_photo_url||'')).join(',');
  if(key===lastKey)return;lastKey=key;
- log.innerHTML=list.length?list.map(m=>'<div class="m '+(m.from_admin?'ad'+(m.unread?' nw':''):'me')+'">'+(m.from_admin?badge(m.staff_role):'')+esc(m.body)+'<small>'+fT(m.created_at)+'</small></div>').join(''):'<p class="empty">ยังไม่มีข้อความ เริ่มพิมพ์ได้เลย</p>';
- if(near)log.scrollTop=log.scrollHeight}
+ log.innerHTML=list.length?list.map((m,i)=>m.from_admin
+  ?'<div class="r ad">'+sAv(m)+'<div class="m ad'+(m.unread?' nw':'')+'"><div class="who">'+badge(m.staff_role)+(m.sender_username?'<b>'+esc(m.sender_username)+'</b>':'')+'</div>'+esc(m.body)+'<small>'+fT(m.created_at)+'</small></div></div>'
+  :'<div class="r me"><div class="m me">'+esc(m.body)+'<small>'+fT(m.created_at)+'</small></div>'+(i===lr?'<span class="rd">อ่านแล้ว '+fR(m.read_at)+'</span>':'')+'</div>').join(''):'<p class="empty">ยังไม่มีข้อความ เริ่มพิมพ์ได้เลย</p>';
+ if(near)log.scrollTop=log.scrollHeight;
+ pgPaint(list)}
+/* ข้อความหายเอง: คำนวณจากค่าจริงของระบบ (เงียบนานเท่าไรจึงลบ) · ถ้าแอดมินกดเก็บแชตไว้ จะไม่หาย */
+function pgPaint(list){const p=$('pg');if(!RET||!list.length){p.hidden=true;return}
+ const last=Math.max(...list.map(m=>+new Date(m.created_at))),ans=list.some(m=>m.from_admin),h=ans?RET.r:Math.max(RET.u,RET.r);
+ p.textContent='ถ้าไม่มีข้อความใหม่ แชตนี้จะหายเองราว '+fT(last+h*3600000)+' (ยกเว้นแอดมินกดเก็บไว้)';p.hidden=false}
+async function cfg(){try{const {data,error}=await sb.from('game_config').select('key,value').in('key',['support_retention_hours','support_unanswered_hours']);
+ if(error||!data)return;const g={};data.forEach(r=>g[r.key]=Number(r.value));
+ if(!(g.support_retention_hours>0)||!(g.support_unanswered_hours>0))return;
+ RET={r:g.support_retention_hours,u:g.support_unanswered_hours};
+ $('rt').textContent='ข้อความหายอัตโนมัติ: ทั้งแชตจะถูกลบเมื่อเงียบไปครบ '+fH(RET.r)+' หลังแอดมินตอบแล้ว (ถ้ายังไม่มีใครตอบ เก็บไว้ '+fH(Math.max(RET.u,RET.r))+') เรื่องที่ต้องมีหลักฐาน เช่น ลบบัญชี คืนเงิน อุทธรณ์ แอดมินอาจกดเก็บแชตไว้ให้ ถ้าจำเป็นให้จดหรือแคปหน้าจอไว้เอง แอดมินอ่านข้อความได้ อย่าส่งรหัสผ่านหรือข้อมูลบัตร เรื่องคำขอเกี่ยวกับข้อมูลส่วนบุคคล เราตรวจภายใน 15 วันและดำเนินการภายใน 30 วัน'}catch(e){}}
+async function presence(){try{const {data,error}=await sb.rpc('get_staff_online'),b=$('ol');
+ if(error||!Array.isArray(data)||!data.length){b.hidden=true;$('ofl').hidden=true;return}
+ b.innerHTML=data.map(x=>'<span class="ch'+(x.online?' on':'')+'"><i aria-hidden="true"></i>'+(x.role==='ceo'?'CEO':'แอดมิน')+' '+(x.online?'ออนไลน์':'ออฟไลน์')+'</span>').join('');
+ b.hidden=false;$('ofl').hidden=data.some(x=>x.online)}catch(e){$('ol').hidden=true}}
 async function load(first){
  const {data,error}=await sb.rpc('get_my_support_messages');
  if(error){if(first){$('ld').textContent='โหลดไม่สำเร็จ: '+error.message}return false}
@@ -117,18 +170,20 @@ async function send(){
  const {error}=await sb.rpc('send_support_message',{p_body:v});
  sending=false;$('sd').disabled=false;
  if(error)return er.textContent=error.message;
- $('bd').value='';$('ct').textContent='0/1000';lastKey='';await load(true);toast('ส่งแล้ว')}
-function poll(){clearInterval(timer);timer=setInterval(()=>{if(document.visibilityState==='visible')load(false)},15000)}
+ $('bd').value='';$('ct').textContent='0/1000';lastKey=null;await load(true);toast('ส่งแล้ว')}
+function poll(){clearInterval(timer);timer=setInterval(()=>{if(document.visibilityState==='visible'){load(false);presence()}},15000)}
 async function init(){
  if(!sb){$('ld').textContent='โหลดระบบไม่สำเร็จ ลองรีเฟรชหน้านี้';return}
  const {data:{session}}=await sb.auth.getSession();if(!session)return location.replace('index.html');
  if(!(await load(true)))return;
- $('ld').hidden=true;$('app').hidden=false;$('log').scrollTop=$('log').scrollHeight;poll()}
+ $('ld').hidden=true;$('app').hidden=false;$('log').scrollTop=$('log').scrollHeight;poll();cfg().then(()=>{lastKey=null;load(false)});presence()}
 $('sd').onclick=send;
 $('bd').addEventListener('input',e=>{$('ct').textContent=e.target.value.length+'/1000'});
 $('bd').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey))send()});
 $('tp').onclick=e=>{const b=e.target.closest('button');if(!b)return;const t=b.dataset.t,x=$('bd');x.value=x.value?x.value+'\n'+t:t;x.focus();x.setSelectionRange(x.value.length,x.value.length);$('ct').textContent=x.value.length+'/1000'};
-document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&!$('app').hidden)load(false)});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&!$('app').hidden){load(false);presence()}});
 init();
 ['gesturestart','gesturechange','gestureend'].forEach(t=>document.addEventListener(t,e=>e.preventDefault(),{passive:false}));
+document.addEventListener('touchmove',e=>{if(e.touches.length>1||(e.scale&&e.scale!==1))e.preventDefault()},{passive:false});
+document.addEventListener('wheel',e=>{if(e.ctrlKey)e.preventDefault()},{passive:false});
 </script></body></html>

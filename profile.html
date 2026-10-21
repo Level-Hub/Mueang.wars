@@ -56,16 +56,27 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
 @keyframes shn{to{background-position:-220% 0}}
 @media(prefers-reduced-motion:reduce){.ceo-nm{animation:none}}
 .rkr{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:4px}.rkr .tag{margin-top:0}
-.rank{display:inline-flex;align-items:center;gap:6px;padding:2px 12px 2px 8px;border-radius:99px;background:linear-gradient(180deg,#ffe9a6,#ffc857 55%,#d98c12);color:#2b0613;font:800 .8rem Kanit,sans-serif;letter-spacing:.08em;box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 2px 0 #7a3d05}
+/* RANKBLOCK v1 · ชุดป้ายยศ/VIP เดียวกันทุกไฟล์ (CEO ทอง+มงกุฎ · แอดมิน เงิน+โล่ · VIP1 มรกต VIP2 ม่วง VIP3 ชมพูกุหลาบ · ไม่ใช้อีโมจิ) */
+.rank{display:inline-flex;align-items:center;gap:6px;padding:2px 12px 2px 8px;border-radius:99px;background:linear-gradient(180deg,#ffe9a6,#ffc857 55%,#d98c12);color:#2b0613;font:800 .8rem Kanit,sans-serif;letter-spacing:.08em;box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 2px 0 #7a3d05;white-space:nowrap}
 .rank svg{width:18px;height:13px;flex:none}
-.rank.rk-ad{padding:2px 12px;background:linear-gradient(180deg,#eef2fa,#b9c4d6 55%,#8793a8);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 2px 0 #3d4658}
+.rank.rk-ad{letter-spacing:0;color:#1b2233;background:linear-gradient(180deg,#f4f8ff,#c3cfe4 55%,#8896b0);box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 2px 0 #3d4658}
+.rank.rk-ad svg{width:13px;height:15px}
+.vipb{display:inline-flex;align-items:center;gap:5px;padding:2px 11px 2px 7px;border-radius:99px;background:linear-gradient(180deg,var(--va),var(--vb));color:var(--vt);font:800 .78rem Kanit,sans-serif;letter-spacing:.04em;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 2px 0 var(--vc);white-space:nowrap}
+.vipb svg{width:15px;height:14px;flex:none}
+.vipb.v1{--va:#6ee7b7;--vb:#10b981;--vc:#047857;--vt:#052e22}
+.vipb.v2{--va:#c084fc;--vb:#9333ea;--vc:#6b21a8;--vt:#fff}
+.vipb.v3{--va:#fda4af;--vb:#f43f5e;--vc:#9f1239;--vt:#3b0211}
+.vn1{color:#6ee7b7}.vn2{color:#c084fc}.vn3{color:#fda4af}
+/* /RANKBLOCK */
 .ttl{display:block;margin-top:5px;color:var(--gold2);font:600 .82rem Kanit,sans-serif;letter-spacing:.05em}
 .pn.adm{border-color:rgba(255,200,87,.55)}
 #wl[hidden]{display:none}.wr{display:flex;align-items:center;gap:10px;margin:2px 0 12px;font:800 1.9rem/1 Kanit,sans-serif;color:#ffe08a;text-shadow:0 2px 0 rgba(90,0,15,.7)}.wr small{font:600 .95rem Kanit,sans-serif;color:var(--mu);text-shadow:none}
+.cvr{display:flex;gap:14px;align-items:center;margin-bottom:12px}.cvr p{color:var(--mu);font-size:.88rem}
+#cvx[hidden],#cvu[hidden]{display:none}
 .gd{background:linear-gradient(180deg,#ffe9a6,#ffc857 46%,#d98c12 50%,#f0b030);color:#2b0613;text-shadow:0 1px 0 rgba(255,255,255,.55);box-shadow:inset 0 2px 0 rgba(255,255,255,.75),0 5px 0 #7a3d05,0 12px 22px rgba(255,200,87,.3)}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head><body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3c4"/><stop offset=".55" stop-color="#ffc857"/><stop offset="1" stop-color="#d98c12"/></linearGradient><symbol id="crn" viewBox="0 0 44 30"><path d="M3 24L6 8L15 17L22 4L29 17L38 8L41 24Z" fill="url(#cg)" stroke="#7a3d05" stroke-width="1.6" stroke-linejoin="round"/><rect x="3" y="24" width="38" height="4.6" rx="1.6" fill="url(#cg)" stroke="#7a3d05" stroke-width="1.6"/><circle cx="6" cy="8" r="2.5" fill="#ff3d57" stroke="#7a3d05"/><circle cx="22" cy="4" r="2.8" fill="#5a98ff" stroke="#7a3d05"/><circle cx="38" cy="8" r="2.5" fill="#2fd49a" stroke="#7a3d05"/></symbol></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3c4"/><stop offset=".55" stop-color="#ffc857"/><stop offset="1" stop-color="#d98c12"/></linearGradient><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#c3cfe4"/><stop offset="1" stop-color="#8896b0"/></linearGradient><symbol id="crn" viewBox="0 0 44 30"><path d="M3 24L6 8L15 17L22 4L29 17L38 8L41 24Z" fill="url(#cg)" stroke="#7a3d05" stroke-width="1.6" stroke-linejoin="round"/><rect x="3" y="24" width="38" height="4.6" rx="1.6" fill="url(#cg)" stroke="#7a3d05" stroke-width="1.6"/><circle cx="6" cy="8" r="2.5" fill="#ff3d57" stroke="#7a3d05"/><circle cx="22" cy="4" r="2.8" fill="#5a98ff" stroke="#7a3d05"/><circle cx="38" cy="8" r="2.5" fill="#2fd49a" stroke="#7a3d05"/></symbol><symbol id="shd" viewBox="0 0 30 34"><path d="M15 2L27 6V16C27 24 21.5 30 15 32C8.5 30 3 24 3 16V6Z" fill="url(#sg)" stroke="#3d4658" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 16.5L14 20.5L21 12.5" fill="none" stroke="#3d4658" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="dmd" viewBox="0 0 24 22"><path d="M7 1.5H17L22.5 8L12 20.5L1.5 8Z" fill="#fff" fill-opacity=".94" stroke="rgba(0,0,0,.5)" stroke-width="1.4" stroke-linejoin="round"/><path d="M1.5 8H22.5M7 1.5L9.5 8L12 20.5L14.5 8L17 1.5" fill="none" stroke="rgba(0,0,0,.38)" stroke-width="1.1" stroke-linejoin="round"/></symbol></defs></svg>
 <div class="w">
 <nav><a class="logo" href="index.html" aria-label="MUEANG WARS"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#mk"/></svg><span>MUEANG</span><b>WARS</b></a><a class="btn gh" href="play.html">สนามรบ</a></nav>
 <p id="ld">กำลังโหลดโปรไฟล์…</p>
@@ -79,6 +90,13 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
   <p class="hint" id="nh"></p><div class="err" id="ner" role="alert"></div>
   <button class="btn gl" id="rn" type="button">บันทึกชื่อ</button></section>
  <section class="pn"><h2>เปลี่ยนอวตาร</h2><p class="sub">เลือกได้เฉพาะของภาคตัวเอง</p><div id="avp"></div><div class="err" id="aer" role="alert"></div></section>
+ <section class="pn" id="cav" hidden><h2>รูปโปรไฟล์ของฉัน</h2>
+  <div class="cvr"><span id="cvp"></span><p id="cvs"></p></div>
+  <input type="file" id="cvf" accept="image/*" hidden>
+  <p class="hint" id="cvn" hidden style="margin-bottom:10px"></p>
+  <div class="act"><button class="btn gl" id="cvu" type="button">เลือกรูป</button><button class="btn gh" id="cvx" type="button" hidden>ใช้อวตารมาตรฐาน</button></div>
+  <div class="err" id="cve" role="alert"></div>
+  <p class="hint">รูปจะถูกย่อเป็นสี่เหลี่ยมจัตุรัสและเก็บไว้ที่เซิร์ฟเวอร์ แอดมินตรวจก่อน ผู้เล่นคนอื่นจะเห็นเมื่ออนุมัติแล้วเท่านั้น ห้ามใช้รูปของคนอื่น รูปไม่เหมาะสม หรือรูปที่มีข้อมูลส่วนตัว ดู<a href="privacy.html" style="text-decoration:underline">ความเป็นส่วนตัว</a></p></section>
  <section class="pn" id="wl" hidden><h2>กระเป๋า</h2><div class="wr"><svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#ffc857" stroke="#7a3d05" stroke-width="1.8"/><circle cx="12" cy="12" r="6.2" fill="none" stroke="#b8700b" stroke-width="1.8"/></svg><b id="wc">0</b><small>เหรียญ</small></div><a class="btn gh" href="collection.html" style="width:100%">ใช้เหรียญเปิดหีบ</a></section>
  <section class="pn"><h2>คอลเลกชัน</h2><p class="sub">เก็บไอเทมประจำจังหวัด เปิดหีบ และดูคลังของคุณ</p><a class="btn gl" id="cl" href="collection.html" style="width:100%">เปิดคอลเลกชัน</a></section>
  <section class="pn"><h2>ติดต่อแอดมิน</h2><p class="sub">ขอลบบัญชี ขอสำเนาข้อมูล เติมเงินหรือคืนเงิน แจ้งผู้เล่นที่ไม่เหมาะสม หรืออุทธรณ์การระงับบัญชี</p><a class="btn gl" id="sp" href="support.html" style="width:100%">เปิดแชทแอดมิน</a></section>
@@ -93,18 +111,22 @@ const $=i=>document.getElementById(i),RID=['north','northeast','central','south'
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const AVP=['img/{k}.webp','img/avatars/{k}.webp','img/avatar/{k}.webp','img/{k}.png','img/{k}.jpg','img/{k}.jpeg','img/avatar-{k}.webp','img/avatar_{k}.webp'];
 function avErr(i){const n=+(i.dataset.t||0)+1;if(n>=AVP.length){i.remove();return}i.dataset.t=n;i.src=AVP[n].replace('{k}',i.dataset.k)}
-function av(key,cls){const k=Math.max(0,PFX.indexOf(key[0]));return '<span class="av '+(cls||'')+'" style="--k:var(--c'+k+')" data-n="'+esc(key[1])+'"><img src="'+AVP[0].replace('{k}',esc(key))+'" data-k="'+esc(key)+'" alt="" decoding="async" onerror="avErr(this)"></span>'}
+function av(key,cls,ph){const k=Math.max(0,PFX.indexOf(key[0]));return '<span class="av '+(cls||'')+'" style="--k:var(--c'+k+')" data-n="'+esc(key[1])+'"><img src="'+AVP[0].replace('{k}',esc(key))+'" data-k="'+esc(key)+'" alt="" decoding="async" onerror="avErr(this)">'+(ph?'<img src="'+esc(ph)+'" alt="" decoding="async" onerror="this.remove()">':'')+'</span>'}
+/* ป้ายยศ/VIP ชุดเดียวกับ support.html (บล็อก RANKBLOCK v1) */
+function rankBadge(role){if(role==='ceo')return '<span class="rank"><svg viewBox="0 0 44 30" aria-hidden="true"><use href="#crn"/></svg>CEO</span>';
+ return '<span class="rank rk-ad"><svg viewBox="0 0 30 34" aria-hidden="true"><use href="#shd"/></svg>แอดมิน</span>'}
+function vipBadge(n){return n>=1&&n<=3?'<span class="vipb v'+n+'"><svg viewBox="0 0 24 22" aria-hidden="true"><use href="#dmd"/></svg>VIP '+n+'</span>':''}
 function toast(t){const e=$('ts');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,3500)}
 const TZ={timeZone:'Asia/Bangkok'},fD=d=>new Intl.DateTimeFormat('th-TH',{...TZ,day:'numeric',month:'short',year:'numeric'}).format(new Date(d)),
  fDT=d=>new Intl.DateTimeFormat('th-TH',{...TZ,day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).format(new Date(d))+' น.',nf=n=>Number(n||0).toLocaleString('th-TH');
-let S=null,busy=false,ADM=null;/* null=ผู้เล่น · 'admin' · 'ceo' */
+let S=null,busy=false,ADM=null,VIP=0,UID=null,PH=null,PEND=null,CAV={on:false,allowed:false,status:'none',path:null,min:18};/* null=ผู้เล่น · 'admin' · 'ceo' */
 function paint(){const r=Math.max(0,RID.indexOf(S.region_id));$('app').style.setProperty('--k','var(--c'+r+')');
  $('idp').classList.toggle('ceo-pn',ADM==='ceo');
  $('idc').innerHTML=ADM==='ceo'
-  ?'<span class="crown-w"><svg class="crown" viewBox="0 0 44 30" aria-hidden="true"><use href="#crn"/></svg>'+av(S.avatar_key,'lg ceo')+'</span><div><h1><span class="ceo-nm">'+esc(S.username)+'</span></h1><div class="rkr"><span class="rank"><svg viewBox="0 0 44 30" aria-hidden="true"><use href="#crn"/></svg>CEO</span><span class="tag">'+RGN[r]+'</span></div><span class="ttl">ผู้ก่อตั้ง MUEANG WARS</span><p>บ้านเกิด '+esc(S.home_name||'-')+'</p></div>'
+  ?'<span class="crown-w"><svg class="crown" viewBox="0 0 44 30" aria-hidden="true"><use href="#crn"/></svg>'+av(S.avatar_key,'lg ceo',PH)+'</span><div><h1><span class="ceo-nm">'+esc(S.username)+'</span></h1><div class="rkr">'+rankBadge('ceo')+'<span class="tag">'+RGN[r]+'</span></div><span class="ttl">ผู้ก่อตั้ง MUEANG WARS</span><p>บ้านเกิด '+esc(S.home_name||'-')+'</p></div>'
   :ADM==='admin'
-  ?av(S.avatar_key,'lg')+'<div><h1>'+esc(S.username)+'</h1><div class="rkr"><span class="rank rk-ad">ADMIN</span><span class="tag">'+RGN[r]+'</span></div><p>บ้านเกิด '+esc(S.home_name||'-')+'</p></div>'
-  :av(S.avatar_key,'lg')+'<div><h1>'+esc(S.username)+'</h1><span class="tag">'+RGN[r]+'</span><p>บ้านเกิด '+esc(S.home_name||'-')+'</p></div>';
+  ?av(S.avatar_key,'lg',PH)+'<div><h1>'+esc(S.username)+'</h1><div class="rkr">'+rankBadge('admin')+'<span class="tag">'+RGN[r]+'</span></div><p>บ้านเกิด '+esc(S.home_name||'-')+'</p></div>'
+  :av(S.avatar_key,'lg',PH)+'<div><h1'+(VIP?' class="vn'+VIP+'"':'')+'>'+esc(S.username)+'</h1><div class="rkr"><span class="tag">'+RGN[r]+'</span>'+vipBadge(VIP)+'</div><p>บ้านเกิด '+esc(S.home_name||'-')+'</p></div>';
  const rk=S.rank?'#'+nf(S.rank)+' <small>จาก '+nf(S.players)+'</small>':'—';
  $('stg').innerHTML=[['คะแนนซีซัน',nf(S.points)],['อันดับผู้เล่น',rk],['ช่องที่ยึด',nf(S.captured)],['ป้องกันสำเร็จ',nf(S.defended)],['กำลังพลที่ส่ง',nf(S.troops_sent)],['รอบที่ส่งทัพ',nf(S.rounds_played)],['วันที่เล่น',nf(S.days_played)],['เข้าร่วมเมื่อ',fD(S.joined_at)]]
   .map(([l,v])=>'<div class="sc"><b>'+v+'</b><span>'+l+'</span></div>').join('');
@@ -121,10 +143,10 @@ function admPaint(){const b=$('admc');
  sb.rpc('admin_support_threads').then(r=>{const n=(r&&r.data||[]).reduce((a,t)=>a+(+t.unread||0),0);const a=$('adl');if(n>0&&a)a.textContent='เปิดหน้าแอดมิน (ข้อความใหม่ '+n+')'},()=>{})}
 async function load(){
  if(!sb){$('ld').textContent='โหลดระบบไม่สำเร็จ ลองรีเฟรชหน้านี้';return}
- const {data:{session}}=await sb.auth.getSession();if(!session)return location.replace('index.html');
- const [{data,error},adm]=await Promise.all([sb.rpc('get_my_stats'),sb.rpc('get_my_staff_role').then(r=>(r&&!r.error&&r.data)||null,()=>null)]);ADM=adm;
+ const {data:{session}}=await sb.auth.getSession();if(!session)return location.replace('index.html');UID=session.user.id;
+ const [{data,error},adm,vp]=await Promise.all([sb.rpc('get_my_stats'),sb.rpc('get_my_staff_role').then(r=>(r&&!r.error&&r.data)||null,()=>null),sb.rpc('get_my_vip').then(r=>(r&&!r.error?Number(r.data):0)||0,()=>0)]);ADM=adm;VIP=(!adm&&vp>=1&&vp<=3)?vp:0;
  if(error){if(/ไม่พบโปรไฟล์/.test(error.message))return location.replace('index.html');$('ld').textContent='โหลดไม่สำเร็จ: '+error.message;return}
- S=data;$('ld').hidden=true;$('app').hidden=false;paint();admPaint();wallet();
+ S=data;$('ld').hidden=true;$('app').hidden=false;paint();admPaint();wallet();cavLoad();
  sb.rpc('get_support_unread').then(r=>{const n=r&&r.data;if(n>0)$('sp').textContent='เปิดแชทแอดมิน (ข้อความใหม่ '+n+')'},()=>{})}
 $('rn').onclick=async()=>{if(busy)return;const v=$('nm').value.trim(),er=$('ner');er.textContent='';
  if(!/^[A-Za-z0-9_ก-๙]{3,20}$/.test(v))return er.textContent='ชื่อต้องเป็น ก-ฮ/A-Z/ตัวเลข/_ ยาว 3-20 ตัว ไม่มีช่องว่าง';
@@ -137,6 +159,76 @@ $('avp').onclick=async e=>{const b=e.target.closest('.ab');if(!b||busy||b.datase
  if(error){$('aer').textContent=error.message;return}
  S.avatar_key=data||b.dataset.k;paint();toast('เปลี่ยนอวตารแล้ว')};
 $('lo').onclick=async()=>{await sb.auth.signOut();location.replace('index.html')};
+/* ===== รูปโปรไฟล์ที่ตั้งเอง: อัปโหลดเข้า bucket avatars โฟลเดอร์ตัวเอง แล้วเรียก set_custom_avatar (ต้องผ่านการอนุมัติก่อนคนอื่นเห็น) ===== */
+const SBO=SB_URL+'/storage/v1/object/public/avatars/',PATH_RE=/^[0-9a-f-]{36}\/[0-9a-f-]{36}\.webp$/;
+const uuid=()=>{if(window.crypto&&crypto.randomUUID)return crypto.randomUUID();const b=crypto.getRandomValues(new Uint8Array(16));b[6]=b[6]&15|64;b[8]=b[8]&63|128;const h=[...b].map(x=>x.toString(16).padStart(2,'0')).join('');return h.slice(0,8)+'-'+h.slice(8,12)+'-'+h.slice(12,16)+'-'+h.slice(16,20)+'-'+h.slice(20)};
+function cavErr(e){const m=(e&&e.message)||'ไม่สำเร็จ';
+ if(/row-level security|policy|unauthorized|403/i.test(m))return 'ยังอัปโหลดไม่ได้ (อายุยังไม่ถึงเกณฑ์ หรือระบบยังไม่เปิด)';
+ if(/exceed|too large|payload|size/i.test(m))return 'ไฟล์รูปใหญ่เกินไป';return m}
+async function cavLoad(){
+ try{
+  const [c,p,a]=await Promise.all([
+   sb.from('game_config').select('key,value').in('key',['custom_avatar_enabled','custom_avatar_min_age']),
+   sb.from('profiles').select('custom_avatar_path,custom_avatar_status').eq('id',UID).maybeSingle(),
+   sb.rpc('avatar_upload_allowed')]);
+  const g={};(c.data||[]).forEach(r=>g[r.key]=Number(r.value));const pr=p.data||{};
+  CAV.on=g.custom_avatar_enabled===1;CAV.min=g.custom_avatar_min_age>0?g.custom_avatar_min_age:18;
+  CAV.status=pr.custom_avatar_status||'none';CAV.path=PATH_RE.test(pr.custom_avatar_path||'')?pr.custom_avatar_path:null;
+  CAV.allowed=!!(a&&!a.error&&a.data===true);
+  PH=(CAV.path&&(CAV.status==='pending'||CAV.status==='approved'))?SBO+CAV.path:null;
+  $('cav').hidden=!(CAV.on||CAV.status!=='none');
+  if(!$('cav').hidden)cavPaint();
+  if(S)paint();
+ }catch(e){$('cav').hidden=true}}
+function cavPaint(){
+ const T={none:'ตอนนี้ใช้อวตารมาตรฐาน',pending:'รออนุมัติ: คุณเห็นรูปนี้คนเดียว คนอื่นยังเห็นอวตารมาตรฐานจนกว่าแอดมินอนุมัติ',approved:'อนุมัติแล้ว: ผู้เล่นคนอื่นเห็นรูปนี้',rejected:'ไม่ผ่านการตรวจ: คนอื่นเห็นอวตารมาตรฐาน ส่งรูปใหม่ได้'};
+ $('cvs').textContent=PEND?'ตัวอย่างรูปที่จะส่ง ถ้าพอใจกด "ส่งให้ตรวจ"':(T[CAV.status]||T.none);
+ $('cvp').innerHTML=av(S?S.avatar_key:'n1','lg',PEND?PEND.url:PH);
+ const u=$('cvu'),x=$('cvx'),n=$('cvn');
+ if(PEND){u.hidden=false;u.textContent='ส่งให้ตรวจ';x.hidden=false;x.textContent='ยกเลิก';n.hidden=true;return}
+ u.hidden=!CAV.allowed;u.textContent=CAV.status==='none'?'เลือกรูป':'เปลี่ยนรูป';
+ x.hidden=CAV.status==='none';x.textContent='ใช้อวตารมาตรฐาน';
+ n.hidden=CAV.allowed;n.textContent=CAV.on?'ตั้งรูปโปรไฟล์เองได้เมื่ออายุ '+CAV.min+' ปีขึ้นไปและบัญชีไม่ถูกระงับ':'ระบบรูปโปรไฟล์ยังไม่เปิด'}
+/* ย่อรูปเป็นสี่เหลี่ยมจัตุรัสตรงกลาง แล้วแปลงเป็น webp ไม่เกิน 150KB (ลดขนาด/คุณภาพทีละขั้น) */
+function toWebp(file){return new Promise((res,rej)=>{
+ if(file.size>20*1024*1024)return rej(new Error('ไฟล์รูปใหญ่เกินไป'));
+ const url=URL.createObjectURL(file),im=new Image();
+ im.onerror=()=>{URL.revokeObjectURL(url);rej(new Error('อ่านไฟล์รูปไม่ได้'))};
+ im.onload=async()=>{URL.revokeObjectURL(url);
+  const w=im.naturalWidth,h=im.naturalHeight,m=Math.min(w,h);if(!m)return rej(new Error('อ่านไฟล์รูปไม่ได้'));
+  const sx=(w-m)/2,sy=(h-m)/2;
+  for(const px of [256,192,128])for(const q of [.85,.7,.55,.4]){
+   const c=document.createElement('canvas');c.width=c.height=px;const g=c.getContext('2d');g.imageSmoothingQuality='high';g.drawImage(im,sx,sy,m,m,0,0,px,px);
+   const b=await new Promise(r=>c.toBlob(r,'image/webp',q));
+   if(!b)return rej(new Error('แปลงรูปไม่สำเร็จ'));
+   if(b.type!=='image/webp')return rej(new Error('เบราว์เซอร์นี้แปลงรูปเป็น webp ไม่ได้ ลองใช้เบราว์เซอร์อื่น'));
+   if(b.size<=145000)return res(b)}
+  rej(new Error('ย่อรูปให้เล็กพอไม่ได้ ลองรูปอื่น'))}
+ im.src=url})}
+$('cvu').onclick=()=>{if(busy)return;if(PEND)cavSend();else{$('cve').textContent='';$('cvf').click()}};
+$('cvf').onchange=async e=>{const f=e.target.files&&e.target.files[0];e.target.value='';if(!f||busy)return;
+ busy=true;$('cve').textContent='';$('cvu').disabled=true;
+ try{const b=await toWebp(f);if(PEND)URL.revokeObjectURL(PEND.url);PEND={blob:b,url:URL.createObjectURL(b)};cavPaint()}
+ catch(er){$('cve').textContent=er.message||'อ่านไฟล์รูปไม่ได้'}
+ busy=false;$('cvu').disabled=false};
+async function cavSend(){
+ if(busy||!PEND)return;busy=true;$('cve').textContent='';$('cvu').disabled=true;
+ const path=UID+'/'+uuid()+'.webp',old=CAV.path,bk=sb.storage.from('avatars');
+ try{
+  const up=await bk.upload(path,PEND.blob,{contentType:'image/webp',upsert:false});if(up.error)throw up.error;
+  const r=await sb.rpc('set_custom_avatar',{p_path:path});
+  if(r.error){bk.remove([path]).then(()=>{},()=>{});throw r.error}
+  if(old&&old!==path)bk.remove([old]).then(()=>{},()=>{});
+  URL.revokeObjectURL(PEND.url);PEND=null;toast('ส่งรูปแล้ว รอแอดมินอนุมัติ');await cavLoad();
+ }catch(e){$('cve').textContent=cavErr(e)}
+ busy=false;$('cvu').disabled=false}
+$('cvx').onclick=async()=>{if(busy)return;
+ if(PEND){URL.revokeObjectURL(PEND.url);PEND=null;$('cve').textContent='';cavPaint();return}
+ busy=true;$('cve').textContent='';const old=CAV.path;
+ const {error}=await sb.rpc('clear_custom_avatar');
+ if(error)$('cve').textContent=cavErr(error);
+ else{if(old)sb.storage.from('avatars').remove([old]).then(()=>{},()=>{});toast('กลับไปใช้อวตารมาตรฐานแล้ว');await cavLoad()}
+ busy=false};
 load();
 /* ล็อกซูม: กันท่าจีบนิ้วบน iOS เหมือน play.html */
 ['gesturestart','gesturechange','gestureend'].forEach(t=>document.addEventListener(t,e=>e.preventDefault(),{passive:false}));
