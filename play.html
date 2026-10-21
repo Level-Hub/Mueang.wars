@@ -245,7 +245,59 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
 .ceo-nm{background:linear-gradient(100deg,#fff3c4,#ffc857 40%,#fff8de 55%,#e8a21c);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;font-family:Kanit,"Noto Sans Thai",sans-serif;font-weight:800}
 .rkc{display:inline-flex;align-items:center;gap:4px;margin-left:6px;padding:0 8px 0 5px;border-radius:99px;background:linear-gradient(180deg,#ffe9a6,#ffc857 55%,#d98c12);-webkit-text-fill-color:#2b0613;color:#2b0613;font:800 11px/17px Kanit,"Noto Sans Thai",sans-serif;letter-spacing:.08em;vertical-align:1px}
 .rkc svg{width:15px;height:11px}
-.rkc.ad{padding:0 8px;background:linear-gradient(180deg,#eef2fa,#b9c4d6 55%,#8793a8)}
+.rkc.ad{padding:0 8px 0 5px;letter-spacing:0;background:linear-gradient(180deg,#f4f8ff,#c3cfe4 55%,#8896b0);box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 1px 0 #3d4658;-webkit-text-fill-color:#1b2233;color:#1b2233}
+.rkc.ad svg{width:11px;height:13px}
+.rr.adm.sv{background:linear-gradient(90deg,rgba(160,190,255,.2),rgba(160,190,255,.03));box-shadow:inset 3px 0 0 #c3cfe4}
+.rr.adm:not(.sv){box-shadow:inset 3px 0 0 #ffc857}
+.rr.adm .nm{display:flex;align-items:center}.rr.adm .nm .ceo-nm,.rr.adm .nm .adm-nm{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rr.adm .rkc{flex:none}
+.adm-nm{background:linear-gradient(100deg,#ffffff,#b9cdee 40%,#f4f8ff 55%,#8da3cc);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;font-family:Kanit,"Noto Sans Thai",sans-serif;font-weight:800}
+.rkv{display:inline-flex;align-items:center;gap:4px;margin-left:6px;padding:0 8px 0 5px;border-radius:99px;font:800 11px/17px Kanit,"Noto Sans Thai",sans-serif;letter-spacing:.06em;vertical-align:1px;-webkit-text-fill-color:currentColor}
+.rkv svg{width:12px;height:12px;flex:none}
+/* ===== รูปโปรไฟล์ (อวตาร หรือรูปที่ตั้งเองในอนาคต) + การ์ดผู้เล่น ===== */
+.pic{--sz:38px;--k:var(--c);--rg:var(--k);width:var(--sz);height:var(--sz);border-radius:50%;flex:none;position:relative;overflow:hidden;display:inline-grid;place-items:center;border:2px solid var(--rg);background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.4),var(--k));box-shadow:0 0 0 2px #1a0310}
+.pic::before{content:attr(data-n);font:800 calc(var(--sz)*.4) Kanit,sans-serif;color:#1a0310}
+.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pic.ceo{--rg:#ffc857;box-shadow:0 0 0 2px #1a0310,0 0 10px rgba(255,200,87,.55)}
+.pic.adm{--rg:#c3cfe4;box-shadow:0 0 0 2px #1a0310,0 0 10px rgba(160,190,255,.5)}
+.pic.v1{--rg:#6ee7b7}.pic.v2{--rg:#c084fc}.pic.v3{--rg:#fda4af}
+.rr.tp{cursor:pointer;-webkit-tap-highlight-color:transparent}.rr.tp:active{background:var(--glass)}.rr .pic{margin-right:-2px}
+.rr .chev{flex:none;width:16px;height:16px;color:var(--mu);opacity:.7;margin-left:-4px}
+#pfs{position:fixed;inset:0;z-index:30;background:rgba(10,1,8,.62);opacity:0;pointer-events:none;transition:opacity .2s}
+#pfs.open{opacity:1;pointer-events:auto}
+#pf{position:fixed;left:0;right:0;bottom:0;z-index:31;max-height:calc(100dvh - 40px - env(safe-area-inset-top,0px));overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;background:linear-gradient(180deg,#4a0c20,#240510);color:var(--tx);border:1px solid var(--ln);border-bottom:0;border-radius:28px 28px 0 0;padding:10px 16px calc(18px + env(safe-area-inset-bottom,0px));transform:translateY(110%);transition:transform .28s cubic-bezier(.2,.8,.2,1);box-shadow:0 -14px 40px rgba(0,0,0,.55);--rc:var(--c)}
+#pf.open{transform:none}
+#pf::before{content:"";display:block;width:40px;height:4px;border-radius:9px;background:var(--ln);margin:0 auto 12px}
+#pf.ceo{border-color:rgba(255,200,87,.7);background:radial-gradient(circle at 20% 14%,rgba(255,200,87,.18),transparent 55%),linear-gradient(180deg,#6b0f24,#2b0613)}
+#pf.adm{border-color:rgba(195,207,228,.7);background:radial-gradient(circle at 20% 14%,rgba(160,190,255,.18),transparent 55%),linear-gradient(180deg,#322a4d,#170b22)}
+.pfh{display:flex;gap:14px;align-items:center;margin-top:6px}
+.pfh .pic{--sz:84px}.pfh h3{margin:0;font:800 1.35rem/1.15 Kanit,sans-serif;word-break:break-all}.pfh p{margin:2px 0 0;color:var(--mu);font-size:.86rem}
+.pfw{position:relative;flex:none;display:inline-block;margin-top:14px}
+.pfw .orn{position:absolute;left:50%;transform:translateX(-50%);z-index:2;filter:drop-shadow(0 3px 3px rgba(0,0,0,.65))}
+.pfw .orn.cr{top:-24px;width:46px;height:31px}.pfw .orn.wg{top:-28px;width:84px;height:47px}
+.pfh .nm2{display:inline-block;max-width:100%}
+.nm2.ceo-nm{background:linear-gradient(100deg,#fff3c4 0%,#ffc857 28%,#fff8de 50%,#e8a21c 72%,#ffe08a 100%) 0 0/220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 0 rgba(109,6,24,.95));animation:pfs 5s linear infinite}
+.nm2.adm-nm{background:linear-gradient(100deg,#fff 0%,#b9cdee 28%,#f4f8ff 50%,#8da3cc 72%,#e6efff 100%) 0 0/220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 0 rgba(20,30,60,.95));animation:pfs 5s linear infinite}
+@keyframes pfs{to{background-position:-220% 0}}
+@media(prefers-reduced-motion:reduce){.nm2.ceo-nm,.nm2.adm-nm{animation:none}}
+.pfb{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:6px}.pfb .rkc,.pfb .rkv{margin-left:0}
+.pfr{display:inline-block;padding:2px 12px;border-radius:99px;background:var(--rc);color:#1a0310;font:700 .8rem Kanit,sans-serif}
+.pfg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.pfg div{padding:9px 12px;border-radius:16px;border:1px solid var(--rc);background:linear-gradient(160deg,rgba(255,255,255,.1),transparent)}
+.pfg b{display:block;font:800 1.35rem/1.2 Kanit,sans-serif;color:var(--gd2);font-variant-numeric:tabular-nums}.pfg b small{font:400 .72rem 'Noto Sans Thai';color:var(--mu)}.pfg span{font-size:.78rem;color:var(--mu)}
+.pfk{margin-top:12px;padding:12px 14px;border-radius:18px;background:rgba(0,0,0,.22);border:1px solid var(--ln)}
+.pfk h4{margin:0 0 8px;font:800 .95rem Kanit,sans-serif;color:var(--gd2)}
+.pfp{height:10px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden;box-shadow:inset 0 2px 3px rgba(0,0,0,.35)}.pfp i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--gd),#fff3c4)}
+.pfk small{display:block;margin-top:6px;color:var(--mu);font-size:.8rem}
+.pfc{display:flex;flex-wrap:wrap;gap:6px}.pfc span{padding:3px 12px;border-radius:99px;background:linear-gradient(180deg,#ffe9a6,#ffc857 55%,#d98c12);color:#2b0613;font:800 .78rem Kanit,sans-serif}
+.pfk .e0{color:var(--mu);font-size:.85rem}
+.pfhs{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--ln);font-size:.88rem}.pfhs:last-child{border:0}.pfhs b{font-family:Kanit,sans-serif;color:var(--gd2)}
+.pfx{display:block;width:100%;margin-top:14px;min-height:48px;border-radius:16px;border:1px solid var(--ln);background:rgba(255,255,255,.12);color:#fff;font:800 1rem Kanit,sans-serif}
+
+.rkv.v1{background:linear-gradient(180deg,#6ee7b7,#10b981 55%,#047857);color:#022c22}
+.rkv.v2{background:linear-gradient(180deg,#c084fc,#9333ea 55%,#6b21a8);color:#fff}
+.rkv.v3{background:linear-gradient(180deg,#fda4af,#f43f5e 55%,#9f1239);color:#fff}
+.vn1{color:#6ee7b7}.vn2{color:#d8b4fe}.vn3{color:#fda4af}
+.rr .nm .vn1,.rr .nm .vn2,.rr .nm .vn3{display:inline-block;max-width:calc(100% - 84px);overflow:hidden;text-overflow:ellipsis;vertical-align:bottom}
 #od .es{display:block;margin-top:4px;color:#ffd98a}#od .es small{opacity:.7}#od{display:block;line-height:1.6}#od .ic{vertical-align:-.25em;margin-right:4px}
 .pdf{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:2px 10px;margin:10px 14px 0;padding:10px 12px;border-radius:14px;background:var(--glass);border:1px solid var(--ln)}.pdf svg{width:26px;height:26px;grid-row:1/4;color:var(--gd,#ffc857)}.pdf>span{font-size:15px}.pdf b{font-size:1.35em;color:var(--gd,#ffc857)}.pdf small{color:var(--mu);font-size:12px;line-height:1.4}
 /* ธงเป้าหมายภาค (R46) */
@@ -321,6 +373,8 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
  <section id="v2" hidden><div class="seg" id="seg"><button data-k="r" class="on">ภาค</button><button data-k="p">ผู้เล่น</button><button data-k="v">จังหวัด</button></div><div id="rkR"></div><div id="rkP" hidden></div><div id="rkV" hidden></div></section>
 </main>
 <div id="sh"></div>
+<div id="pfs"></div><div id="pf" role="dialog" aria-modal="true" aria-label="โปรไฟล์ผู้เล่น" aria-hidden="true"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="pcg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3c4"/><stop offset=".55" stop-color="#ffc857"/><stop offset="1" stop-color="#d98c12"/></linearGradient><symbol id="pcrn" viewBox="0 0 44 30"><path d="M3 24L6 8L15 17L22 4L29 17L38 8L41 24Z" fill="url(#pcg)" stroke="#7a3d05" stroke-width="1.6" stroke-linejoin="round"/><rect x="3" y="24" width="38" height="4.6" rx="1.6" fill="url(#pcg)" stroke="#7a3d05" stroke-width="1.6"/><circle cx="6" cy="8" r="2.5" fill="#ff3d57" stroke="#7a3d05"/><circle cx="22" cy="4" r="2.8" fill="#5a98ff" stroke="#7a3d05"/><circle cx="38" cy="8" r="2.5" fill="#2fd49a" stroke="#7a3d05"/></symbol><linearGradient id="psg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#c3cfe4"/><stop offset="1" stop-color="#8896b0"/></linearGradient><g id="pwg" fill="url(#psg)" stroke="#3d4658" stroke-width="1.3" stroke-linejoin="round"><path d="M22 8C15 4 7 6 1.5 12C7.5 11 13 11.5 19 14Z"/><path d="M22 14C16 11 9 13 4.5 18.5C10 17.5 15 18 20 20.5Z"/><path d="M23 20C18 18 12 20 8.5 24.5C13 23.5 17 24 21.5 26Z"/></g><symbol id="pwsh" viewBox="0 0 76 43"><use href="#pwg"/><g transform="translate(76 0) scale(-1 1)"><use href="#pwg"/></g><path d="M38 2L49 6V17C49 25 44 31 38 34C32 31 27 25 27 17V6Z" fill="url(#psg)" stroke="#3d4658" stroke-width="1.8" stroke-linejoin="round"/><path d="M38 9L40.4 15.2L47 15.6L41.9 19.8L43.6 26.2L38 22.6L32.4 26.2L34.1 19.8L29 15.6L35.6 15.2Z" fill="#8896b0" stroke="#3d4658" stroke-width="1" stroke-linejoin="round"/></symbol></defs></svg>
 <nav><button data-v="0" class="on"><span data-i="map"></span>แผนที่</button><button data-v="1"><span data-i="home"></span>หมู่บ้าน</button><button data-v="2"><span data-i="trophy"></span>อันดับ</button><button data-go="profile.html"><span data-i="user"></span>ฉัน</button></nav>
 <script>
 const ic=(n,c='')=>`<svg class="ic ${c}" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-${n}"/></svg>`;
@@ -400,7 +454,14 @@ const origin=(r,t)=>{let b=null,d=1e9;T.forEach(x=>{if(x.o===r){const k=(x.c[0]-
 function burst(x,w){const e=E('use',{href:'#e-'+EMK[w],x:x.c[0]-10,y:x.c[1]-10,width:20,height:20,class:'bst'});e.style.color=col(w);fxg.append(e);setTimeout(()=>e.remove(),1400)}
 function ring(c,color){const e=E('circle',{cx:c[0],cy:c[1],r:5,class:'rp'});e.style.stroke=color;fxg.append(e);setTimeout(()=>e.remove(),1400)}
 function fly(a,b,color,n){for(let k=0;k<n;k++){const e=E('circle',{r:2.4,fill:color,stroke:'#fff','stroke-width':.7,opacity:0}),m=E('animateMotion',{path:`M${a[0]},${a[1]}L${b[0]},${b[1]}`,dur:'.9s',begin:'indefinite',fill:'freeze'}),o=E('set',{attributeName:'opacity',to:1,begin:'indefinite'});e.append(m,o);fxg.append(e);m.beginElementAt(k*.1);o.beginElementAt(k*.1);setTimeout(()=>e.remove(),2600)}}
-function arrows(){ar.innerHTML='';for(const i in send){const a=origin(me,T[i].c),b=T[i].c;ar.append(E('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],class:'al'}))}}
+function arrows(){ar.innerHTML='';const seen={},ps=[];for(const i in send){const a=origin(me,T[i].c),b=T[i].c;ar.append(E('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],class:'al'}));const k=a[0]+','+a[1];if(!seen[k]){seen[k]=1;ps.push(a)}}
+ /* รูปโปรไฟล์ของเราเองที่ต้นทางทัพ (ไม่แสดงของคนอื่น เพราะแผนส่งทัพเป็นความลับ) */
+ const pr=G.prof;if(pr)ps.forEach(a=>ar.append(mapTok(a,pr)))}
+function mapTok(a,pr){const k=avKey(pr),g=E('g',{class:'tok'}),c=E('circle',{cx:a[0],cy:a[1],r:8.4,stroke:'#fff','stroke-width':1.6}),t=E('text',{x:a[0],y:a[1]+3.3,'text-anchor':'middle','font-size':9,'font-weight':800,fill:'#1a0310'}),im=E('image',{x:a[0]-7.2,y:a[1]-7.2,width:14.4,height:14.4,preserveAspectRatio:'xMidYMid slice','clip-path':'url(#tkc)'});
+ c.style.fill='var(--'+EMK[avReg(pr)]+')';t.textContent=k[1]||'';im.dataset.k=k;im.dataset.t=0;im.setAttribute('href',AVP[0].replace('{k}',k));
+ im.addEventListener('error',()=>{const n=+im.dataset.t+1;if(n>=AVP.length){im.remove();return}im.dataset.t=n;im.setAttribute('href',AVP[n].replace('{k}',k))});
+ g.style.pointerEvents='none';g.style.filter='drop-shadow(0 2px 2px rgba(0,0,0,.55))';g.append(c,t,im);return g}
+(()=>{const d=map.querySelector('defs'),cp=E('clipPath',{id:'tkc',clipPathUnits:'objectBoundingBox'});cp.append(E('circle',{cx:.5,cy:.5,r:.5}));d.append(cp)})();
 document.querySelectorAll('.zm button').forEach(b=>b.onclick=()=>{auto=false;const z=+b.dataset.z;zoomTo(cam.x+230/cam.z,cam.y+390/cam.z,z,.5)});
 function go(r){me=r;paint()}
 function toast(t,i){const e=$('toast');e.innerHTML=(i?ic(i):'')+'<span></span>';e.lastChild.textContent=t;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),3500)}
@@ -476,11 +537,25 @@ const esc2=t=>String(t).replace(/[<>&]/g,''),UN=id=>(G.units[id]&&G.units[id].na
 const hm=d=>new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Bangkok',hour:'2-digit',minute:'2-digit'}).format(new Date(d));
 /* ===== อันดับผู้เล่น/จังหวัด + บันทึกวันที่เข้าเล่น (รอบสอง) ===== */
 const RK={k:'r',t:{}};
+const SHD='<svg viewBox="0 0 30 34" aria-hidden="true"><path d="M15 2L27 6V16C27 24 21.5 30 15 32C8.5 30 3 24 3 16V6Z" fill="#fff" fill-opacity=".55" stroke="#1b2233" stroke-width="2.2" stroke-linejoin="round"/><path d="M10 16.5L14 20.5L21 12.5" fill="none" stroke="#1b2233" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const CRN='<svg viewBox="0 0 44 30" aria-hidden="true"><path d="M3 24L6 8L15 17L22 4L29 17L38 8L41 24Z" fill="#7a3d05"/><rect x="3" y="24" width="38" height="5" rx="1.6" fill="#7a3d05"/></svg>';
-const rkRow=(n,r,nm,sub,pt,me,adm)=>`<div class="rr${me?' me':''}${adm==='ceo'?' adm':''}"><span class="n">${n}</span><span class="e" style="color:${col(r)}">${em(r)}</span><span class="nm">${adm==='ceo'?'<span class="ceo-nm">'+esc2(nm)+'</span><span class="rkc">'+CRN+'CEO</span>':adm==='admin'?esc2(nm)+'<span class="rkc ad">ADMIN</span>':esc2(nm)}${me?' (คุณ)':''}${sub?'<small>'+sub+'</small>':''}</span><span class="pt">${pt}</span></div>`;
+/* ป้าย VIP 1-3 (R53 · ตกแต่งอย่างเดียว · ทีมงานไม่ขึ้น) */
+const DMD='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5L21 9.5L12 21.5L3 9.5Z" fill="currentColor"/><path d="M3 9.5H21M8.5 9.5L12 2.5L15.5 9.5L12 21.5Z" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="1.2" stroke-linejoin="round"/></svg>';
+const vipNm=(nm,v)=>{v=+v;return v>=1&&v<=3?'<span class="vn'+v+'">'+esc2(nm)+'</span><span class="rkv v'+v+'">'+DMD+'VIP '+v+'</span>':esc2(nm)};
+/* รูปโปรไฟล์: ถ้าแถวมี photo_url (https) ใช้รูปนั้นก่อน (รองรับรูปที่ตั้งเองในอนาคต) ไม่มีหรือโหลดไม่ได้ = ใช้รูปอวตาร avatar_key เหมือนตอนสมัคร */
+const AVP=['img/{k}.webp','img/avatars/{k}.webp','img/avatar/{k}.webp','img/{k}.png','img/{k}.jpg','img/{k}.jpeg','img/avatar-{k}.webp','img/avatar_{k}.webp'],PFX=['n','e','m','s'];
+const aEsc=t=>String(t==null?'':t).replace(/[<>&"']/g,'');
+function avErr(i){if(i.dataset.ph){delete i.dataset.ph;i.dataset.t=0;i.src=AVP[0].replace('{k}',i.dataset.k);return}const n=+(i.dataset.t||0)+1;if(n>=AVP.length){i.remove();return}i.dataset.t=n;i.src=AVP[n].replace('{k}',i.dataset.k)}
+const avKey=x=>{const k=String((x&&x.avatar_key)||'c1').replace(/[^a-z0-9]/gi,'');return k||'c1'};
+const avReg=x=>Math.max(0,PFX.indexOf(avKey(x)[0]));
+function pic(x,cls,role,vip){const k=avKey(x),ph=x&&typeof x.photo_url==='string'&&/^https:\/\//.test(x.photo_url)?x.photo_url:'',v=+vip;
+ return '<span class="pic'+(role==='ceo'?' ceo':role==='admin'?' adm':v>=1&&v<=3?' v'+v:'')+(cls?' '+cls:'')+'" style="--k:var(--'+EMK[avReg(x)]+')" data-n="'+aEsc(k[1]||'')+'"><img src="'+(ph?aEsc(ph):AVP[0].replace('{k}',k))+'" data-k="'+k+'"'+(ph?' data-ph="1"':'')+' alt="" decoding="async" loading="lazy" onerror="avErr(this)"></span>'}
+const CHV='<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const nmHtml=(nm,adm,vip)=>adm==='ceo'?'<span class="ceo-nm">'+esc2(nm)+'</span><span class="rkc">'+CRN+'CEO</span>':adm==='admin'?'<span class="adm-nm">'+esc2(nm)+'</span><span class="rkc ad">'+SHD+'แอดมิน</span>':vipNm(nm,vip);
+const rkRow=(n,r,nm,sub,pt,me,adm,vip,pr)=>`<div class="rr${me?' me':''}${adm==='ceo'?' adm':adm==='admin'?' adm sv':''}${pr?' tp':''}"${pr?' role="button" tabindex="0" data-u="'+aEsc(nm)+'" aria-label="ดูโปรไฟล์ '+aEsc(nm)+'"':''}><span class="n">${n}</span>${pr?pic(pr,'',adm,vip):'<span class="e" style="color:'+col(r)+'">'+em(r)+'</span>'}<span class="nm">${nmHtml(nm,adm,vip)}${me?' (คุณ)':''}${sub?'<small>'+sub+'</small>':''}</span><span class="pt">${pt}</span>${pr?CHV:''}</div>`;
 const rkNo=j=>j<3?medal(j):j+1;
 function playersHtml(a){if(!a.length)return '<div class="card"><div class="rk0">ยังไม่มีผู้เล่นที่ได้คะแนน ส่งทัพไปยึดช่องหรือป้องกันช่องเพื่อเริ่มสะสมคะแนน</div></div>';
- return '<div class="card">'+a.map(x=>rkRow(rkNo(+x.rank-1),Math.max(0,RID.indexOf(x.region_id)),x.username,'',(+x.points).toLocaleString('en-US'),x.is_me,x.staff_role||null)).join('')+'</div>'+(a.length>=50?'<div class="rk0" style="margin:0 14px">แสดง 50 อันดับแรก</div>':'')}
+ return '<div class="card">'+a.map(x=>rkRow(rkNo(+x.rank-1),Math.max(0,RID.indexOf(x.region_id)),x.username,'',(+x.points).toLocaleString('en-US'),x.is_me,x.staff_role||null,x.vip_level,x)).join('')+'</div>'+(a.length>=50?'<div class="rk0" style="margin:0 14px">แสดง 50 อันดับแรก</div>':'')}
 function provincesHtml(a){const h=G.prof&&G.prof.home_province,l=a.filter(x=>x.players>0).sort((x,y)=>y.points-x.points||y.players-x.players||String(x.name_th).localeCompare(y.name_th,'th')).slice(0,30);
  if(!l.length)return '<div class="card"><div class="rk0">ยังไม่มีใครเลือกจังหวัดเป็นบ้านเกิด</div></div>';
  return '<div class="card">'+l.map((x,j)=>rkRow(rkNo(j),Math.max(0,RID.indexOf(x.region_id)),x.name_th,x.players+' คน',(+x.points).toLocaleString('en-US'),h!=null&&+x.province_code===+h)).join('')+'</div><div class="rk0" style="margin:0 14px">คะแนนรวมของผู้เล่นที่เป็นคนจังหวัดนั้น (ไม่นับบอท)</div>'}
@@ -490,6 +565,33 @@ async function rankLoad(){const k=RK.k;if(k==='r')return;const box=$(k==='p'?'rk
  const {data,error}=k==='p'?await sb.rpc('get_leaderboard_players',{p_limit:50}):await sb.rpc('get_leaderboard_provinces');
  if(error){RK.t[k]=0;box.innerHTML='<div class="card"><div class="rk0">โหลดอันดับไม่สำเร็จ สลับแท็บแล้วลองใหม่</div></div>';return}
  RK.t[k]=Date.now();box.innerHTML=k==='p'?playersHtml(data||[]):provincesHtml(data||[])}
+
+/* ===== การ์ดโปรไฟล์ผู้เล่น (แตะแถวในอันดับ) · ข้อมูลจาก get_public_profile ที่เปิดเฉพาะฟิลด์ปลอดภัย ===== */
+const PF={id:0,last:null},nfm=n=>Number(n||0).toLocaleString('th-TH'),fdt=d=>new Date(d).toLocaleDateString('th-TH',{timeZone:'Asia/Bangkok',day:'numeric',month:'short',year:'numeric'});
+function pfShell(role,reg){const f=$('pf');f.className=(f.classList.contains('open')?'open ':'')+(role==='ceo'?'ceo':role==='admin'?'adm':'');f.style.setProperty('--rc','var(--'+EMK[reg]+')')}
+function pfBody(d){const role=d.staff_role||null,v=+d.vip_level||0,r=Math.max(0,RID.indexOf(d.region_id)),rg=RG[r][1],nm=aEsc(d.username);
+ const orn=role==='ceo'?'<svg class="orn cr" viewBox="0 0 44 30" aria-hidden="true"><use href="#pcrn"/></svg>':role==='admin'?'<svg class="orn wg" viewBox="0 0 76 43" aria-hidden="true"><use href="#pwsh"/></svg>':'';
+ const nmc=role==='ceo'?'nm2 ceo-nm':role==='admin'?'nm2 adm-nm':'nm2'+(v?' vn'+v:''),badge=role==='ceo'?'<span class="rkc">'+CRN+'CEO</span>':role==='admin'?'<span class="rkc ad">'+SHD+'แอดมิน</span>':v?'<span class="rkv v'+v+'">'+DMD+'VIP '+v+'</span>':'';
+ const ttl=role==='ceo'?'ผู้ก่อตั้ง MUEANG WARS':role==='admin'?'ทีมงาน MUEANG WARS':'',own=+d.items_owned||0,tot=+d.items_total||0,pc=tot?Math.min(100,Math.round(own*100/tot)):0;
+ const hall=(d.hall||[]).map(h=>'<div class="pfhs"><span>ซีซัน '+(+h.season_id)+' · '+(h.kind==='region_champion'?'ทีมแชมป์ภาค':h.kind==='player_rank'?'อันดับ '+(+h.rank):'เข้าหอเกียรติยศ')+'</span><b>'+(h.points!=null?nfm(h.points)+' แต้ม':'')+'</b></div>').join('');
+ return '<div class="pfh"><span class="pfw">'+orn+pic(d,'',role,v)+'</span><div style="min-width:0"><h3><span class="'+nmc+'">'+nm+'</span></h3><div class="pfb">'+badge+'<span class="pfr">'+rg+'</span></div>'+(ttl?'<p style="color:'+(role==='ceo'?'var(--gd2)':'#c3cfe4')+';font-weight:600">'+ttl+'</p>':'')+'<p>บ้านเกิด '+aEsc(d.home_name||'-')+'</p></div></div>'
+ +'<div class="pfg"><div><b>'+(d.rank?'#'+nfm(d.rank)+' <small>จาก '+nfm(d.players)+'</small>':'—')+'</b><span>อันดับซีซัน</span></div><div><b>'+nfm(d.points)+'</b><span>คะแนนซีซัน</span></div><div><b>'+nfm(d.days_played)+'</b><span>วันที่เล่น</span></div><div><b>'+nfm(d.rounds_played)+'</b><span>รอบที่ส่งทัพ</span></div></div>'
+ +'<div class="pfk"><h4>คอลเลกชัน</h4><div class="pfp" role="progressbar" aria-valuemin="0" aria-valuemax="'+tot+'" aria-valuenow="'+own+'"><i style="width:'+pc+'%"></i></div><small>สะสมแล้ว '+nfm(own)+' จาก '+nfm(tot)+' ชิ้น · ครบชุดจังหวัด '+nfm(d.provinces_done)+' จังหวัด</small></div>'
+ +'<div class="pfk"><h4>ฉายา</h4>'+((d.titles||[]).length?'<div class="pfc">'+d.titles.map(t=>'<span>'+aEsc(t)+'</span>').join('')+'</div>':'<div class="e0">ยังไม่มีฉายา · ได้จากความสำเร็จในซีซัน</div>')+'</div>'
+ +'<div class="pfk"><h4>ประวัติซีซัน</h4>'+(hall||'<div class="e0">ยังไม่มีประวัติ · จะขึ้นเมื่อจบซีซันและเข้าหอเกียรติยศ</div>')+'</div>'
+ +'<small style="display:block;text-align:center;margin-top:10px;color:var(--mu)">เข้าร่วมเมื่อ '+fdt(d.joined_at)+'</small><button type="button" class="pfx" id="pfc">ปิด</button>'}
+function pfClose(){const f=$('pf');f.classList.remove('open');$('pfs').classList.remove('open');f.setAttribute('aria-hidden','true');PF.id++;if(PF.last&&document.contains(PF.last))try{PF.last.focus({preventScroll:true})}catch(e){}}
+async function pfOpen(u,from){if(!u)return;const f=$('pf'),id=++PF.id;PF.last=from||null;pfShell(null,0);
+ f.innerHTML='<p style="text-align:center;color:var(--mu);padding:34px 0">กำลังโหลดโปรไฟล์…</p><button type="button" class="pfx" id="pfc">ปิด</button>';
+ f.classList.add('open');$('pfs').classList.add('open');f.setAttribute('aria-hidden','false');f.scrollTop=0;
+ let res;try{res=await sb.rpc('get_public_profile',{p_username:u})}catch(e){res={error:e}}
+ if(id!==PF.id)return;
+ if(res.error||!res.data){f.innerHTML='<p style="text-align:center;color:var(--mu);padding:34px 0">'+(res.error?'โหลดโปรไฟล์ไม่สำเร็จ ลองใหม่อีกครั้ง':'ไม่พบโปรไฟล์ผู้เล่นนี้')+'</p><button type="button" class="pfx" id="pfc">ปิด</button>';$('pfc').focus();return}
+ const d=res.data;pfShell(d.staff_role,Math.max(0,RID.indexOf(d.region_id)));f.innerHTML=pfBody(d);$('pfc').focus({preventScroll:true})}
+$('pfs').onclick=pfClose;$('pf').addEventListener('click',e=>{if(e.target.closest('#pfc'))pfClose()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('pf').classList.contains('open'))pfClose()});
+const pfRow=e=>{const r=e.target.closest('.rr.tp');if(r)pfOpen(r.dataset.u,r)};
+$('rkP').addEventListener('click',pfRow);$('rkP').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('tp')){e.preventDefault();pfRow(e)}});
 document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>{RK.k=b.dataset.k;document.querySelectorAll('#seg button').forEach(x=>x.classList.toggle('on',x===b));[['r','rkR'],['p','rkP'],['v','rkV']].forEach(([k,id])=>$(id).hidden=k!==RK.k);rankLoad()});
 let actD='';const touch=()=>{const d=new Date(Date.now()+7*36e5).toISOString().slice(0,10);if(d===actD)return;actD=d;sb.rpc('touch_activity').then(r=>{if(r.error)actD=''},()=>{actD=''})};
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&G.prof)touch()});
