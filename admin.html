@@ -35,14 +35,20 @@ h1{font-size:1.2rem;font-weight:800;margin-bottom:10px;text-shadow:0 2px 0 #6d06
 .gh{background:rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 3px 0 rgba(0,0,0,.35);border:1px solid var(--ln)}
 .gd{background:linear-gradient(180deg,#ffe9a6,#ffc857 46%,#d98c12 50%,#f0b030);color:#2b0613;text-shadow:0 1px 0 rgba(255,255,255,.55);box-shadow:inset 0 2px 0 rgba(255,255,255,.75),0 4px 0 #7a3d05}
 .sv{background:linear-gradient(180deg,#f4f8ff,#c3cfe4 46%,#8f9db8 50%,#a9b6cf);color:#1b2233;text-shadow:0 1px 0 rgba(255,255,255,.6);box-shadow:inset 0 2px 0 rgba(255,255,255,.8),0 4px 0 #3d4658}
+/* แท็บหมวดงาน: เลื่อนข้างเฉพาะในแถบนี้ ไม่ดันทั้งหน้า */
+.tabs{display:flex;gap:6px;overflow-x:auto;overflow-y:hidden;padding:2px 2px 10px;margin-bottom:4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tb{flex:none;min-height:42px;padding:0 15px;border-radius:99px;border:1px solid var(--ln);background:rgba(0,0,0,.3);color:var(--mu);font:700 .9rem Kanit,sans-serif;cursor:pointer;white-space:nowrap}
+.tb.on{color:#1a0310;background:linear-gradient(180deg,#ffe9a6,#ffc857 55%,#d98c12);border-color:var(--gold2);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 3px 0 #7a3d05}
 .cols{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:12px;align-items:start}
 .cols>*{min-width:0}
 @media(max-width:760px){.cols{grid-template-columns:minmax(0,1fr)}.cols.open #lp{display:none}.cols:not(.open) #tp{display:none}}
 #lst{display:flex;flex-direction:column;gap:8px;max-height:64dvh;overflow-y:auto;overflow-x:hidden}
 .th{display:block;width:100%;text-align:left;padding:10px 12px;border-radius:16px;border:1px solid var(--k);border-left-width:5px;background:rgba(255,255,255,.07);cursor:pointer;color:inherit;font:inherit}
 .th.on{background:rgba(255,200,87,.16)}
-.th .t{display:flex;justify-content:space-between;gap:8px;font:700 1rem Kanit,sans-serif}
+.th .t{display:flex;justify-content:space-between;align-items:center;gap:8px;font:700 1rem Kanit,sans-serif}
 .th .t span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.th .t .rkc,.th .t .rkv{flex:none}
 .th .t em{font-style:normal;min-width:24px;padding:0 8px;border-radius:99px;background:var(--gold);color:#1a0310;text-align:center;font-size:.8rem;flex:none}
 .th p{font-size:.85rem;color:var(--mu);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .th small{font-size:.72rem;color:var(--mu)}
@@ -51,8 +57,8 @@ h1{font-size:1.2rem;font-weight:800;margin-bottom:10px;text-shadow:0 2px 0 #6d06
 .in{width:100%;min-height:44px;border-radius:14px;border:1px solid var(--ln);background:rgba(0,0,0,.35);color:#fff;padding:0 14px;font:16px 'Noto Sans Thai',sans-serif}
 .in:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(255,200,87,.25)}
 select.in{padding-right:8px}
-#sr{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
-#sr .th{padding:8px 12px}
+#sr,#lsr{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
+#sr .th,#lsr .th{padding:8px 12px}
 #log{display:flex;flex-direction:column;gap:10px;max-height:46dvh;min-height:140px;overflow-y:auto;overflow-x:hidden;padding:2px}
 .m{max-width:88%;padding:9px 12px;border-radius:18px;white-space:pre-wrap;overflow-wrap:anywhere;position:relative}
 .m small{display:block;margin-top:4px;font-size:.72rem;opacity:.75}
@@ -73,48 +79,100 @@ textarea{width:100%;min-height:84px;max-height:200px;resize:vertical;border-radi
 .ic{width:17px;height:17px;flex:none}
 .acts{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:8px;margin-bottom:12px}
 .acts .btn{min-height:42px;padding:0 10px;font-size:.88rem}
-.tag{display:inline-block;padding:2px 12px;border-radius:99px;background:var(--k);color:#1a0310;font:700 .8rem Kanit}
 .err{color:#ff9a9a;min-height:1.4em;margin-top:6px;font-size:.92rem;overflow-wrap:anywhere}
 .empty{text-align:center;color:var(--mu);padding:26px 8px}
 @media(min-width:761px){#bk{display:none}}
 [hidden]{display:none!important}
-#ts{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:80;max-width:min(92vw,420px);padding:12px 18px;border-radius:16px;background:#2b0613;border:1px solid var(--gold);font-size:.92rem;text-align:center}
-/* ป้ายยศ: CEO ทอง+มงกุฎ · แอดมิน เงิน+โล่ (ชุดเดียวกับ profile.html และ play.html) */
-.rank{display:inline-flex;align-items:center;gap:6px;padding:2px 12px 2px 8px;border-radius:99px;background:linear-gradient(180deg,#ffe9a6,#ffc857 55%,#d98c12);color:#2b0613;font:800 .8rem Kanit,sans-serif;letter-spacing:.08em;box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 2px 0 #7a3d05;white-space:nowrap}
-.rank svg{width:18px;height:13px;flex:none}
-.rank.rk-ad{padding:2px 12px 2px 8px;letter-spacing:0;color:#1b2233;background:linear-gradient(180deg,#f4f8ff,#c3cfe4 55%,#8896b0);box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 2px 0 #3d4658}
-.rank.rk-ad svg{width:13px;height:15px}
-.rank.sm{padding:0 9px 0 6px;font-size:.7rem;line-height:18px}
-.rank.sm svg{width:14px;height:10px}.rank.sm.rk-ad svg{width:10px;height:12px}
-.ceo-nm,.adm-nm{display:inline-block;max-width:100%;overflow-wrap:anywhere;animation:shn 5s linear infinite}
-.ceo-nm{background:linear-gradient(100deg,#fff3c4 0%,#ffc857 28%,#fff8de 50%,#e8a21c 72%,#ffe08a 100%) 0 0/220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 0 rgba(109,6,24,.95))}
-.adm-nm{background:linear-gradient(100deg,#ffffff 0%,#b9cdee 28%,#f4f8ff 50%,#8da3cc 72%,#e6efff 100%) 0 0/220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 0 rgba(20,30,60,.95))}
-.rank.rk-v{padding:2px 12px 2px 8px;letter-spacing:0;color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.45)}
-.rank.rk-v svg{width:13px;height:13px}.rank.sm.rk-v svg{width:10px;height:10px}
-.rank.rk-v1{background:linear-gradient(180deg,#8ff3cf,#2fd49a 55%,#0f8a63);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 2px 0 #08503a}
-.rank.rk-v2{background:linear-gradient(180deg,#d7b8ff,#9b6bff 55%,#5b32c4);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 2px 0 #301a78}
-.rank.rk-v3{background:linear-gradient(180deg,#ffb3d4,#ff4f9a 55%,#b3125c);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 2px 0 #650a36}
-.vip-nm{display:inline-block;max-width:100%;overflow-wrap:anywhere;font-weight:700;animation:shn 6s linear infinite;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;background-size:220% 100%}
-.vip-nm.v1{background-image:linear-gradient(100deg,#d9fff0 0%,#2fd49a 30%,#eafff7 50%,#18b383 72%,#b7f7e0 100%);filter:drop-shadow(0 2px 0 rgba(4,60,42,.95))}
-.vip-nm.v2{background-image:linear-gradient(100deg,#f1e6ff 0%,#a77bff 30%,#f6efff 50%,#7c4fe0 72%,#dcc6ff 100%);filter:drop-shadow(0 2px 0 rgba(40,18,100,.95))}
-.vip-nm.v3{background-image:linear-gradient(100deg,#ffe3f0 0%,#ff5fa6 30%,#fff0f7 50%,#e02a7e 72%,#ffc2dd 100%);filter:drop-shadow(0 2px 0 rgba(100,8,52,.95))}
-@keyframes shn{to{background-position:-220% 0}}
-@media(prefers-reduced-motion:reduce){.ceo-nm,.adm-nm,.vip-nm{animation:none}}
+#ts{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:80;max-width:min(92vw,420px);padding:12px 18px;border-radius:16px;background:#2b0613;border:1px solid var(--gold);font-size:.92rem;text-align:center;overflow-wrap:anywhere}
+/* ป้ายยศ/VIP: ชุดเดียวกับ play.html (แบน ไม่มีเอฟเฟกต์วิ้ง) */
+.rkc,.rkv{display:inline-flex;align-items:center;gap:4px;margin-left:6px;border-radius:99px;font:800 11px/17px Kanit,"Noto Sans Thai",sans-serif;vertical-align:1px;white-space:nowrap}
+.rkc{padding:0 8px 0 5px;letter-spacing:.08em;background:linear-gradient(180deg,#ffe9a6,#ffc857 55%,#d98c12);color:#2b0613}
+.rkc svg{width:15px;height:11px}
+.rkc.ad{letter-spacing:0;background:linear-gradient(180deg,#f4f8ff,#c3cfe4 55%,#8896b0);box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 1px 0 #3d4658;color:#1b2233}
+.rkc.ad svg{width:11px;height:13px}
+.rkv{padding:0 8px 0 5px;letter-spacing:.06em}
+.rkv svg{width:12px;height:12px;flex:none}
+.rkv.v1{background:linear-gradient(180deg,#6ee7b7,#10b981 55%,#047857);color:#022c22}
+.rkv.v2{background:linear-gradient(180deg,#c084fc,#9333ea 55%,#6b21a8);color:#fff}
+.rkv.v3{background:linear-gradient(180deg,#fda4af,#f43f5e 55%,#9f1239);color:#fff}
+.nr .rkc,.chips .rkc,.chips .rkv,.m .mh .rkc{margin-left:0}
+.ceo-nm,.adm-nm{display:inline-block;max-width:100%;overflow-wrap:anywhere;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;font-family:Kanit,"Noto Sans Thai",sans-serif;font-weight:800}
+.ceo-nm{background-image:linear-gradient(100deg,#fff3c4,#ffc857 40%,#fff8de 55%,#e8a21c)}
+.adm-nm{background-image:linear-gradient(100deg,#ffffff,#b9cdee 40%,#f4f8ff 55%,#8da3cc)}
+.vn1{color:#6ee7b7}.vn2{color:#d8b4fe}.vn3{color:#fda4af}
+.vn1,.vn2,.vn3{display:inline-block;max-width:100%;overflow-wrap:anywhere}
 /* กล่องยืนยัน */
 #md{position:fixed;inset:0;z-index:70;display:flex;align-items:flex-end;justify-content:center;background:rgba(10,0,6,.72);padding:12px;padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))}
 @media(min-width:561px){#md{align-items:center}}
 #mp{width:min(440px,100%);max-height:90dvh;overflow-y:auto;overflow-x:hidden}
 #mp h2{font-size:1.15rem;margin-bottom:4px}
+#mx{white-space:pre-wrap}
 #mp .fl{display:block;margin-top:10px;font-size:.85rem;color:var(--mu)}
 #mp textarea{min-height:76px;margin-top:4px}
 #mp .btns{display:flex;gap:8px;margin-top:12px}#mp .btns .btn{flex:1}
+/* ประวัติเหรียญ/เพชร */
+.lflt{display:flex;flex-direction:column;gap:8px;margin-bottom:8px}
+.lflt .chip{align-self:flex-start}
+.lflt .cx2{border:0;background:transparent;color:inherit;opacity:.7;cursor:pointer;font-size:.95rem;min-width:28px;min-height:28px}
+.lr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;padding:9px 0;border-top:1px solid var(--ln)}
+.lr .nm{font:700 .95rem Kanit,sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lr .dl{font:800 1rem Kanit,sans-serif;display:flex;align-items:center;gap:5px;justify-content:flex-end;white-space:nowrap}
+.dl.p{color:#6ee7b7}.dl.n{color:#ff9a9a}
+.lr small{color:var(--mu);font-size:.75rem;overflow-wrap:anywhere}
+.lr .r2{text-align:right}
+.rs{display:inline-block;padding:1px 9px;border-radius:99px;background:rgba(255,255,255,.1);border:1px solid var(--ln);font-size:.72rem;overflow-wrap:anywhere;max-width:100%}
+/* สวิตช์ระบบ */
+.sw{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--ln)}
+.sw>div{min-width:0}
+.sw b{display:block;overflow-wrap:anywhere}
+.sw small{color:var(--mu);font-size:.74rem;overflow-wrap:anywhere}
+.sw .btn{min-height:40px;padding:0 14px;font-size:.88rem;flex:none}
+.pill{display:inline-block;padding:0 9px;border-radius:99px;font:700 .72rem/18px Kanit,sans-serif;margin-left:6px;vertical-align:1px}
+.pill.on{background:#0f8a63;color:#fff}.pill.off{background:rgba(255,255,255,.14);color:var(--mu)}
+.pill.lk{background:rgba(255,200,87,.2);color:var(--gold2);border:1px solid rgba(255,200,87,.5)}
+.lkt{font-size:.78rem;color:var(--gold2);text-align:right;max-width:120px}
+/* ประกาศ */
+.an{padding:10px 0;border-top:1px solid var(--ln)}
+.an p{white-space:pre-wrap;overflow-wrap:anywhere}
+.an small{display:block;color:var(--mu);font-size:.75rem;margin-top:3px;overflow-wrap:anywhere}
+.an .btn{min-height:38px;padding:0 14px;font-size:.85rem;margin-top:6px}
+/* ตัวเลขเศรษฐกิจ */
+details{border:1px solid var(--ln);border-radius:16px;margin-top:8px;background:rgba(0,0,0,.22)}
+summary{cursor:pointer;padding:11px 14px;font:700 1rem Kanit,sans-serif;list-style:none;display:flex;justify-content:space-between;gap:8px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--gold2);font-size:1.2rem;flex:none}
+details[open] summary::after{content:"−"}
+summary em{font-style:normal;color:var(--mu);font:400 .78rem 'Noto Sans Thai'}
+.cb{padding:0 14px 8px}
+.cf{padding:10px 0;border-top:1px solid var(--ln)}
+.cf .ct{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.cf small{display:block;color:var(--mu);font-size:.74rem;overflow-wrap:anywhere}
+.cfe{display:flex;gap:8px;margin-top:6px}
+.cfe .in{flex:1;min-width:0}
+.cfe .btn{min-height:44px;padding:0 14px;font-size:.88rem;flex:none}
+.sim{display:inline-block;padding:0 9px;border-radius:99px;font:700 .72rem/18px Kanit,sans-serif;background:#7a3d05;color:#ffe9a6;border:1px solid #e08a12}
+.warn{margin-top:12px;padding:10px 12px;border-radius:14px;background:rgba(122,15,34,.55);border:1px solid #ff7a8c;font-size:.88rem;overflow-wrap:anywhere}
+.lv{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-top:1px solid var(--ln);font-size:.85rem}
+.lv span{min-width:0;overflow-wrap:anywhere}.lv b{flex:none;max-width:45%;overflow-wrap:anywhere;text-align:right}
+.tp2{text-align:center;padding:30px 12px}
+.tp2 b{display:block;font-size:1.1rem;margin-bottom:6px}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head><body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3c4"/><stop offset=".55" stop-color="#ffc857"/><stop offset="1" stop-color="#d98c12"/></linearGradient><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#c3cfe4"/><stop offset="1" stop-color="#8896b0"/></linearGradient><symbol id="gm" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 12L2 9Z" fill="#fff" fill-opacity=".92" stroke="rgba(0,0,0,.35)" stroke-width="1.4" stroke-linejoin="round"/><path d="M2 9h20M9 3l3 6 3-6M12 9v12" fill="none" stroke="rgba(0,0,0,.3)" stroke-width="1.2"/></symbol><symbol id="crn" viewBox="0 0 44 30"><path d="M3 24L6 8L15 17L22 4L29 17L38 8L41 24Z" fill="url(#cg)" stroke="#7a3d05" stroke-width="1.6" stroke-linejoin="round"/><rect x="3" y="24" width="38" height="4.6" rx="1.6" fill="url(#cg)" stroke="#7a3d05" stroke-width="1.6"/><circle cx="6" cy="8" r="2.5" fill="#ff3d57" stroke="#7a3d05"/><circle cx="22" cy="4" r="2.8" fill="#5a98ff" stroke="#7a3d05"/><circle cx="38" cy="8" r="2.5" fill="#2fd49a" stroke="#7a3d05"/></symbol><symbol id="shd" viewBox="0 0 30 34"><path d="M15 2L27 6V16C27 24 21.5 30 15 32C8.5 30 3 24 3 16V6Z" fill="url(#sg)" stroke="#3d4658" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 16.5L14 20.5L21 12.5" fill="none" stroke="#3d4658" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="cn" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#ffc857" stroke="#7a3d05" stroke-width="1.6"/><circle cx="12" cy="12" r="6.4" fill="none" stroke="#d98c12" stroke-width="1.6"/><path d="M12 8v8M9.6 10.2h3.6a1.5 1.5 0 010 3h-2.4a1.5 1.5 0 000 3H14.4" fill="none" stroke="#7a3d05" stroke-width="1.5" stroke-linecap="round"/></symbol><symbol id="dm" viewBox="0 0 24 24"><path d="M12 22L2.5 9.5L7 3h10l4.5 6.5Z" fill="#5ad7ff" stroke="#0b4f6c" stroke-width="1.6" stroke-linejoin="round"/><path d="M2.5 9.5h19M9 3l3 6.5L15 3M12 22L9 9.5M12 22l3-12.5" fill="none" stroke="#0b4f6c" stroke-width="1.2" stroke-linejoin="round"/></symbol></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g><symbol id="cn" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#ffc857" stroke="#7a3d05" stroke-width="1.6"/><circle cx="12" cy="12" r="6.4" fill="none" stroke="#d98c12" stroke-width="1.6"/><path d="M12 8v8M9.6 10.2h3.6a1.5 1.5 0 010 3h-2.4a1.5 1.5 0 000 3H14.4" fill="none" stroke="#7a3d05" stroke-width="1.5" stroke-linecap="round"/></symbol><symbol id="dm" viewBox="0 0 24 24"><path d="M12 22L2.5 9.5L7 3h10l4.5 6.5Z" fill="#5ad7ff" stroke="#0b4f6c" stroke-width="1.6" stroke-linejoin="round"/><path d="M2.5 9.5h19M9 3l3 6.5L15 3M12 22L9 9.5M12 22l3-12.5" fill="none" stroke="#0b4f6c" stroke-width="1.2" stroke-linejoin="round"/></symbol></defs></svg>
 <div class="w">
 <nav><span class="logo"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#mk"/></svg><span>MUEANG</span><b>ADMIN</b></span><span class="nr"><span id="me"></span><button class="btn gh" id="rf" type="button">รีเฟรช</button><a class="btn gh" href="play.html">สนามรบ</a></span></nav>
 <p class="hint" id="ld" style="text-align:center;padding:60px 0">กำลังตรวจสิทธิ์…</p>
 <main id="app" hidden>
+ <div class="tabs" id="tabs" role="tablist" aria-label="หมวดงานแอดมิน">
+  <button class="tb on" type="button" role="tab" data-t="chat">ข้อความ</button>
+  <button class="tb" type="button" role="tab" data-t="led">ประวัติเหรียญ</button>
+  <button class="tb" type="button" role="tab" data-t="ann">ประกาศ</button>
+  <button class="tb cx" type="button" role="tab" data-t="sw" hidden>สวิตช์ระบบ</button>
+  <button class="tb cx" type="button" role="tab" data-t="cfg" hidden>ตัวเลขเศรษฐกิจ</button>
+  <button class="tb" type="button" role="tab" data-t="top">คิวเติมเงิน</button>
+ </div>
+
+ <section id="p-chat">
  <div class="cols" id="cols">
   <section class="pn" id="lp"><h1>กล่องข้อความ</h1>
    <div id="fs" hidden><div class="sch"><input class="in" id="sq" type="search" maxlength="20" placeholder="ค้นหาผู้เล่นตามชื่อ" aria-label="ค้นหาผู้เล่นตามชื่อ" enterkeyhint="search"><button class="btn sv" id="sb2" type="button">ค้นหา</button></div><div id="sr"></div></div>
@@ -123,12 +181,54 @@ textarea{width:100%;min-height:84px;max-height:200px;resize:vertical;border-radi
    <div class="who"><div><h2 id="un">เลือกบทสนทนา</h2><span class="hint" id="ui"></span></div><button class="btn gh" id="bk" type="button">กลับไปรายการ</button></div>
    <div class="chips" id="ch" hidden></div>
    <div class="acts" id="ac" hidden></div>
+   <p class="hint" id="chh" hidden style="margin:-4px 0 10px">แจกหีบ: เปิดได้ฟรี ได้เศษผูกบัญชี ย่อยเป็นเหรียญไม่ได้</p>
    <div id="log"><p class="empty">เลือกบทสนทนาจากรายการ</p></div>
    <textarea id="bd" maxlength="1000" placeholder="พิมพ์ข้อความตอบ" aria-label="ข้อความตอบ" disabled></textarea>
    <div class="row"><span class="hint" id="ct">0/1000</span><button class="btn gl" id="sd" type="button" disabled>ส่งข้อความ</button></div>
    <div class="err" id="er" role="alert"></div>
   </section>
  </div>
+ </section>
+
+ <section class="pn" id="p-led" hidden>
+  <h1>ประวัติเหรียญ/เพชร</h1>
+  <div class="lflt">
+   <span class="chip" id="lu"></span>
+   <div id="lsw" hidden><div class="sch"><input class="in" id="lq" type="search" maxlength="20" placeholder="ค้นหาผู้เล่นตามชื่อ" aria-label="ค้นหาผู้เล่นตามชื่อ" enterkeyhint="search"><button class="btn sv" id="lsb" type="button">ค้นหา</button></div><div id="lsr"></div></div>
+   <p class="hint" id="lhn" hidden>ดูของผู้เล่นรายคนได้จากปุ่ม "ดูประวัติเหรียญ" ในแผงข้อความ</p>
+   <select class="in" id="lrs" aria-label="กรองตามเหตุผล"><option value="">ทุกเหตุผล</option><option value="admin_adjust">แอดมินปรับ</option><option value="play_reward">เหรียญจากการเล่น</option><option value="chest_buy">ซื้อหีบ</option><option value="chest_open">เปิดหีบ</option><option value="dissolve">ย่อยของซ้ำ</option></select>
+  </div>
+  <div id="lrows"></div>
+  <div class="row"><span class="hint" id="lcap" hidden>แสดงสูงสุด 200 รายการล่าสุด</span><button class="btn gh" id="lmore" type="button" hidden>โหลดเพิ่ม</button></div>
+ </section>
+
+ <section class="pn" id="p-ann" hidden>
+  <h1>ประกาศระบบ</h1>
+  <p class="hint">ผู้เล่นเห็นทันที แสดงพร้อมกันได้ไม่เกิน 3 รายการ</p>
+  <textarea id="ab" maxlength="200" placeholder="พิมพ์ประกาศ (1–200 ตัวอักษร)" aria-label="ข้อความประกาศ"></textarea>
+  <div class="row"><span class="hint" id="ac2">0/200</span>
+   <select class="in" id="ah" aria-label="ระยะเวลาแสดง" style="width:auto;flex:none"><option value="1">1 ชม.</option><option value="6">6 ชม.</option><option value="24" selected>24 ชม.</option><option value="72">72 ชม.</option><option value="168">168 ชม.</option></select></div>
+  <div class="row"><span class="err" id="aer" role="alert" style="margin:0;flex:1"></span><button class="btn gl" id="ap" type="button">โพสต์ประกาศ</button></div>
+  <h1 style="margin-top:16px;font-size:1rem">20 รายการล่าสุด</h1>
+  <div id="alist"></div>
+ </section>
+
+ <section class="pn cx" id="p-sw" hidden>
+  <h1>สวิตช์ระบบ</h1>
+  <p class="hint">ทุกการเปลี่ยนผู้เล่นเห็นผลทันที ต้องใส่เหตุผลและมีบันทึกไว้</p>
+  <div id="swl"></div>
+ </section>
+
+ <section class="pn cx" id="p-cfg" hidden>
+  <h1>ตัวเลขเศรษฐกิจ</h1>
+  <p class="hint">รับเฉพาะจำนวนเต็มในช่วงที่กำหนด ต้องใส่เหตุผลทุกครั้ง</p>
+  <div id="cfl"></div>
+ </section>
+
+ <section class="pn" id="p-top" hidden>
+  <h1>คิวเติมเงิน</h1>
+  <div class="tp2"><b>ยังไม่เปิด</b><span class="hint">รอขั้นตอนทางกฎหมาย</span></div>
+ </section>
 </main></div>
 <div id="md" hidden><section class="pn" id="mp" role="dialog" aria-modal="true" aria-labelledby="mt"><h2 id="mt"></h2><p class="hint" id="mx"></p><div id="mf"></div><div class="err" id="me2" role="alert"></div><div class="btns"><button class="btn gh" id="mc" type="button">ยกเลิก</button><button class="btn gl" id="mo" type="button">ยืนยัน</button></div></section></div>
 <div id="ts" hidden role="status"></div>
@@ -141,36 +241,44 @@ function toast(t){const e=$('ts');e.textContent=t;e.hidden=false;clearTimeout(to
 const fT=d=>new Intl.DateTimeFormat('th-TH',{timeZone:'Asia/Bangkok',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).format(new Date(d))+' น.';
 const nf=n=>Number(n||0).toLocaleString('th-TH');
 const rk=r=>Math.max(0,RID.indexOf(r));
-let cur=null,info=null,sending=false,timer=null,ROLE=null,MYID=null,asking=false;
-/* ป้ายยศ: null = ผู้เล่นทั่วไป (ไม่มีป้าย) · 'admin' = เงิน+โล่ · 'ceo' = ทอง+มงกุฎ */
-function badge(role,sm,vip){if(role==='ceo')return '<span class="rank'+(sm?' sm':'')+'"><svg viewBox="0 0 44 30" aria-hidden="true"><use href="#crn"/></svg>CEO</span>';
- if(role==='admin')return '<span class="rank rk-ad'+(sm?' sm':'')+'"><svg viewBox="0 0 30 34" aria-hidden="true"><use href="#shd"/></svg>แอดมิน</span>';
- vip=Number(vip)||0;if(vip>=1&&vip<=3)return '<span class="rank rk-v rk-v'+vip+(sm?' sm':'')+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#gm"/></svg>VIP '+vip+'</span>';return ''}
-function nameFx(n,role,vip){const s=esc(n||'(ไม่พบโปรไฟล์)');vip=Number(vip)||0;return role==='ceo'?'<span class="ceo-nm">'+s+'</span>':role==='admin'?'<span class="adm-nm">'+s+'</span>':(vip>=1&&vip<=3)?'<span class="vip-nm v'+vip+'">'+s+'</span>':s}
+let cur=null,info=null,sending=false,timer=null,ROLE=null,MYID=null,asking=false,TAB='chat';
+const CHEST_NOTE='หีบที่แจกเปิดได้ฟรี ได้เศษผูกบัญชี ย่อยเป็นเหรียญไม่ได้';
+/* ป้ายยศ: null = ผู้เล่นทั่วไป · 'admin' = เงิน+โล่ · 'ceo' = ทอง+มงกุฎ · VIP 1–3 เฉพาะผู้เล่นทั่วไป (ชุดเดียวกับ play.html) */
+const CRN='<svg viewBox="0 0 44 30" aria-hidden="true"><path d="M3 24L6 8L15 17L22 4L29 17L38 8L41 24Z" fill="#7a3d05"/><rect x="3" y="24" width="38" height="5" rx="1.6" fill="#7a3d05"/></svg>';
+const SHD='<svg viewBox="0 0 30 34" aria-hidden="true"><path d="M15 2L27 6V16C27 24 21.5 30 15 32C8.5 30 3 24 3 16V6Z" fill="#fff" fill-opacity=".55" stroke="#1b2233" stroke-width="2.2" stroke-linejoin="round"/><path d="M10 16.5L14 20.5L21 12.5" fill="none" stroke="#1b2233" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const DMD='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5L21 9.5L12 21.5L3 9.5Z" fill="currentColor"/><path d="M3 9.5H21M8.5 9.5L12 2.5L15.5 9.5L12 21.5Z" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="1.2" stroke-linejoin="round"/></svg>';
+const vipOf=v=>{v=Number(v)||0;return v>=1&&v<=3?v:0};
+function badge(role,vip){const v=vipOf(vip);
+ if(role==='ceo')return '<span class="rkc">'+CRN+'CEO</span>';
+ if(role==='admin')return '<span class="rkc ad">'+SHD+'แอดมิน</span>';
+ return v?'<span class="rkv v'+v+'">'+DMD+'VIP '+v+'</span>':''}
+function nameFx(n,role,vip){const s=esc(n||'(ไม่พบโปรไฟล์)'),v=vipOf(vip);return role==='ceo'?'<span class="ceo-nm">'+s+'</span>':role==='admin'?'<span class="adm-nm">'+s+'</span>':v?'<span class="vn'+v+'">'+s+'</span>':s}
 const ico=(id)=>'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#'+id+'"/></svg>';
+const isCeo=()=>ROLE==='ceo';
 async function loadList(){
  const {data,error}=await sb.rpc('admin_support_threads');
  if(error){toast(error.message);return}
  const l=data||[];
- $('lst').innerHTML=l.length?l.map(t=>'<button type="button" class="th'+(t.user_id===cur?' on':'')+'" data-u="'+esc(t.user_id)+'" style="--k:var(--c'+rk(t.region_id)+')"><span class="t"><span>'+esc(t.username||'(ไม่พบโปรไฟล์)')+'</span>'+(t.unread?'<em>'+t.unread+'</em>':'')+'</span><p>'+(t.last_from_admin?'คุณ: ':'')+esc(t.last_body||'')+'</p><small>'+fT(t.last_at)+'</small></button>').join(''):'<p class="empty">ยังไม่มีข้อความจากผู้เล่น</p>'}
+ $('lst').innerHTML=l.length?l.map(t=>'<button type="button" class="th'+(t.user_id===cur?' on':'')+'" data-u="'+esc(t.user_id)+'" style="--k:var(--c'+rk(t.region_id)+')"><span class="t"><span>'+esc(t.username||'(ไม่พบโปรไฟล์)')+'</span>'+(t.unread?'<em>'+t.unread+'</em>':'')+'</span><p>'+(t.last_from_admin?'ทีมงาน: ':'')+esc(t.last_body||'')+'</p><small>'+fT(t.last_at)+'</small></button>').join(''):'<p class="empty">ยังไม่มีข้อความจากผู้เล่น</p>'}
 function actions(){
  const d=info,box=$('ac'),b=[],staff=!!d.is_staff,isMe=d.user_id===MYID;
  if(!staff&&!isMe)b.push(d.banned_at?'<button class="btn gh" type="button" data-a="unban">ปลดแบน</button>':'<button class="btn gl" type="button" data-a="ban">แบน</button>');
- if(ROLE==='ceo'){
+ if(isCeo()){
   b.push('<button class="btn gd" type="button" data-a="chest">ให้หีบ</button>','<button class="btn gd" type="button" data-a="wallet">ปรับกระเป๋า</button>');
   if(!staff&&!isMe)b.push('<button class="btn sv" type="button" data-a="vip">ตั้ง VIP'+(d.vip_level?' (ตอนนี้ '+d.vip_level+')':'')+'</button>');
-   if(!isMe&&d.staff_role!=='ceo')b.push(d.staff_role==='admin'?'<button class="btn gh" type="button" data-a="demote">ถอดแอดมิน</button>':'<button class="btn sv" type="button" data-a="promote">เลื่อนเป็นแอดมิน</button>')}
- box.innerHTML=b.join('');box.hidden=!b.length}
+  if(!isMe&&d.staff_role!=='ceo')b.push(d.staff_role==='admin'?'<button class="btn gh" type="button" data-a="demote">ถอดแอดมิน</button>':'<button class="btn sv" type="button" data-a="promote">เลื่อนเป็นแอดมิน</button>')}
+ b.push('<button class="btn gh" type="button" data-a="ledger">ดูประวัติเหรียญ</button>');
+ box.innerHTML=b.join('');box.hidden=false;$('chh').hidden=!isCeo()}
 async function openThread(u,keepScroll){
  const {data,error}=await sb.rpc('admin_open_support_thread',{p_user:u});
  if(error){toast(error.message);return}
  info=data;cur=u;const log=$('log'),near=!keepScroll||log.scrollHeight-log.scrollTop-log.clientHeight<80,sr=data.staff_role||null;
  $('tp').classList.toggle('t-ceo',sr==='ceo');$('tp').classList.toggle('t-ad',sr==='admin');
  $('un').innerHTML=nameFx(data.username,sr,data.vip_level);$('ui').textContent=(data.region_id?RGN[rk(data.region_id)]+' · ':'')+'รหัส '+String(u).slice(0,8);
- $('ch').innerHTML=badge(sr,false,data.vip_level)+'<span class="chip">'+ico('cn')+nf(data.coins)+' เหรียญ</span><span class="chip">'+ico('dm')+nf(data.diamonds)+' เพชร</span>'+(data.banned_at?'<span class="chip bn">ถูกแบน'+(data.ban_reason?' · '+esc(data.ban_reason):'')+'</span>':'');$('ch').hidden=false;
+ $('ch').innerHTML=badge(sr,data.vip_level)+'<span class="chip">'+ico('cn')+nf(data.coins)+' เหรียญ</span><span class="chip">'+ico('dm')+nf(data.diamonds)+' เพชร</span>'+(data.banned_at?'<span class="chip bn">ถูกแบน'+(data.ban_reason?' · '+esc(data.ban_reason):'')+'</span>':'');$('ch').hidden=false;
  actions();
  log.innerHTML=(data.messages||[]).length?data.messages.map(m=>{const r=m.from_admin?(m.staff_role||'admin'):null;
-  return '<div class="m '+(m.from_admin?'ad'+(r==='admin'?' ra':''):'us')+'">'+(m.from_admin?'<div class="mh">'+badge(r,true)+'</div>':'')+esc(m.body)+'<small>'+fT(m.created_at)+'</small><button type="button" class="x" data-id="'+esc(m.id)+'" aria-label="ลบข้อความ">✕</button></div>'}).join(''):'<p class="empty">ยังไม่มีข้อความ</p>';
+  return '<div class="m '+(m.from_admin?'ad'+(r==='admin'?' ra':''):'us')+'">'+(m.from_admin?'<div class="mh">'+badge(r)+'</div>':'')+esc(m.body)+'<small>'+fT(m.created_at)+'</small><button type="button" class="x" data-id="'+esc(m.id)+'" aria-label="ลบข้อความ">✕</button></div>'}).join(''):'<p class="empty">ยังไม่มีข้อความ</p>';
  if(near)log.scrollTop=log.scrollHeight;
  $('bd').disabled=false;$('sd').disabled=false;$('cols').classList.add('open');loadList()}
 async function reply(){
@@ -181,16 +289,18 @@ async function reply(){
  sending=false;$('sd').disabled=false;
  if(error)return er.textContent=error.message;
  $('bd').value='';$('ct').textContent='0/1000';await openThread(cur);toast('ส่งแล้ว')}
-/* กล่องยืนยัน: ทุกปุ่มบังคับเหตุผล ≥ 3 ตัวอักษร · แสดงข้อความผิดพลาดจากหลังบ้านตรง ๆ · ฝั่งหลังบ้านตรวจสิทธิ์ซ้ำเสมอ */
+/* กล่องยืนยัน: ค่าเริ่มต้นบังคับเหตุผล ≥ 3 ตัวอักษร · ใส่ noReason:true สำหรับงานที่ไม่ต้องมีเหตุผล (ประกาศ ฯลฯ) · แสดงข้อความผิดพลาดจากหลังบ้านตรง ๆ · หลังบ้านตรวจสิทธิ์ซ้ำเสมอ */
 function ask(o){
  return new Promise(res=>{
   $('mt').textContent=o.title;$('mx').textContent=o.desc||'';$('me2').textContent='';
   $('mf').innerHTML=(o.fields||[]).map(f=>'<label class="fl" for="f_'+f.id+'">'+esc(f.label)+'</label>'+(f.type==='select'?'<select class="in" id="f_'+f.id+'">'+f.opts.map(x=>'<option value="'+esc(x[0])+'">'+esc(x[1])+'</option>').join('')+'</select>':f.type==='number'?'<input class="in" id="f_'+f.id+'" type="number" inputmode="numeric" step="1" placeholder="'+esc(f.ph||'')+'">':'<textarea id="f_'+f.id+'" maxlength="200" placeholder="'+esc(f.ph||'')+'"></textarea>')).join('');
-  const mo=$('mo');mo.textContent=o.ok||'ยืนยัน';mo.className='btn '+(o.cls||'gl');$('md').hidden=false;
-  const close=v=>{$('md').hidden=true;asking=false;mo.onclick=mc.onclick=null;res(v)};
-  const mc=$('mc');mc.onclick=()=>{if(!busy)close(false)};let busy=false;
+  const mo=$('mo'),mc=$('mc');mo.textContent=o.ok||'ยืนยัน';mo.className='btn '+(o.cls||'gl');mo.disabled=false;mc.disabled=false;$('md').hidden=false;
+  let busy=false;
+  const close=v=>{$('md').hidden=true;mo.onclick=mc.onclick=null;res(v)};
+  mc.onclick=()=>{if(!busy)close(false)};
   mo.onclick=async()=>{if(busy)return;const v={};(o.fields||[]).forEach(f=>{v[f.id]=$('f_'+f.id).value});
-   const why=(v.reason||'').trim();if(why.length<3)return $('me2').textContent='ต้องใส่เหตุผลอย่างน้อย 3 ตัวอักษร';
+   let why='';
+   if(!o.noReason){why=(v.reason||'').trim();if(why.length<3)return $('me2').textContent='ต้องใส่เหตุผลอย่างน้อย 3 ตัวอักษร'}
    if(o.check){const m=o.check(v);if(m)return $('me2').textContent=m}
    busy=true;mo.disabled=true;mc.disabled=true;$('me2').textContent='';
    let r;try{r=await o.run(v,why)}catch(e){r={error:{message:e&&e.message||'ผิดพลาด'}}}
@@ -198,40 +308,163 @@ function ask(o){
    if(r&&r.error)return $('me2').textContent=r.error.message;
    close(true)};
   const f=$('mf').querySelector('input,select,textarea');if(f)f.focus()})}
-const RS={name:'reason',id:'reason',label:'เหตุผล (อย่างน้อย 3 ตัวอักษร)',ph:'เช่น แก้ไขตามคำร้อง'};
+async function askG(o){if(asking)return false;asking=true;try{return await ask(o)}finally{asking=false}}
+const RS={id:'reason',label:'เหตุผล (อย่างน้อย 3 ตัวอักษร)',ph:'เช่น แก้ไขตามคำร้อง'};
 async function act(a){
- if(asking||!info)return;asking=true;const u=info.user_id,nm=info.username||'ผู้เล่น';let ok=false;
- if(a==='ban'||a==='unban'){const b=a==='ban';ok=await ask({title:(b?'แบน ':'ปลดแบน ')+nm,desc:b?'ผู้เล่นจะเข้าเล่นไม่ได้ ทีมงานแบนไม่ได้':'ผู้เล่นจะกลับมาเล่นได้',fields:[{...RS,id:'reason'}],ok:b?'แบน':'ปลดแบน',cls:b?'gl':'gd',run:(v,w)=>sb.rpc('admin_set_ban',{p_user:u,p_banned:b,p_reason:w})})}
- else if(a==='chest')ok=await ask({title:'ให้หีบ '+nm,desc:'ผู้เล่นได้สิทธิ์เปิดหีบ 1 ใบ (หักเหรียญตามราคาตอนเปิด)',fields:[{id:'kind',type:'select',label:'ชนิดหีบ',opts:[['province','หีบจังหวัด']]},{...RS}],ok:'ให้หีบ',cls:'gd',run:(v,w)=>sb.rpc('admin_grant_chest',{p_user:u,p_kind:v.kind,p_reason:w})});
- else if(a==='wallet')ok=await ask({title:'ปรับกระเป๋า '+nm,desc:'ใส่จำนวนบวกเพื่อเพิ่ม ลบเพื่อหัก (สูงสุด 100,000 ต่อครั้ง) ยอดต้องไม่ติดลบ',fields:[{id:'cur',type:'select',label:'สกุล',opts:[['coin','เหรียญ'],['diamond','เพชร']]},{id:'delta',type:'number',label:'จำนวน',ph:'เช่น 500 หรือ -200'},{...RS}],ok:'ปรับ',cls:'gd',
+ if(!info)return;const u=info.user_id,nm=info.username||'ผู้เล่น';let o=null;
+ if(a==='ban'||a==='unban'){const b=a==='ban';o={title:(b?'แบน ':'ปลดแบน ')+nm,desc:b?'ผู้เล่นจะเข้าเล่นไม่ได้ ทีมงานแบนไม่ได้':'ผู้เล่นจะกลับมาเล่นได้',fields:[{...RS}],ok:b?'แบน':'ปลดแบน',cls:b?'gl':'gd',run:(v,w)=>sb.rpc('admin_set_ban',{p_user:u,p_banned:b,p_reason:w})}}
+ else if(a==='chest')o={title:'ให้หีบ '+nm,desc:CHEST_NOTE,fields:[{...RS}],ok:'ให้หีบ',cls:'gd',run:(v,w)=>sb.rpc('admin_grant_chest',{p_user:u,p_kind:'province',p_reason:w})};
+ else if(a==='wallet')o={title:'ปรับกระเป๋า '+nm,desc:'ใส่จำนวนบวกเพื่อเพิ่ม ลบเพื่อหัก (สูงสุด 100,000 ต่อครั้ง) ยอดต้องไม่ติดลบ',fields:[{id:'cur',type:'select',label:'สกุล',opts:[['coin','เหรียญ'],['diamond','เพชร']]},{id:'delta',type:'number',label:'จำนวน',ph:'เช่น 500 หรือ -200'},{...RS}],ok:'ปรับ',cls:'gd',
   check:v=>{const n=Number(v.delta);if(v.delta===''||!Number.isInteger(n)||n===0)return 'ใส่จำนวนเต็มที่ไม่ใช่ 0';if(Math.abs(n)>100000)return 'ปรับได้ไม่เกิน 100,000 ต่อครั้ง'},
-  run:(v,w)=>sb.rpc('admin_adjust_wallet',{p_user:u,p_currency:v.cur,p_delta:Number(v.delta),p_reason:w})});
- else if(a==='vip')ok=await ask({title:'ตั้ง VIP '+nm,desc:'ป้ายและสีชื่อตามระดับ ตกแต่งอย่างเดียว ไม่มีผลต่อการเล่น · ตอนนี้: '+(info.vip_level?'VIP '+info.vip_level:'ไม่มี'),fields:[{id:'lv',type:'select',label:'ระดับ',opts:[['1','VIP 1 · เขียว'],['2','VIP 2 · ม่วง'],['3','VIP 3 · ชมพู'],['0','ถอด VIP']]},{...RS}],ok:'ตั้ง',cls:'sv',run:(v,w)=>sb.rpc('admin_set_vip',{p_user:u,p_level:Number(v.lv),p_reason:w})});
-  else if(a==='promote'||a==='demote'){const p=a==='promote';ok=await ask({title:(p?'เลื่อนเป็นแอดมิน ':'ถอดแอดมิน ')+nm,desc:p?'แอดมินตอบแชต แบน และลบข้อความได้ แต่ปรับกระเป๋า แจกหีบ หรือเลื่อนคนไม่ได้':'บัญชีนี้จะกลับเป็นผู้เล่นทั่วไป',fields:[{...RS}],ok:p?'เลื่อน':'ถอด',cls:p?'sv':'gl',run:(v,w)=>sb.rpc('admin_set_staff_role',{p_user:u,p_role:p?'admin':'none',p_reason:w})})}
- asking=false;if(ok){toast('ทำรายการแล้ว');await openThread(u,true)}}
+  run:(v,w)=>sb.rpc('admin_adjust_wallet',{p_user:u,p_currency:v.cur,p_delta:Number(v.delta),p_reason:w})};
+ else if(a==='vip')o={title:'ตั้ง VIP '+nm,desc:'ป้ายและสีชื่อตามระดับ ตกแต่งอย่างเดียว ไม่มีผลต่อการเล่น · ตอนนี้: '+(info.vip_level?'VIP '+info.vip_level:'ไม่มี'),fields:[{id:'lv',type:'select',label:'ระดับ',opts:[['1','VIP 1 · เขียว'],['2','VIP 2 · ม่วง'],['3','VIP 3 · ชมพู'],['0','ถอด VIP']]},{...RS}],ok:'ตั้ง',cls:'sv',run:(v,w)=>sb.rpc('admin_set_vip',{p_user:u,p_level:Number(v.lv),p_reason:w})};
+ else if(a==='promote'||a==='demote'){const p=a==='promote';o={title:(p?'เลื่อนเป็นแอดมิน ':'ถอดแอดมิน ')+nm,desc:p?'แอดมินตอบแชต แบน และลบข้อความได้ แต่ปรับกระเป๋า แจกหีบ หรือเลื่อนคนไม่ได้':'บัญชีนี้จะกลับเป็นผู้เล่นทั่วไป',fields:[{...RS}],ok:p?'เลื่อน':'ถอด',cls:p?'sv':'gl',run:(v,w)=>sb.rpc('admin_set_staff_role',{p_user:u,p_role:p?'admin':'none',p_reason:w})}}
+ if(!o)return;
+ const ok=await askG(o);if(ok){toast('ทำรายการแล้ว');await openThread(u,true)}}
 async function delMsg(id){
- if(asking)return;asking=true;
- const ok=await ask({title:'ลบข้อความ',desc:'ข้อความจะหายจากแชตของทั้งสองฝ่าย และมีบันทึกไว้ว่าใครลบ',fields:[{...RS}],ok:'ลบ',cls:'gl',run:(v,w)=>sb.rpc('admin_delete_support_message',{p_id:Number(id),p_reason:w})});
- asking=false;if(ok){toast('ลบแล้ว');await openThread(cur,true)}}
-async function find(){
- const q=$('sq').value.trim(),box=$('sr');if(q.length<2){box.innerHTML='<p class="hint">พิมพ์ชื่ออย่างน้อย 2 ตัวอักษร</p>';return}
- $('sb2').disabled=true;const {data,error}=await sb.rpc('admin_find_user',{p_name:q});$('sb2').disabled=false;
- if(error){box.innerHTML='<p class="err">'+esc(error.message)+'</p>';return}
- box.innerHTML=(data||[]).length?data.map(x=>'<button type="button" class="th" data-u="'+esc(x.user_id)+'" style="--k:var(--c'+rk(x.region_id)+')"><span class="t"><span>'+nameFx(x.username,x.staff_role,x.vip_level)+'</span>'+badge(x.staff_role,true,x.vip_level)+'</span><small>'+(x.region_id?RGN[rk(x.region_id)]:'')+(x.banned?' · ถูกแบน':'')+(x.is_bot?' · บอท':'')+'</small></button>').join(''):'<p class="hint">ไม่พบผู้เล่น</p>'}
+ const ok=await askG({title:'ลบข้อความ',desc:'ข้อความจะหายจากแชตของทั้งสองฝ่าย และมีบันทึกไว้ว่าใครลบ',fields:[{...RS}],ok:'ลบ',cls:'gl',run:(v,w)=>sb.rpc('admin_delete_support_message',{p_id:Number(id),p_reason:w})});
+ if(ok){toast('ลบแล้ว');await openThread(cur,true)}}
+/* ค้นผู้เล่น (เฉพาะ ceo · หลังบ้านตรวจซ้ำ) ใช้ทั้งในแท็บข้อความและแท็บประวัติเหรียญ */
+const userRows=(data,attr)=>data.map(x=>'<button type="button" class="th" '+attr+'="'+esc(x.user_id)+'" data-n="'+esc(x.username||'')+'" style="--k:var(--c'+rk(x.region_id)+')"><span class="t"><span>'+nameFx(x.username,x.staff_role,x.vip_level)+'</span>'+badge(x.staff_role,x.vip_level)+'</span><small>'+(x.region_id?RGN[rk(x.region_id)]:'')+(x.banned?' · ถูกแบน':'')+(x.is_bot?' · บอท':'')+'</small></button>').join('');
+async function findUsers(inp,btn,box,attr){
+ if(!isCeo())return;
+ const q=$(inp).value.trim(),b=$(box);if(q.length<2){b.innerHTML='<p class="hint">พิมพ์ชื่ออย่างน้อย 2 ตัวอักษร</p>';return}
+ $(btn).disabled=true;const {data,error}=await sb.rpc('admin_find_user',{p_name:q});$(btn).disabled=false;
+ if(error){b.innerHTML='<p class="err">'+esc(error.message)+'</p>';return}
+ b.innerHTML=(data||[]).length?userRows(data,attr):'<p class="hint">ไม่พบผู้เล่น</p>'}
+/* ===== ประวัติเหรียญ/เพชร (ทุกยศ) ===== */
+const LED={user:null,name:'',reason:'',limit:50};
+const RSN={admin_adjust:'แอดมินปรับ',play_reward:'เหรียญจากการเล่น',chest_buy:'ซื้อหีบ',chest_open:'เปิดหีบ',dissolve:'ย่อยของซ้ำ'};
+const cic=c=>c==='coin'?ico('cn'):c==='diamond'?ico('dm'):esc(c||'');
+function ledChip(){$('lu').innerHTML=LED.user?esc(LED.name||'ผู้เล่น')+' <button type="button" class="cx2" id="lclr" aria-label="ล้างตัวกรองผู้เล่น">✕</button>':'ทุกคน'}
+async function loadLedger(more){
+ if(more&&LED.limit<200)LED.limit=Math.min(200,LED.limit+50);
+ ledChip();$('lmore').disabled=true;
+ const {data,error}=await sb.rpc('admin_get_ledger',{p_user:LED.user,p_reason:LED.reason||null,p_limit:LED.limit});
+ $('lmore').disabled=false;
+ if(error){toast(error.message);return}
+ const l=data||[];
+ $('lrows').innerHTML=l.length?l.map(x=>{const d=Number(x.delta)||0,rs=x.reason==null?'':String(x.reason);
+  return '<div class="lr"><span class="nm">'+esc(x.username||'(ไม่พบโปรไฟล์)')+'</span><span class="dl '+(d>0?'p':'n')+'">'+cic(x.currency)+(d>0?'+':'')+nf(d)+'</span><small>'+fT(x.created_at)+' · <span class="rs">'+esc(RSN[rs]||rs||'-')+'</span></small><small class="r2">คงเหลือ '+nf(x.balance_after)+'</small></div>'}).join(''):'<p class="empty">ไม่พบรายการ</p>';
+ $('lmore').hidden=!(l.length>=LED.limit&&LED.limit<200);
+ $('lcap').hidden=!(l.length>=200)}
+function ledReset(){LED.limit=50;loadLedger()}
+function openLedgerFor(){if(!info)return;LED.user=info.user_id;LED.name=info.username||'ผู้เล่น';LED.limit=50;setTab('led')}
+/* ===== ประกาศระบบ (ทุกยศ) ===== */
+const HRS={1:'1 ชั่วโมง',6:'6 ชั่วโมง',24:'24 ชั่วโมง',72:'72 ชั่วโมง',168:'168 ชั่วโมง'};
+async function loadAnn(){
+ const {data,error}=await sb.rpc('admin_list_announcements');
+ if(error){toast(error.message);return}
+ const l=data||[];
+ $('alist').innerHTML=l.length?l.map(x=>{const st=x.active?'แสดงอยู่':x.ended_at?'ปิดแล้ว':'หมดเวลา';
+  return '<div class="an"><p>'+esc(x.body||'')+'</p><small><span class="pill '+(x.active?'on':'off')+'" style="margin-left:0">'+st+'</span> โพสต์ '+fT(x.created_at)+' · หมด '+fT(x.ends_at)+(x.created_by_name?' · โดย '+esc(x.created_by_name):'')+'</small>'+(x.active?'<button type="button" class="btn gh" data-e="'+esc(x.id)+'">ปิดประกาศ</button>':'')+'</div>'}).join(''):'<p class="empty">ยังไม่มีประกาศ</p>'}
+async function postAnn(){
+ const v=$('ab').value.trim(),er=$('aer');er.textContent='';
+ if(!v)return er.textContent='พิมพ์ข้อความก่อน';
+ if(v.length>200)return er.textContent='ยาวเกิน 200 ตัวอักษร';
+ const h=Number($('ah').value);
+ const ok=await askG({title:'โพสต์ประกาศ',desc:'ผู้เล่นทุกคนเห็นทันที นาน '+(HRS[h]||h+' ชั่วโมง')+'\n\n'+v,noReason:true,ok:'โพสต์',cls:'gd',run:()=>sb.rpc('admin_post_announcement',{p_body:v,p_hours:h})});
+ if(ok){$('ab').value='';$('ac2').textContent='0/200';toast('โพสต์ประกาศแล้ว');loadAnn()}}
+async function endAnn(id){
+ const ok=await askG({title:'ปิดประกาศ',desc:'ประกาศนี้จะหายจากหน้าผู้เล่นทันที',noReason:true,ok:'ปิดประกาศ',cls:'gl',run:()=>sb.rpc('admin_end_announcement',{p_id:Number(id)})});
+ if(ok){toast('ปิดประกาศแล้ว');loadAnn()}}
+/* ===== สวิตช์ระบบ (เฉพาะ ceo · หลังบ้านบังคับกฎซ้ำ) ===== */
+const SW_LOCK=['war_v2_enabled'];
+const SW_CLOSE=['topup_enabled','speedup_enabled','chat_enabled','diamond_chest_enabled','market_enabled','official_store_enabled','boss_enabled'];
+const SW_WARN={
+ collection_enabled:'ผู้เล่นจะเปิดหีบ ประกอบไอเทม และดูคอลเลกชันไม่ได้',
+ coin_earn_enabled:'ผู้เล่นจะหยุดได้เหรียญจากคะแนนที่ทำ',
+ play_chest_enabled:'ผู้เล่นจะหยุดได้หีบจากหลักไมล์คะแนน',
+ season_rewards_enabled:'ท้ายซีซันจะไม่แจกหีบรางวัล',
+ dissolve_enabled:'ผู้เล่นจะย่อยของซ้ำเป็นเหรียญไม่ได้',
+ season_autostart_enabled:'ซีซันใหม่จะไม่เริ่มเองเมื่อซีซันนี้จบ ต้องเริ่มด้วยมือ',
+ upgrade_timed_enabled:'อัปเกรดหมู่บ้านจะเสร็จทันทีไม่มีเวลารอ',
+ hall_of_fame_enabled:'ท้ายซีซันจะไม่บันทึกหอเกียรติยศ',
+ solo_bonus_enabled:'ผู้เล่นจะไม่ได้โบนัสยึดครั้งแรกและโบนัสอัปเกรดหมู่บ้าน',
+ region_flag_enabled:'ธงเป้าหมายภาคจะปักและโหวตไม่ได้'};
+let SWD=[];
+async function loadSw(){
+ if(!isCeo())return;
+ const {data,error}=await sb.from('game_config').select('key,value,note').like('key','%\\_enabled').order('key');
+ if(error){toast(error.message);return}
+ SWD=data||[];
+ $('swl').innerHTML=SWD.length?SWD.map(x=>{const on=Number(x.value)===1,k=x.key,lock=SW_LOCK.includes(k),co=SW_CLOSE.includes(k);let right;
+  if(lock)right='<span class="lkt">ล็อกถาวร</span>';
+  else if(co&&!on)right='<span class="lkt">ล็อก รอขั้นตอนทางกฎหมาย</span>';
+  else right='<button type="button" class="btn '+(on?'gl':'gd')+'" data-s="'+esc(k)+'" data-v="'+(on?0:1)+'">'+(on?'ปิด':'เปิด')+'</button>';
+  return '<div class="sw"><div><b>'+esc(x.note||k)+'<span class="pill '+(on?'on':'off')+'">'+(on?'เปิด':'ปิด')+'</span></b><small>'+esc(k)+'</small></div>'+right+'</div>'}).join(''):'<p class="empty">ไม่พบสวิตช์</p>'}
+async function setSw(k,v){
+ if(!isCeo())return;const x=SWD.find(s=>s.key===k),nm=(x&&x.note)||k,off=v===0;
+ const w=off?(SW_WARN[k]||(SW_CLOSE.includes(k)?'ผู้เล่นจะใช้ระบบนี้ไม่ได้ และเปิดกลับจากหน้านี้ไม่ได้ (ต้องผ่านขั้นตอนทางกฎหมายก่อน)':'ระบบนี้จะหยุดทำงาน')):'ระบบนี้จะกลับมาทำงาน';
+ const ok=await askG({title:(off?'ปิด ':'เปิด ')+nm,desc:w+'\n\nผู้เล่นจะเห็นผลทันที',fields:[{...RS}],ok:off?'ปิด':'เปิด',cls:off?'gl':'gd',run:(f,why)=>sb.rpc('admin_set_switch',{p_key:k,p_value:v,p_reason:why})});
+ if(ok){toast('เปลี่ยนสวิตช์แล้ว');loadSw()}}
+/* ===== ตัวเลขเศรษฐกิจ (เฉพาะ ceo) ===== */
+let CFG=[];const OPEN=new Set();
+const fmtV=v=>v!==null&&typeof v==='object'?JSON.stringify(v):String(v);
+function cfRow(x){const sim=x.risk==='sim';
+ return '<div class="cf"><div class="ct"><b>'+esc(x.label||x.key)+'</b>'+(sim?'<span class="sim">ต้องจำลองก่อน</span>':'')+'</div><small>'+esc(x.key)+' · ช่วง '+(x.min!=null?nf(x.min):'?')+'–'+(x.max!=null?nf(x.max):'?')+'</small><div class="cfe"><input class="in" type="number" inputmode="numeric" step="1"'+(x.min!=null?' min="'+esc(x.min)+'"':'')+(x.max!=null?' max="'+esc(x.max)+'"':'')+' value="'+esc(fmtV(x.value))+'" aria-label="'+esc(x.label||x.key)+'"><button type="button" class="btn gd" data-sv="'+esc(x.key)+'">บันทึก</button></div></div>'}
+function cfGroups(items,pre){const g=new Map();items.forEach(x=>{const n=x.group||'อื่น ๆ';if(!g.has(n))g.set(n,[]);g.get(n).push(x)});
+ return [...g].map(([n,l])=>{const id=pre+n;return '<details data-g="'+esc(id)+'"'+(OPEN.has(id)?' open':'')+'><summary><span>'+esc(n)+'</span><em>'+l.length+' ค่า</em></summary><div class="cb">'+l.map(cfRow).join('')+'</div></details>'}).join('')}
+function cfRender(){
+ const ed=CFG.filter(x=>x.editable),lk=CFG.filter(x=>!x.editable),low=ed.filter(x=>x.risk!=='sim'),sim=ed.filter(x=>x.risk==='sim');
+ let h=cfGroups(low,'l:');
+ if(sim.length)h+='<div class="warn"><b>กลุ่มต้องจำลองก่อนแก้</b><br>ค่ากลุ่มนี้คุมสมดุลสงคราม เศษไอเทม หมู่บ้าน และโบนัส แก้โดยไม่จำลองก่อนอาจทำให้แผนที่หรือเศรษฐกิจเพี้ยนทันที</div>'+cfGroups(sim,'s:');
+ if(lk.length)h+='<details data-g="k:lock"'+(OPEN.has('k:lock')?' open':'')+'><summary><span>ล็อก (แก้ไม่ได้จากหน้านี้)</span><em>'+lk.length+' ค่า</em></summary><div class="cb">'+lk.map(x=>'<div class="lv"><span>'+esc(x.label||x.key)+'<small style="display:block;color:var(--mu)">'+esc(x.key)+'</small></span><b>'+esc(fmtV(x.value))+'</b></div>').join('')+'</div></details>';
+ $('cfl').innerHTML=h||'<p class="empty">ไม่พบค่า</p>';
+ $('cfl').querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>{d.open?OPEN.add(d.dataset.g):OPEN.delete(d.dataset.g)}))}
+async function loadCfg(){
+ if(!isCeo())return;
+ const {data,error}=await sb.rpc('admin_list_config');
+ if(error){toast(error.message);return}
+ CFG=Array.isArray(data)?data:[];cfRender()}
+async function saveCfg(key,inp){
+ if(!isCeo())return;const x=CFG.find(c=>c.key===key);if(!x)return;
+ const raw=inp.value.trim(),n=Number(raw);
+ if(raw===''||!Number.isInteger(n))return toast('ใส่จำนวนเต็มเท่านั้น');
+ if(x.min!=null&&n<Number(x.min)||x.max!=null&&n>Number(x.max))return toast('ค่าต้องอยู่ระหว่าง '+x.min+' ถึง '+x.max);
+ if(n===Number(x.value))return toast('ค่านี้ตั้งอยู่แล้ว');
+ const sim=x.risk==='sim';
+ const ok=await askG({title:'แก้ '+(x.label||key),desc:key+'\nเดิม '+fmtV(x.value)+' → ใหม่ '+n+'\nช่วงที่รับ '+x.min+'–'+x.max+(sim?'\n\nเตือน: ค่านี้ต้องจำลองก่อนแก้ ถ้ายังไม่ได้จำลอง อย่าแก้':''),fields:[{...RS}],ok:'บันทึก',cls:sim?'gl':'gd',run:(v,w)=>sb.rpc('admin_set_config',{p_key:key,p_value:n,p_reason:w})});
+ if(ok){toast('บันทึกแล้ว');loadCfg()}}
+/* ===== แท็บ ===== */
+function setTab(t){
+ if((t==='sw'||t==='cfg')&&!isCeo())return;
+ TAB=t;
+ document.querySelectorAll('#tabs .tb').forEach(b=>{const on=b.dataset.t===t;b.classList.toggle('on',on);b.setAttribute('aria-selected',on)});
+ ['chat','led','ann','sw','cfg','top'].forEach(k=>{const s=$('p-'+k);if(s)s.hidden=k!==t});
+ if(t==='chat'){loadList();if(cur)openThread(cur,true)}
+ else if(t==='led')loadLedger();
+ else if(t==='ann')loadAnn();
+ else if(t==='sw')loadSw();
+ else if(t==='cfg')loadCfg()}
+function refresh(){setTab(TAB)}
 async function init(){
  if(!sb){$('ld').textContent='โหลดระบบไม่สำเร็จ';return}
  const {data:{session}}=await sb.auth.getSession();if(!session)return location.replace('index.html');MYID=session.user.id;
  const [a,r]=await Promise.all([sb.rpc('is_admin'),sb.rpc('get_my_staff_role')]);
  if(a.error||a.data!==true)return location.replace('play.html');
  ROLE=(r&&!r.error&&r.data)||'admin';$('me').innerHTML=badge(ROLE);
- $('fs').hidden=ROLE!=='ceo';
- $('ld').hidden=true;$('app').hidden=false;await loadList();
- timer=setInterval(()=>{if(document.visibilityState==='visible'&&!asking){loadList();if(cur)openThread(cur,true)}},20000)}
+ const ceo=isCeo();
+ $('fs').hidden=!ceo;$('lsw').hidden=!ceo;$('lhn').hidden=ceo;
+ document.querySelectorAll('.cx').forEach(e=>{if(e.classList.contains('tb'))e.hidden=!ceo});
+ $('ld').hidden=true;$('app').hidden=false;ledChip();await loadList();
+ timer=setInterval(()=>{if(document.visibilityState==='visible'&&!asking&&TAB==='chat'){loadList();if(cur)openThread(cur,true)}},20000)}
+$('tabs').onclick=e=>{const b=e.target.closest('.tb');if(b&&!b.hidden)setTab(b.dataset.t)};
 $('lst').onclick=$('sr').onclick=e=>{const b=e.target.closest('.th');if(b)openThread(b.dataset.u)};
-$('ac').onclick=e=>{const b=e.target.closest('button[data-a]');if(b)act(b.dataset.a)};
+$('ac').onclick=e=>{const b=e.target.closest('button[data-a]');if(!b)return;if(b.dataset.a==='ledger')openLedgerFor();else act(b.dataset.a)};
 $('log').onclick=e=>{const b=e.target.closest('.x');if(b)delMsg(b.dataset.id)};
-$('sb2').onclick=find;$('sq').addEventListener('keydown',e=>{if(e.key==='Enter')find()});
-$('sd').onclick=reply;$('rf').onclick=()=>{loadList();if(cur)openThread(cur,true)};
+$('sb2').onclick=()=>findUsers('sq','sb2','sr','data-u');$('sq').addEventListener('keydown',e=>{if(e.key==='Enter')findUsers('sq','sb2','sr','data-u')});
+$('lsb').onclick=()=>findUsers('lq','lsb','lsr','data-lu');$('lq').addEventListener('keydown',e=>{if(e.key==='Enter')findUsers('lq','lsb','lsr','data-lu')});
+$('lsr').onclick=e=>{const b=e.target.closest('[data-lu]');if(!b)return;LED.user=b.dataset.lu;LED.name=b.dataset.n;$('lsr').innerHTML='';$('lq').value='';ledReset()};
+$('lu').onclick=e=>{if(e.target.closest('#lclr')){LED.user=null;LED.name='';ledReset()}};
+$('lrs').onchange=()=>{LED.reason=$('lrs').value;ledReset()};
+$('lmore').onclick=()=>loadLedger(true);
+$('ab').addEventListener('input',e=>{$('ac2').textContent=e.target.value.length+'/200'});
+$('ap').onclick=postAnn;
+$('alist').onclick=e=>{const b=e.target.closest('[data-e]');if(b)endAnn(b.dataset.e)};
+$('swl').onclick=e=>{const b=e.target.closest('[data-s]');if(b)setSw(b.dataset.s,Number(b.dataset.v))};
+$('cfl').onclick=e=>{const b=e.target.closest('[data-sv]');if(b)saveCfg(b.dataset.sv,b.closest('.cf').querySelector('input'))};
+$('sd').onclick=reply;$('rf').onclick=refresh;
 $('bk').onclick=()=>{$('cols').classList.remove('open')};
 $('bd').addEventListener('input',e=>{$('ct').textContent=e.target.value.length+'/1000'});
 $('bd').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey))reply()});
