@@ -180,7 +180,7 @@ nav{flex-wrap:wrap;gap:8px 12px}#nb{margin-left:auto;max-width:100%}#nb .nmx{max
 .fxw.v3>.pic::after,.fxw.v3>.av::after{animation-duration:6s}
 .fxw .orn{position:absolute;left:50%;transform:translateX(-50%);pointer-events:none;z-index:4;overflow:visible;filter:drop-shadow(0 2px 2px rgba(0,0,0,.6))}
 .fxw .orn.cr{width:44%;bottom:87%}
-.fxw .orn.wg{width:30%;bottom:86%}
+.fxw .orn.wg{width:clamp(9px,20%,22px);bottom:auto;top:82%}
 .fxw .orn.gm{width:30%;bottom:88%}
 .fxw.ceo .orn.cr{animation:fxglow 2.8s ease-in-out infinite}
 .orn .shn{animation:fxcs 3.4s ease-in-out infinite;transform-origin:0 0}
@@ -192,8 +192,8 @@ nav{flex-wrap:wrap;gap:8px 12px}#nb{margin-left:auto;max-width:100%}#nb .nmx{max
 @media(prefers-reduced-motion:reduce){.ceo-nm,.adm-nm,.vn1,.vn2,.vn3,.rkc::after,.rkv::after,.fxw>.pic::after,.fxw>.av::after,.orn .shn,.fxw .orn,.fxw .sp,.ceo-nm::after,.adm-nm::after,.vn3::after{animation:none!important}.fxw .sp{opacity:.9}.rkc::after,.rkv::after{display:none}}
 /* /RANKFX */
 nav .btn .fxw{margin-right:8px}nav .btn .fxw .av{margin:0}
-#nb .fxw.ceo,#nb .fxw.adm,#nb .fxw.v3{margin-top:7px}#nb .fxw .sp{display:none}
-.mec .fxw{margin-top:20px}
+#nb .fxw.ceo,#nb .fxw.v3{margin-top:7px}#nb .fxw.adm{margin-top:0}#nb .fxw .sp{display:none}
+.mec .fxw{margin-top:20px}.mec .fxw.adm{margin-top:0}
 /* แถบประกาศจากทีมงาน */
 #ann{display:flex;flex-direction:column;gap:6px;margin:0 0 10px}#ann[hidden]{display:none}
 #ann .an{display:flex;align-items:flex-start;gap:9px;padding:9px 6px 9px 12px;border-radius:14px;text-align:left;background:linear-gradient(180deg,rgba(93,11,31,.96),rgba(43,6,19,.96));border:1px solid rgba(255,200,87,.55);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 6px 16px -8px #000c;color:#fff}
@@ -372,8 +372,8 @@ $('sx').addEventListener('click',closeSh);shE.addEventListener('click',e=>{if(e.
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!shE.hidden){const l=$('ddl');if(l&&!l.hidden){ddSet(false);$('ddt').focus();return}closeSh()}
  if((e.key==='ArrowDown'||e.key==='ArrowUp')&&e.target.closest&&e.target.closest('.dd-t,.dd-o')){const l=$('ddl');if(!l)return;e.preventDefault();if(l.hidden)ddSet(true);const o=[...l.querySelectorAll('.dd-o')],i=o.indexOf(document.activeElement),n=e.key==='ArrowDown'?Math.min(o.length-1,i+1):Math.max(0,i<0?0:i-1);o[n]&&o[n].focus()}});
 const AVP=['img/{k}.webp','img/avatars/{k}.webp','img/avatar/{k}.webp','img/{k}.png','img/{k}.jpg','img/{k}.jpeg','img/avatar-{k}.webp','img/avatar_{k}.webp'];
-function avErr(i){const n=+(i.dataset.t||0)+1;if(n>=AVP.length){console.warn('[avatar] ไม่พบไฟล์รูป',i.dataset.k,'— ลองมาแล้ว',AVP.map(x=>x.replace('{k}',i.dataset.k)));i.remove();return}i.dataset.t=n;i.src=AVP[n].replace('{k}',i.dataset.k)}
-function av(key,cls){const k=Math.max(0,PFX.indexOf(key[0]));return '<span class="av '+(cls||'')+'" style="--k:var(--c'+k+')" data-n="'+esc(key[1])+'"><img src="'+AVP[0].replace('{k}',esc(key))+'" data-k="'+esc(key)+'" alt="" decoding="async" onerror="avErr(this)"></span>'}
+function avErr(i){if(i.dataset.ph){delete i.dataset.ph;i.dataset.t=0;i.src=AVP[0].replace('{k}',i.dataset.k);return}const n=+(i.dataset.t||0)+1;if(n>=AVP.length){console.warn('[avatar] ไม่พบไฟล์รูป',i.dataset.k,'— ลองมาแล้ว',AVP.map(x=>x.replace('{k}',i.dataset.k)));i.remove();return}i.dataset.t=n;i.src=AVP[n].replace('{k}',i.dataset.k)}
+function av(key,cls,photo){const k=Math.max(0,PFX.indexOf(key[0])),ph=typeof photo==='string'&&/^https:\/\//.test(photo)?photo:'';return '<span class="av '+(cls||'')+'" style="--k:var(--c'+k+')" data-n="'+esc(key[1])+'"><img src="'+(ph?esc(ph):AVP[0].replace('{k}',esc(key)))+'" data-k="'+esc(key)+'"'+(ph?' data-ph="1"':'')+' alt="" decoding="async" onerror="avErr(this)"></span>'}
 function avPicker(r,sel){let h='<div class="ap">';for(let i=1;i<=5;i++){const k=PFX[r]+i;h+='<button type="button" class="ab" data-k="'+k+'" aria-pressed="'+(k===sel)+'" aria-label="อวตาร '+i+'">'+av(k)+'</button>'}return h+'</div>'}
 function nowYear(){return new Date(Date.now()+7*36e5).getUTCFullYear()}
 function byear(v){v=parseInt(v,10);if(!v)return 0;return v>=2400?v-543:v}
@@ -388,8 +388,9 @@ function netErr(m){m=String(m||'');
  return m||'มีบางอย่างผิดพลาด ลองใหม่อีกครั้ง'}
 async function loadMe(){me=null;if(!sb)return false;
  const {data:{session}}=await sb.auth.getSession();if(!session)return false;
- const {data}=await sb.from('profiles').select('username,avatar_key,region_id,home_province').eq('id',session.user.id).maybeSingle();
+ const {data}=await sb.from('profiles').select('username,avatar_key,region_id,home_province,custom_avatar_path,custom_avatar_status').eq('id',session.user.id).maybeSingle();
  me=data||null;
+ if(me)me.photo_url=me.custom_avatar_path&&(me.custom_avatar_status==='approved'||me.custom_avatar_status==='pending')?'https://tncbzfgdfxjrgrdgmzya.supabase.co/storage/v1/object/public/avatars/'+me.custom_avatar_path:null;
  if(me){me.role=null;me.vip=0;try{const [r,v]=await Promise.all([sb.rpc('get_my_staff_role'),sb.rpc('get_my_vip')]);
   if(r&&!r.error&&(r.data==='ceo'||r.data==='admin'))me.role=r.data;
   if(!me.role&&v&&!v.error)me.vip=Math.max(0,Math.min(3,+v.data||0))}catch(e){}}
@@ -423,7 +424,7 @@ function annShow(a){const b=$('ann');if(!b)return;b.textContent='';let n=0;
 async function annLoad(){if(!sb)return;try{const {data,error}=await sb.from('announcements').select('*');if(error||!Array.isArray(data))return;
  const now=Date.now(),ts=x=>Date.parse(x.created_at||'')||0;
  annShow(data.filter(x=>x&&x.id!=null&&!x.ended_at&&(!x.ends_at||Date.parse(x.ends_at)>now)).sort((p,q)=>ts(q)-ts(p)).slice(0,3))}catch(e){}}
-function updNav(){const b=$('nb');if(!b)return;b.innerHTML=me?fxWrap(av(me.avatar_key,'sm'),me.role,me.vip)+nmH(me,'nmx'):'เข้าสู่ระบบ';b.dataset.a=me?'me':'login'}
+function updNav(){const b=$('nb');if(!b)return;b.innerHTML=me?fxWrap(av(me.avatar_key,'sm',me.photo_url),me.role,me.vip)+nmH(me,'nmx'):'เข้าสู่ระบบ';b.dataset.a=me?'me':'login'}
 function dots(n){return '<div class="dots" aria-hidden="true">'+[1,2,3].map(i=>'<i class="'+(i<=n?'on':'')+'"></i>').join('')+'</div>'}
 function saveF(){const q=i=>scE.querySelector('#'+i);if(!q('f_u'))return;const f=reg.f;f.u=q('f_u').value;if(q('f_e'))f.e=q('f_e').value;if(q('f_p'))f.pw=q('f_p').value;if(q('f_p2'))f.pw2=q('f_p2').value;f.by=q('f_b').value;f.tm=q('f_t').checked}
 const CK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',CV='<svg class="cv" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
@@ -464,7 +465,7 @@ async function startReg(r){if(!sb){toast('ยังเชื่อมต่อ�
 function openLogin(){if(!sb){toast('ยังเชื่อมต่อระบบไม่ได้ ลองรีเฟรชหน้า');return}
  openSh('<h2 id="stt">เข้าสู่ระบบ</h2><label class="lb">อีเมล<input class="in" id="l_e" type="email" autocomplete="email" inputmode="email"></label><label class="lb">รหัสผ่าน<input class="in" id="l_p" type="password" autocomplete="current-password"></label><div id="cf" style="margin:12px 0 2px;min-height:65px"></div><div class="err" id="er" role="alert"></div><div class="nv"><button type="button" class="btn gl" id="lg">เข้าสู่ระบบ</button></div><p class="hint" style="margin-top:14px;text-align:center"><a href="reset.html" style="color:var(--gold);text-decoration:underline">ลืมรหัสผ่าน?</a></p><p class="hint" style="margin-top:6px;text-align:center">ยังไม่มีบัญชี? <a href="#" data-a="register" style="color:var(--gold);text-decoration:underline">สมัครเลย</a></p>');tsMount()}
 function openMe(){const r=Math.max(0,RID.indexOf(me.region_id)),pv=PD.find(p=>p[0]===me.home_province);
- openSh('<h2 id="stt">โปรไฟล์ของคุณ</h2><div class="mec">'+fxWrap(av(me.avatar_key,'lg'),me.role,me.vip)+'<div><h3>'+nmH(me,'')+'</h3><p>'+RG[r][0]+(pv?' · '+esc(pv[1]):'')+'</p></div></div><p class="sub" style="margin-bottom:6px">เปลี่ยนอวตาร (เฉพาะของภาคตัวเอง)</p>'+avPicker(r,me.avatar_key)+'<div class="err" id="er" role="alert"></div><div class="nv"><a class="btn gl" href="play.html" style="display:grid;place-items:center;text-decoration:none">เข้าสนามรบ</a><button type="button" class="btn gh" id="lo">ออกจากระบบ</button></div>')}
+ openSh('<h2 id="stt">โปรไฟล์ของคุณ</h2><div class="mec">'+fxWrap(av(me.avatar_key,'lg',me.photo_url),me.role,me.vip)+'<div><h3>'+nmH(me,'')+'</h3><p>'+RG[r][0]+(pv?' · '+esc(pv[1]):'')+'</p></div></div><p class="sub" style="margin-bottom:6px">เปลี่ยนอวตาร (เฉพาะของภาคตัวเอง)</p>'+avPicker(r,me.avatar_key)+'<div class="err" id="er" role="alert"></div><div class="nv"><a class="btn gl" href="play.html" style="display:grid;place-items:center;text-decoration:none">เข้าสนามรบ</a><button type="button" class="btn gh" id="lo">ออกจากระบบ</button></div>')}
 async function doSubmit(){saveF();const f=reg.f,btn=$('go');
  if(!/^[A-Za-z0-9_ก-๙]{3,20}$/.test(f.u))return er('ชื่อผู้เล่นต้องยาว 3–20 ตัว ใช้ ก-ฮ สระ A-Z ตัวเลข และ _ เท่านั้น');
  if(!reg.ses){
@@ -486,7 +487,7 @@ async function doSubmit(){saveF();const f=reg.f,btn=$('go');
   if(error)throw error;
   await loadMe();updNav();
   const r=Math.max(0,RID.indexOf(me?me.region_id:RID[reg.r]));
-  openSh('<h2 id="stt">ยินดีต้อนรับสู่สนามรบ</h2><div class="mec" style="margin-top:14px">'+(me?fxWrap(av(me.avatar_key,'lg'),me.role,me.vip):av(reg.a,'lg'))+'<div><h3>'+(me?nmH(me,''):esc(f.u))+'</h3><p>ทีม'+RG[r][0]+'</p></div></div><p class="sub">สมัครเรียบร้อย ดูวิธีเล่นสั้นๆ ก่อนลุยจะเล่นได้คล่องขึ้น</p><div class="nv"><button type="button" class="btn gh" id="sk">ข้ามไปสนามรบ</button><button type="button" class="btn gl" id="dn">เรียนวิธีเล่น</button></div>')
+  openSh('<h2 id="stt">ยินดีต้อนรับสู่สนามรบ</h2><div class="mec" style="margin-top:14px">'+(me?fxWrap(av(me.avatar_key,'lg',me.photo_url),me.role,me.vip):av(reg.a,'lg'))+'<div><h3>'+(me?nmH(me,''):esc(f.u))+'</h3><p>ทีม'+RG[r][0]+'</p></div></div><p class="sub">สมัครเรียบร้อย ดูวิธีเล่นสั้นๆ ก่อนลุยจะเล่นได้คล่องขึ้น</p><div class="nv"><button type="button" class="btn gh" id="sk">ข้ามไปสนามรบ</button><button type="button" class="btn gl" id="dn">เรียนวิธีเล่น</button></div>')
  }catch(x){
   renderReg2(netErr(x.message))}}
 function renderReg2(msg){reg.step=3;renderReg();er(msg)}
