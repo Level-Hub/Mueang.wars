@@ -240,6 +240,9 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
 .rr .pt{flex:none;font:800 17px Kanit,"Noto Sans Thai",system-ui,sans-serif;color:var(--gd2);font-variant-numeric:tabular-nums}
 .rr.me{margin:0 -15px;padding-inline:15px;border-radius:14px;background:linear-gradient(90deg,rgba(255,200,87,.2),rgba(255,200,87,.04))}
 .rk0{padding:6px 2px;color:var(--mu);font-size:14px}
+/* หอเกียรติยศ: แท็บที่ 4 ในหน้าอันดับ */
+.seg{gap:4px}.seg button{min-width:0;padding:0 2px;font-size:14px;white-space:nowrap}
+.hh{margin:12px 0 2px;font:700 13px Kanit,"Noto Sans Thai",system-ui,sans-serif;color:var(--mu)}.hmb{padding:4px 2px 0;color:var(--mu);font-size:13px;line-height:1.55;overflow-wrap:anywhere}
 /* ยศ CEO ในตารางอันดับ (เห็นเฉพาะแถวของบัญชีแอดมิน) */
 .rr.adm{border-radius:14px;background:linear-gradient(90deg,rgba(255,200,87,.16),rgba(255,200,87,.03))}
 /* RANKFX v2 · เอฟเฟกต์ยศ/VIP/กรอบโปรไฟล์ ชุดเดียวกันทุกหน้า (CEO ทอง+มงกุฎ · แอดมิน เงิน+ปีกโล่ · VIP1 มรกต VIP2 ม่วง VIP3 ชมพูกุหลาบ · ไม่ใช้อีโมจิ) */
@@ -367,7 +370,7 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
 #ann .an span{flex:1;min-width:0;font-size:.9rem;line-height:1.45;overflow-wrap:anywhere}
 #ann .an button{flex:none;width:32px;height:32px;border:0;border-radius:10px;background:transparent;color:var(--mu);font:600 20px/1 Kanit,sans-serif;cursor:pointer}
 #ann .an button:active{background:var(--glass)}
-</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head><body data-p="0"><svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g></defs></svg>
+</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script><script src="terms-gate.js" defer></script></head><body data-p="0"><svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g></defs></svg>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="i-map" viewBox="0 0 24 24"><path d="M3 6.5l6-2.5 6 2.5 6-2.5v13.5l-6 2.5-6-2.5-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></symbol>
 <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></symbol>
@@ -430,7 +433,7 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
  <div class="b pg"><i id="upb" style="background:linear-gradient(90deg,var(--c),var(--s))"></i></div>
  <button id="up" class="go" style="width:100%;margin-top:12px"></button><div id="spd" class="fgp" style="margin:10px 0 0" hidden></div></div>
  <p style="text-align:center;margin:14px 0 4px;font-size:.8rem;color:#e3b9c0"><a href="terms.html" style="color:inherit;text-decoration:underline">ข้อกำหนดการใช้งาน</a> · <a href="privacy.html" style="color:inherit;text-decoration:underline">ความเป็นส่วนตัว</a> · <a href="support.html" style="color:inherit;text-decoration:underline">ติดต่อแอดมิน</a></p></section>
- <section id="v2" hidden><div class="seg" id="seg"><button data-k="r" class="on">ภาค</button><button data-k="p">ผู้เล่น</button><button data-k="v">จังหวัด</button></div><div id="rkR"></div><div id="rkP" hidden></div><div id="rkV" hidden></div></section>
+ <section id="v2" hidden><div class="seg" id="seg"><button data-k="r" class="on">ภาค</button><button data-k="p">ผู้เล่น</button><button data-k="v">จังหวัด</button><button data-k="h">หอเกียรติยศ</button></div><div id="rkR"></div><div id="rkP" hidden></div><div id="rkV" hidden></div><div id="rkH" hidden></div></section>
 </main>
 <div id="sh"></div>
 <div id="pfs"></div><div id="pf" role="dialog" aria-modal="true" aria-label="โปรไฟล์ผู้เล่น" aria-hidden="true"></div>
@@ -637,12 +640,25 @@ function playersHtml(a){if(!a.length)return '<div class="card"><div class="rk0">
 function provincesHtml(a){const h=G.prof&&G.prof.home_province,l=a.filter(x=>x.players>0).sort((x,y)=>y.points-x.points||y.players-x.players||String(x.name_th).localeCompare(y.name_th,'th')).slice(0,30);
  if(!l.length)return '<div class="card"><div class="rk0">ยังไม่มีใครเลือกจังหวัดเป็นบ้านเกิด</div></div>';
  return '<div class="card">'+l.map((x,j)=>rkRow(rkNo(j),Math.max(0,RID.indexOf(x.region_id)),x.name_th,x.players+' คน',(+x.points).toLocaleString('en-US'),h!=null&&+x.province_code===+h)).join('')+'</div><div class="rk0" style="margin:0 14px">คะแนนรวมของผู้เล่นที่เป็นคนจังหวัดนั้น (ไม่นับบอท)</div>'}
-async function rankLoad(){const k=RK.k;if(k==='r')return;const box=$(k==='p'?'rkP':'rkV');
+/* หอเกียรติยศ: ข้อมูลจาก get_hall_of_fame (ซีซันใหม่ก่อน · ทีมแชมป์ภาค ผู้เล่นอันดับต้น สมาชิกทีมแชมป์) */
+function hallHtml(a){if(!a.length)return '<div class="card"><div class="rk0">ยังไม่มีใครในหอเกียรติยศ ทีมแชมป์ภาคและผู้เล่นอันดับต้นของแต่ละซีซันจะขึ้นที่นี่เมื่อซีซันจบ</div></div>';
+ const S={},ord=[],me=G.prof&&G.prof.username,n=v=>(+v||0).toLocaleString('en-US'),ri=x=>Math.max(0,RID.indexOf(x.region_id)),dt=x=>x.detail||{};
+ a.forEach(x=>{if(!x||x.season_id==null)return;const s=+x.season_id;if(!S[s]){S[s]={c:[],p:[],m:[]};ord.push(s)}
+  if(x.kind==='region_champion')S[s].c.push(x);else if(x.kind==='player_rank')S[s].p.push(x);else if(x.kind==='region_member')S[s].m.push(x)});
+ ord.sort((x,y)=>y-x);
+ return ord.map(s=>{const o=S[s];
+  const ch=o.c.map(x=>rkRow(medal(0),ri(x),RG[ri(x)][1],'ทีมแชมป์ภาค'+(dt(x).tiles!=null?' · ยึดไว้ '+n(dt(x).tiles)+' ช่อง':''),n(dt(x).score!=null?dt(x).score:x.points),false)).join('');
+  const pl=o.p.sort((x,y)=>(+x.rank||999)-(+y.rank||999)).map(x=>rkRow(rkNo(Math.max(0,(+x.rank||1)-1)),ri(x),x.username,dt(x).rounds!=null?'ส่งทัพ '+n(dt(x).rounds)+' รอบ':'',n(x.points),x.username===me,null,null,x)).join('');
+  const mb=o.m.sort((x,y)=>(+y.points||0)-(+x.points||0));
+  return '<div class="card"><h2>ซีซัน '+s+'</h2>'+(ch?'<div class="hh">ทีมแชมป์ภาค</div>'+ch:'')+(pl?'<div class="hh">ผู้เล่นอันดับต้น</div>'+pl:'')
+   +(mb.length?'<div class="hh">สมาชิกทีมแชมป์ '+n(mb.length)+' คน</div><div class="hmb">'+mb.slice(0,24).map(x=>aEsc(x.username)).join(', ')+(mb.length>24?' และอีก '+n(mb.length-24)+' คน':'')+'</div>':'')+'</div>'}).join('')
+  +(a.length>=200?'<div class="rk0" style="margin:0 14px">แสดงรายการล่าสุด 200 รายการ</div>':'')}
+async function rankLoad(){const k=RK.k;if(k==='r')return;const box=$(k==='p'?'rkP':k==='h'?'rkH':'rkV');
  if(RK.t[k]&&Date.now()-RK.t[k]<3e4)return;
  if(!RK.t[k])box.innerHTML='<div class="card"><div class="rk0">กำลังโหลด…</div></div>';
- const {data,error}=k==='p'?await sb.rpc('get_leaderboard_players',{p_limit:50}):await sb.rpc('get_leaderboard_provinces');
+ const {data,error}=k==='p'?await sb.rpc('get_leaderboard_players',{p_limit:50}):k==='h'?await sb.rpc('get_hall_of_fame',{p_limit:200}):await sb.rpc('get_leaderboard_provinces');
  if(error){RK.t[k]=0;box.innerHTML='<div class="card"><div class="rk0">โหลดอันดับไม่สำเร็จ สลับแท็บแล้วลองใหม่</div></div>';return}
- RK.t[k]=Date.now();box.innerHTML=k==='p'?playersHtml(data||[]):provincesHtml(data||[])}
+ RK.t[k]=Date.now();box.innerHTML=k==='p'?playersHtml(data||[]):k==='h'?hallHtml(data||[]):provincesHtml(data||[])}
 
 /* ===== การ์ดโปรไฟล์ผู้เล่น (แตะแถวในอันดับ) · ข้อมูลจาก get_public_profile ที่เปิดเฉพาะฟิลด์ปลอดภัย ===== */
 const PF={id:0,last:null},nfm=n=>Number(n||0).toLocaleString('th-TH'),fdt=d=>new Date(d).toLocaleDateString('th-TH',{timeZone:'Asia/Bangkok',day:'numeric',month:'short',year:'numeric'});
@@ -669,7 +685,8 @@ $('pfs').onclick=pfClose;$('pf').addEventListener('click',e=>{if(e.target.closes
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('pf').classList.contains('open'))pfClose()});
 const pfRow=e=>{const r=e.target.closest('.rr.tp');if(r)pfOpen(r.dataset.u,r)};
 $('rkP').addEventListener('click',pfRow);$('rkP').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('tp')){e.preventDefault();pfRow(e)}});
-document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>{RK.k=b.dataset.k;document.querySelectorAll('#seg button').forEach(x=>x.classList.toggle('on',x===b));[['r','rkR'],['p','rkP'],['v','rkV']].forEach(([k,id])=>$(id).hidden=k!==RK.k);rankLoad()});
+$('rkH').addEventListener('click',pfRow);$('rkH').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('tp')){e.preventDefault();pfRow(e)}});
+document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>{RK.k=b.dataset.k;document.querySelectorAll('#seg button').forEach(x=>x.classList.toggle('on',x===b));[['r','rkR'],['p','rkP'],['v','rkV'],['h','rkH']].forEach(([k,id])=>$(id).hidden=k!==RK.k);rankLoad()});
 let actD='';const touch=()=>{const d=new Date(Date.now()+7*36e5).toISOString().slice(0,10);if(d===actD)return;actD=d;sb.rpc('touch_activity').then(r=>{if(r.error)actD=''},()=>{actD=''})};
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&G.prof)touch()});
 
