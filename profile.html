@@ -141,7 +141,7 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
   <div class="err" id="cve" role="alert"></div>
   <p class="hint">รูปจะถูกย่อเป็นสี่เหลี่ยมจัตุรัสและเก็บไว้ที่เซิร์ฟเวอร์ แอดมินตรวจก่อน ผู้เล่นคนอื่นจะเห็นเมื่ออนุมัติแล้วเท่านั้น ห้ามใช้รูปของคนอื่น รูปไม่เหมาะสม หรือรูปที่มีข้อมูลส่วนตัว ดู<a href="privacy.html" style="text-decoration:underline">ความเป็นส่วนตัว</a></p></section>
  <section class="pn" id="wl" hidden><h2>กระเป๋า</h2><div class="wr"><svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#ffc857" stroke="#7a3d05" stroke-width="1.8"/><circle cx="12" cy="12" r="6.2" fill="none" stroke="#b8700b" stroke-width="1.8"/></svg><b id="wc">0</b><small>เหรียญ</small></div><a class="btn gh" href="collection.html" style="width:100%">ใช้เหรียญเปิดหีบ</a></section>
- <section class="pn" id="hs" hidden><h2>ประวัติเหรียญ</h2><p class="sub">30 รายการล่าสุดที่เหรียญเข้าหรือออกจากกระเป๋าคุณ</p><div id="hl"></div><div class="err" id="he" role="alert"></div><button class="btn gh" id="hb" type="button" style="width:100%">ดูประวัติเหรียญ</button></section>
+ <section class="pn" id="hs" hidden><h2>ประวัติเหรียญ</h2><p class="sub">30 รายการล่าสุดที่เหรียญเข้าหรือออกจากกระเป๋าคุณ</p><div id="hl"></div><div class="err" id="he" role="alert"></div><div style="display:flex;gap:8px"><button class="btn gh" id="hb" type="button" style="flex:1">ดูประวัติเหรียญ</button><button class="btn gh" id="hc" type="button" style="flex:1;display:none">ปิดประวัติ</button></div></section>
  <section class="pn"><h2>คอลเลกชัน</h2><p class="sub">เก็บไอเทมประจำจังหวัด เปิดหีบ และดูคลังของคุณ</p><a class="btn gl" id="cl" href="collection.html" style="width:100%">เปิดคอลเลกชัน</a></section>
  <section class="pn"><h2>ติดต่อแอดมิน</h2><p class="sub">ขอลบบัญชี ขอสำเนาข้อมูล เติมเงินหรือคืนเงิน แจ้งผู้เล่นที่ไม่เหมาะสม หรืออุทธรณ์การระงับบัญชี</p><a class="btn gl" id="sp" href="support.html" style="width:100%">เปิดแชทแอดมิน</a></section>
  <div class="act"><a class="btn gh" href="play.html">กลับสนามรบ</a><button class="btn gh" id="lo" type="button">ออกจากระบบ</button></div>
@@ -288,9 +288,10 @@ async function hist(){const b=$('hb'),l=$('hl'),e=$('he');e.textContent='';b.dis
   const a=Array.isArray(data)?data:[];
   l.innerHTML=a.length?a.map(r=>{const d=+r.delta||0,u=r.currency&&r.currency!=='coin'?' '+esc(r.currency):'';
    return '<div class="hr"><div>'+esc(LRS[r.reason]||'รายการอื่น')+'<small>'+fDT(r.created_at)+'</small></div><div style="text-align:right"><b class="'+(d>=0?'pl':'mi')+'">'+(d>0?'+':d<0?'-':'')+nf(Math.abs(d))+u+'</b><small>คงเหลือ '+nf(r.balance_after)+'</small></div></div>'}).join(''):'<p class="hint">ยังไม่มีรายการ</p>';
-  b.textContent='รีเฟรชประวัติ'}catch(x){e.textContent='โหลดประวัติไม่สำเร็จ ลองใหม่อีกครั้ง'}
+  b.textContent='รีเฟรชประวัติ';$('hc').style.display=''}catch(x){e.textContent='โหลดประวัติไม่สำเร็จ ลองใหม่อีกครั้ง'}
  b.disabled=false}
 $('hb').onclick=hist;
+$('hc').onclick=()=>{$('hl').innerHTML='';$('he').textContent='';$('hc').style.display='none';$('hb').textContent='ดูประวัติเหรียญ'};
 load();
 /* ล็อกซูม: กันท่าจีบนิ้วบน iOS เหมือน play.html */
 ['gesturestart','gesturechange','gestureend'].forEach(t=>document.addEventListener(t,e=>e.preventDefault(),{passive:false}));
