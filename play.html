@@ -274,15 +274,15 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
 .fxw.v1{--r1:#047857;--r2:#34d399;--r3:#d1fae5;--gl:rgba(52,211,153,.7)}
 .fxw.v2{--r1:#6b21a8;--r2:#c084fc;--r3:#f3e8ff;--gl:rgba(168,85,247,.75)}
 .fxw.v3{--r1:#9f1239;--r2:#fb7185;--r3:#ffe4e6;--gl:rgba(251,113,133,.8)}
-.fxw>.pic,.fxw>.av{line-height:normal;border-color:var(--r2);box-shadow:0 0 0 2px #1a0310,0 0 12px var(--gl)}
+.fxw>.pic,.fxw>.av{line-height:normal;border:0;--rw:max(1.6px,calc(var(--sz,var(--s,40px))*.05));box-shadow:0 0 0 2px #1a0310,0 0 12px var(--gl)}
 .fxw.ceo>.pic,.fxw.ceo>.av{box-shadow:0 0 0 2px #1a0310,0 0 14px var(--gl),0 0 30px rgba(255,170,40,.35)}
-.fxw>.pic::after,.fxw>.av::after{content:"";position:absolute;inset:0;z-index:3;border-radius:50%;pointer-events:none;background:conic-gradient(from 0deg,var(--r1),var(--r2) 25%,var(--r3) 40%,var(--r2) 55%,var(--r1) 75%,var(--r2) 90%,var(--r1));-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3.6px),#000 calc(100% - 3px));mask:radial-gradient(farthest-side,transparent calc(100% - 3.6px),#000 calc(100% - 3px));animation:fxspin 5s linear infinite}
+.fxw>.pic::after,.fxw>.av::after{content:"";position:absolute;inset:0;z-index:3;border-radius:50%;pointer-events:none;background:conic-gradient(from 0deg,var(--r1),var(--r2) 25%,var(--r3) 40%,var(--r2) 55%,var(--r1) 75%,var(--r2) 90%,var(--r1));-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - var(--rw,3px)),#000 calc(100% - var(--rw,3px) + .6px));mask:radial-gradient(farthest-side,transparent calc(100% - var(--rw,3px)),#000 calc(100% - var(--rw,3px) + .6px));animation:fxspin 5s linear infinite}
 .fxw.v1>.pic::after,.fxw.v1>.av::after{animation:none}
 .fxw.v2>.pic::after,.fxw.v2>.av::after{animation-duration:9s}
 .fxw.v3>.pic::after,.fxw.v3>.av::after{animation-duration:6s}
 .fxw .orn{position:absolute;left:50%;transform:translateX(-50%);pointer-events:none;z-index:4;overflow:visible;filter:drop-shadow(0 2px 2px rgba(0,0,0,.6))}
-.fxw .orn.cr{width:68%;bottom:80%}
-.fxw .orn.wg{width:132%;bottom:63%}
+.fxw .orn.cr{width:44%;bottom:87%}
+.fxw .orn.wg{width:30%;bottom:86%}
 .fxw .orn.gm{width:30%;bottom:88%}
 .fxw.ceo .orn.cr{animation:fxglow 2.8s ease-in-out infinite}
 .orn .shn{animation:fxcs 3.4s ease-in-out infinite;transform-origin:0 0}
@@ -295,7 +295,7 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
 /* /RANKFX */
 /* ===== เฉพาะ play.html: แถวอันดับ · การ์ดโปรไฟล์ · ธงภาค ===== */
 .pic.xs{--sz:24px}
-.rr .fxw{margin-right:-2px}.rr .fxw.ceo,.rr .fxw.adm,.rr .fxw.v3{margin-top:9px}.rr .fxw.v1,.rr .fxw.v2{margin-top:5px}.rr .fxw .pic{margin:0}
+.rr .fxw{margin-right:-2px}.rr .fxw.ceo,.rr .fxw.adm{margin-top:8px}.rr .fxw.v3{margin-top:6px}.rr .fxw.v1,.rr .fxw.v2{margin-top:5px}.rr .fxw .sp{display:none}.rr .fxw .pic{margin:0}
 .rr.vp1 .nm,.rr.vp2 .nm,.rr.vp3 .nm{display:flex;align-items:center}
 .rr.vp1 .nm .vn1,.rr.vp2 .nm .vn2,.rr.vp3 .nm .vn3{max-width:none;flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .rr .nm .rkc,.rr .nm .rkv{flex:none}
@@ -517,9 +517,9 @@ function fly(a,b,color,n){for(let k=0;k<n;k++){const e=E('circle',{r:2.4,fill:co
 function arrows(){ar.innerHTML='';const seen={},ps=[];for(const i in send){const a=origin(me,T[i].c),b=T[i].c;ar.append(E('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],class:'al'}));const k=a[0]+','+a[1];if(!seen[k]){seen[k]=1;ps.push(a)}}
  /* รูปโปรไฟล์ของเราเองที่ต้นทางทัพ (ไม่แสดงของคนอื่น เพราะแผนส่งทัพเป็นความลับ) */
  const pr=G.prof;if(pr)ps.forEach(a=>ar.append(mapTok(a,pr)))}
-function mapTok(a,pr){const k=avKey(pr),g=E('g',{class:'tok'}),c=E('circle',{cx:a[0],cy:a[1],r:8.4,stroke:'#fff','stroke-width':1.6}),t=E('text',{x:a[0],y:a[1]+3.3,'text-anchor':'middle','font-size':9,'font-weight':800,fill:'#1a0310'}),im=E('image',{x:a[0]-7.2,y:a[1]-7.2,width:14.4,height:14.4,preserveAspectRatio:'xMidYMid slice','clip-path':'url(#tkc)'});
- c.style.fill='var(--'+EMK[avReg(pr)]+')';t.textContent=k[1]||'';im.dataset.k=k;im.dataset.t=0;im.setAttribute('href',AVP[0].replace('{k}',k));
- im.addEventListener('error',()=>{const n=+im.dataset.t+1;if(n>=AVP.length){im.remove();return}im.dataset.t=n;im.setAttribute('href',AVP[n].replace('{k}',k))});
+function mapTok(a,pr){const k=avKey(pr),g=E('g',{class:'tok'}),c=E('circle',{cx:a[0],cy:a[1],r:8.4,stroke:'#fff','stroke-width':1.6}),t=E('text',{x:a[0],y:a[1]+3.3,'text-anchor':'middle','font-size':9,'font-weight':800,fill:'#1a0310'}),im=E('image',{x:a[0]-7.2,y:a[1]-7.2,width:14.4,height:14.4,preserveAspectRatio:'xMidYMid slice','clip-path':'url(#tkc)'}),ph=pr&&typeof pr.photo_url==='string'&&/^https:\/\//.test(pr.photo_url)?pr.photo_url:'';
+ c.style.fill='var(--'+EMK[avReg(pr)]+')';t.textContent=k[1]||'';im.dataset.k=k;im.dataset.t=0;im.setAttribute('href',ph||AVP[0].replace('{k}',k));if(ph)im.dataset.ph=1;
+ im.addEventListener('error',()=>{if(im.dataset.ph){delete im.dataset.ph;im.dataset.t=0;im.setAttribute('href',AVP[0].replace('{k}',k));return}const n=+im.dataset.t+1;if(n>=AVP.length){im.remove();return}im.dataset.t=n;im.setAttribute('href',AVP[n].replace('{k}',k))});
  g.style.pointerEvents='none';g.style.filter='drop-shadow(0 2px 2px rgba(0,0,0,.55))';g.append(c,t,im);return g}
 (()=>{const d=map.querySelector('defs'),cp=E('clipPath',{id:'tkc',clipPathUnits:'objectBoundingBox'});cp.append(E('circle',{cx:.5,cy:.5,r:.5}));d.append(cp)})();
 document.querySelectorAll('.zm button').forEach(b=>b.onclick=()=>{auto=false;const z=+b.dataset.z;zoomTo(cam.x+230/cam.z,cam.y+390/cam.z,z,.5)});
@@ -614,9 +614,9 @@ async function annLoad(){try{const {data,error}=await sb.from('announcements').s
 const CRN='<svg viewBox="0 0 44 30" aria-hidden="true"><use href="#fx-crn"/></svg>',SHD='<svg viewBox="0 0 30 34" aria-hidden="true"><use href="#fx-shd"/></svg>',DMD='<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#fx-gem"/></svg>';
 const FXO={
  ceo:'<svg class="orn cr" viewBox="0 0 48 36" aria-hidden="true"><path d="M4 28L7 9L17 19L24 4L31 19L41 9L44 28Z" fill="url(#fxgold)" stroke="#7a3d05" stroke-width="1.5" stroke-linejoin="round"/><rect x="4" y="27" width="40" height="7" rx="2.2" fill="url(#fxgold)" stroke="#7a3d05" stroke-width="1.5"/><path d="M9 12L17 20M24 8L24 18M39 12L31 20" stroke="#fff" stroke-opacity=".5" stroke-width="1.2" stroke-linecap="round"/><circle cx="7" cy="9" r="2.8" fill="#ff3d57" stroke="#7a3d05"/><circle cx="24" cy="4.2" r="3.2" fill="#5aa0ff" stroke="#7a3d05"/><circle cx="41" cy="9" r="2.8" fill="#2fd49a" stroke="#7a3d05"/><circle cx="14" cy="30.5" r="1.5" fill="#fff6cf"/><circle cx="24" cy="30.5" r="1.9" fill="#ff3d57"/><circle cx="34" cy="30.5" r="1.5" fill="#fff6cf"/><g clip-path="url(#fxclip)"><rect class="shn" x="-24" y="0" width="11" height="40" fill="#fff" fill-opacity=".8"/></g></svg>',
- adm:'<svg class="orn wg" viewBox="0 0 76 42" aria-hidden="true"><use href="#fx-wl"/><use href="#fx-wl" transform="translate(76 0) scale(-1 1)"/><path d="M38 18L49 22V31C49 37 44 40.5 38 42C32 40.5 27 37 27 31V22Z" fill="url(#fxsilv)" stroke="#3d4658" stroke-width="1.5" stroke-linejoin="round"/><path d="M32.5 30.5L36.5 34.5L44 26" fill="none" stroke="#3d4658" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ adm:'<svg class="orn wg" viewBox="0 0 24 28" aria-hidden="true"><path d="M12 1.2L21.6 4.6V14C21.6 20.4 17.4 25 12 26.8C6.6 25 2.4 20.4 2.4 14V4.6Z" fill="url(#fxsilv)" stroke="#3d4658" stroke-width="1.6" stroke-linejoin="round"/><path d="M7.2 14L10.6 17.4L16.8 9.8" fill="none" stroke="#3d4658" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
  gem:v=>'<svg class="orn gm" viewBox="0 0 24 22" aria-hidden="true"><path class="ga" d="M7 1.5H17L12 8Z"/><path class="gb" d="M7 1.5L1.5 8H12Z"/><path class="gc" d="M17 1.5L22.5 8H12Z"/><path class="gb" d="M1.5 8H12L12 20.5Z"/><path class="gc" d="M22.5 8H12L12 20.5Z" fill-opacity=".85"/><path d="M7 1.5H17L22.5 8L12 20.5L1.5 8Z" fill="none" stroke="rgba(0,0,0,.45)" stroke-width="1.2" stroke-linejoin="round"/></svg>'};
-/* ครอบรูปโปรไฟล์ด้วยกรอบ+เครื่องประดับ: ceo = มงกุฎ · admin = ปีกโล่ · VIP1-3 = กรอบสีและเพชร (ทีมงานไม่ขึ้น VIP) · ผู้เล่นทั่วไปคืนค่าเดิม */
+/* ครอบรูปโปรไฟล์ด้วยกรอบ+เครื่องประดับ: ceo = มงกุฎเล็ก · admin = โล่ติ๊กถูกเงิน · VIP1-3 = กรอบสีและเพชร (ทีมงานไม่ขึ้น VIP) · ผู้เล่นทั่วไปคืนค่าเดิม */
 function fxWrap(inner,role,vip){const v=+vip||0,k=role==='ceo'?'ceo':role==='admin'?'adm':v>=1&&v<=3?'v'+v:'';if(!k)return inner;
  return '<span class="fxw '+k+'">'+inner+(k==='ceo'?FXO.ceo:k==='adm'?FXO.adm:FXO.gem(v))+(k==='v1'||k==='v2'?'':'<i class="sp a"></i><i class="sp b"></i><i class="sp c"></i>')+'</span>'}
 const vipNm=(nm,v)=>{v=+v;return v>=1&&v<=3?'<span class="vn'+v+'">'+esc2(nm)+'</span><span class="rkv v'+v+'">'+DMD+'VIP '+v+'</span>':esc2(nm)};
@@ -857,8 +857,8 @@ function coins(){sb.rpc('get_my_wallet').then(r=>{const d=r&&!r.error?(Array.isA
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&G.prof)coins()});
 (async()=>{try{
  const {data:{session}}=await sb.auth.getSession();if(!session)return location.replace('index.html');
- const {data:p}=await sb.from('profiles').select('username,avatar_key,region_id,home_province,tutorial_done_at').eq('id',session.user.id).maybeSingle();if(!p)return location.replace('index.html');
- G.prof=p;touch();coins();const [u,c,l]=await Promise.all([sb.from('unit_types').select('id,name_th,speed,atk_mult'),sb.from('game_config').select('key,value').in('key',['starter_troops','stock_cap_hours','advance_rounds','rain_attacker_penalty_pct_per_level','v2_supply_range','v2_supply_per_hop','v2_supply_decay_pct','upgrade_timed_enabled','speedup_enabled','speedup_minutes_per_diamond','solo_bonus_enabled','bonus_first_capture','bonus_upgrade_per_level']),sb.from('village_levels').select('level,upgrade_cost,troops_per_hour,upgrade_wait_hours')]);
+ const {data:p}=await sb.from('profiles').select('username,avatar_key,region_id,home_province,tutorial_done_at,custom_avatar_path,custom_avatar_status').eq('id',session.user.id).maybeSingle();if(!p)return location.replace('index.html');
+ p.photo_url=p.custom_avatar_path&&(p.custom_avatar_status==='approved'||p.custom_avatar_status==='pending')?'https://tncbzfgdfxjrgrdgmzya.supabase.co/storage/v1/object/public/avatars/'+p.custom_avatar_path:null;G.prof=p;touch();coins();const [u,c,l]=await Promise.all([sb.from('unit_types').select('id,name_th,speed,atk_mult'),sb.from('game_config').select('key,value').in('key',['starter_troops','stock_cap_hours','advance_rounds','rain_attacker_penalty_pct_per_level','v2_supply_range','v2_supply_per_hop','v2_supply_decay_pct','upgrade_timed_enabled','speedup_enabled','speedup_minutes_per_diamond','solo_bonus_enabled','bonus_first_capture','bonus_upgrade_per_level']),sb.from('village_levels').select('level,upgrade_cost,troops_per_hour,upgrade_wait_hours')]);
  (u.data||[]).forEach(x=>G.units[x.id]=x);(c.data||[]).forEach(x=>G.cfg[x.key]=Number(x.value));(l.data||[]).forEach(x=>G.lv[x.level]=x);rlLegend();
  go(Math.max(0,RID.indexOf(p.region_id)));annLoad();setInterval(()=>{if(!document.hidden)annLoad()},60000);await load();live();setInterval(live,500);setInterval(()=>{if(!document.hidden&&!$('sh').classList.contains('open'))load()},15000)
 }catch(e){console.error(e)}document.body.style.visibility=''})();
