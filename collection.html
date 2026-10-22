@@ -40,9 +40,9 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
 .rw{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--ln)}.rw:first-of-type{border-top:0}.rw>div{flex:1;min-width:0}.rw b{display:block}.rw small{color:var(--mu)}
 .rw .btn{min-height:42px;padding:0 14px;font-size:.9rem}
 .od{margin:0 0 6px;padding:10px 12px;border-radius:14px;background:rgba(0,0,0,.3);border:1px solid var(--ln);font-size:.86rem}.od div{display:flex;justify-content:space-between;gap:8px;padding:2px 0}
-.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:6px;margin-top:10px}.pc{padding:6px 8px;border-radius:12px;border:1px solid var(--ln);background:rgba(0,0,0,.28);font-size:.78rem;line-height:1.25}.pc b{display:block;font-size:.85rem}.pc.full{border-color:var(--gold);background:rgba(255,200,87,.14)}.pc.zero{opacity:.55}.pc .mb{display:block;height:4px;border-radius:9px;background:rgba(255,255,255,.14);margin-top:5px;overflow:hidden}.pc .mb u{display:block;height:100%;border-radius:9px;background:var(--gold);text-decoration:none}
-.iv{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px}.it{position:relative;padding:8px;border-radius:16px;border:1px solid color-mix(in srgb,var(--rc,#ff8282) 55%,rgba(255,130,130,.2));background:linear-gradient(180deg,color-mix(in srgb,var(--rc,#000) 12%,rgba(0,0,0,.28)),rgba(0,0,0,.28));text-align:center;font-size:.8rem}.it img{width:100%;aspect-ratio:1;object-fit:contain;border-radius:12px;background:rgba(255,255,255,.06)}.it b{display:block;margin-top:4px;font-size:.85rem;line-height:1.2}.it small{color:var(--mu)}.it i{position:absolute;top:6px;right:8px;font:700 .8rem Kanit;font-style:normal;background:var(--gold);color:#1a0310;border-radius:99px;padding:0 8px}
-#rv,#dg{position:fixed;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;background:rgba(10,0,6,.97);padding:20px}#rv[hidden],#dg[hidden]{display:none}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}.pc{display:block;width:100%;font:inherit;color:inherit;text-align:left;cursor:pointer;padding:6px 8px;border-radius:12px;border:1px solid var(--ln);background:rgba(0,0,0,.28);font-size:.78rem;line-height:1.25}.pc b{display:block;font-size:.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pc.full{border-color:var(--gold);background:rgba(255,200,87,.14)}.pc.zero{opacity:.55}.pc .mb{display:block;height:4px;border-radius:9px;background:rgba(255,255,255,.14);margin-top:5px;overflow:hidden}.pc .mb u{display:block;height:100%;border-radius:9px;background:var(--gold);text-decoration:none}
+.iv{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.it{position:relative;display:block;width:100%;font:inherit;color:inherit;cursor:pointer;padding:6px;border-radius:16px;border:1px solid color-mix(in srgb,var(--rc,#ff8282) 55%,rgba(255,130,130,.2));background:linear-gradient(180deg,color-mix(in srgb,var(--rc,#000) 12%,rgba(0,0,0,.28)),rgba(0,0,0,.28));text-align:center;font-size:.8rem}.it img{width:100%;aspect-ratio:1;object-fit:contain;border-radius:12px;background:rgba(255,255,255,.06)}.it b{display:block;margin-top:4px;font-size:.8rem;line-height:1.2}.it small{color:var(--mu);font-size:.68rem;line-height:1.25}.it i{position:absolute;top:6px;right:8px;font:700 .8rem Kanit;font-style:normal;background:var(--gold);color:#1a0310;border-radius:99px;padding:0 8px}
+#rv,#dg,#dt{position:fixed;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;background:rgba(10,0,6,.97);padding:20px}#rv[hidden],#dg[hidden],#dt[hidden]{display:none}
 .r1{--rc:var(--c0);--n:1}.r2{--rc:var(--c3);--n:2}.r3{--rc:var(--gold);--n:3}
 .ph{position:relative;aspect-ratio:1;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;color:var(--rc,var(--gold));border:2px solid var(--rc,var(--gold));background:radial-gradient(circle at 50% 34%,color-mix(in srgb,var(--rc,#fff) 40%,#1a0310),color-mix(in srgb,var(--rc,#fff) 9%,#1a0310) 78%);font:700 .85rem Kanit}
 .ph::before{content:"";position:absolute;inset:5px;border-radius:8px;border:1px solid color-mix(in srgb,var(--rc,#fff) 55%,transparent);pointer-events:none}
@@ -78,7 +78,7 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
 .sn{font:700 .9rem Kanit;text-align:right;white-space:nowrap}.sn .btn{min-height:40px;padding:0 14px;font-size:.9rem;margin-top:4px}.sn small{display:block;color:var(--mu);font:400 .75rem 'Noto Sans Thai'}
 .tg{color:var(--gold2);font-style:normal;font-size:.78rem}
 .it .ph{border-radius:12px}.it small{display:block}
-#rv,#dg{overflow:auto}.rb{position:relative;isolation:isolate;width:min(360px,100%);text-align:center;margin:auto}.ch{line-height:0;animation:shake .9s ease-in-out}.rb .res{display:none}.rb.show .ch{display:none}.rb.show .res{display:block;animation:pop .55s cubic-bezier(.2,1.4,.4,1)}
+#rv,#dg,#dt{overflow:auto}.rb{position:relative;isolation:isolate;width:min(360px,100%);text-align:center;margin:auto}.ch{line-height:0;animation:shake .9s ease-in-out}.rb .res{display:none}.rb.show .ch{display:none}.rb.show .res{display:block;animation:pop .55s cubic-bezier(.2,1.4,.4,1)}
 .ld{transform-box:fill-box;transform-origin:0 100%}.rb.pre .ld{animation:lid .35s .55s ease-out forwards}.rb.pre .ch svg{filter:drop-shadow(0 0 12px var(--rc,transparent))}
 .bu{display:none;position:absolute;z-index:-1;left:50%;top:70px;width:420px;height:420px;margin:-210px 0 0 -210px;opacity:0;transform:scale(.3);pointer-events:none;
  background:radial-gradient(circle,color-mix(in srgb,var(--rc) 50%,transparent),transparent 52%),repeating-conic-gradient(color-mix(in srgb,var(--rc) 60%,transparent) 0 5deg,transparent 5deg 15deg);-webkit-mask:radial-gradient(circle,#000 0,transparent 68%);mask:radial-gradient(circle,#000 0,transparent 68%)}
@@ -97,6 +97,19 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
 @keyframes flare{from{opacity:.6;transform:scale(.9)}35%{opacity:1;transform:scale(1.25)}to{opacity:.32;transform:scale(1.1)}}
 @keyframes up{from{opacity:0;transform:translateY(12px)}}
 @media(prefers-reduced-motion:reduce){.ch,.rb.show .res,.rb.pre .ld,.rb.pre .bu,.rb.show .bu,.rb.show .rl .pi,.ph.r3::after{animation:none}.rb.show .bu{opacity:.32;transform:none}}
+
+.tabs{position:sticky;top:0;z-index:20;display:flex;gap:6px;padding:6px 0 10px;margin-bottom:4px;background:linear-gradient(#1a0310 78%,transparent)}
+.tb{flex:1;min-width:0;min-height:44px;padding:0 4px;border-radius:14px;border:1px solid var(--ln);background:rgba(255,255,255,.08);color:var(--mu);font:700 .92rem Kanit,sans-serif;cursor:pointer;white-space:nowrap}
+.tb[aria-selected=true]{color:#fff;border-color:transparent;background:linear-gradient(180deg,#ff7a63,#ee2440 46%,#b50d26 50%,#d4142f);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 3px 0 #5e0415}
+.tb i{font-style:normal;font-size:.7rem;margin-left:4px;padding:0 6px;border-radius:99px;background:rgba(255,255,255,.2)}.tb i:empty{display:none}
+.tp[hidden]{display:none}
+details.pn>summary{display:flex;align-items:center;gap:10px;min-height:30px;cursor:pointer;list-style:none}details.pn>summary::-webkit-details-marker{display:none}
+details.pn>summary h2{margin:0;flex:1}details.pn>summary::after{content:"";width:10px;height:10px;margin:0 4px;border-right:2.5px solid var(--gold);border-bottom:2.5px solid var(--gold);transform:rotate(45deg);transition:transform .2s}
+details.pn[open]>summary::after{transform:rotate(-135deg)}details.pn[open]>summary{margin-bottom:10px}
+[data-it]{cursor:pointer}
+.dtb{width:min(360px,100%);text-align:center;margin:auto}.dtb>.ph{width:58%;margin:0 auto}.dtb h2{margin:12px 0 2px}.dtb>p{color:var(--mu);font-size:.9rem;margin-bottom:12px}
+.dtb .od{text-align:left}.dtb .rl{text-align:left}.dtb .act{margin-top:12px}
+.lore{text-align:left;margin:10px 0 0;padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.3);border:1px solid var(--ln)}.lore h3{font-size:.85rem;color:var(--gold2);margin-bottom:4px}.lore p{font-size:.9rem;line-height:1.55;white-space:pre-line}.lore.empty p{color:var(--mu)}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="chest" viewBox="0 0 64 64" fill="none" stroke="#f0c36b" stroke-width="3" stroke-linejoin="round"><path d="M8 28h48v24a3 3 0 0 1-3 3H11a3 3 0 0 1-3-3z" fill="#6a1520"/><path d="M8 28V18a3 3 0 0 1 3-3h42a3 3 0 0 1 3 3v10z" fill="#8c1d2c"/><path d="M8 28h48"/><rect x="27" y="24" width="10" height="12" rx="2" fill="#f0c36b"/></symbol><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g></defs></svg>
@@ -107,17 +120,21 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
  <section class="pn" id="soon" hidden><h2>คอลเลกชันเร็วๆนี้</h2><p class="sub">ระบบหีบและคอลเลกชันของพื้นเมืองยังไม่เปิดให้เล่น แวะกลับมาใหม่นะ</p></section>
  <div id="on" hidden>
   <div class="cw"><span class="cc" aria-hidden="true"></span><span id="cn"></span></div>
-  <section class="pn"><h2>หีบของฉัน</h2><p class="sub">หีบให้เศษของไอเทม เก็บเศษให้ครบแล้วกดประกอบ</p><div id="ch"></div></section>
-  <section class="pn" id="pls" hidden><h2>เป้าหมายซีซัน</h2><div id="pl"></div></section>
-  <section class="pn" id="rts"><h2>อัตราสุ่ม</h2><div id="rt"><p class="hint">กำลังโหลด…</p></div></section>
-  <section class="pn" id="shs"><h2>เศษของฉัน</h2><div id="sh"></div></section>
-  <section class="pn"><h2>คอลเลกชัน</h2><p class="sub" id="cs"></p><div class="pg" id="pg"></div></section>
-  <section class="pn"><h2>คลังของฉัน</h2><p class="sub" id="ivs" hidden></p><div class="iv" id="iv"></div></section>
+  <div class="tabs" id="tabs" role="tablist"><button type="button" class="tb" role="tab" data-tab="ch">หีบ</button><button type="button" class="tb" role="tab" data-tab="sh">เศษ<i id="tc_sh"></i></button><button type="button" class="tb" role="tab" data-tab="iv">คลัง<i id="tc_iv"></i></button><button type="button" class="tb" role="tab" data-tab="pv">จังหวัด<i id="tc_pv"></i></button></div>
+  <div class="tp" id="t_ch">
+   <section class="pn"><h2>หีบของฉัน</h2><p class="sub">หีบให้เศษของไอเทม เก็บเศษให้ครบแล้วกดประกอบ</p><div id="ch"></div></section>
+   <details class="pn" id="pls" hidden><summary><h2>เป้าหมายซีซัน</h2></summary><div id="pl"></div></details>
+   <details class="pn" id="rts"><summary><h2>อัตราสุ่ม</h2></summary><div id="rt"><p class="hint">กำลังโหลด…</p></div></details>
+  </div>
+  <div class="tp" id="t_sh" hidden><section class="pn" id="shs"><h2>เศษของฉัน</h2><div id="sh"></div></section></div>
+  <div class="tp" id="t_iv" hidden><section class="pn"><h2>คลังของฉัน</h2><p class="sub" id="ivs" hidden></p><div class="iv" id="iv"></div></section></div>
+  <div class="tp" id="t_pv" hidden><section class="pn"><h2>คอลเลกชัน</h2><p class="sub" id="cs"></p><div class="pg" id="pg"></div></section></div>
  </div>
  <div class="act"><a class="btn gh" href="play.html">กลับสนามรบ</a><a class="btn gh" href="profile.html">โปรไฟล์</a></div>
 </main></div>
 <div id="rv" hidden role="dialog" aria-modal="true" aria-label="ผลการเปิดหีบ"><div class="rb" id="rb"><div class="bu" aria-hidden="true"></div><div class="ch" aria-hidden="true"><svg viewBox="0 0 64 64" width="104" height="104" fill="none" stroke="#f0c36b" stroke-width="3" stroke-linejoin="round" aria-hidden="true"><path d="M8 28h48v24a3 3 0 0 1-3 3H11a3 3 0 0 1-3-3z" fill="#6a1520"/><g class="ld"><path d="M8 28V18a3 3 0 0 1 3-3h42a3 3 0 0 1 3 3v10z" fill="#8c1d2c"/><path d="M8 28h48"/><rect x="27" y="24" width="10" height="12" rx="2" fill="#f0c36b" stroke="#f0c36b"/></g></svg></div><div class="res" id="rs"></div></div></div>
 <div id="dg" hidden role="dialog" aria-modal="true" aria-label="ย่อยของซ้ำเป็นเหรียญ"><div class="dgb" id="dc"></div></div>
+<div id="dt" hidden role="dialog" aria-modal="true" aria-label="รายละเอียดไอเทม"><div class="dtb" id="dtc"></div></div>
 <div id="ts" hidden role="status"></div>
 <script>
 const SB_URL='https://tncbzfgdfxjrgrdgmzya.supabase.co',SB_KEY='sb_publishable_xrwJKdhhgt6i_I4pDvI79A_gucUyuVx';
@@ -125,12 +142,13 @@ const sb=window.supabase?window.supabase.createClient(SB_URL,SB_KEY):null;
 const $=i=>document.getElementById(i),nf=n=>Number(n||0).toLocaleString('th-TH');
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function toast(t){const e=$('ts');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,3500)}
-let O=null,PN={},busy=false,OD={},LP=0,DR=null,DZ=null;
+let O=null,PN={},busy=false,OD={},LP=0,DR=null,DZ=null,ITEMS={},TB='ch';
+try{TB=sessionStorage.getItem('mw_tab')||'ch'}catch(e){}
 const CK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',CV='<svg class="cv" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
 try{LP=+localStorage.getItem('mw_prov')||0}catch(e){}
 const RN={'1':'สามัญ','2':'หายาก','3':'ตำนาน'},rn=r=>RN[r]||'',pn=c=>c?(PN[c]||('#'+c)):'ของตกแต่ง';
 /* รูปไอเทมอยู่ที่ img/{art_key}.webp (R39) ถ้าไม่มีไฟล์ให้เหลือการ์ดตัวอักษรสีตามความหายาก */
-const tile=(k,r,x)=>'<div class="ph r'+esc(r)+(x?' '+x:'')+'">'+(k?'<img src="img/'+esc(k)+'.webp" alt="" decoding="async" onload="this.parentNode.classList.add(\'ok\')" onerror="this.remove()">':'')+'<span>'+esc(rn(r))+'</span></div>';
+const tile=(k,r,x)=>'<div class="ph r'+esc(r)+(x?' '+x:'')+'">'+(k?'<img src="img/'+esc(k)+'.webp" alt="" decoding="async" loading="lazy" onload="this.parentNode.classList.add(\'ok\')" onerror="this.remove()">':'')+'<span>'+esc(rn(r))+'</span></div>';
 const ownSet=()=>new Set(O.inventory.filter(i=>i.qty>0).map(i=>i.item_id));
 const shardQty=()=>{const m={};O.shards.forEach(s=>m[s.item_id]=s.qty);return m};
 const pct=(h,n)=>Math.min(100,Math.round(h*100/Math.max(1,n)));
@@ -147,7 +165,7 @@ async function preview(cid){const c=O.chests.find(x=>x.id==cid),box=$('pp'+cid),
  if(L&&lim>0&&!ow.has(L.item_id)&&(sq[L.item_id]||0)<L.need)
   note=m>=lim?'โชคช่วย: หีบถัดไปของจังหวัดนี้มีโอกาสได้เศษตำนานเพิ่มขึ้น':'เปิดหีบจังหวัดนี้อีก '+(lim-m)+' ใบ ถ้ายังไม่ได้ตำนาน โอกาสเศษตำนานจะเริ่มเพิ่มขึ้น';
  box.innerHTML=d.items.map(i=>{const h=sq[i.item_id]||0,o=ow.has(i.item_id);
-  return '<div class="pi r'+esc(i.rarity)+(o?'':' dim')+'"><div class="ph r'+esc(i.rarity)+' xs"><span>'+esc(rn(i.rarity))+'</span></div><div class="sb"><b>'+esc(i.name_th)+'</b><small>'+esc(rn(i.rarity))+' · ได้ '+i.pct+'% ต่อเศษ</small><div class="bar"><i style="width:'+(o?100:pct(h,i.need))+'%"></i></div></div><span class="sn">'+(o?'มีแล้ว':h+'/'+i.need)+'</span></div>'}).join('')+(note?'<p class="hint">'+esc(note)+'</p>':'')}
+  return '<div class="pi r'+esc(i.rarity)+(o?'':' dim')+'" data-it="'+i.item_id+'">'+tile((ITEMS[i.item_id]||{}).art_key,i.rarity,'xs')+'<div class="sb"><b>'+esc(i.name_th)+'</b><small>'+esc(rn(i.rarity))+' · ได้ '+i.pct+'% ต่อเศษ</small><div class="bar"><i style="width:'+(o?100:pct(h,i.need))+'%"></i></div></div><span class="sn">'+(o?'มีแล้ว':h+'/'+i.need)+'</span></div>'}).join('')+(note?'<p class="hint">'+esc(note)+'</p>':'')}
 function sync(cid){const c=O.chests.find(x=>x.id==cid),s=$('pv'+cid),b=document.querySelector('[data-open="'+cid+'"]'),h=$('hn'+cid);if(!c||!b)return;
  let why='';if(c.price>O.coins)why='เหรียญไม่พอ ขาดอีก '+nf(c.price-O.coins);else if(c.pick_province&&!(s&&s.value))why='เลือกจังหวัดก่อนเปิดหีบ';
  b.disabled=!!why;h.textContent=why;h.hidden=!why;if(c.pick_province)preview(cid)}
@@ -184,19 +202,37 @@ const P=O.play||{};
  const ow=ownSet();
  const sh=O.shards.filter(s=>s.qty>0).sort((a,b)=>(b.qty>=b.need)-(a.qty>=a.need)||b.rarity-a.rarity||a.province_code-b.province_code||a.item_id-b.item_id);
  $('sh').innerHTML=sh.length?sh.map(s=>{const ok=s.qty>=s.need,o=ow.has(s.item_id);
-  return '<div class="sc r'+esc(s.rarity)+(o?'':' dim')+'">'+tile(s.art_key,s.rarity,'xs')+'<div class="sb"><b>'+esc(s.name_th)+'</b><small>'+esc(rn(s.rarity))+' · '+esc(pn(s.province_code))+(s.qty_bound?' · เศษผูกบัญชี '+s.qty_bound:'')+(o?' · มีในคลังแล้ว':'')+'</small><div class="bar"><i style="width:'+pct(s.qty,s.need)+'%"></i></div>'+(ok&&s.qty_unbound<s.need?'<small class="tg">ประกอบแล้วจะผูกบัญชี</small>':'')+'</div><div class="sn">'+s.qty+'/'+s.need+'<br><button class="btn '+(ok?'gl':'gh')+'" data-craft="'+s.item_id+'"'+(ok?'':' disabled')+'>ประกอบ</button></div></div>'}).join('')
+  return '<div class="sc r'+esc(s.rarity)+(o?'':' dim')+'" data-it="'+s.item_id+'">'+tile(s.art_key,s.rarity,'xs')+'<div class="sb"><b>'+esc(s.name_th)+'</b><small>'+esc(rn(s.rarity))+' · '+esc(pn(s.province_code))+(s.qty_bound?' · เศษผูกบัญชี '+s.qty_bound:'')+(o?' · มีในคลังแล้ว':'')+'</small><div class="bar"><i style="width:'+pct(s.qty,s.need)+'%"></i></div>'+(ok&&s.qty_unbound<s.need?'<small class="tg">ประกอบแล้วจะผูกบัญชี</small>':'')+'</div><div class="sn">'+s.qty+'/'+s.need+'<br><button class="btn '+(ok?'gl':'gh')+'" data-craft="'+s.item_id+'"'+(ok?'':' disabled')+'>ประกอบ</button></div></div>'}).join('')
   :'<p class="hint">ยังไม่มีเศษ เปิดหีบเพื่อเริ่มเก็บ</p>';
  const have=O.progress.filter(p=>p.owned>0).length,full=O.progress.filter(p=>p.owned>=p.total&&p.total>0).length,pcs=O.inventory.filter(i=>i.kind==='specialty').length;
  $('cs').textContent=O.progress.length?'ครบ '+nf(full)+' จังหวัด · เก็บแล้ว '+nf(have)+'/'+nf(O.progress.length)+' จังหวัด · ของพื้นเมือง '+nf(pcs)+' ชนิด':'ยังไม่มีไอเทมในระบบ';
- $('pg').innerHTML=O.progress.map(p=>'<div class="pc '+(p.owned>=p.total?'full':p.owned?'':'zero')+'"><b>'+esc(pn(p.province_code))+'</b>'+p.owned+'/'+p.total+'<i class="mb"><u style="width:'+pct(p.owned,p.total)+'%"></u></i></div>').join('');
+ $('pg').innerHTML=O.progress.slice().sort((a,b)=>(b.owned>0)-(a.owned>0)||a.province_code-b.province_code).map(p=>'<button type="button" class="pc '+(p.owned>=p.total?'full':p.owned?'':'zero')+'" data-pr="'+p.province_code+'"><b>'+esc(pn(p.province_code))+'</b>'+p.owned+'/'+p.total+'<i class="mb"><u style="width:'+pct(p.owned,p.total)+'%"></u></i></button>').join('');
  const tot={};O.inventory.forEach(i=>tot[i.item_id]=(tot[i.item_id]||0)+i.qty);
  const dzMax=i=>DR&&!i.bound&&i.qty>=1&&(tot[i.item_id]||0)>1&&+(DR.coins||{})[i.rarity]>0?Math.min(i.qty,tot[i.item_id]-1,99):0;
- const anyDz=O.inventory.some(i=>dzMax(i)>0);$('ivs').hidden=!anyDz;if(anyDz)$('ivs').textContent='ของซ้ำที่ไม่ผูกบัญชีย่อยเป็นเหรียญได้ ต้องเหลือไว้ในคลังอย่างน้อย 1 ชิ้น';
- $('iv').innerHTML=O.inventory.length?O.inventory.map(i=>{const m=dzMax(i);return '<div class="it r'+esc(i.rarity)+'">'+tile(i.art_key,i.rarity)+(i.qty>1?'<i>×'+i.qty+'</i>':'')+'<b>'+esc(i.name_th)+'</b><small>'+esc(rn(i.rarity))+' · '+esc(pn(i.province_code))+(i.bound?' · ผูกบัญชี':'')+'</small>'+(m?'<button type="button" class="btn gh dz" data-dis="'+i.item_id+'">ย่อย +'+nf(+DR.coins[i.rarity])+'</button>':'')+'</div>'}).join(''):'<p class="hint">คลังยังว่าง</p>'}
+ const anyDz=O.inventory.some(i=>dzMax(i)>0);$('ivs').hidden=!O.inventory.length;$('ivs').textContent='แตะไอเทมเพื่อดูรายละเอียด'+(anyDz?' · ของซ้ำที่ไม่ผูกบัญชีย่อยเป็นเหรียญได้ ต้องเหลือไว้อย่างน้อย 1 ชิ้น':'');
+ $('iv').innerHTML=O.inventory.length?O.inventory.map(i=>'<button type="button" class="it r'+esc(i.rarity)+'" data-it="'+i.item_id+'">'+tile(i.art_key,i.rarity)+(i.qty>1?'<i>×'+i.qty+'</i>':'')+'<b>'+esc(i.name_th)+'</b><small>'+esc(rn(i.rarity))+' · '+esc(pn(i.province_code))+(i.bound?' · ผูกบัญชี':'')+'</small></button>').join(''):'<p class="hint">คลังยังว่าง</p>';
+ $('tc_sh').textContent=sh.length||'';$('tc_iv').textContent=O.inventory.length||'';$('tc_pv').textContent=have||'';applyTab()}
+function applyTab(){if(!['ch','sh','iv','pv'].includes(TB))TB='ch';document.querySelectorAll('.tp').forEach(p=>p.hidden=p.id!=='t_'+TB);document.querySelectorAll('.tb').forEach(b=>b.setAttribute('aria-selected',b.dataset.tab===TB))}
+/* รายละเอียดไอเทม: ถ้าตาราง items มีคอลัมน์ lore_th (เรื่องราว) / source_th (ที่มา) จะแสดงให้เอง ไม่ต้องแก้โค้ด */
+function dtShow(h){$('dtc').innerHTML=h;$('dt').hidden=false;const x=$('dtc').querySelector('[data-dtx]');x&&x.focus();$('dt').scrollTop=0}
+function dtClose(){$('dt').hidden=true}
+function dtItem(id){const inv=O.inventory.filter(i=>i.item_id==id),sh=O.shards.find(s=>s.item_id==id),it=Object.assign({},inv[0]||{},sh||{},ITEMS[id]||{});if(!it.name_th)return;
+ const q=inv.reduce((a,i)=>a+i.qty,0),bd=inv.some(i=>i.bound),need=+((O.shard_rules&&O.shard_rules.need)||{})[it.rarity]||(sh?+sh.need:0),have=sh?sh.qty:0,z=dzFind(id),
+  row=(k,v)=>'<div><span>'+k+'</span><span>'+v+'</span></div>';
+ dtShow(tile(it.art_key,it.rarity)+'<h2>'+esc(it.name_th)+'</h2><p>'+esc(rn(it.rarity))+' · '+esc(pn(it.province_code))+'</p>'+
+  '<div class="od">'+row('ในคลัง',q?'มี ×'+q+(bd?' · ผูกบัญชี':''):'ยังไม่มี')+(need?row('เศษที่เก็บได้',have+'/'+need):'')+'</div>'+
+  '<div class="lore"><h3>ที่มา</h3><p>'+esc(it.source_th||('ได้จากหีบ'+(need?' · เก็บเศษ '+need+' ชิ้นของไอเทมนี้ แล้วกดประกอบ':'')))+'</p></div>'+
+  '<div class="lore'+(it.lore_th?'':' empty')+'"><h3>เรื่องราว</h3><p>'+esc(it.lore_th||'เรื่องราวของไอเทมชิ้นนี้ยังไม่เปิดเผย เร็วๆ นี้')+'</p></div>'+
+  '<div class="act">'+(z?'<button type="button" class="btn gh" data-dis="'+id+'">ย่อย +'+nf(z.val)+'</button>':'')+'<button type="button" class="btn gl" data-dtx>ปิด</button></div>')}
+function dtProv(code){const p=O.progress.find(x=>x.province_code==code)||{owned:0,total:0},ow=ownSet(),sq=shardQty(),need=(O.shard_rules&&O.shard_rules.need)||{},
+ its=Object.values(ITEMS).filter(i=>i.province_code==code&&i.kind==='specialty').sort((a,b)=>b.rarity-a.rarity||a.id-b.id);
+ dtShow('<h2>'+esc(pn(code))+'</h2><p>เก็บแล้ว '+p.owned+'/'+p.total+' ชิ้น · แตะไอเทมเพื่อดูรายละเอียด</p><div class="rl">'+(its.length?its.map(i=>{const o=ow.has(i.id);
+  return '<div class="pi r'+esc(i.rarity)+(o?'':' dim')+'" data-it="'+i.id+'">'+tile(i.art_key,i.rarity,'xs')+'<div class="sb"><b>'+esc(i.name_th)+'</b><small>'+esc(rn(i.rarity))+' · '+(o?'มีแล้ว':'เศษ '+(sq[i.id]||0)+'/'+(need[i.rarity]||'?'))+'</small></div></div>'}).join(''):'<p class="hint">ยังไม่มีข้อมูลไอเทมของจังหวัดนี้</p>')+'</div><div class="act"><button type="button" class="btn gl" data-dtx>ปิด</button></div>')}
 async function load(){
  if(!sb){$('ld').textContent='โหลดระบบไม่สำเร็จ ลองรีเฟรชหน้านี้';return}
  const {data:{session}}=await sb.auth.getSession();if(!session)return location.replace('index.html');
- const [o,p,dr]=await Promise.all([sb.rpc('get_collection_overview'),sb.from('provinces').select('code,name_th'),sb.rpc('get_dissolve_rules')]);
+ const [o,p,dr,im]=await Promise.all([sb.rpc('get_collection_overview'),sb.from('provinces').select('code,name_th'),sb.rpc('get_dissolve_rules'),sb.from('items').select('*').eq('active',true)]);
+ (im&&im.data||[]).forEach(x=>ITEMS[x.id]=x);
  DR=dr&&!dr.error&&dr.data&&dr.data.enabled&&dr.data.coins?dr.data:null;
  if(o.error){$('ld').textContent='โหลดไม่สำเร็จ: '+o.error.message;return}
  (p.data||[]).forEach(x=>PN[x.code]=x.name_th);O=o.data;paint();if(O.enabled)rates()}
@@ -255,15 +291,19 @@ async function craft(itemId){if(busy)return;busy=true;
 document.addEventListener('click',e=>{const a=e.target.closest('[data-open]'),b=e.target.closest('[data-odds]'),c=e.target.closest('[data-craft]');
  if(a&&!a.disabled)openChest(a.dataset.open);else if(c&&!c.disabled)craft(c.dataset.craft);else if(b)odds(b.dataset.odds,b.dataset.for);else{const y=e.target.closest('[data-buy]');if(y&&!y.disabled)buy(+y.dataset.buy)}});
 document.addEventListener('click',e=>{const d=e.target.closest('[data-dis]'),m=e.target.closest('[data-dzm]'),y=e.target.closest('[data-dzy]'),x=e.target.closest('[data-dzx]');
- if(d)dzOpen(d.dataset.dis);else if(m&&DZ&&!m.disabled){DZ.q=Math.max(1,Math.min(DZ.max,DZ.q+(+m.dataset.dzm)));dzPaint();const b=$('dc').querySelector('[data-dzm="'+m.dataset.dzm+'"]');b&&!b.disabled&&b.focus()}
+ if(d){dtClose();dzOpen(d.dataset.dis)}else if(m&&DZ&&!m.disabled){DZ.q=Math.max(1,Math.min(DZ.max,DZ.q+(+m.dataset.dzm)));dzPaint();const b=$('dc').querySelector('[data-dzm="'+m.dataset.dzm+'"]');b&&!b.disabled&&b.focus()}
  else if(y&&!y.disabled)dzGo();else if(x||e.target.id==='dg')dzClose()});
 document.addEventListener('click',e=>{const t=e.target.closest('.dd-t'),o=e.target.closest('.dd-o');
  if(o){pickProv(+o.dataset.p);return}
  if(t){const d=t.closest('.dd');ddSet(d,d.querySelector('.dd-l').hidden);return}
  if(!e.target.closest('.dd'))document.querySelectorAll('.dd.on').forEach(d=>ddSet(d,false))});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(DZ&&!busy)dzClose();return document.querySelectorAll('.dd.on').forEach(d=>ddSet(d,false))}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('dt').hidden){dtClose();return}if(DZ&&!busy)dzClose();return document.querySelectorAll('.dd.on').forEach(d=>ddSet(d,false))}
  if((e.key==='ArrowDown'||e.key==='ArrowUp')&&e.target.closest&&e.target.closest('.dd-t,.dd-o')){const d=e.target.closest('.dd'),l=d.querySelector('.dd-l');e.preventDefault();if(l.hidden)ddSet(d,true);
   const os=[...l.querySelectorAll('.dd-o')],i=os.indexOf(document.activeElement),n=e.key==='ArrowDown'?Math.min(os.length-1,i+1):Math.max(0,i<0?0:i-1);os[n]&&os[n].focus()}});
+document.addEventListener('click',e=>{const t=e.target.closest('[data-tab]'),i=e.target.closest('[data-it]'),r=e.target.closest('[data-pr]');
+ if(t){TB=t.dataset.tab;try{sessionStorage.setItem('mw_tab',TB)}catch(x){}applyTab();window.scrollTo(0,0);return}
+ if(e.target.id==='dt'||e.target.closest('[data-dtx]')){dtClose();return}
+ if(i&&!e.target.closest('[data-craft],[data-dis]')&&O)dtItem(i.dataset.it);else if(r&&O)dtProv(r.dataset.pr)});
 load();
 ['gesturestart','gesturechange','gestureend'].forEach(t=>document.addEventListener(t,e=>e.preventDefault(),{passive:false}));
 document.addEventListener('touchmove',e=>{if(e.touches.length>1||(e.scale&&e.scale!==1))e.preventDefault()},{passive:false});

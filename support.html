@@ -188,7 +188,7 @@ function render(list,first){
  const key=list.map(m=>m.id+(m.unread?'n':'')+(m.staff_role||'')+(m.read_at?'r'+m.read_at:'')+'|'+(m.sender_username||'')+(m.sender_avatar_key||'')+(m.sender_photo_url||'')).join(',');
  if(key===lastKey)return;lastKey=key;
  log.innerHTML=list.length?list.map((m,i)=>m.from_admin
-  ?'<div class="r ad">'+sAv(m)+'<div class="m ad'+(m.unread?' nw':'')+'"><div class="who">'+badge(m.staff_role)+(m.sender_username?'<b>'+esc(m.sender_username)+'</b>':'')+'</div>'+esc(m.body)+'<small>'+fT(m.created_at)+'</small></div></div>'
+  ?'<div class="r ad">'+sAv(m)+'<div class="m ad'+(m.unread?' nw':'')+'"><div class="who">'+badge(m.staff_role)+(m.sender_username?'<b class="'+(m.staff_role==='ceo'?'ceo-nm':'adm-nm')+'">'+esc(m.sender_username)+'</b>':'')+'</div>'+esc(m.body)+'<small>'+fT(m.created_at)+'</small></div></div>'
   :'<div class="r me"><div class="m me">'+esc(m.body)+'<small>'+fT(m.created_at)+'</small></div>'+(i===lr?'<span class="rd">อ่านแล้ว '+fR(m.read_at)+'</span>':'')+'</div>').join(''):'<p class="empty">ยังไม่มีข้อความ เริ่มพิมพ์ได้เลย</p>';
  if(near)log.scrollTop=log.scrollHeight;
  pgPaint(list)}
