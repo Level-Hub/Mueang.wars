@@ -242,7 +242,7 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
 .rk0{padding:6px 2px;color:var(--mu);font-size:14px}
 /* หอเกียรติยศ: แท็บที่ 4 ในหน้าอันดับ */
 .seg{gap:4px}.seg button{min-width:0;padding:0 2px;font-size:14px;white-space:nowrap}
-.pfk .rr.me{margin:0 -14px;padding-inline:14px}.card.tp{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.pfk .rr.me{margin:0 -14px;padding-inline:14px}.card.tp{cursor:pointer;-webkit-tap-highlight-color:transparent}.rg{display:flex;align-items:center;justify-content:space-between;gap:8px}.rg .rk{min-width:0}.rg .rc{display:flex;align-items:baseline;gap:4px;white-space:nowrap;flex:none}.rg .rc b{font:800 20px Kanit,"Noto Sans Thai",sans-serif}.rg .rc small{color:var(--mu)}.rg .rc .chev{align-self:center;flex:none;width:16px;height:16px;color:var(--mu);opacity:.7;margin-left:0}
 .hmc{margin:4px 6px 0 0;min-height:34px;padding:0 12px;border-radius:99px;border:1px solid var(--ln);background:rgba(255,255,255,.08);color:inherit;font:600 13px Kanit,"Noto Sans Thai",system-ui,sans-serif}.hmc:active{background:var(--glass)}
 .hh{margin:12px 0 2px;font:700 13px Kanit,"Noto Sans Thai",system-ui,sans-serif;color:var(--mu)}.hmb{padding:4px 2px 0;color:var(--mu);font-size:13px;line-height:1.55;overflow-wrap:anywhere}
 /* ยศ CEO ในตารางอันดับ (เห็นเฉพาะแถวของบัญชีแอดมิน) */
@@ -540,7 +540,7 @@ if(cam.z>=2.2)lod();
  $('plan').innerHTML=`<b>${ic('lock')} ทัพที่ส่งไปแล้ว</b><br>${k.length?k.map(i=>'<span class="pc">'+T[i].n+' <b>'+send[i]+'</b></span>').join(''):'<small>ยังไม่ได้ส่ง แตะช่องบนแผนที่เพื่อดูชื่อและส่งกำลัง</small>'}<br><small>กำลังพลคงเหลือ ${Math.floor(stock)} · จุดขาว = ส่งกำลังแล้ว</small>`;
  $('log').innerHTML=log;
  const o=[0,1,2,3].sort((a,b)=>cnt[b]-cnt[a]);
- $('rkR').innerHTML=o.map((r,j)=>`<div class="card tp" role="button" tabindex="0" data-r="${r}" aria-label="ดูรายละเอียด ${RG[r][1]}" style="${r===me?'border-color:'+col(r):''}"><b><span class="rk">${medal(j)}<span style="color:${col(r)};display:flex">${em(r)}</span>${RG[r][1]}${r===me?' (คุณ)':''}</span></b> <span style="float:right;display:flex;align-items:center;gap:4px"><b>${cnt[r]}</b> / 77 <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div class="b"><i style="width:${cnt[r]/77*100}%;background:${col(r)}"></i></div></div>`).join('');
+ $('rkR').innerHTML=o.map((r,j)=>`<div class="card tp" role="button" tabindex="0" data-r="${r}" aria-label="ดูรายละเอียด ${RG[r][1]}" style="${r===me?'border-color:'+col(r):''}"><div class="rg"><span class="rk">${medal(j)}<span style="color:${col(r)};display:flex">${em(r)}</span>${RG[r][1]}${r===me?' (คุณ)':''}</span><span class="rc"><b>${cnt[r]}</b><small>/ 77</small><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="b"><i style="width:${cnt[r]/77*100}%;background:${col(r)}"></i></div></div>`).join('');
 $('lv').textContent=lv;$('pr').textContent=(G.lv[lv]||{}).troops_per_hour||0;$('sk').textContent=Math.floor(stock);$('vil').innerHTML=VIL[Math.min(lv-1,5)];
 const nx=G.lv[lv+1],ug=upNow();$('upb').style.width=ug?upPct()+'%':nx?Math.min(100,stock/nx.upgrade_cost*100)+'%':'100%';
 if(ug){$('up').innerHTML=ic('clock')+' กำลังอัปเกรดเป็นระดับ '+ug.upgrading_to+' · เหลือ '+upLeft();$('up').disabled=true}
