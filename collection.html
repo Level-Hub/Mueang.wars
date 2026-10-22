@@ -111,7 +111,7 @@ details.pn[open]>summary::after{transform:rotate(-135deg)}details.pn[open]>summa
 .dtb .od{text-align:left}.dtb .rl{text-align:left}.dtb .act{margin-top:12px}
 .lore{text-align:left;margin:10px 0 0;padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.3);border:1px solid var(--ln)}.lore h3{font-size:.85rem;color:var(--gold2);margin-bottom:4px}.lore p{font-size:.9rem;line-height:1.55;white-space:pre-line}.lore.empty p{color:var(--mu)}
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head><body>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script><script src="terms-gate.js" defer></script></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="chest" viewBox="0 0 64 64" fill="none" stroke="#f0c36b" stroke-width="3" stroke-linejoin="round"><path d="M8 28h48v24a3 3 0 0 1-3 3H11a3 3 0 0 1-3-3z" fill="#6a1520"/><path d="M8 28V18a3 3 0 0 1 3-3h42a3 3 0 0 1 3 3v10z" fill="#8c1d2c"/><path d="M8 28h48"/><rect x="27" y="24" width="10" height="12" rx="2" fill="#f0c36b"/></symbol><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g></defs></svg>
 <div class="w">
 <nav><a class="logo" href="index.html" aria-label="MUEANG WARS"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#mk"/></svg><span>MUEANG</span><b>WARS</b></a><a class="btn gh" href="play.html">สนามรบ</a></nav>
@@ -195,7 +195,7 @@ function paint(){
 const P=O.play||{};
  if(P.chest_on||P.coin_on){const ms=(P.milestones||[]).filter(x=>x>0),pt=+P.points||0,nx=ms.find(x=>pt<x);$('pls').hidden=false;
   $('pl').innerHTML='<p class="hint" style="margin-bottom:8px">คะแนนซีซันของฉัน <b>'+nf(pt)+'</b></p>'+
-   (P.chest_on?'<div class="od">'+ms.map(x=>'<div><span>ถึง '+nf(x)+' คะแนน → หีบฟรี 1 ใบ</span><span>'+(pt>=x?'ผ่านแล้ว ✓':'อีก '+nf(x-pt))+'</span></div>').join('')+'</div>'+(nx?'<p class="hint">อีก '+nf(nx-pt)+' คะแนนได้หีบใบถัดไป</p>':''):'')+
+   (P.chest_on?'<div class="od">'+ms.map(x=>'<div><span>ถึง '+nf(x)+' คะแนน → หีบฟรี 1 ใบ</span><span>'+(pt>=x?'ผ่านแล้ว':'อีก '+nf(x-pt))+'</span></div>').join('')+'</div>'+(nx?'<p class="hint">อีก '+nf(nx-pt)+' คะแนนได้หีบใบถัดไป</p>':''):'')+
    (P.coin_on?'<p class="hint">เหรียญจากการเล่น: 1 คะแนน = '+P.coin_per_point+' เหรียญ · วันนี้ได้ '+nf(P.earned_today)+'/'+nf(P.coin_cap)+' · รีเซ็ตเที่ยงคืนเวลาไทย</p>':'')+
    '<p class="hint">หีบรางวัลท้ายซีซันแจกอัตโนมัติหลังซีซันจบ สำหรับผู้เล่นที่เล่นครบเกณฑ์</p>'}else $('pls').hidden=true;
  O.chests.forEach(c=>sync(c.id));

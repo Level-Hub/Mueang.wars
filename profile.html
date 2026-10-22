@@ -115,6 +115,7 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
 #wl[hidden]{display:none}.wr{display:flex;align-items:center;gap:10px;margin:2px 0 12px;font:800 1.9rem/1 Kanit,sans-serif;color:#ffe08a;text-shadow:0 2px 0 rgba(90,0,15,.7)}.wr small{font:600 .95rem Kanit,sans-serif;color:var(--mu);text-shadow:none}
 .cvr{display:flex;gap:14px;align-items:center;margin-bottom:12px}.cvr p{color:var(--mu);font-size:.88rem}
 #cvx[hidden],#cvu[hidden]{display:none}
+#hs[hidden]{display:none}.hr{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--ln);font-size:.9rem}.hr:first-child{border-top:0}.hr small{display:block;color:var(--mu);font-size:.74rem}.hr b{font-variant-numeric:tabular-nums;white-space:nowrap}.hr .pl{color:#7ff0c4}.hr .mi{color:#ff9a9a}
 .gd{background:linear-gradient(180deg,#ffe9a6,#ffc857 46%,#d98c12 50%,#f0b030);color:#2b0613;text-shadow:0 1px 0 rgba(255,255,255,.55);box-shadow:inset 0 2px 0 rgba(255,255,255,.75),0 5px 0 #7a3d05,0 12px 22px rgba(255,200,87,.3)}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head><body>
@@ -140,12 +141,14 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
   <div class="err" id="cve" role="alert"></div>
   <p class="hint">รูปจะถูกย่อเป็นสี่เหลี่ยมจัตุรัสและเก็บไว้ที่เซิร์ฟเวอร์ แอดมินตรวจก่อน ผู้เล่นคนอื่นจะเห็นเมื่ออนุมัติแล้วเท่านั้น ห้ามใช้รูปของคนอื่น รูปไม่เหมาะสม หรือรูปที่มีข้อมูลส่วนตัว ดู<a href="privacy.html" style="text-decoration:underline">ความเป็นส่วนตัว</a></p></section>
  <section class="pn" id="wl" hidden><h2>กระเป๋า</h2><div class="wr"><svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#ffc857" stroke="#7a3d05" stroke-width="1.8"/><circle cx="12" cy="12" r="6.2" fill="none" stroke="#b8700b" stroke-width="1.8"/></svg><b id="wc">0</b><small>เหรียญ</small></div><a class="btn gh" href="collection.html" style="width:100%">ใช้เหรียญเปิดหีบ</a></section>
+ <section class="pn" id="hs" hidden><h2>ประวัติเหรียญ</h2><p class="sub">30 รายการล่าสุดที่เหรียญเข้าหรือออกจากกระเป๋าคุณ</p><div id="hl"></div><div class="err" id="he" role="alert"></div><button class="btn gh" id="hb" type="button" style="width:100%">ดูประวัติเหรียญ</button></section>
  <section class="pn"><h2>คอลเลกชัน</h2><p class="sub">เก็บไอเทมประจำจังหวัด เปิดหีบ และดูคลังของคุณ</p><a class="btn gl" id="cl" href="collection.html" style="width:100%">เปิดคอลเลกชัน</a></section>
  <section class="pn"><h2>ติดต่อแอดมิน</h2><p class="sub">ขอลบบัญชี ขอสำเนาข้อมูล เติมเงินหรือคืนเงิน แจ้งผู้เล่นที่ไม่เหมาะสม หรืออุทธรณ์การระงับบัญชี</p><a class="btn gl" id="sp" href="support.html" style="width:100%">เปิดแชทแอดมิน</a></section>
  <div class="act"><a class="btn gh" href="play.html">กลับสนามรบ</a><button class="btn gh" id="lo" type="button">ออกจากระบบ</button></div>
  <p class="hint" style="text-align:center;margin-top:14px"><a href="terms.html" style="text-decoration:underline">ข้อกำหนดการใช้งาน</a> · <a href="privacy.html" style="text-decoration:underline">ความเป็นส่วนตัว</a></p>
 </main></div>
 <div id="ts" hidden role="status"></div>
+<script src="terms-gate.js" defer></script>
 <script>
 const SB_URL='https://tncbzfgdfxjrgrdgmzya.supabase.co',SB_KEY='sb_publishable_xrwJKdhhgt6i_I4pDvI79A_gucUyuVx';
 const sb=window.supabase?window.supabase.createClient(SB_URL,SB_KEY):null;
@@ -185,7 +188,7 @@ function paint(){const r=Math.max(0,RID.indexOf(S.region_id));$('app').style.set
  let h='<div class="ap">';for(let i=1;i<=5;i++){const k=PFX[r]+i;h+='<button type="button" class="ab" data-k="'+k+'" aria-pressed="'+(k===S.avatar_key)+'" aria-label="อวตาร '+i+'">'+av(k)+'</button>'}$('avp').innerHTML=h+'</div>'}
 /* ยอดเหรียญ: ดึงสดทุกครั้งที่เปิดหน้า ไม่เก็บค่าไว้ในเครื่อง ถ้าโหลดไม่ได้ให้ซ่อนการ์ดเงียบ ๆ */
 function wallet(){sb.rpc('get_my_wallet').then(r=>{const d=r&&!r.error?(Array.isArray(r.data)?r.data[0]:r.data):null,c=d&&Number(d.coins);
-  if(c==null||isNaN(c)){$('wl').hidden=true;return}$('wc').textContent=nf(c);$('wl').hidden=false},()=>{$('wl').hidden=true})}
+  if(c==null||isNaN(c)){$('wl').hidden=true;return}$('wc').textContent=nf(c);$('wl').hidden=false;$('hs').hidden=false},()=>{$('wl').hidden=true})}
 function admPaint(){const b=$('admc');
  if(!ADM){b.innerHTML='';return}
  b.innerHTML='<section class="pn adm"><h2>ห้องบัญชาการ</h2><p class="sub">ตอบแชทผู้เล่นและจัดการหลังบ้าน เห็นเฉพาะแอดมิน</p><a class="btn gd" id="adl" href="admin.html" style="width:100%">เปิดหน้าแอดมิน</a></section>';
@@ -278,6 +281,16 @@ $('cvx').onclick=async()=>{if(busy)return;
  if(error)$('cve').textContent=cavErr(error);
  else{if(old)sb.storage.from('avatars').remove([old]).then(()=>{},()=>{});toast('กลับไปใช้อวตารมาตรฐานแล้ว');await cavLoad()}
  busy=false};
+/* ประวัติเหรียญ: อ่านจาก get_my_ledger (สมุดบัญชีของตัวเองเท่านั้น) โหลดเมื่อกดปุ่ม ไม่เก็บค่าไว้ในเครื่อง */
+const LRS={chest_buy:'ซื้อหีบ',chest_open:'เปิดหีบ',dissolve:'สลายไอเทม',play_reward:'รางวัลจากการเล่น',admin_adjust:'ทีมงานปรับยอด',collection_test:'รายการทดสอบระบบ',collection_test_revert:'รายการทดสอบระบบ'};
+async function hist(){const b=$('hb'),l=$('hl'),e=$('he');e.textContent='';b.disabled=true;
+ try{const {data,error}=await sb.rpc('get_my_ledger',{p_limit:30});if(error)throw error;
+  const a=Array.isArray(data)?data:[];
+  l.innerHTML=a.length?a.map(r=>{const d=+r.delta||0,u=r.currency&&r.currency!=='coin'?' '+esc(r.currency):'';
+   return '<div class="hr"><div>'+esc(LRS[r.reason]||'รายการอื่น')+'<small>'+fDT(r.created_at)+'</small></div><div style="text-align:right"><b class="'+(d>=0?'pl':'mi')+'">'+(d>0?'+':d<0?'-':'')+nf(Math.abs(d))+u+'</b><small>คงเหลือ '+nf(r.balance_after)+'</small></div></div>'}).join(''):'<p class="hint">ยังไม่มีรายการ</p>';
+  b.textContent='รีเฟรชประวัติ'}catch(x){e.textContent='โหลดประวัติไม่สำเร็จ ลองใหม่อีกครั้ง'}
+ b.disabled=false}
+$('hb').onclick=hist;
 load();
 /* ล็อกซูม: กันท่าจีบนิ้วบน iOS เหมือน play.html */
 ['gesturestart','gesturechange','gestureend'].forEach(t=>document.addEventListener(t,e=>e.preventDefault(),{passive:false}));
