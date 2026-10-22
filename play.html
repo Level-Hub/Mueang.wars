@@ -242,6 +242,8 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
 .rk0{padding:6px 2px;color:var(--mu);font-size:14px}
 /* หอเกียรติยศ: แท็บที่ 4 ในหน้าอันดับ */
 .seg{gap:4px}.seg button{min-width:0;padding:0 2px;font-size:14px;white-space:nowrap}
+.pfk .rr.me{margin:0 -14px;padding-inline:14px}.card.tp{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.hmc{margin:4px 6px 0 0;min-height:34px;padding:0 12px;border-radius:99px;border:1px solid var(--ln);background:rgba(255,255,255,.08);color:inherit;font:600 13px Kanit,"Noto Sans Thai",system-ui,sans-serif}.hmc:active{background:var(--glass)}
 .hh{margin:12px 0 2px;font:700 13px Kanit,"Noto Sans Thai",system-ui,sans-serif;color:var(--mu)}.hmb{padding:4px 2px 0;color:var(--mu);font-size:13px;line-height:1.55;overflow-wrap:anywhere}
 /* ยศ CEO ในตารางอันดับ (เห็นเฉพาะแถวของบัญชีแอดมิน) */
 .rr.adm{border-radius:14px;background:linear-gradient(90deg,rgba(255,200,87,.16),rgba(255,200,87,.03))}
@@ -538,7 +540,7 @@ if(cam.z>=2.2)lod();
  $('plan').innerHTML=`<b>${ic('lock')} ทัพที่ส่งไปแล้ว</b><br>${k.length?k.map(i=>'<span class="pc">'+T[i].n+' <b>'+send[i]+'</b></span>').join(''):'<small>ยังไม่ได้ส่ง แตะช่องบนแผนที่เพื่อดูชื่อและส่งกำลัง</small>'}<br><small>กำลังพลคงเหลือ ${Math.floor(stock)} · จุดขาว = ส่งกำลังแล้ว</small>`;
  $('log').innerHTML=log;
  const o=[0,1,2,3].sort((a,b)=>cnt[b]-cnt[a]);
- $('rkR').innerHTML=o.map((r,j)=>`<div class="card" style="${r===me?'border-color:'+col(r):''}"><b><span class="rk">${medal(j)}<span style="color:${col(r)};display:flex">${em(r)}</span>${RG[r][1]}${r===me?' (คุณ)':''}</span></b> <span style="float:right"><b>${cnt[r]}</b> / 77</span><div class="b"><i style="width:${cnt[r]/77*100}%;background:${col(r)}"></i></div></div>`).join('');
+ $('rkR').innerHTML=o.map((r,j)=>`<div class="card tp" role="button" tabindex="0" data-r="${r}" aria-label="ดูรายละเอียด ${RG[r][1]}" style="${r===me?'border-color:'+col(r):''}"><b><span class="rk">${medal(j)}<span style="color:${col(r)};display:flex">${em(r)}</span>${RG[r][1]}${r===me?' (คุณ)':''}</span></b> <span style="float:right;display:flex;align-items:center;gap:4px"><b>${cnt[r]}</b> / 77 <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div class="b"><i style="width:${cnt[r]/77*100}%;background:${col(r)}"></i></div></div>`).join('');
 $('lv').textContent=lv;$('pr').textContent=(G.lv[lv]||{}).troops_per_hour||0;$('sk').textContent=Math.floor(stock);$('vil').innerHTML=VIL[Math.min(lv-1,5)];
 const nx=G.lv[lv+1],ug=upNow();$('upb').style.width=ug?upPct()+'%':nx?Math.min(100,stock/nx.upgrade_cost*100)+'%':'100%';
 if(ug){$('up').innerHTML=ic('clock')+' กำลังอัปเกรดเป็นระดับ '+ug.upgrading_to+' · เหลือ '+upLeft();$('up').disabled=true}
@@ -633,13 +635,13 @@ function pic(x,cls,role,vip){const k=avKey(x),ph=x&&typeof x.photo_url==='string
  return fxWrap('<span class="pic'+(cls?' '+cls:'')+'" style="--k:var(--'+EMK[avReg(x)]+')" data-n="'+aEsc(k[1]||'')+'"><img src="'+(ph?aEsc(ph):AVP[0].replace('{k}',k))+'" data-k="'+k+'"'+(ph?' data-ph="1"':'')+' alt="" decoding="async" loading="lazy" onerror="avErr(this)"></span>',role,v)}
 const CHV='<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const nmHtml=(nm,adm,vip)=>adm==='ceo'?'<span class="ceo-nm">'+esc2(nm)+'</span><span class="rkc">'+CRN+'CEO</span>':adm==='admin'?'<span class="adm-nm">'+esc2(nm)+'</span><span class="rkc ad">'+SHD+'แอดมิน</span>':vipNm(nm,vip);
-const rkRow=(n,r,nm,sub,pt,me,adm,vip,pr)=>`<div class="rr${me?' me':''}${adm==='ceo'?' adm':adm==='admin'?' adm sv':!adm&&+vip>=1&&+vip<=3?' vp'+(+vip):''}${pr?' tp':''}"${pr?' role="button" tabindex="0" data-u="'+aEsc(nm)+'" aria-label="ดูโปรไฟล์ '+aEsc(nm)+'"':''}><span class="n">${n}</span>${pr?pic(pr,'',adm,vip):'<span class="e" style="color:'+col(r)+'">'+em(r)+'</span>'}<span class="nm">${nmHtml(nm,adm,vip)}${me?' (คุณ)':''}${sub?'<small>'+sub+'</small>':''}</span><span class="pt">${pt}</span>${pr?CHV:''}</div>`;
+const rkRow=(n,r,nm,sub,pt,me,adm,vip,pr,tc)=>`<div class="rr${me?' me':''}${adm==='ceo'?' adm':adm==='admin'?' adm sv':!adm&&+vip>=1&&+vip<=3?' vp'+(+vip):''}${pr||tc!=null?' tp':''}${tc!=null?' tc':''}"${tc!=null?' role="button" tabindex="0" data-c="'+(+tc)+'" aria-label="ดูรายชื่อผู้เล่นในจังหวัด '+aEsc(nm)+'"':pr?' role="button" tabindex="0" data-u="'+aEsc(nm)+'" aria-label="ดูโปรไฟล์ '+aEsc(nm)+'"':''}><span class="n">${n}</span>${pr?pic(pr,'',adm,vip):'<span class="e" style="color:'+col(r)+'">'+em(r)+'</span>'}<span class="nm">${nmHtml(nm,adm,vip)}${me?' (คุณ)':''}${sub?'<small>'+sub+'</small>':''}</span><span class="pt">${pt}</span>${pr||tc!=null?CHV:''}</div>`;
 const rkNo=j=>j<3?medal(j):j+1;
 function playersHtml(a){if(!a.length)return '<div class="card"><div class="rk0">ยังไม่มีผู้เล่นที่ได้คะแนน ส่งทัพไปยึดช่องหรือป้องกันช่องเพื่อเริ่มสะสมคะแนน</div></div>';
  return '<div class="card">'+a.map(x=>rkRow(rkNo(+x.rank-1),Math.max(0,RID.indexOf(x.region_id)),x.username,'',(+x.points).toLocaleString('en-US'),x.is_me,x.staff_role||null,x.vip_level,x)).join('')+'</div>'+(a.length>=50?'<div class="rk0" style="margin:0 14px">แสดง 50 อันดับแรก</div>':'')}
 function provincesHtml(a){const h=G.prof&&G.prof.home_province,l=a.filter(x=>x.players>0).sort((x,y)=>y.points-x.points||y.players-x.players||String(x.name_th).localeCompare(y.name_th,'th')).slice(0,30);
  if(!l.length)return '<div class="card"><div class="rk0">ยังไม่มีใครเลือกจังหวัดเป็นบ้านเกิด</div></div>';
- return '<div class="card">'+l.map((x,j)=>rkRow(rkNo(j),Math.max(0,RID.indexOf(x.region_id)),x.name_th,x.players+' คน',(+x.points).toLocaleString('en-US'),h!=null&&+x.province_code===+h)).join('')+'</div><div class="rk0" style="margin:0 14px">คะแนนรวมของผู้เล่นที่เป็นคนจังหวัดนั้น (ไม่นับบอท)</div>'}
+ return '<div class="card">'+l.map((x,j)=>rkRow(rkNo(j),Math.max(0,RID.indexOf(x.region_id)),x.name_th,x.players+' คน',(+x.points).toLocaleString('en-US'),h!=null&&+x.province_code===+h,undefined,undefined,undefined,x.province_code)).join('')+'</div><div class="rk0" style="margin:0 14px">คะแนนรวมของผู้เล่นที่เป็นคนจังหวัดนั้น · แตะจังหวัดเพื่อดูรายชื่อ</div>'}
 /* หอเกียรติยศ: ข้อมูลจาก get_hall_of_fame (ซีซันใหม่ก่อน · ทีมแชมป์ภาค ผู้เล่นอันดับต้น สมาชิกทีมแชมป์) */
 function hallHtml(a){if(!a.length)return '<div class="card"><div class="rk0">ยังไม่มีใครในหอเกียรติยศ ทีมแชมป์ภาคและผู้เล่นอันดับต้นของแต่ละซีซันจะขึ้นที่นี่เมื่อซีซันจบ</div></div>';
  const S={},ord=[],me=G.prof&&G.prof.username,n=v=>(+v||0).toLocaleString('en-US'),ri=x=>Math.max(0,RID.indexOf(x.region_id)),dt=x=>x.detail||{};
@@ -651,7 +653,7 @@ function hallHtml(a){if(!a.length)return '<div class="card"><div class="rk0">ย
   const pl=o.p.sort((x,y)=>(+x.rank||999)-(+y.rank||999)).map(x=>rkRow(rkNo(Math.max(0,(+x.rank||1)-1)),ri(x),x.username,dt(x).rounds!=null?'ส่งทัพ '+n(dt(x).rounds)+' รอบ':'',n(x.points),x.username===me,null,null,x)).join('');
   const mb=o.m.sort((x,y)=>(+y.points||0)-(+x.points||0));
   return '<div class="card"><h2>ซีซัน '+s+'</h2>'+(ch?'<div class="hh">ทีมแชมป์ภาค</div>'+ch:'')+(pl?'<div class="hh">ผู้เล่นอันดับต้น</div>'+pl:'')
-   +(mb.length?'<div class="hh">สมาชิกทีมแชมป์ '+n(mb.length)+' คน</div><div class="hmb">'+mb.slice(0,24).map(x=>aEsc(x.username)).join(', ')+(mb.length>24?' และอีก '+n(mb.length-24)+' คน':'')+'</div>':'')+'</div>'}).join('')
+   +(mb.length?'<div class="hh">สมาชิกทีมแชมป์ '+n(mb.length)+' คน</div><div class="hmb">'+mb.slice(0,24).map(x=>'<button type="button" class="hmc" data-u="'+aEsc(x.username)+'">'+aEsc(x.username)+'</button>').join('')+(mb.length>24?' และอีก '+n(mb.length-24)+' คน':'')+'</div>':'')+'</div>'}).join('')
   +(a.length>=200?'<div class="rk0" style="margin:0 14px">แสดงรายการล่าสุด 200 รายการ</div>':'')}
 async function rankLoad(){const k=RK.k;if(k==='r')return;const box=$(k==='p'?'rkP':k==='h'?'rkH':'rkV');
  if(RK.t[k]&&Date.now()-RK.t[k]<3e4)return;
@@ -681,6 +683,34 @@ async function pfOpen(u,from){if(!u)return;const f=$('pf'),id=++PF.id;PF.last=fr
  if(id!==PF.id)return;
  if(res.error||!res.data){f.innerHTML='<p style="text-align:center;color:var(--mu);padding:34px 0">'+(res.error?'โหลดโปรไฟล์ไม่สำเร็จ ลองใหม่อีกครั้ง':'ไม่พบโปรไฟล์ผู้เล่นนี้')+'</p><button type="button" class="pfx" id="pfc">ปิด</button>';$('pfc').focus();return}
  const d=res.data;pfShell(d.staff_role,Math.max(0,RID.indexOf(d.region_id)),d.vip_level);f.innerHTML=pfBody(d);$('pfc').focus({preventScroll:true})}
+/* รายละเอียดจังหวัด/ภาค (แตะในแท็บอันดับ) · ใช้แผ่น #pf ร่วมกับการ์ดโปรไฟล์ */
+function dtOpen(from,rc,html){const f=$('pf'),id=++PF.id;PF.last=from||null;pfShell(null,rc);f.innerHTML=html+'<button type="button" class="pfx" id="pfc">ปิด</button>';f.classList.add('open');$('pfs').classList.add('open');f.setAttribute('aria-hidden','false');f.scrollTop=0;try{$('pfc').focus({preventScroll:true})}catch(e){}return id}
+const rgN=k=>{const i=RID.indexOf(k);return i>=0?RG[i][1]:'ไม่มีเจ้าของ'};
+async function provOpen(code,from){const i=T.findIndex(x=>x.code===code);if(i<0)return;const h=PD[i][2],o=T[i].o,hd='<h4>ผู้เล่นที่เป็นคนจังหวัดนี้';
+ const id=dtOpen(from,o,'<div class="pfh"><div style="min-width:0"><h3>'+aEsc(T[i].n)+'</h3><div class="pfb"><span class="pfr">'+RG[o][1]+'</span></div><p>'+(o===h?'ภาคเจ้าของเดิมยังถือครองอยู่':'ถูกยึดมาแล้ว · เดิมเป็นของ'+RG[h][1])+'</p></div></div><div class="pfk" id="dtb">'+hd+'</h4><div class="e0">กำลังโหลด…</div></div>');
+ let res;try{res=await sb.rpc('get_province_players',{p_province:code})}catch(e){res={error:e}}
+ if(id!==PF.id)return;const b=$('dtb');if(!b)return;
+ if(res.error){b.innerHTML=hd+'</h4><div class="e0">โหลดรายชื่อไม่สำเร็จ ลองใหม่อีกครั้ง</div>';return}
+ const a=res.data||[],sum=a.reduce((s,x)=>s+(+x.points||0),0);
+ b.innerHTML=hd+' ('+a.length+' คน)</h4>'+(a.length?a.map((x,j)=>rkRow(rkNo(j),Math.max(0,RID.indexOf(x.region_id)),x.username,'',(+x.points).toLocaleString('en-US'),x.is_me,x.staff_role||null,x.vip_level,x)).join('')+'<div class="rk0">คะแนนรวม '+sum.toLocaleString('en-US')+'</div>':'<div class="e0">ยังไม่มีผู้เล่นเลือกจังหวัดนี้เป็นบ้านเกิด</div>')}
+async function regOpen(r,from){const hs=[],gs=[],ls=[];
+ T.forEach((x,i)=>{const h=PD[i][2];if(h===r){hs.push(i);if(x.o!==r)ls.push(i)}else if(x.o===r)gs.push(i)});
+ const own=T.filter(x=>x.o===r).length,row=(i,s)=>'<div class="pfhs"><span>'+aEsc(T[i].n)+'</span><b>'+s+'</b></div>';
+ const lost=ls.length?ls.map(i=>row(i,RG[T[i].o][1]+' ถืออยู่')).join(''):'<div class="e0">ยังไม่มีจังหวัดตั้งต้นของภาคนี้ถูกยึด</div>';
+ const gain=gs.length?gs.map(i=>row(i,'จาก'+RG[PD[i][2]][1])).join(''):'<div class="e0">ยังไม่ได้ยึดจังหวัดของภาคอื่น</div>';
+ const id=dtOpen(from,r,'<div class="pfh"><div style="min-width:0"><h3>'+RG[r][1]+(r===me?' (คุณ)':'')+'</h3></div></div>'
+  +'<div class="pfg"><div><b>'+own+' <small>จาก 77</small></b><span>ถือครองอยู่</span></div><div><b>'+hs.length+'</b><span>จังหวัดตั้งต้น</span></div><div><b>'+ls.length+'</b><span>ถูกยึดไป</span></div><div><b>'+gs.length+'</b><span>ยึดมาได้</span></div></div>'
+  +'<div class="pfk"><h4>จังหวัดตั้งต้นที่ถูกยึดไป</h4>'+lost+'</div><div class="pfk"><h4>จังหวัดที่ยึดมาจากภาคอื่น</h4>'+gain+'</div><div class="pfk" id="dtn"><h4>ความเคลื่อนไหวล่าสุด</h4><div class="e0">กำลังโหลด…</div></div>');
+ let res;try{res=await sb.rpc('get_public_battle_news',{p_limit:20})}catch(e){res={error:e}}
+ if(id!==PF.id)return;const n=$('dtn');if(!n)return;
+ if(res.error){n.innerHTML='<h4>ความเคลื่อนไหวล่าสุด</h4><div class="e0">โหลดข่าวไม่สำเร็จ</div>';return}
+ const k=RID[r],a=(res.data||[]).filter(x=>x.new_owner===k||x.prev_owner===k).slice(0,8);
+ n.innerHTML='<h4>ความเคลื่อนไหวล่าสุด</h4>'+(a.length?a.map(x=>'<div class="pfhs"><span>'+aEsc(x.province_name)+'<small style="display:block;color:var(--mu)">'+(x.new_owner===k?'ยึดจาก'+rgN(x.prev_owner):'ถูก'+rgN(x.new_owner)+'ยึดไป')+'</small></span><b>รอบที่ '+(+x.round_no)+'</b></div>').join(''):'<div class="e0">ยังไม่มีการยึดที่เกี่ยวกับภาคนี้ในข่าวล่าสุด</div>')}
+const dtKey=(e,f)=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[role=button]')){e.preventDefault();f(e.target)}};
+$('rkV').addEventListener('click',e=>{const r=e.target.closest('.rr.tc');if(r)provOpen(+r.dataset.c,r)});$('rkV').addEventListener('keydown',e=>dtKey(e,x=>x.dataset.c!=null&&provOpen(+x.dataset.c,x)));
+$('rkR').addEventListener('click',e=>{const c=e.target.closest('.card[data-r]');if(c)regOpen(+c.dataset.r,c)});$('rkR').addEventListener('keydown',e=>dtKey(e,x=>x.dataset.r!=null&&regOpen(+x.dataset.r,x)));
+$('rkH').addEventListener('click',e=>{const c=e.target.closest('.hmc');if(c)pfOpen(c.dataset.u,c)});
+$('pf').addEventListener('click',e=>{const r=e.target.closest('.rr.tp');if(r&&r.dataset.u)pfOpen(r.dataset.u,r)});$('pf').addEventListener('keydown',e=>dtKey(e,x=>x.dataset.u&&pfOpen(x.dataset.u,x)));
 $('pfs').onclick=pfClose;$('pf').addEventListener('click',e=>{if(e.target.closest('#pfc'))pfClose()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('pf').classList.contains('open'))pfClose()});
 const pfRow=e=>{const r=e.target.closest('.rr.tp');if(r)pfOpen(r.dataset.u,r)};
