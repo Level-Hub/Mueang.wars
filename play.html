@@ -321,7 +321,7 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
 .fxw .frm{left:-19.57%;top:-19.57%;width:139.13%;height:139.13%}
 .mtk{display:flex;align-items:center;justify-content:center;line-height:0}.mfo .fxw .pic{margin:0}
 .rr .nm small.ctr{display:block;flex:0 0 100%;margin-top:2px}.rr.ht .nm{flex-wrap:wrap}.pfb .ct{margin-left:0}
-.rr .fxw{margin-right:-2px}.rr .fxw.ceo{margin-top:8px}.rr .fxw.adm{margin-top:0}.rr .fxw.v3{margin-top:6px}.rr .fxw.v1,.rr .fxw.v2{margin-top:5px}.rr .fxw .sp{display:none}.rr .fxw .pic{margin:0}
+.rr .fxw{margin-right:-2px}.rr .fxw.fr{margin:0 5px 0 3px}.rr .fxw.ceo{margin-top:8px}.rr .fxw.adm{margin-top:0}.rr .fxw.v3{margin-top:6px}.rr .fxw.v1,.rr .fxw.v2{margin-top:5px}.rr .fxw .sp{display:none}.rr .fxw .pic{margin:0}
 .rr.vp1 .nm,.rr.vp2 .nm,.rr.vp3 .nm{display:flex;align-items:center}
 .rr.vp1 .nm .vn1,.rr.vp2 .nm .vn2,.rr.vp3 .nm .vn3{max-width:none;flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .rr .nm .rkc,.rr .nm .rkv{flex:none}
@@ -654,6 +654,8 @@ function fxWrap(inner,role,vip,frame){const v=+vip||0,st=role==='ceo'?'ceo':role
 function fxTitle(c){const t=c&&c.title;if(!t||!t.text)return '';const s=t.style==='shine'?'sh':t.style==='region'?'rg':'pl',n=+t.tier>=1&&+t.tier<=3?+t.tier:0,r=FXRG.indexOf(t.region_id)>=0?t.region_id:'';
  return '<span class="ct '+s+(s==='pl'&&n?' t'+n:'')+'"'+(s==='rg'&&r?' data-r="'+r+'"':'')+'>'+fxEsc(t.text)+'</span>'}
 /* /RANKFX-JS */
+/* v9.40: แถวอันดับ (.pic.rkf) โชว์รูปกรอบได้แม้รูปกว้าง < 56px · ทับ fxLo ของบล็อก RANKFX จากนอกบล็อก เพื่อไม่ให้บล็อกต่างจากไฟล์อื่น (R54) · ที่อื่นยังใช้เกณฑ์ 56px */
+function fxLo(i){const p=i.parentNode,w=p&&p.offsetWidth;if(w&&w<56&&!(p.querySelector&&p.querySelector('.pic.rkf'))){i.remove();return}if(p)p.classList.add('lo')}
 const vipNm=(nm,v)=>{v=+v;return v>=1&&v<=3?'<span class="vn'+v+'">'+esc2(nm)+'</span><span class="rkv v'+v+'">'+DMD+'VIP '+v+'</span>':esc2(nm)};
 /* รูปโปรไฟล์: ถ้าแถวมี photo_url (https) ใช้รูปนั้นก่อน (รองรับรูปที่ตั้งเองในอนาคต) ไม่มีหรือโหลดไม่ได้ = ใช้รูปอวตาร avatar_key เหมือนตอนสมัคร */
 const AVP=['img/{k}.webp','img/avatars/{k}.webp','img/avatar/{k}.webp','img/{k}.png','img/{k}.jpg','img/{k}.jpeg','img/avatar-{k}.webp','img/avatar_{k}.webp'],PFX=['n','e','m','s'];
@@ -661,11 +663,11 @@ const aEsc=t=>String(t==null?'':t).replace(/[<>&"']/g,'');
 function avErr(i){if(i.dataset.ph){delete i.dataset.ph;i.dataset.t=0;i.src=AVP[0].replace('{k}',i.dataset.k);return}const n=+(i.dataset.t||0)+1;if(n>=AVP.length){i.remove();return}i.dataset.t=n;i.src=AVP[n].replace('{k}',i.dataset.k)}
 const avKey=x=>{const k=String((x&&x.avatar_key)||'c1').replace(/[^a-z0-9]/gi,'');return k||'c1'};
 const avReg=x=>Math.max(0,PFX.indexOf(avKey(x)[0]));
-function pic(x,cls,role,vip){const k=avKey(x),ph=x&&typeof x.photo_url==='string'&&/^https:\/\//.test(x.photo_url)?x.photo_url:'',v=+vip,cf=x&&x.cosmetic&&x.cosmetic.frame,fr=cf?(/\bbig\b/.test(cls||'')?cf:Object.assign({},cf,{noart:1})):null;
+function pic(x,cls,role,vip){const k=avKey(x),ph=x&&typeof x.photo_url==='string'&&/^https:\/\//.test(x.photo_url)?x.photo_url:'',v=+vip,cf=x&&x.cosmetic&&x.cosmetic.frame,fr=cf?(/\b(big|rkf)\b/.test(cls||'')?cf:Object.assign({},cf,{noart:1})):null;
  return fxWrap('<span class="pic'+(cls?' '+cls:'')+'" style="--k:var(--'+EMK[avReg(x)]+')" data-n="'+aEsc(k[1]||'')+'"><img src="'+(ph?aEsc(ph):AVP[0].replace('{k}',k))+'" data-k="'+k+'"'+(ph?' data-ph="1"':'')+' alt="" decoding="async" loading="lazy" onerror="avErr(this)"></span>',role,v,fr)}
 const CHV='<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const nmHtml=(nm,adm,vip)=>adm==='ceo'?'<span class="ceo-nm">'+esc2(nm)+'</span><span class="rkc">'+CRN+'CEO</span>':adm==='admin'?'<span class="adm-nm">'+esc2(nm)+'</span><span class="rkc ad">'+SHD+'แอดมิน</span>':vipNm(nm,vip);
-const rkRow=(n,r,nm,sub,pt,me,adm,vip,pr,tc)=>`<div class="rr${me?' me':''}${pr&&pr.cosmetic&&pr.cosmetic.title?' ht':''}${adm==='ceo'?' adm':adm==='admin'?' adm sv':!adm&&+vip>=1&&+vip<=3?' vp'+(+vip):''}${pr||tc!=null?' tp':''}${tc!=null?' tc':''}"${tc!=null?' role="button" tabindex="0" data-c="'+(+tc)+'" aria-label="ดูรายชื่อผู้เล่นในจังหวัด '+aEsc(nm)+'"':pr?' role="button" tabindex="0" data-u="'+aEsc(nm)+'" aria-label="ดูโปรไฟล์ '+aEsc(nm)+'"':''}><span class="n">${n}</span>${pr?pic(pr,'',adm,vip):'<span class="e" style="color:'+col(r)+'">'+em(r)+'</span>'}<span class="nm">${nmHtml(nm,adm,vip)}${me?' (คุณ)':''}${sub?'<small>'+sub+'</small>':''}${pr&&pr.cosmetic&&pr.cosmetic.title?'<small class="ctr">'+fxTitle(pr.cosmetic)+'</small>':''}</span><span class="pt">${pt}</span>${pr||tc!=null?CHV:''}</div>`;
+const rkRow=(n,r,nm,sub,pt,me,adm,vip,pr,tc)=>`<div class="rr${me?' me':''}${pr&&pr.cosmetic&&pr.cosmetic.title?' ht':''}${adm==='ceo'?' adm':adm==='admin'?' adm sv':!adm&&+vip>=1&&+vip<=3?' vp'+(+vip):''}${pr||tc!=null?' tp':''}${tc!=null?' tc':''}"${tc!=null?' role="button" tabindex="0" data-c="'+(+tc)+'" aria-label="ดูรายชื่อผู้เล่นในจังหวัด '+aEsc(nm)+'"':pr?' role="button" tabindex="0" data-u="'+aEsc(nm)+'" aria-label="ดูโปรไฟล์ '+aEsc(nm)+'"':''}><span class="n">${n}</span>${pr?pic(pr,'rkf',adm,vip):'<span class="e" style="color:'+col(r)+'">'+em(r)+'</span>'}<span class="nm">${nmHtml(nm,adm,vip)}${me?' (คุณ)':''}${sub?'<small>'+sub+'</small>':''}${pr&&pr.cosmetic&&pr.cosmetic.title?'<small class="ctr">'+fxTitle(pr.cosmetic)+'</small>':''}</span><span class="pt">${pt}</span>${pr||tc!=null?CHV:''}</div>`;
 const rkNo=j=>j<3?medal(j):j+1;
 function playersHtml(a){if(!a.length)return '<div class="card"><div class="rk0">ยังไม่มีผู้เล่นที่ได้คะแนน ส่งทัพไปยึดช่องหรือป้องกันช่องเพื่อเริ่มสะสมคะแนน</div></div>';
  return '<div class="card">'+a.map(x=>rkRow(rkNo(+x.rank-1),Math.max(0,RID.indexOf(x.region_id)),x.username,'',(+x.points).toLocaleString('en-US'),x.is_me,x.staff_role||null,x.vip_level,x)).join('')+'</div>'+(a.length>=50?'<div class="rk0" style="margin:0 14px">แสดง 50 อันดับแรก</div>':'')}
