@@ -319,6 +319,7 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
 /* แก้กรอบรูปเยื้อง: .fr (แถวพยากรณ์ flex สูง 46px) ชนชื่อคลาสกับ .fxw.fr (ตัวห่อกรอบ) ทำให้ตัวห่อสูงผิดและรูปกรอบถูกบีบ · วางนอกบล็อก RANKFX (R54) · ขนาดรูปกรอบตามสเปก 9.1.3 (512/368 = 139.13% · inset -19.57%) */
 .fxw.fr,.pw .fxw.fr{display:inline-block;height:auto;margin-top:0;gap:0;align-items:normal}
 .fxw .frm{left:-19.57%;top:-19.57%;width:139.13%;height:139.13%}
+.mtk{display:flex;align-items:center;justify-content:center;line-height:0}.mfo .fxw .pic{margin:0}
 .rr .nm small.ctr{display:block;flex:0 0 100%;margin-top:2px}.rr.ht .nm{flex-wrap:wrap}.pfb .ct{margin-left:0}
 .rr .fxw{margin-right:-2px}.rr .fxw.ceo{margin-top:8px}.rr .fxw.adm{margin-top:0}.rr .fxw.v3{margin-top:6px}.rr .fxw.v1,.rr .fxw.v2{margin-top:5px}.rr .fxw .sp{display:none}.rr .fxw .pic{margin:0}
 .rr.vp1 .nm,.rr.vp2 .nm,.rr.vp3 .nm{display:flex;align-items:center}
@@ -542,22 +543,10 @@ function fly(a,b,color,n){for(let k=0;k<n;k++){const e=E('circle',{r:2.4,fill:co
 function arrows(){ar.innerHTML='';const seen={},ps=[];for(const i in send){const a=origin(me,T[i].c),b=T[i].c;ar.append(E('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],class:'al'}));const k=a[0]+','+a[1];if(!seen[k]){seen[k]=1;ps.push(a)}}
  /* รูปโปรไฟล์ของเราเองที่ต้นทางทัพ (ไม่แสดงของคนอื่น เพราะแผนส่งทัพเป็นความลับ) */
  const pr=G.prof;if(pr)ps.forEach(a=>ar.append(mapTok(a,pr)))}
-/* ขอบรูปบนแผนที่ ใช้กติกาเดียวกับ fxWrap: CEO ทอง+มงกุฎ · แอดมิน เงิน+โล่เล็กล่างรูป · ใส่กรอบ = สี accent ของกรอบ (ทีมงานใส่ไม่ได้) · VIP 1-3 = สี VIP · ไม่มีอะไรเลย = สีภาค (ห้ามขาว) */
-function mapRing(x){const role=x&&x.staff_role,v=+(x&&x.vip_level)||0,f=x&&x.cosmetic&&x.cosmetic.frame;
- if(role==='ceo')return{k:'ceo',c:'#ffc857'};
- if(role==='admin')return{k:'adm',c:'#c3cfe4'};
- if(f&&f.key)return{k:'fr',c:fxHex(f.accent),t:+f.tier||0};
- if(v>=1&&v<=3)return{k:'v'+v,c:['#34d399','#c084fc','#fb7185'][v-1]};
- return{k:'',c:'var(--'+EMK[avReg(x)]+')'}}
-function mapTok(a,pr){const k=avKey(pr),rg=mapRing(pr),g=E('g',{class:'tok'}),o=E('circle',{cx:a[0],cy:a[1],r:9.6,fill:'none',stroke:'#1a0310','stroke-width':1.3,'stroke-opacity':.9}),c=E('circle',{cx:a[0],cy:a[1],r:8.4,'stroke-width':rg.k?2:1.8}),t=E('text',{x:a[0],y:a[1]+3.3,'text-anchor':'middle','font-size':9,'font-weight':800,fill:'#1a0310'}),im=E('image',{x:a[0]-7.2,y:a[1]-7.2,width:14.4,height:14.4,preserveAspectRatio:'xMidYMid slice','clip-path':'url(#tkc)'}),ph=pr&&typeof pr.photo_url==='string'&&/^https:\/\//.test(pr.photo_url)?pr.photo_url:'';
- c.style.fill='var(--'+EMK[avReg(pr)]+')';c.style.stroke=rg.c;t.textContent=k[1]||'';im.dataset.k=k;im.dataset.t=0;im.setAttribute('href',ph||AVP[0].replace('{k}',k));if(ph)im.dataset.ph=1;
- im.addEventListener('error',()=>{if(im.dataset.ph){delete im.dataset.ph;im.dataset.t=0;im.setAttribute('href',AVP[0].replace('{k}',k));return}const n=+im.dataset.t+1;if(n>=AVP.length){im.remove();return}im.dataset.t=n;im.setAttribute('href',AVP[n].replace('{k}',k))});
- g.style.pointerEvents='none';g.style.filter='drop-shadow(0 2px 2px rgba(0,0,0,.55))'+(rg.k&&rg.k!=='fr'||rg.t>=2?' drop-shadow(0 0 2.2px '+rg.c+')':'');g.append(o,c,t,im);
- /* เครื่องประดับเล็กบนแผนที่: มงกุฎ CEO อยู่บน · โล่แอดมินอยู่กึ่งกลางล่าง · เพชร VIP อยู่บน · ใส่กรอบแล้วไม่มีเครื่องประดับ (R54/R55) */
- if(rg.k==='ceo'){const n=E('g',{transform:'translate('+(a[0]-6.5)+','+(a[1]-18.2)+') scale(.27)'});n.append(E('path',{d:'M4 28L7 9L17 19L24 4L31 19L41 9L44 28Z',fill:'#ffc857',stroke:'#7a3d05','stroke-width':2,'stroke-linejoin':'round'}),E('rect',{x:4,y:27,width:40,height:7,rx:2.2,fill:'#ffc857',stroke:'#7a3d05','stroke-width':2}),E('circle',{cx:24,cy:30.5,r:1.9,fill:'#ff3d57'}));g.append(n)}
- else if(rg.k==='adm'){const n=E('g',{transform:'translate('+(a[0]-4.4)+','+(a[1]+4.6)+') scale(.37)'});n.append(E('path',{d:'M12 1.2L21.6 4.6V14C21.6 20.4 17.4 25 12 26.8C6.6 25 2.4 20.4 2.4 14V4.6Z',fill:'#c3cfe4',stroke:'#3d4658','stroke-width':2.2,'stroke-linejoin':'round'}),E('path',{d:'M7.2 14L10.6 17.4L16.8 9.8',fill:'none',stroke:'#3d4658','stroke-width':3,'stroke-linecap':'round','stroke-linejoin':'round'}));g.append(n)}
- else if(rg.k[0]==='v'){const n=E('g',{transform:'translate('+(a[0]-3.6)+','+(a[1]-16.6)+') scale(.3)'});n.append(E('path',{d:'M7 1.5H17L22.5 8L12 20.5L1.5 8Z',fill:rg.c,stroke:'#1a0310','stroke-width':2,'stroke-linejoin':'round'}),E('path',{d:'M7 1.5L1.5 8H22.5L17 1.5',fill:'none',stroke:'#fff','stroke-opacity':.7,'stroke-width':1.4,'stroke-linejoin':'round'}));g.append(n)}
- return g}
+/* รูปบนแผนที่ = ตัวเดียวกับหน้าอื่นเป๊ะ (pic()+fxWrap: วงแหวนหมุน เรืองแสง มงกุฎ/โล่/เพชร กรอบที่ใส่) วางใน foreignObject แล้วย่อสัดส่วนจาก 38px · ไม่วาดแยกอีก ห้ามเขียนชุดเอฟเฟกต์ของตัวเอง (R54) */
+function mapPic(cx,cy,x,sz){const W=90,fo=E('foreignObject',{x:cx-W/2,y:cy-W/2,width:W,height:W,class:'mfo'});fo.style.overflow='visible';fo.style.pointerEvents='none';
+ fo.innerHTML='<div class="mtk" style="width:'+W+'px;height:'+W+'px;transform:scale('+(sz/38).toFixed(4)+')">'+pic(x,'',x&&x.staff_role,x&&x.vip_level).replace(' loading="lazy"','')+'</div>';return fo}
+function mapTok(a,pr){const g=E('g',{class:'tok'});g.style.pointerEvents='none';g.append(mapPic(a[0],a[1],pr,17));return g}
 (()=>{const d=map.querySelector('defs'),cp=E('clipPath',{id:'tkc',clipPathUnits:'objectBoundingBox'});cp.append(E('circle',{cx:.5,cy:.5,r:.5}));d.append(cp)})();
 document.querySelectorAll('.zm button').forEach(b=>b.onclick=()=>{auto=false;const z=+b.dataset.z;zoomTo(cam.x+230/cam.z,cam.y+390/cam.z,z,.5)});
 function go(r){me=r;paint()}
@@ -892,11 +881,7 @@ function fgWho(code,total){const v=FGV.filter(x=>+x.province_code===+code);if(!v
 async function flagVoters(){FGV=[];if(!FG||!FG.enabled||!((FG.top||[]).length||FG.my_vote!=null))return;try{const {data,error}=await sb.rpc('get_region_flag_voters');if(!error&&Array.isArray(data))FGV=data}catch(e){}}
 /* ธงบนแผนที่ (เห็นเฉพาะภาคเรา): ธงโบกสีภาค + วงกระเพื่อมที่จังหวัดนำ + จำนวนโหวต · ซูมเข้าจะเห็นรูปคนที่ปักด้วย */
 const FGW=['M0,-15C3,-17 5,-13 8,-15 10,-16 12,-15 13,-14.5L13,-7.5C12,-8 10,-9 8,-8 5,-6 3,-10 0,-8Z','M0,-15C3,-13 5,-17 8,-15 10,-14 12,-16 13,-14.5L13,-7.5C12,-9 10,-7 8,-8 5,-10 3,-6 0,-8Z'];
-const vcol=x=>mapRing(x).c;
-function fgTok(cx,cy,x){const k=avKey(x),g=E('g',{}),c=E('circle',{cx,cy,r:3.6,'stroke-width':1}),t=E('text',{x:cx,y:cy+1.5,'text-anchor':'middle','font-size':4,'font-weight':800,fill:'#1a0310'}),im=E('image',{x:cx-3.1,y:cy-3.1,width:6.2,height:6.2,preserveAspectRatio:'xMidYMid slice','clip-path':'url(#tkc)'}),o=E('circle',{cx,cy,r:4.3,fill:'none',stroke:'#1a0310','stroke-width':.8,'stroke-opacity':.9}),ph=x&&typeof x.photo_url==='string'&&/^https:\/\//.test(x.photo_url)?x.photo_url:'';
- c.style.fill='var(--'+EMK[avReg(x)]+')';c.style.stroke=vcol(x);c.style.strokeWidth=1.2;t.textContent=k[1]||'';im.dataset.k=k;im.dataset.t=0;im.setAttribute('href',ph||AVP[0].replace('{k}',k));if(ph)im.dataset.ph=1;
- im.addEventListener('error',()=>{if(im.dataset.ph){delete im.dataset.ph;im.dataset.t=0;im.setAttribute('href',AVP[0].replace('{k}',k));return}const n=+im.dataset.t+1;if(n>=AVP.length){im.remove();return}im.dataset.t=n;im.setAttribute('href',AVP[n].replace('{k}',k))});
- g.append(o,c,t,im);return g}
+function fgTok(cx,cy,x){return mapPic(cx,cy,x,6.6)}
 function fgMap(){fgl.textContent='';fgl.style.pointerEvents='none';if(!FG||!FG.enabled||me<0)return;
  const list=(FG.top||[]).slice(0,5).map((t,n)=>({code:t.province_code,votes:t.votes,lead:n===0}));
  if(FG.my_vote!=null&&!list.some(t=>t.code===FG.my_vote))list.push({code:FG.my_vote,votes:null,lead:false});
