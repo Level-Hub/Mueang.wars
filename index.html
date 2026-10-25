@@ -140,7 +140,7 @@ nav .btn .av{margin-right:8px}
 .dd-o[aria-selected=true] svg{opacity:1}
 /* ป้ายยศ (ชุดเดียวกับ play.html · R51/R53) */
 nav{flex-wrap:wrap;gap:8px 12px}#nb{margin-left:auto;max-width:100%}#nb .nmx{max-width:44vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#nb .rkc,#nb .rkv{flex:none}
-/* RANKFX v2 · เอฟเฟกต์ยศ/VIP/กรอบโปรไฟล์ ชุดเดียวกันทุกหน้า (CEO ทอง+มงกุฎ · แอดมิน เงิน+โล่ · VIP1 มรกต VIP2 ม่วง VIP3 ชมพูกุหลาบ · ไม่ใช้อีโมจิ) */
+/* RANKFX v3 · เอฟเฟกต์ยศ/VIP/กรอบโปรไฟล์ ชุดเดียวกันทุกหน้า (CEO ทอง+มงกุฎ · แอดมิน เงิน+ปีกโล่ · VIP1 มรกต VIP2 ม่วง VIP3 ชมพูกุหลาบ · ไม่ใช้อีโมจิ) */
 @keyframes fxsheen{to{background-position:-240% 0}}
 @keyframes fxspin{to{transform:rotate(1turn)}}
 @keyframes fxtw{0%,100%{opacity:0;transform:scale(.3) rotate(0)}45%,55%{opacity:1;transform:scale(1) rotate(45deg)}}
@@ -166,7 +166,7 @@ nav{flex-wrap:wrap;gap:8px 12px}#nb{margin-left:auto;max-width:100%}#nb .nmx{max
 .rkv.v1{--vc:#047857;--vg:rgba(52,211,153,.45);background:linear-gradient(180deg,#a7f3d0,#10b981 55%,#047857);color:#022c22}
 .rkv.v2{--vc:#6b21a8;--vg:rgba(168,85,247,.5);background:linear-gradient(180deg,#d8b4fe,#9333ea 55%,#6b21a8);color:#fff}
 .rkv.v3{--vc:#9f1239;--vg:rgba(251,113,133,.55);background:linear-gradient(180deg,#fecdd3,#f43f5e 55%,#9f1239);color:#fff}
-/* กรอบรูปโปรไฟล์ + เครื่องประดับ (มงกุฎ CEO · โล่แอดมิน · เพชร VIP) */
+/* กรอบรูปโปรไฟล์ + เครื่องประดับ (มงกุฎ CEO · ปีกโล่แอดมิน · เพชร VIP) */
 .fxw{position:relative;display:inline-block;flex:none;line-height:0;vertical-align:middle;--r1:#9a5a0a;--r2:#ffc857;--r3:#fffbe6;--gl:rgba(255,200,87,.8)}
 .fxw.adm{--r1:#5d6b86;--r2:#c3cfe4;--r3:#fff;--gl:rgba(160,190,255,.8)}
 .fxw.v1{--r1:#047857;--r2:#34d399;--r3:#d1fae5;--gl:rgba(52,211,153,.7)}
@@ -190,6 +190,22 @@ nav{flex-wrap:wrap;gap:8px 12px}#nb{margin-left:auto;max-width:100%}#nb .nmx{max
 .fxw .sp.a{left:-5px;top:16%}.fxw .sp.b{right:-5px;top:46%;animation-delay:1.1s}.fxw .sp.c{left:16%;bottom:-4px;animation-delay:2.1s;width:8px;height:8px}
 .fxw.v1 .sp,.fxw.v2 .sp{display:none}.fxw.v2 .sp.a{display:block}
 @media(prefers-reduced-motion:reduce){.ceo-nm,.adm-nm,.vn1,.vn2,.vn3,.rkc::after,.rkv::after,.fxw>.pic::after,.fxw>.av::after,.orn .shn,.fxw .orn,.fxw .sp,.ceo-nm::after,.adm-nm::after,.vn3::after{animation:none!important}.fxw .sp{opacity:.9}.rkc::after,.rkv::after{display:none}}
+/* v3: กรอบจากร้าน/ความสำเร็จ (ใส่กรอบ = ใช้กรอบนี้แทนวงแหวน VIP · ไม่มีรูปกรอบหรือภาพเล็ก < 56px = วงแหวนสี accent) + ฉายา (.ct) */
+.fxw.fr{--fa:#ff3d57;--r1:var(--fa);--r2:var(--fa);--r3:var(--fa);--gl:var(--fa)}
+.fxw.fr.t3{--r3:#fff}
+.fxw.fr>.pic,.fxw.fr>.av{box-shadow:0 0 0 2px #1a0310}
+.fxw.fr.t0>.pic,.fxw.fr.t0>.av,.fxw.fr.t2>.pic,.fxw.fr.t2>.av,.fxw.fr.t3>.pic,.fxw.fr.t3>.av{box-shadow:0 0 0 2px #1a0310,0 0 10px var(--fa)}
+.fxw.fr.t0>.pic::after,.fxw.fr.t0>.av::after,.fxw.fr.t1>.pic::after,.fxw.fr.t1>.av::after,.fxw.fr.t2>.pic::after,.fxw.fr.t2>.av::after{animation:none}
+.fxw.fr.t3>.pic::after,.fxw.fr.t3>.av::after{animation-duration:8s}
+.fxw .frm{position:absolute;left:-16%;top:-16%;width:132%;height:132%;max-width:none;object-fit:contain;pointer-events:none;z-index:4}
+.fxw.lo>.pic::after,.fxw.lo>.av::after{display:none}
+.fxw.lo>.pic,.fxw.lo>.av{box-shadow:none}
+.ct{position:relative;overflow:hidden;display:inline-block;max-width:100%;vertical-align:middle;text-overflow:ellipsis;white-space:nowrap;padding:0 9px;border-radius:99px;border:1px solid var(--tc,#f3c9d0);color:var(--tc,#f3c9d0);background:#2b0613;font:600 11px/17px Kanit,"Noto Sans Thai",sans-serif;text-shadow:none;-webkit-text-fill-color:currentColor}
+.ct.t1{--tc:#a5f3fc}.ct.t2{--tc:#f0abfc}.ct.t3{--tc:#fdba74}
+.ct[data-r=north]{--tc:#2fd49a}.ct[data-r=northeast]{--tc:#ffb02e}.ct[data-r=central]{--tc:#ff3d57}.ct[data-r=south]{--tc:#5a98ff}
+.ct.sh{--tc:#fff;border-color:rgba(255,255,255,.6);background:linear-gradient(180deg,#6d3fc4,#b8338a)}
+.ct.sh::after{content:"";position:absolute;top:0;bottom:0;width:38%;left:-70%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-20deg);pointer-events:none;animation:fxshine 4s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.ct.sh::after{display:none}}
 /* /RANKFX */
 nav .btn .fxw{margin-right:8px}nav .btn .fxw .av{margin:0}
 #nb .fxw.ceo,#nb .fxw.v3{margin-top:7px}#nb .fxw.adm{margin-top:0}#nb .fxw .sp{display:none}
@@ -270,7 +286,7 @@ function tick(){const now=Date.now(),b=new Date(now+H7),h=b.getUTCHours(),m=b.ge
  if(!SEA){bd.className='bd r';bd.textContent=SEA===undefined?'กำลังตรวจเวลา…':SEA===false?'ตรวจเวลาซีซันไม่ได้ตอนนี้':'ยังไม่มีซีซันที่เปิดอยู่';
   $('cd').firstChild.nodeValue='--:--';$('cl').textContent='';$('fill').style.width='0%';$('ph').textContent='';return}
  const S=SEA.s,E=SEA.e;
- if(now>=E){bd.className='bd r';bd.textContent='ซีซัน '+SEA.id+' จบแล้ว';$('cd').firstChild.nodeValue='--:--';$('cl').textContent='';$('fill').style.width='100%';$('ph').textContent='';return}
+ if(now>=E){bd.className='bd r';bd.textContent='ซีซันนี้จบแล้ว';$('cd').firstChild.nodeValue='--:--';$('cl').textContent='';$('fill').style.width='100%';$('ph').textContent='';return}
  if(now>=S&&h>=7){const el=(m%15)*60+s,left=900-el,mi=m%15,n=Math.floor(((h-7)*60+m)/15)+1;
   bd.className='bd o';bd.textContent='สนามรบเปิด · รอบที่ '+n+' จาก 68 ของวัน';
   $('cd').firstChild.nodeValue=pad(Math.floor(left/60))+':'+pad(left%60);$('cl').textContent='ถึงตัดสินรอบนี้';
@@ -336,7 +352,7 @@ function paintLive(){
  fd.innerHTML=f;
  if(!flashed&&NEWS&&NEWS.length){flashed=true;const top=NEWS[0].round_no;
   NEWS.filter(n=>n.round_no===top).forEach(n=>{const i=PD.findIndex(p=>p[0]===n.province_code);if(i>=0){const el=ps[i];el.classList.remove('f');void el.getBBox();el.classList.add('f')}})}
- if(SEA){$('fh').textContent='ซีซัน '+SEA.id+' กำลังชิงเมืองอยู่ตอนนี้';
+ if(SEA){$('fh').textContent='ซีซันนี้กำลังชิงเมืองอยู่ตอนนี้';
   $('fp').textContent=seaRange(SEA.s,SEA.e)+' · '+(SEA.n?SEA.n+' รอบ ':'')+'ทุก 15 นาที เลือกภาค แล้วเข้าสนามได้เลย'}
  else if(SEA===null){$('fh').textContent='รอเปิดซีซันใหม่';$('fp').textContent='ตอนนี้ยังไม่มีซีซันที่เปิดอยู่ กลับมาดูใหม่เร็วๆ นี้'}
  tick()}
@@ -392,21 +408,34 @@ async function loadMe(){me=null;if(!sb)return false;
  const {data}=await sb.from('profiles').select('username,avatar_key,region_id,home_province,custom_avatar_path,custom_avatar_status').eq('id',session.user.id).maybeSingle();
  me=data||null;
  if(me)me.photo_url=me.custom_avatar_path&&(me.custom_avatar_status==='approved'||me.custom_avatar_status==='pending')?'https://tncbzfgdfxjrgrdgmzya.supabase.co/storage/v1/object/public/avatars/'+me.custom_avatar_path:null;
- if(me){me.role=null;me.vip=0;try{const [r,v]=await Promise.all([sb.rpc('get_my_staff_role'),sb.rpc('get_my_vip')]);
+ if(me){me.role=null;me.vip=0;me.cos=null;try{const [r,v,k]=await Promise.all([sb.rpc('get_my_staff_role'),sb.rpc('get_my_vip'),sb.rpc('get_my_cosmetics')]);
   if(r&&!r.error&&(r.data==='ceo'||r.data==='admin'))me.role=r.data;
-  if(!me.role&&v&&!v.error)me.vip=Math.max(0,Math.min(3,+v.data||0))}catch(e){}}
+  if(!me.role&&v&&!v.error)me.vip=Math.max(0,Math.min(3,+v.data||0));
+  /* กรอบ/ฉายาที่ใส่อยู่ (รูปแบบเดียวกับ cosmetic_public) · สวิตช์ใส่ปิดหรือไม่ได้ใส่ = null · ล้มเหลว = ไม่แสดงเงียบ ๆ */
+  const c=k&&!k.error&&k.data;if(c&&c.equip_open){const it=Array.isArray(c.items)?c.items:[],f=it.find(x=>x.kind==='frame'&&x.id===c.frame_id),t=it.find(x=>x.kind==='title'&&x.id===c.title_id);
+   me.cos={frame:f?{key:f.key,tier:f.tier,accent:f.accent,art_key:f.art_key}:null,title:t?{text:t.name,tier:t.tier,style:t.style,region_id:me.region_id}:null}}}catch(e){}}
  return true}
-/* RANKFX v2 · ตัวช่วย JS (คัดลอกทุกไฟล์ให้เหมือนกัน) */
+/* RANKFX v3 · ตัวช่วย JS (คัดลอกทุกไฟล์ให้เหมือนกัน) */
 const CRN='<svg viewBox="0 0 44 30" aria-hidden="true"><use href="#fx-crn"/></svg>',SHD='<svg viewBox="0 0 30 34" aria-hidden="true"><use href="#fx-shd"/></svg>',DMD='<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#fx-gem"/></svg>';
 const FXO={
  ceo:'<svg class="orn cr" viewBox="0 0 48 36" aria-hidden="true"><path d="M4 28L7 9L17 19L24 4L31 19L41 9L44 28Z" fill="url(#fxgold)" stroke="#7a3d05" stroke-width="1.5" stroke-linejoin="round"/><rect x="4" y="27" width="40" height="7" rx="2.2" fill="url(#fxgold)" stroke="#7a3d05" stroke-width="1.5"/><path d="M9 12L17 20M24 8L24 18M39 12L31 20" stroke="#fff" stroke-opacity=".5" stroke-width="1.2" stroke-linecap="round"/><circle cx="7" cy="9" r="2.8" fill="#ff3d57" stroke="#7a3d05"/><circle cx="24" cy="4.2" r="3.2" fill="#5aa0ff" stroke="#7a3d05"/><circle cx="41" cy="9" r="2.8" fill="#2fd49a" stroke="#7a3d05"/><circle cx="14" cy="30.5" r="1.5" fill="#fff6cf"/><circle cx="24" cy="30.5" r="1.9" fill="#ff3d57"/><circle cx="34" cy="30.5" r="1.5" fill="#fff6cf"/><g clip-path="url(#fxclip)"><rect class="shn" x="-24" y="0" width="11" height="40" fill="#fff" fill-opacity=".8"/></g></svg>',
  adm:'<svg class="orn wg" viewBox="0 0 24 28" aria-hidden="true"><path d="M12 1.2L21.6 4.6V14C21.6 20.4 17.4 25 12 26.8C6.6 25 2.4 20.4 2.4 14V4.6Z" fill="url(#fxsilv)" stroke="#3d4658" stroke-width="1.6" stroke-linejoin="round"/><path d="M7.2 14L10.6 17.4L16.8 9.8" fill="none" stroke="#3d4658" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
  gem:v=>'<svg class="orn gm" viewBox="0 0 24 22" aria-hidden="true"><path class="ga" d="M7 1.5H17L12 8Z"/><path class="gb" d="M7 1.5L1.5 8H12Z"/><path class="gc" d="M17 1.5L22.5 8H12Z"/><path class="gb" d="M1.5 8H12L12 20.5Z"/><path class="gc" d="M22.5 8H12L12 20.5Z" fill-opacity=".85"/><path d="M7 1.5H17L22.5 8L12 20.5L1.5 8Z" fill="none" stroke="rgba(0,0,0,.45)" stroke-width="1.2" stroke-linejoin="round"/></svg>'};
-/* ครอบรูปโปรไฟล์ด้วยกรอบ+เครื่องประดับ: ceo = มงกุฎ · admin = โล่ · VIP1-3 = กรอบสีและเพชร (ทีมงานไม่ขึ้น VIP) · ผู้เล่นทั่วไปคืนค่าเดิม */
-function fxWrap(inner,role,vip){const v=+vip||0,k=role==='ceo'?'ceo':role==='admin'?'adm':v>=1&&v<=3?'v'+v:'';if(!k)return inner;
+const fxHex=c=>/^#[0-9a-f]{3,8}$/i.test(c||'')?c:'#ff3d57',fxEsc=t=>String(t==null?'':t).replace(/[<>&"']/g,''),FXRG=['north','northeast','central','south'];
+/* รูปกรอบโหลดแล้ว: ถ้าตัวรูปโปรไฟล์กว้างน้อยกว่า 56px ทิ้งรูป ใช้วงแหวนสีแทน · ถ้าโหลดไม่ได้ onerror ลบรูป วงแหวนสียังอยู่ */
+function fxLo(i){const p=i.parentNode,w=p&&p.offsetWidth;if(w&&w<56){i.remove();return}if(p)p.classList.add('lo')}
+/* ครอบรูปโปรไฟล์: ceo = มงกุฎ · admin = โล่ติ๊กถูก (ทีมงานไม่มีกรอบ) · frame = {key,tier,accent,art_key} จาก cosmetic_public ใช้แทนวงแหวน VIP · ไม่มีกรอบ VIP1-3 = วงแหวนสีและเพชร · ผู้เล่นทั่วไปคืนค่าเดิม */
+function fxWrap(inner,role,vip,frame){const v=+vip||0,st=role==='ceo'?'ceo':role==='admin'?'adm':'',fr=!st&&frame&&frame.key?frame:null,k=st||(fr?'fr':v>=1&&v<=3?'v'+v:'');if(!k)return inner;
+ if(fr){const t=+fr.tier>=1&&+fr.tier<=3?+fr.tier:0,ak=String(fr.art_key||'').replace(/[^a-z0-9_]/gi,'');
+  return '<span class="fxw fr t'+t+'" style="--fa:'+fxHex(fr.accent)+'">'+inner+(ak&&!fr.noart?'<img class="frm" src="img/frames/'+ak+'.webp" alt="" decoding="async" onload="fxLo(this)" onerror="this.remove()">':'')+'</span>'}
  return '<span class="fxw '+k+'">'+inner+(k==='ceo'?FXO.ceo:k==='adm'?FXO.adm:FXO.gem(v))+(k==='v1'||k==='v2'?'':'<i class="sp a"></i><i class="sp b"></i><i class="sp c"></i>')+'</span>'}
+/* ป้ายฉายาจาก cosmetic = {frame,title} · title = {text,tier,style,region_id} */
+function fxTitle(c){const t=c&&c.title;if(!t||!t.text)return '';const s=t.style==='shine'?'sh':t.style==='region'?'rg':'pl',n=+t.tier>=1&&+t.tier<=3?+t.tier:0,r=FXRG.indexOf(t.region_id)>=0?t.region_id:'';
+ return '<span class="ct '+s+(s==='pl'&&n?' t'+n:'')+'"'+(s==='rg'&&r?' data-r="'+r+'"':'')+'>'+fxEsc(t.text)+'</span>'}
+/* /RANKFX-JS */
 /* ชื่อ + ป้ายยศ (ชุดเดียวกับ play.html): ceo/admin/VIP1-3 ทีมงานไม่ขึ้น VIP */
-function nmH(m,c){const n=esc(m.username),k=c||'';
+function nmH(m,c,nt){return nmB(m,c)+(nt?'':fxTitle(m.cos))}
+function nmB(m,c){const n=esc(m.username),k=c||'';
  if(m.role==='ceo')return '<span class="'+k+' ceo-nm">'+n+'</span><span class="rkc">'+CRN+'CEO</span>';
  if(m.role==='admin')return '<span class="'+k+' adm-nm">'+n+'</span><span class="rkc ad">'+SHD+'แอดมิน</span>';
  const v=+m.vip||0;if(v>=1&&v<=3)return '<span class="'+k+' vn'+v+'">'+n+'</span><span class="rkv v'+v+'">'+DMD+'VIP '+v+'</span>';
@@ -418,14 +447,14 @@ function annShow(a){const b=$('ann');if(!b)return;b.textContent='';let n=0;
  a.forEach(x=>{const key=String(x.id),t=String(x.body||'').trim().slice(0,200);if(!t||ANX.indexOf(key)>=0||n>=3)return;n++;
   const d=document.createElement('div');d.className='an';d.innerHTML=ANI;
   const sp=document.createElement('span');sp.textContent=t;d.appendChild(sp);
-  const c=document.createElement('button');c.type='button';c.textContent='\u00d7';c.setAttribute('aria-label','ซ่อนประกาศนี้');
+  const c=document.createElement('button');c.type='button';c.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" style="display:block;width:16px;height:16px;margin:auto;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round"><path d="M6 6l12 12M18 6L6 18"/></svg>';c.setAttribute('aria-label','ซ่อนประกาศนี้');
   c.onclick=()=>{ANX.push(key);try{sessionStorage.setItem(ANK,JSON.stringify(ANX.slice(-30)))}catch(e){}d.remove();if(!b.children.length)b.hidden=true};
   d.appendChild(c);b.appendChild(d)});
  b.hidden=!n}
 async function annLoad(){if(!sb)return;try{const {data,error}=await sb.from('announcements').select('*');if(error||!Array.isArray(data))return;
  const now=Date.now(),ts=x=>Date.parse(x.created_at||'')||0;
  annShow(data.filter(x=>x&&x.id!=null&&!x.ended_at&&(!x.ends_at||Date.parse(x.ends_at)>now)).sort((p,q)=>ts(q)-ts(p)).slice(0,3))}catch(e){}}
-function updNav(){const b=$('nb');if(!b)return;b.innerHTML=me?fxWrap(av(me.avatar_key,'sm',me.photo_url),me.role,me.vip)+nmH(me,'nmx'):'เข้าสู่ระบบ';b.dataset.a=me?'me':'login'}
+function updNav(){const b=$('nb');if(!b)return;b.innerHTML=me?fxWrap(av(me.avatar_key,'sm',me.photo_url),me.role,me.vip,me.cos&&me.cos.frame)+nmH(me,'nmx',1):'เข้าสู่ระบบ';b.dataset.a=me?'me':'login'}
 function dots(n){return '<div class="dots" aria-hidden="true">'+[1,2,3].map(i=>'<i class="'+(i<=n?'on':'')+'"></i>').join('')+'</div>'}
 function saveF(){const q=i=>scE.querySelector('#'+i);if(!q('f_u'))return;const f=reg.f;f.u=q('f_u').value;if(q('f_e'))f.e=q('f_e').value;if(q('f_p'))f.pw=q('f_p').value;if(q('f_p2'))f.pw2=q('f_p2').value;f.by=q('f_b').value;f.tm=q('f_t').checked}
 const CK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',CV='<svg class="cv" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
@@ -466,7 +495,7 @@ async function startReg(r){if(!sb){toast('ยังเชื่อมต่อ�
 function openLogin(){if(!sb){toast('ยังเชื่อมต่อระบบไม่ได้ ลองรีเฟรชหน้า');return}
  openSh('<h2 id="stt">เข้าสู่ระบบ</h2><label class="lb">อีเมล<input class="in" id="l_e" type="email" autocomplete="email" inputmode="email"></label><label class="lb">รหัสผ่าน<input class="in" id="l_p" type="password" autocomplete="current-password"></label><div id="cf" style="margin:12px 0 2px;min-height:65px"></div><div class="err" id="er" role="alert"></div><div class="nv"><button type="button" class="btn gl" id="lg">เข้าสู่ระบบ</button></div><p class="hint" style="margin-top:14px;text-align:center"><a href="reset.html" style="color:var(--gold);text-decoration:underline">ลืมรหัสผ่าน?</a></p><p class="hint" style="margin-top:6px;text-align:center">ยังไม่มีบัญชี? <a href="#" data-a="register" style="color:var(--gold);text-decoration:underline">สมัครเลย</a></p>');tsMount()}
 function openMe(){const r=Math.max(0,RID.indexOf(me.region_id)),pv=PD.find(p=>p[0]===me.home_province);
- openSh('<h2 id="stt">โปรไฟล์ของคุณ</h2><div class="mec">'+fxWrap(av(me.avatar_key,'lg',me.photo_url),me.role,me.vip)+'<div><h3>'+nmH(me,'')+'</h3><p>'+RG[r][0]+(pv?' · '+esc(pv[1]):'')+'</p></div></div><p class="sub" style="margin-bottom:6px">เปลี่ยนอวตาร (เฉพาะของภาคตัวเอง)</p>'+avPicker(r,me.avatar_key)+'<div class="err" id="er" role="alert"></div><div class="nv"><a class="btn gl" href="play.html" style="display:grid;place-items:center;text-decoration:none">เข้าสนามรบ</a><button type="button" class="btn gh" id="lo">ออกจากระบบ</button></div>')}
+ openSh('<h2 id="stt">โปรไฟล์ของคุณ</h2><div class="mec">'+fxWrap(av(me.avatar_key,'lg',me.photo_url),me.role,me.vip,me.cos&&me.cos.frame)+'<div><h3>'+nmH(me,'')+'</h3><p>'+RG[r][0]+(pv?' · '+esc(pv[1]):'')+'</p></div></div><p class="sub" style="margin-bottom:6px">เปลี่ยนอวตาร (เฉพาะของภาคตัวเอง)</p>'+avPicker(r,me.avatar_key)+'<div class="err" id="er" role="alert"></div><div class="nv"><a class="btn gl" href="play.html" style="display:grid;place-items:center;text-decoration:none">เข้าสนามรบ</a><button type="button" class="btn gh" id="lo">ออกจากระบบ</button></div>')}
 async function doSubmit(){saveF();const f=reg.f,btn=$('go');
  if(!/^[A-Za-z0-9_ก-๙]{3,20}$/.test(f.u))return er('ชื่อผู้เล่นต้องยาว 3–20 ตัว ใช้ ก-ฮ สระ A-Z ตัวเลข และ _ เท่านั้น');
  if(!reg.ses){
@@ -488,7 +517,7 @@ async function doSubmit(){saveF();const f=reg.f,btn=$('go');
   if(error)throw error;
   await loadMe();updNav();
   const r=Math.max(0,RID.indexOf(me?me.region_id:RID[reg.r]));
-  openSh('<h2 id="stt">ยินดีต้อนรับสู่สนามรบ</h2><div class="mec" style="margin-top:14px">'+(me?fxWrap(av(me.avatar_key,'lg',me.photo_url),me.role,me.vip):av(reg.a,'lg'))+'<div><h3>'+(me?nmH(me,''):esc(f.u))+'</h3><p>ทีม'+RG[r][0]+'</p></div></div><p class="sub">สมัครเรียบร้อย ดูวิธีเล่นสั้นๆ ก่อนลุยจะเล่นได้คล่องขึ้น</p><div class="nv"><button type="button" class="btn gh" id="sk">ข้ามไปสนามรบ</button><button type="button" class="btn gl" id="dn">เรียนวิธีเล่น</button></div>')
+  openSh('<h2 id="stt">ยินดีต้อนรับสู่สนามรบ</h2><div class="mec" style="margin-top:14px">'+(me?fxWrap(av(me.avatar_key,'lg',me.photo_url),me.role,me.vip,me.cos&&me.cos.frame):av(reg.a,'lg'))+'<div><h3>'+(me?nmH(me,''):esc(f.u))+'</h3><p>ทีม'+RG[r][0]+'</p></div></div><p class="sub">สมัครเรียบร้อย ดูวิธีเล่นสั้นๆ ก่อนลุยจะเล่นได้คล่องขึ้น</p><div class="nv"><button type="button" class="btn gh" id="sk">ข้ามไปสนามรบ</button><button type="button" class="btn gl" id="dn">เรียนวิธีเล่น</button></div>')
  }catch(x){
   renderReg2(netErr(x.message))}}
 function renderReg2(msg){reg.step=3;renderReg();er(msg)}
