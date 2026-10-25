@@ -316,6 +316,9 @@ nav button{color:var(--mu)}nav button.on{color:var(--gd2);background:linear-grad
 /* /RANKFX */
 /* ===== เฉพาะ play.html: แถวอันดับ · การ์ดโปรไฟล์ · ธงภาค ===== */
 .pic.xs{--sz:24px}
+/* แก้กรอบรูปเยื้อง: .fr (แถวพยากรณ์ flex สูง 46px) ชนชื่อคลาสกับ .fxw.fr (ตัวห่อกรอบ) ทำให้ตัวห่อสูงผิดและรูปกรอบถูกบีบ · วางนอกบล็อก RANKFX (R54) · ขนาดรูปกรอบตามสเปก 9.1.3 (512/368 = 139.13% · inset -19.57%) */
+.fxw.fr,.pw .fxw.fr{display:inline-block;height:auto;margin-top:0;gap:0;align-items:normal}
+.fxw .frm{left:-19.57%;top:-19.57%;width:139.13%;height:139.13%}
 .rr .nm small.ctr{display:block;flex:0 0 100%;margin-top:2px}.rr.ht .nm{flex-wrap:wrap}.pfb .ct{margin-left:0}
 .rr .fxw{margin-right:-2px}.rr .fxw.ceo{margin-top:8px}.rr .fxw.adm{margin-top:0}.rr .fxw.v3{margin-top:6px}.rr .fxw.v1,.rr .fxw.v2{margin-top:5px}.rr .fxw .sp{display:none}.rr .fxw .pic{margin:0}
 .rr.vp1 .nm,.rr.vp2 .nm,.rr.vp3 .nm{display:flex;align-items:center}
@@ -772,7 +775,7 @@ function defHtml(i){const d=DEF[T[i].code];if(!d)return'';const hb=d.home_bonus_
  if(hb)parts.push('บ้านเกิด +'+hb+'%');if(sp)parts.push('โล่ใหม่ +'+sp+'% ถึงรอบที่ '+d.shield_until_round);
  return '<div class="pdf">'+ic('shield')+'<span>ป้องกัน <b>'+d.defense+'</b> <small>(สำหรับรอบที่ '+d.for_round_no+')</small></span><small class="pdd">'+parts.join(' · ')+(sp?' · หลังโล่หมดเหลือ '+after:'')+'</small><small class="pdn">ภาคที่จะยึดต้องมีแรงรวมเกินค่านี้ ฐานเปลี่ยนตามจำนวนผู้เล่นที่ส่งทัพใน 24 ชม.</small></div>'}
 async function load(){
- const {data:s}=await sb.from('seasons').select('id').eq('status','active').maybeSingle();if(!s)return;
+ const {data:s}=await sb.from('seasons').select('id').eq('status','active').maybeSingle();if(!s)return;G.sid=s.id;
  if(Date.now()-HRT>6e5)await loadHr();
  const [t,r,v,w,d,df]=await Promise.all([
   sb.from('tiles').select('province_code,owner_region').eq('season_id',s.id),
@@ -785,7 +788,7 @@ async function load(){
  DEF={};((df&&df.data)||[]).forEach(x=>{DEF[x.province_code]=x});G.rounds=r.data||[];G.vil=v.data;RAIN=T.map(()=>0);WX=T.map(()=>null);(w.data||[]).forEach(x=>{const i=IDX[x.province_code];if(i!=null){RAIN[i]=x.rain_level|0;WX[i]=x}});
  const open=new Set(G.rounds.filter(x=>x.status!=='revealed').map(x=>x.id));send={};
  (d.data||[]).forEach(x=>{const i=IDX[x.province_code];if(open.has(x.round_id)&&i!=null)send[i]=(send[i]||0)+x.troops});
- lv=G.vil?(G.vil.upgrading_to&&new Date(G.vil.upgrade_finishes_at)<=Date.now()?G.vil.upgrading_to:G.vil.level):1;stock=estStock();await spdLoad();paint();arrows();mine();flagLoad();if(Date.now()-(G.nt||0)>3e4){G.nt=Date.now();news()}}
+ lv=G.vil?(G.vil.upgrading_to&&new Date(G.vil.upgrade_finishes_at)<=Date.now()?G.vil.upgrading_to:G.vil.level):1;stock=estStock();await spdLoad();paint();arrows();mine();fgRe();flagLoad();if(Date.now()-(G.nt||0)>3e4){G.nt=Date.now();news()}}
 function live(){const n=Date.now(),R=G.rounds.find(r=>+new Date(r.starts_at)<=n&&n<+new Date(r.ends_at));
  if(R){rd=R.round_no;const a=+new Date(R.starts_at),p=+new Date(R.planning_ends_at),d=+new Date(R.discussion_ends_at),e=+new Date(R.ends_at);PH=n<p?0:n<d?1:2;
   const A=[a,p,d][PH],Z=[p,d,e][PH],q=Math.max(0,Math.ceil((Z-n)/1000));$('sec').style.fontSize='11px';$('sec').textContent=Math.floor(q/60)+':'+String(q%60).padStart(2,'0');
@@ -845,7 +848,28 @@ async function news(){try{
   return '<div class="nw"><b>รอบที่ '+r.round_no+'</b> · '+(a.length?'มีศึก '+a.length+' ช่อง · ยึดได้ '+cap.length+' · ตีไม่ทะลุ '+hold+cl:'<small>ไม่มีศึก</small>')+'</div>'}).join('');
  paint()}catch(e){console.error(e)}}
 /* ธงเป้าหมายภาค R46: อ่านจาก get_region_flag · โหวต/ล้างโหวตผ่าน RPC เท่านั้น (หลังบ้านตรวจสิทธิ์และระยะเอง) */
-var FG=null,FGT=0,FGV=[];
+var FG=null,FGT=0,FGV=[],FGR=null,FGCL={};
+/* ธงค้าง: หลังบ้านไม่ล้างโหวตเมื่อยึดได้/ตีไม่ทะลุ หน้าเว็บจึงกรองเอง · ธงถือว่า "จบแล้ว" เมื่อ (1) จังหวัดนั้นเป็นของภาคเราแล้ว หรือ (2) รอบตีพร้อมกันของธงนั้นผ่านไปแล้ว (รอบตีเลื่อนไปรอบถัดไป) · แล้วล้างโหวตของตัวเองให้เงียบ ๆ ผ่าน clear_region_flag_vote · โหวตใหม่ของเพื่อนหลังจากนั้น (จำนวนโหวตเกินที่จดไว้) จะแสดงธงอีกครั้ง */
+function fgX(){let o=null;try{o=JSON.parse(localStorage.getItem('mw_fgx')||'null')}catch(e){}if(!o||o.sid!==G.sid||typeof o.d!=='object'||!o.d)o={sid:G.sid,d:{},s:null};return o}
+function fgSave(o){try{localStorage.setItem('mw_fgx',JSON.stringify(o))}catch(e){}}
+function fgClean(d){if(!d||!d.enabled||me<0)return d;
+ const X=fgX(),now=Date.now(),top0=d.top||[],f=d.flag,st=d.strike,mv0=d.my_vote;
+ const own=c=>{const i=IDX[c];return i!=null&&T[i].o===me},cur=c=>{const t=top0.find(x=>+x.province_code===+c);return t?(+t.votes||0):(f&&+f.province_code===+c?(+f.votes||0):0)};
+ const oth=c=>Math.max(0,cur(c)-(+mv0===+c?1:0)),mark=c=>{if(X.d[c]==null)X.d[c]={votes:oth(c)}};
+ if(f){const c=f.province_code,s=X.s;
+  if(s&&+s.code===+c&&now>=s.start&&(!st||s.round_no!==st.round_no))mark(c);
+  X.s=st?{code:c,round_no:st.round_no,start:Date.parse(st.starts_at)||0}:(s&&+s.code===+c?s:null)}
+ [f&&f.province_code,mv0].concat(top0.map(t=>t.province_code)).forEach(c=>{if(c!=null&&own(c))mark(c)});
+ Object.keys(X.d).forEach(k=>{const n=oth(k),e=X.d[k];if(!n)e.votes=0;else if(n<e.votes)e.votes=n;else if(n>e.votes&&!own(+k))delete X.d[k]});
+ const bad=c=>c!=null&&(own(c)||(X.d[c]!=null&&oth(c)<=X.d[c].votes));
+ const top=top0.filter(t=>!bad(t.province_code));let flag=f,meter=d.meter,strike=st,off=d.my_offset_for_strike;
+ if(f&&bad(f.province_code)){const n=top[0],i=n?IDX[n.province_code]:null;flag=n&&i!=null?{province_code:n.province_code,name_th:n.name_th,owner_region:RID[T[i].o],votes:n.votes}:null;meter=null;strike=null;off=null;X.s=null}
+ fgSave(X);
+ return Object.assign({},d,{flag,top,meter,strike,my_offset_for_strike:off,my_vote:bad(mv0)?null:mv0})}
+function fgSet(d){FGR=d;FG=fgClean(d);
+ if(d&&d.enabled&&d.my_vote!=null&&FG&&FG.my_vote==null&&!FGCL[d.my_vote]){FGCL[d.my_vote]=1;
+  sb.rpc('clear_region_flag_vote').then(r=>{if(r&&!r.error&&r.data){FGR=r.data;FG=fgClean(r.data);flagVoters().then(fgCard)}},()=>{})}}
+function fgRe(){if(FGR){FG=fgClean(FGR);fgCard()}}
 function rgName(id){const k=RID.indexOf(id);return k>=0?RG[k][1]:'?'}
 function pName(c){return IDX[c]!=null?T[IDX[c]].n:'#'+c}
 /* คนปักธงของภาคเรา (หลังบ้านส่งเฉพาะเพื่อนร่วมภาค) */
@@ -889,13 +913,14 @@ function fgCard(){const b=$('flag');fgMap();if(!b)return;
 function fgHtml(i){if(!FG||!FG.enabled||me<0)return'';const x=T[i];if(x.o===me)return'';const c=x.code,isF=FG.flag&&FG.flag.province_code===c,mine=FG.my_vote===c,tv=((FG.top||[]).find(t=>t.province_code===c)||{}).votes||0;
  return '<div class="fgp">'+ic('flag')+'<span>'+(isF?'ธงภาคอยู่ที่นี่':mine?'คุณโหวตธงที่นี่':'ปักธงภาคที่จังหวัดนี้')+'<small>'+(FG.can_vote?'ให้เพื่อนร่วมภาคเห็นเป้าหมายเดียวกัน · ต้องอยู่ในระยะเสบียงเต็มแรง':esc2(FG.vote_block_reason||''))+'</small>'+fgWho(c,tv)+'</span>'+(mine?'<button data-fg="clear">ยกเลิก</button>':'<button data-fg="vote:'+c+'"'+(FG.can_vote?'':' disabled')+'>ปักธง</button>')+'</div>'}
 async function flagLoad(force){if(!force&&Date.now()-FGT<12e3)return;FGT=Date.now();
- try{const {data,error}=await sb.rpc('get_region_flag');if(error){console.error(error.message);return}FG=data;await flagVoters();fgCard()}catch(e){console.error(e)}}
+ try{const {data,error}=await sb.rpc('get_region_flag');if(error){console.error(error.message);return}fgSet(data);await flagVoters();fgCard()}catch(e){console.error(e)}}
 document.addEventListener('click',async e=>{const b=e.target.closest('[data-fg]');if(!b||b.disabled)return;const [a,v]=b.dataset.fg.split(':');
  if(a==='go'){if(IDX[+v]!=null)pick(IDX[+v]);return}
- b.disabled=true;
+
+ b.disabled=true;if(a==='vote'){const X=fgX();delete X.d[+v];X.s=null;fgSave(X);delete FGCL[+v]}
  const {data,error}=a==='vote'?await sb.rpc('vote_region_flag',{p_province:+v}):await sb.rpc('clear_region_flag_vote');
  if(error){toast(error.message,'warn');b.disabled=false;return}
- FG=data;FGT=Date.now();await flagVoters();fgCard();toast(a==='vote'?'ปักธงภาคที่ '+pName(+v)+' แล้ว':'ยกเลิกโหวตธงแล้ว','flag');
+ fgSet(data);FGT=Date.now();await flagVoters();fgCard();toast(a==='vote'?'ปักธงภาคที่ '+pName(+v)+' แล้ว':'ยกเลิกโหวตธงแล้ว','flag');
  const el=document.querySelector('#sh .fgp');if(el&&sel>=0)el.outerHTML=fgHtml(sel)});
 /* ผลทัพของฉัน: deployments (อ่านได้เฉพาะของตัวเอง) + round_tile_results (อ่านได้หลังเปิดผล) */
 async function mine(){const box=$('mine');if(!box||me<0)return;
