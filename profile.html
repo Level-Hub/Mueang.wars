@@ -106,7 +106,7 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
 .fxw.fr.t0>.pic,.fxw.fr.t0>.av,.fxw.fr.t2>.pic,.fxw.fr.t2>.av,.fxw.fr.t3>.pic,.fxw.fr.t3>.av{box-shadow:0 0 0 2px #1a0310,0 0 10px var(--fa)}
 .fxw.fr.t0>.pic::after,.fxw.fr.t0>.av::after,.fxw.fr.t1>.pic::after,.fxw.fr.t1>.av::after,.fxw.fr.t2>.pic::after,.fxw.fr.t2>.av::after{animation:none}
 .fxw.fr.t3>.pic::after,.fxw.fr.t3>.av::after{animation-duration:8s}
-.fxw .frm{position:absolute;left:-16%;top:-16%;width:132%;height:132%;max-width:none;object-fit:contain;pointer-events:none;z-index:4}
+.fxw .frm{position:absolute;left:-19.57%;top:-19.57%;width:139.13%;height:139.13%;max-width:none;object-fit:contain;pointer-events:none;z-index:4}
 .fxw.lo>.pic::after,.fxw.lo>.av::after{display:none}
 .fxw.lo>.pic,.fxw.lo>.av{box-shadow:none}
 .ct{position:relative;overflow:hidden;display:inline-block;max-width:100%;vertical-align:middle;text-overflow:ellipsis;white-space:nowrap;padding:0 9px;border-radius:99px;border:1px solid var(--tc,#f3c9d0);color:var(--tc,#f3c9d0);background:#2b0613;font:600 11px/17px Kanit,"Noto Sans Thai",sans-serif;text-shadow:none;-webkit-text-fill-color:currentColor}
@@ -116,6 +116,9 @@ nav .btn{min-height:40px;padding:0 16px;font-size:.9rem;border-radius:14px}
 .ct.sh::after{content:"";position:absolute;top:0;bottom:0;width:38%;left:-70%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-20deg);pointer-events:none;animation:fxshine 4s ease-in-out infinite}
 @media(prefers-reduced-motion:reduce){.ct.sh::after{display:none}}
 /* /RANKFX */
+/* ขนาดรูปกรอบตามสเปก 9.1.3 (512/368 = 139.13% · inset -19.57%) · วางนอกบล็อก RANKFX (R54) · การ์ด "รูปโปรไฟล์ของฉัน" เว้นที่ให้กรอบ/มงกุฎที่ล้นออกมา */
+.fxw .frm{left:-19.57%;top:-19.57%;width:139.13%;height:139.13%}
+.cvr .fxw{margin:22px 18px 8px 12px}
 .mec .fxw{margin-top:22px}.mec .fxw.adm{margin-top:0}
 .pn.adm-pn{border-color:rgba(195,207,228,.75);background:linear-gradient(180deg,#322a4d,#170b22);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 0 0 1px rgba(160,190,255,.25),0 14px 34px rgba(0,0,0,.6),0 0 36px rgba(160,190,255,.16)}
 .pn.vp1{border-color:rgba(110,231,183,.65);box-shadow:inset 0 1px 0 rgba(209,250,229,.35),0 0 0 1px rgba(52,211,153,.25),0 0 30px rgba(52,211,153,.14)}
@@ -203,7 +206,7 @@ function toast(t){const e=$('ts');e.textContent=t;e.hidden=false;clearTimeout(to
 const TZ={timeZone:'Asia/Bangkok'},fD=d=>new Intl.DateTimeFormat('th-TH',{...TZ,day:'numeric',month:'short',year:'numeric'}).format(new Date(d)),
  fDT=d=>new Intl.DateTimeFormat('th-TH',{...TZ,day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).format(new Date(d))+' น.',nf=n=>Number(n||0).toLocaleString('th-TH');
 let S=null,busy=false,ADM=null,VIP=0,UID=null,PH=null,PEND=null,CAV={on:false,allowed:false,status:'none',path:null,min:18};/* null=ผู้เล่น · 'admin' · 'ceo' */
-function paint(){const r=Math.max(0,RID.indexOf(S.region_id));$('app').style.setProperty('--k','var(--c'+r+')');
+function paint(){const r=Math.max(0,RID.indexOf(S.region_id));if(!$('cav').hidden)cavPaint();$('app').style.setProperty('--k','var(--c'+r+')');
  $('idp').className='pn'+(ADM==='ceo'?' ceo-pn':ADM?' adm-pn':VIP?' vp'+VIP:'');
  $('idc').innerHTML=ADM==='ceo'
   ?fxWrap(av(S.avatar_key,'lg',PH),'ceo',0)+'<div><h1><span class="ceo-nm">'+esc(S.username)+'</span></h1><div class="rkr">'+rankBadge('ceo')+'<span class="tag">'+RGN[r]+'</span></div><span class="ttl">ผู้ก่อตั้ง MUEANG WARS</span><p>บ้านเกิด '+esc(S.home_name||'-')+'</p></div>'
@@ -267,7 +270,7 @@ async function cavLoad(){
 function cavPaint(){
  const T={none:'ตอนนี้ใช้อวตารมาตรฐาน',pending:'รออนุมัติ: คุณเห็นรูปนี้คนเดียว คนอื่นยังเห็นอวตารมาตรฐานจนกว่าแอดมินอนุมัติ',approved:'อนุมัติแล้ว: ผู้เล่นคนอื่นเห็นรูปนี้',rejected:'ไม่ผ่านการตรวจ: คนอื่นเห็นอวตารมาตรฐาน ส่งรูปใหม่ได้'};
  $('cvs').textContent=PEND?'ตัวอย่างรูปที่จะส่ง ถ้าพอใจกด "ส่งให้ตรวจ"':(T[CAV.status]||T.none);
- $('cvp').innerHTML=av(S?S.avatar_key:'n1','lg',PEND?PEND.url:PH);
+ {const a=av(S?S.avatar_key:'n1','lg',PEND?PEND.url:PH);$('cvp').innerHTML=S?(ADM?fxWrap(a,ADM,0):fxWrap(a,null,VIP,CF())):a}
  const u=$('cvu'),x=$('cvx'),n=$('cvn');
  if(PEND){u.hidden=false;u.textContent='ส่งให้ตรวจ';x.hidden=false;x.textContent='ยกเลิก';n.hidden=true;return}
  u.hidden=!CAV.allowed;u.textContent=CAV.status==='none'?'เลือกรูป':'เปลี่ยนรูป';
