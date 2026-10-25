@@ -84,7 +84,7 @@ textarea{width:100%;min-height:84px;max-height:200px;resize:vertical;border-radi
 @media(min-width:761px){#bk{display:none}}
 [hidden]{display:none!important}
 #ts{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:80;max-width:min(92vw,420px);padding:12px 18px;border-radius:16px;background:#2b0613;border:1px solid var(--gold);font-size:.92rem;text-align:center;overflow-wrap:anywhere}
-/* RANKFX v2 · เอฟเฟกต์ยศ/VIP/กรอบโปรไฟล์ ชุดเดียวกันทุกหน้า (CEO ทอง+มงกุฎ · แอดมิน เงิน+ปีกโล่ · VIP1 มรกต VIP2 ม่วง VIP3 ชมพูกุหลาบ · ไม่ใช้อีโมจิ) */
+/* RANKFX v3 · เอฟเฟกต์ยศ/VIP/กรอบโปรไฟล์ ชุดเดียวกันทุกหน้า (CEO ทอง+มงกุฎ · แอดมิน เงิน+ปีกโล่ · VIP1 มรกต VIP2 ม่วง VIP3 ชมพูกุหลาบ · ไม่ใช้อีโมจิ) */
 @keyframes fxsheen{to{background-position:-240% 0}}
 @keyframes fxspin{to{transform:rotate(1turn)}}
 @keyframes fxtw{0%,100%{opacity:0;transform:scale(.3) rotate(0)}45%,55%{opacity:1;transform:scale(1) rotate(45deg)}}
@@ -134,6 +134,22 @@ textarea{width:100%;min-height:84px;max-height:200px;resize:vertical;border-radi
 .fxw .sp.a{left:-5px;top:16%}.fxw .sp.b{right:-5px;top:46%;animation-delay:1.1s}.fxw .sp.c{left:16%;bottom:-4px;animation-delay:2.1s;width:8px;height:8px}
 .fxw.v1 .sp,.fxw.v2 .sp{display:none}.fxw.v2 .sp.a{display:block}
 @media(prefers-reduced-motion:reduce){.ceo-nm,.adm-nm,.vn1,.vn2,.vn3,.rkc::after,.rkv::after,.fxw>.pic::after,.fxw>.av::after,.orn .shn,.fxw .orn,.fxw .sp,.ceo-nm::after,.adm-nm::after,.vn3::after{animation:none!important}.fxw .sp{opacity:.9}.rkc::after,.rkv::after{display:none}}
+/* v3: กรอบจากร้าน/ความสำเร็จ (ใส่กรอบ = ใช้กรอบนี้แทนวงแหวน VIP · ไม่มีรูปกรอบหรือภาพเล็ก < 56px = วงแหวนสี accent) + ฉายา (.ct) */
+.fxw.fr{--fa:#ff3d57;--r1:var(--fa);--r2:var(--fa);--r3:var(--fa);--gl:var(--fa)}
+.fxw.fr.t3{--r3:#fff}
+.fxw.fr>.pic,.fxw.fr>.av{box-shadow:0 0 0 2px #1a0310}
+.fxw.fr.t0>.pic,.fxw.fr.t0>.av,.fxw.fr.t2>.pic,.fxw.fr.t2>.av,.fxw.fr.t3>.pic,.fxw.fr.t3>.av{box-shadow:0 0 0 2px #1a0310,0 0 10px var(--fa)}
+.fxw.fr.t0>.pic::after,.fxw.fr.t0>.av::after,.fxw.fr.t1>.pic::after,.fxw.fr.t1>.av::after,.fxw.fr.t2>.pic::after,.fxw.fr.t2>.av::after{animation:none}
+.fxw.fr.t3>.pic::after,.fxw.fr.t3>.av::after{animation-duration:8s}
+.fxw .frm{position:absolute;left:-16%;top:-16%;width:132%;height:132%;max-width:none;object-fit:contain;pointer-events:none;z-index:4}
+.fxw.lo>.pic::after,.fxw.lo>.av::after{display:none}
+.fxw.lo>.pic,.fxw.lo>.av{box-shadow:none}
+.ct{position:relative;overflow:hidden;display:inline-block;max-width:100%;vertical-align:middle;text-overflow:ellipsis;white-space:nowrap;padding:0 9px;border-radius:99px;border:1px solid var(--tc,#f3c9d0);color:var(--tc,#f3c9d0);background:#2b0613;font:600 11px/17px Kanit,"Noto Sans Thai",sans-serif;text-shadow:none;-webkit-text-fill-color:currentColor}
+.ct.t1{--tc:#a5f3fc}.ct.t2{--tc:#f0abfc}.ct.t3{--tc:#fdba74}
+.ct[data-r=north]{--tc:#2fd49a}.ct[data-r=northeast]{--tc:#ffb02e}.ct[data-r=central]{--tc:#ff3d57}.ct[data-r=south]{--tc:#5a98ff}
+.ct.sh{--tc:#fff;border-color:rgba(255,255,255,.6);background:linear-gradient(180deg,#6d3fc4,#b8338a)}
+.ct.sh::after{content:"";position:absolute;top:0;bottom:0;width:38%;left:-70%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-20deg);pointer-events:none;animation:fxshine 4s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.ct.sh::after{display:none}}
 /* /RANKFX */
 .th .sp,.m .sp{display:none}
 .th .fxw>.pic,.m .fxw>.pic{box-shadow:0 0 0 2px #1a0310}
@@ -186,7 +202,7 @@ details[open] summary::after{content:"−"}
 summary em{font-style:normal;color:var(--mu);font:400 .78rem 'Noto Sans Thai'}
 .cb{padding:0 14px 8px}
 .cf{padding:10px 0;border-top:1px solid var(--ln)}
-.cf .ct{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.cf .cft{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .cf small{display:block;color:var(--mu);font-size:.74rem;overflow-wrap:anywhere}
 .cfe{display:flex;gap:8px;margin-top:6px}
 .cfe .in{flex:1;min-width:0}
@@ -223,7 +239,7 @@ summary em{font-style:normal;color:var(--mu);font:400 .78rem 'Noto Sans Thai'}
 .pav .pbtn{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
 .pav .pbtn .btn{flex:1 1 110px}
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head><body>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script><script src="terms-gate.js" defer></script></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="fxgold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6cf"/><stop offset=".38" stop-color="#ffd45f"/><stop offset=".72" stop-color="#e8a21c"/><stop offset="1" stop-color="#a8620b"/></linearGradient><linearGradient id="fxsilv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".5" stop-color="#cfd9ec"/><stop offset="1" stop-color="#8896b0"/></linearGradient><clipPath id="fxclip"><path d="M4 27L7 9L17 19L24 4L31 19L41 9L44 27Z"/><rect x="4" y="26" width="40" height="6" rx="2"/></clipPath><symbol id="fx-crn" viewBox="0 0 44 30"><path d="M3 24L6 8L15 17L22 4L29 17L38 8L41 24Z" fill="#6b3604"/><rect x="3" y="24" width="38" height="5" rx="1.6" fill="#6b3604"/><circle cx="6" cy="8" r="2.4" fill="#fff6cf"/><circle cx="22" cy="4" r="2.7" fill="#fff6cf"/><circle cx="38" cy="8" r="2.4" fill="#fff6cf"/></symbol><symbol id="fx-shd" viewBox="0 0 30 34"><path d="M15 2L27 6V16C27 24 21.5 30 15 32C8.5 30 3 24 3 16V6Z" fill="#fff" fill-opacity=".6" stroke="#1b2233" stroke-width="2.2" stroke-linejoin="round"/><path d="M10 16.5L14 20.5L21 12.5" fill="none" stroke="#1b2233" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="fx-gem" viewBox="0 0 24 24"><path d="M12 2.5L21 9.5L12 21.5L3 9.5Z" fill="currentColor"/><path d="M3 9.5H21M8.5 9.5L12 2.5L15.5 9.5L12 21.5Z" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="1.2" stroke-linejoin="round"/></symbol><symbol id="fx-flag" viewBox="0 0 24 24"><path d="M6 21V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M7 4.5C10 3 12.5 6 16 4.5C17.5 3.9 18.7 3.9 19.5 4.2V13C18.7 12.7 17.5 12.7 16 13.3C12.5 14.8 10 11.8 7 13.3Z" fill="currentColor"/></symbol><symbol id="fx-wl" viewBox="0 0 76 42"><path d="M32 29Q18 27 7 33Q4 30 8 28Q19 26 32 26Z" fill="url(#fxsilv)" stroke="#3d4658" stroke-width="1.2" stroke-linejoin="round"/><path d="M32 26Q17 20 2 20Q4 17 9 17Q22 18 32 23Z" fill="url(#fxsilv)" stroke="#3d4658" stroke-width="1.2" stroke-linejoin="round"/><path d="M32 23Q19 11 4 6Q8 3 13 5Q24 9 33 19Z" fill="url(#fxsilv)" stroke="#3d4658" stroke-width="1.2" stroke-linejoin="round"/><path d="M30 20Q19 12 9 8M30 24Q18 21 8 19M30 27Q19 27 11 30" fill="none" stroke="#3d4658" stroke-opacity=".45" stroke-width=".8" stroke-linecap="round"/></symbol><g id="mk" stroke="#1a0310" stroke-width="2.2"><path d="M16 26L34 18V92L25 108L16 92Z" fill="#2fd49a"/><path d="M104 26L86 18V92L95 108L104 92Z" fill="#ff3d57"/><path d="M36 20H50L66 86L60 102L54 86Z" fill="#ffb02e"/><path d="M84 20H70L54 86L60 102L66 86Z" fill="#5a98ff"/></g><symbol id="cn" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#ffc857" stroke="#7a3d05" stroke-width="1.6"/><circle cx="12" cy="12" r="6.4" fill="none" stroke="#d98c12" stroke-width="1.6"/><path d="M12 8v8M9.6 10.2h3.6a1.5 1.5 0 010 3h-2.4a1.5 1.5 0 000 3H14.4" fill="none" stroke="#7a3d05" stroke-width="1.5" stroke-linecap="round"/></symbol><symbol id="dm" viewBox="0 0 24 24"><path d="M12 22L2.5 9.5L7 3h10l4.5 6.5Z" fill="#5ad7ff" stroke="#0b4f6c" stroke-width="1.6" stroke-linejoin="round"/><path d="M2.5 9.5h19M9 3l3 6.5L15 3M12 22L9 9.5M12 22l3-12.5" fill="none" stroke="#0b4f6c" stroke-width="1.2" stroke-linejoin="round"/></symbol></defs></svg>
 <div class="w">
 <nav><span class="logo"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#mk"/></svg><span>MUEANG</span><b>ADMIN</b></span><span class="nr"><span id="me"></span><span class="stf" id="onl" hidden aria-label="สถานะทีมงานออนไลน์"></span><button class="btn gh" id="rf" type="button">รีเฟรช</button><a class="btn gh" href="play.html">สนามรบ</a></span></nav>
@@ -317,15 +333,24 @@ const rk=r=>Math.max(0,RID.indexOf(r));
 let cur=null,info=null,sending=false,timer=null,ROLE=null,MYID=null,asking=false,TAB='chat';
 const CHEST_NOTE='หีบที่แจกเปิดได้ฟรี ได้เศษผูกบัญชี ย่อยเป็นเหรียญไม่ได้';
 /* ป้ายยศ: null = ผู้เล่นทั่วไป · 'admin' = เงิน+โล่ · 'ceo' = ทอง+มงกุฎ · VIP 1–3 เฉพาะผู้เล่นทั่วไป (ชุดเดียวกับ play.html) */
-/* RANKFX v2 · ตัวช่วย JS (คัดลอกทุกไฟล์ให้เหมือนกัน) */
+/* RANKFX v3 · ตัวช่วย JS (คัดลอกทุกไฟล์ให้เหมือนกัน) */
 const CRN='<svg viewBox="0 0 44 30" aria-hidden="true"><use href="#fx-crn"/></svg>',SHD='<svg viewBox="0 0 30 34" aria-hidden="true"><use href="#fx-shd"/></svg>',DMD='<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#fx-gem"/></svg>';
 const FXO={
  ceo:'<svg class="orn cr" viewBox="0 0 48 36" aria-hidden="true"><path d="M4 28L7 9L17 19L24 4L31 19L41 9L44 28Z" fill="url(#fxgold)" stroke="#7a3d05" stroke-width="1.5" stroke-linejoin="round"/><rect x="4" y="27" width="40" height="7" rx="2.2" fill="url(#fxgold)" stroke="#7a3d05" stroke-width="1.5"/><path d="M9 12L17 20M24 8L24 18M39 12L31 20" stroke="#fff" stroke-opacity=".5" stroke-width="1.2" stroke-linecap="round"/><circle cx="7" cy="9" r="2.8" fill="#ff3d57" stroke="#7a3d05"/><circle cx="24" cy="4.2" r="3.2" fill="#5aa0ff" stroke="#7a3d05"/><circle cx="41" cy="9" r="2.8" fill="#2fd49a" stroke="#7a3d05"/><circle cx="14" cy="30.5" r="1.5" fill="#fff6cf"/><circle cx="24" cy="30.5" r="1.9" fill="#ff3d57"/><circle cx="34" cy="30.5" r="1.5" fill="#fff6cf"/><g clip-path="url(#fxclip)"><rect class="shn" x="-24" y="0" width="11" height="40" fill="#fff" fill-opacity=".8"/></g></svg>',
  adm:'<svg class="orn wg" viewBox="0 0 24 28" aria-hidden="true"><path d="M12 1.2L21.6 4.6V14C21.6 20.4 17.4 25 12 26.8C6.6 25 2.4 20.4 2.4 14V4.6Z" fill="url(#fxsilv)" stroke="#3d4658" stroke-width="1.6" stroke-linejoin="round"/><path d="M7.2 14L10.6 17.4L16.8 9.8" fill="none" stroke="#3d4658" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
  gem:v=>'<svg class="orn gm" viewBox="0 0 24 22" aria-hidden="true"><path class="ga" d="M7 1.5H17L12 8Z"/><path class="gb" d="M7 1.5L1.5 8H12Z"/><path class="gc" d="M17 1.5L22.5 8H12Z"/><path class="gb" d="M1.5 8H12L12 20.5Z"/><path class="gc" d="M22.5 8H12L12 20.5Z" fill-opacity=".85"/><path d="M7 1.5H17L22.5 8L12 20.5L1.5 8Z" fill="none" stroke="rgba(0,0,0,.45)" stroke-width="1.2" stroke-linejoin="round"/></svg>'};
-/* ครอบรูปโปรไฟล์ด้วยกรอบ+เครื่องประดับ: ceo = มงกุฎ · admin = ปีกโล่ · VIP1-3 = กรอบสีและเพชร (ทีมงานไม่ขึ้น VIP) · ผู้เล่นทั่วไปคืนค่าเดิม */
-function fxWrap(inner,role,vip){const v=+vip||0,k=role==='ceo'?'ceo':role==='admin'?'adm':v>=1&&v<=3?'v'+v:'';if(!k)return inner;
+const fxHex=c=>/^#[0-9a-f]{3,8}$/i.test(c||'')?c:'#ff3d57',fxEsc=t=>String(t==null?'':t).replace(/[<>&"']/g,''),FXRG=['north','northeast','central','south'];
+/* รูปกรอบโหลดแล้ว: ถ้าตัวรูปโปรไฟล์กว้างน้อยกว่า 56px ทิ้งรูป ใช้วงแหวนสีแทน · ถ้าโหลดไม่ได้ onerror ลบรูป วงแหวนสียังอยู่ */
+function fxLo(i){const p=i.parentNode,w=p&&p.offsetWidth;if(w&&w<56){i.remove();return}if(p)p.classList.add('lo')}
+/* ครอบรูปโปรไฟล์: ceo = มงกุฎ · admin = โล่ติ๊กถูก (ทีมงานไม่มีกรอบ) · frame = {key,tier,accent,art_key} จาก cosmetic_public ใช้แทนวงแหวน VIP · ไม่มีกรอบ VIP1-3 = วงแหวนสีและเพชร · ผู้เล่นทั่วไปคืนค่าเดิม */
+function fxWrap(inner,role,vip,frame){const v=+vip||0,st=role==='ceo'?'ceo':role==='admin'?'adm':'',fr=!st&&frame&&frame.key?frame:null,k=st||(fr?'fr':v>=1&&v<=3?'v'+v:'');if(!k)return inner;
+ if(fr){const t=+fr.tier>=1&&+fr.tier<=3?+fr.tier:0,ak=String(fr.art_key||'').replace(/[^a-z0-9_]/gi,'');
+  return '<span class="fxw fr t'+t+'" style="--fa:'+fxHex(fr.accent)+'">'+inner+(ak&&!fr.noart?'<img class="frm" src="img/frames/'+ak+'.webp" alt="" decoding="async" onload="fxLo(this)" onerror="this.remove()">':'')+'</span>'}
  return '<span class="fxw '+k+'">'+inner+(k==='ceo'?FXO.ceo:k==='adm'?FXO.adm:FXO.gem(v))+(k==='v1'||k==='v2'?'':'<i class="sp a"></i><i class="sp b"></i><i class="sp c"></i>')+'</span>'}
+/* ป้ายฉายาจาก cosmetic = {frame,title} · title = {text,tier,style,region_id} */
+function fxTitle(c){const t=c&&c.title;if(!t||!t.text)return '';const s=t.style==='shine'?'sh':t.style==='region'?'rg':'pl',n=+t.tier>=1&&+t.tier<=3?+t.tier:0,r=FXRG.indexOf(t.region_id)>=0?t.region_id:'';
+ return '<span class="ct '+s+(s==='pl'&&n?' t'+n:'')+'"'+(s==='rg'&&r?' data-r="'+r+'"':'')+'>'+fxEsc(t.text)+'</span>'}
+/* /RANKFX-JS */
 const vipOf=v=>{v=Number(v)||0;return v>=1&&v<=3?v:0};
 function badge(role,vip){const v=vipOf(vip);
  if(role==='ceo')return '<span class="rkc">'+CRN+'CEO</span>';
@@ -338,15 +363,15 @@ const AVP=['img/{k}.webp','img/avatars/{k}.webp','img/avatar/{k}.webp','img/{k}.
 const aEsc=t=>String(t==null?'':t).replace(/[<>&"']/g,'');
 function avErr(i){if(i.dataset.ph){delete i.dataset.ph;i.dataset.t=0;i.src=AVP[0].replace('{k}',i.dataset.k);return}const n=+(i.dataset.t||0)+1;if(n>=AVP.length){i.remove();return}i.dataset.t=n;i.src=AVP[n].replace('{k}',i.dataset.k)}
 const avKey=k=>{k=String(k||'c1').replace(/[^a-z0-9]/gi,'');return k||'c1'};
-function pic(key,photo,cls,role,vip){const k=avKey(key),ph=typeof photo==='string'&&/^https:\/\//.test(photo)?photo:'',v=vipOf(vip),r=Math.max(0,PFX.indexOf(k[0]));
- return fxWrap('<span class="pic'+(cls?' '+cls:'')+'" style="--k:var(--c'+r+')" data-n="'+aEsc(k[1]||'')+'"><img src="'+(ph?aEsc(ph):AVP[0].replace('{k}',k))+'" data-k="'+k+'"'+(ph?' data-ph="1"':'')+' alt="" decoding="async" loading="lazy" onerror="avErr(this)"></span>',role,v)}
+function pic(key,photo,cls,role,vip,cosm){const k=avKey(key),ph=typeof photo==='string'&&/^https:\/\//.test(photo)?photo:'',v=vipOf(vip),r=Math.max(0,PFX.indexOf(k[0])),cf=cosm&&cosm.frame,fr=cf?(/\bbig\b/.test(cls||'')?cf:Object.assign({},cf,{noart:1})):null;
+ return fxWrap('<span class="pic'+(cls?' '+cls:'')+'" style="--k:var(--c'+r+')" data-n="'+aEsc(k[1]||'')+'"><img src="'+(ph?aEsc(ph):AVP[0].replace('{k}',k))+'" data-k="'+k+'"'+(ph?' data-ph="1"':'')+' alt="" decoding="async" loading="lazy" onerror="avErr(this)"></span>',role,v,fr)}
 const ico=(id)=>'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#'+id+'"/></svg>';
 const isCeo=()=>ROLE==='ceo';
 async function loadList(){
  const {data,error}=await sb.rpc('admin_support_threads');
  if(error){toast(error.message);return}
  const l=data||[];
- $('lst').innerHTML=l.length?l.map(t=>'<button type="button" class="th'+(t.user_id===cur?' on':'')+'" data-u="'+esc(t.user_id)+'" style="--k:var(--c'+rk(t.region_id)+')"><span class="t"><span class="tn">'+pic(t.avatar_key,t.photo_url,'sm',t.staff_role,0)+'<span class="nm">'+esc(t.username||'(ไม่พบโปรไฟล์)')+'</span>'+badge(t.staff_role,0)+'</span>'+(t.unread?'<em>'+t.unread+'</em>':'')+'</span>'+((t.important||t.kept)?'<span class="tgs">'+(t.important?'<span class="tg i">สำคัญ</span>':'')+(t.kept?'<span class="tg k">เก็บไว้</span>':'')+'</span>':'')+'<p>'+(t.last_from_admin?'ทีมงาน: ':'')+esc(t.last_body||'')+'</p><small>'+fT(t.last_at)+'</small></button>').join(''):'<p class="empty">ยังไม่มีข้อความจากผู้เล่น</p>'}
+ $('lst').innerHTML=l.length?l.map(t=>'<button type="button" class="th'+(t.user_id===cur?' on':'')+'" data-u="'+esc(t.user_id)+'" style="--k:var(--c'+rk(t.region_id)+')"><span class="t"><span class="tn">'+pic(t.avatar_key,t.photo_url,'sm',t.staff_role,0,t.cosmetic)+'<span class="nm">'+esc(t.username||'(ไม่พบโปรไฟล์)')+'</span>'+badge(t.staff_role,0)+fxTitle(t.cosmetic)+'</span>'+(t.unread?'<em>'+t.unread+'</em>':'')+'</span>'+((t.important||t.kept)?'<span class="tgs">'+(t.important?'<span class="tg i">สำคัญ</span>':'')+(t.kept?'<span class="tg k">เก็บไว้</span>':'')+'</span>':'')+'<p>'+(t.last_from_admin?'ทีมงาน: ':'')+esc(t.last_body||'')+'</p><small>'+fT(t.last_at)+'</small></button>').join(''):'<p class="empty">ยังไม่มีข้อความจากผู้เล่น</p>'}
 function actions(){
  const d=info,box=$('ac'),b=[],staff=!!d.is_staff,isMe=d.user_id===MYID;
  if(!staff&&!isMe)b.push(d.banned_at?'<button class="btn gh" type="button" data-a="unban">ปลดแบน</button>':'<button class="btn gl" type="button" data-a="ban">แบน</button>');
@@ -361,11 +386,11 @@ async function openThread(u,keepScroll){
  if(error){toast(error.message);return}
  info=data;cur=u;const log=$('log'),near=!keepScroll||log.scrollHeight-log.scrollTop-log.clientHeight<80,sr=data.staff_role||null;
  $('tp').classList.toggle('t-ceo',sr==='ceo');$('tp').classList.toggle('t-ad',sr==='admin');
- $('un').innerHTML=pic(data.avatar_key,data.photo_url,'',sr,data.vip_level)+'<span class="nmx">'+nameFx(data.username,sr,data.vip_level)+'</span>';$('ui').textContent=(data.region_id?RGN[rk(data.region_id)]+' · ':'')+'รหัส '+String(u).slice(0,8);
+ $('un').innerHTML=pic(data.avatar_key,data.photo_url,'',sr,data.vip_level,data.cosmetic)+'<span class="nmx">'+nameFx(data.username,sr,data.vip_level)+'</span>'+fxTitle(data.cosmetic);$('ui').textContent=(data.region_id?RGN[rk(data.region_id)]+' · ':'')+'รหัส '+String(u).slice(0,8);
  $('ch').innerHTML=badge(sr,data.vip_level)+'<span class="chip">'+ico('cn')+nf(data.coins)+' เหรียญ</span><span class="chip">'+ico('dm')+nf(data.diamonds)+' เพชร</span>'+(data.banned_at?'<span class="chip bn">ถูกแบน'+(data.ban_reason?' · '+esc(data.ban_reason):'')+'</span>':'')+(data.important?'<span class="tg i">สำคัญ</span>':'')+(data.kept?'<span class="tg k">เก็บไว้ ไม่ลบเอง</span>':data.purge_at?'<span class="chip">จะลบเธรด '+fT(data.purge_at)+'</span>':'');$('ch').hidden=false;
  actions();
  log.innerHTML=(data.messages||[]).length?data.messages.map(m=>{const r=m.from_admin?(m.staff_role||'admin'):null,sv=m.from_admin?0:m.sender_vip,nmx=m.sender_username||(m.from_admin?'ทีมงาน':'');
-  return '<div class="m '+(m.from_admin?'ad'+(r==='admin'?' ra':''):'us')+'"><div class="mh">'+pic(m.sender_avatar_key,m.sender_photo_url,'sm',r,sv)+'<span class="mn">'+nameFx(nmx,r,sv)+'</span>'+badge(r,sv)+'</div>'+esc(m.body)+'<small>'+fT(m.created_at)+(m.from_admin&&m.read_at?'<span class="rd">อ่านแล้ว '+fT(m.read_at)+'</span>':'')+'</small><button type="button" class="x" data-id="'+esc(m.id)+'" aria-label="ลบข้อความ">✕</button></div>'}).join(''):'<p class="empty">ยังไม่มีข้อความ</p>';
+  return '<div class="m '+(m.from_admin?'ad'+(r==='admin'?' ra':''):'us')+'"><div class="mh">'+pic(m.sender_avatar_key,m.sender_photo_url,'sm',r,sv,m.sender_cosmetic)+'<span class="mn">'+nameFx(nmx,r,sv)+'</span>'+badge(r,sv)+fxTitle(m.sender_cosmetic)+'</div>'+esc(m.body)+'<small>'+fT(m.created_at)+(m.from_admin&&m.read_at?'<span class="rd">อ่านแล้ว '+fT(m.read_at)+'</span>':'')+'</small><button type="button" class="x" data-id="'+esc(m.id)+'" aria-label="ลบข้อความ"><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2 2L10 10M10 2L2 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></button></div>'}).join(''):'<p class="empty">ยังไม่มีข้อความ</p>';
  if(near)log.scrollTop=log.scrollHeight;
  $('bd').disabled=false;$('sd').disabled=false;$('cols').classList.add('open');loadList()}
 async function reply(){
@@ -424,7 +449,7 @@ async function findUsers(inp,btn,box,attr){
 const LED={user:null,name:'',reason:'',limit:50};
 const RSN={admin_adjust:'แอดมินปรับ',play_reward:'เหรียญจากการเล่น',chest_buy:'ซื้อหีบ',chest_open:'เปิดหีบ',dissolve:'ย่อยของซ้ำ'};
 const cic=c=>c==='coin'?ico('cn'):c==='diamond'?ico('dm'):esc(c||'');
-function ledChip(){$('lu').innerHTML=LED.user?esc(LED.name||'ผู้เล่น')+' <button type="button" class="cx2" id="lclr" aria-label="ล้างตัวกรองผู้เล่น">✕</button>':'ทุกคน'}
+function ledChip(){$('lu').innerHTML=LED.user?esc(LED.name||'ผู้เล่น')+' <button type="button" class="cx2" id="lclr" aria-label="ล้างตัวกรองผู้เล่น"><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2 2L10 10M10 2L2 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></button>':'ทุกคน'}
 async function loadLedger(more){
  if(more&&LED.limit<200)LED.limit=Math.min(200,LED.limit+50);
  ledChip();$('lmore').disabled=true;
@@ -458,7 +483,7 @@ async function endAnn(id){
  if(ok){toast('ปิดประกาศแล้ว');loadAnn()}}
 /* ===== สวิตช์ระบบ (เฉพาะ ceo · หลังบ้านบังคับกฎซ้ำ) ===== */
 const SW_LOCK=['war_v2_enabled'];
-const SW_CLOSE=['topup_enabled','speedup_enabled','chat_enabled','diamond_chest_enabled','market_enabled','official_store_enabled','boss_enabled'];
+const SW_CLOSE=['topup_enabled','speedup_enabled','chat_enabled','diamond_chest_enabled','market_enabled','official_store_enabled','boss_enabled','cosmetic_shop_enabled'];
 const SW_WARN={
  collection_enabled:'ผู้เล่นจะเปิดหีบ ประกอบไอเทม และดูคอลเลกชันไม่ได้',
  coin_earn_enabled:'ผู้เล่นจะหยุดได้เหรียญจากคะแนนที่ทำ',
@@ -470,7 +495,8 @@ const SW_WARN={
  hall_of_fame_enabled:'ท้ายซีซันจะไม่บันทึกหอเกียรติยศ',
  solo_bonus_enabled:'ผู้เล่นจะไม่ได้โบนัสยึดครั้งแรกและโบนัสอัปเกรดหมู่บ้าน',
  region_flag_enabled:'ธงเป้าหมายภาคจะปักและโหวตไม่ได้',
- custom_avatar_enabled:'ผู้เล่นทุกคนจะเห็นรูปอวตารเดิม และตั้งรูปของตัวเองไม่ได้'};
+ custom_avatar_enabled:'ผู้เล่นทุกคนจะเห็นรูปอวตารเดิม และตั้งรูปของตัวเองไม่ได้',
+ cosmetic_equip_enabled:'ผู้เล่นจะใส่/ถอดกรอบและฉายาไม่ได้ และทุกคนจะไม่เห็นกรอบ/ฉายาของใคร (ของที่ใส่ไว้ไม่หาย)'};
 let SWD=[];
 async function loadSw(){
  if(!isCeo())return;
@@ -491,7 +517,7 @@ async function setSw(k,v){
 let CFG=[];const OPEN=new Set();
 const fmtV=v=>v!==null&&typeof v==='object'?JSON.stringify(v):String(v);
 function cfRow(x){const sim=x.risk==='sim';
- return '<div class="cf"><div class="ct"><b>'+esc(x.label||x.key)+'</b>'+(sim?'<span class="sim">ต้องจำลองก่อน</span>':'')+'</div><small>'+esc(x.key)+' · ช่วง '+(x.min!=null?nf(x.min):'?')+'–'+(x.max!=null?nf(x.max):'?')+'</small><div class="cfe"><input class="in" type="number" inputmode="numeric" step="1"'+(x.min!=null?' min="'+esc(x.min)+'"':'')+(x.max!=null?' max="'+esc(x.max)+'"':'')+' value="'+esc(fmtV(x.value))+'" aria-label="'+esc(x.label||x.key)+'"><button type="button" class="btn gd" data-sv="'+esc(x.key)+'">บันทึก</button></div></div>'}
+ return '<div class="cf"><div class="cft"><b>'+esc(x.label||x.key)+'</b>'+(sim?'<span class="sim">ต้องจำลองก่อน</span>':'')+'</div><small>'+esc(x.key)+' · ช่วง '+(x.min!=null?nf(x.min):'?')+'–'+(x.max!=null?nf(x.max):'?')+'</small><div class="cfe"><input class="in" type="number" inputmode="numeric" step="1"'+(x.min!=null?' min="'+esc(x.min)+'"':'')+(x.max!=null?' max="'+esc(x.max)+'"':'')+' value="'+esc(fmtV(x.value))+'" aria-label="'+esc(x.label||x.key)+'"><button type="button" class="btn gd" data-sv="'+esc(x.key)+'">บันทึก</button></div></div>'}
 function cfGroups(items,pre){const g=new Map();items.forEach(x=>{const n=x.group||'อื่น ๆ';if(!g.has(n))g.set(n,[]);g.get(n).push(x)});
  return [...g].map(([n,l])=>{const id=pre+n;return '<details data-g="'+esc(id)+'"'+(OPEN.has(id)?' open':'')+'><summary><span>'+esc(n)+'</span><em>'+l.length+' ค่า</em></summary><div class="cb">'+l.map(cfRow).join('')+'</div></details>'}).join('')}
 function cfRender(){

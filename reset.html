@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#1a0310">
 <meta name="robots" content="noindex">
 <title>ลืมรหัสผ่าน · MUEANG WARS</title>
@@ -9,7 +9,7 @@
 <style>
 :root{--ink:#fff4f0;--mu:#e3b9c0;--gold:#ffc857;--gold2:#ffe08a;--ln:rgba(255,130,130,.3);color-scheme:dark;font-family:'Noto Sans Thai',system-ui,sans-serif}
 *{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
-html{background:#1a0310;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html{background:#1a0310;touch-action:pan-x pan-y;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{min-height:100vh;min-height:100dvh;color:var(--ink);line-height:1.6;overflow-x:hidden;background:radial-gradient(90% 60% at 50% 0,rgba(255,61,87,.32),transparent 70%),linear-gradient(rgba(26,3,16,.86),rgba(20,2,13,.95)),url(img/pattern-kanok.webp) 0 0/260px,#1a0310;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);display:grid;place-items:center}
 a{color:var(--gold)}:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 h1,.btn{font-family:Kanit,sans-serif}
@@ -157,4 +157,8 @@ $('b2').onclick=async()=>{const a=$('p1').value,c=$('p2').value,b=$('b2');$('e2'
 $('p2').addEventListener('keydown',e=>{if(e.key==='Enter')$('b2').click()});
 
 $('b3').onclick=()=>{history.replaceState(null,'',location.pathname);show(1)};
+/* ล็อกซูม: iOS ไม่สน user-scalable=no จึงกันท่าจีบนิ้วด้วย JS */
+['gesturestart','gesturechange','gestureend'].forEach(t=>document.addEventListener(t,e=>e.preventDefault(),{passive:false}));
+document.addEventListener('touchmove',e=>{if(e.touches.length>1||(e.scale&&e.scale!==1))e.preventDefault()},{passive:false});
+document.addEventListener('wheel',e=>{if(e.ctrlKey)e.preventDefault()},{passive:false});
 </script></body></html>
